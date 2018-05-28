@@ -15,7 +15,7 @@ public class TinhTong {
 		
 		System.out.println("nhap so B ");
 		soB = scanner.nextInt();
-		
+		scanner.close();
 		System.out.println("Tong A va B la " +(soA + soB));
 	}
 
