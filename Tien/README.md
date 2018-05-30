@@ -1,7 +1,8 @@
 # Tien's working directory
 ###  Test
-1. Unit 1:
-1.1. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/tinhTong.java">Bài tập tính tổng 2 số</a>
+# 1. Unit 1:
+</br>
+### 1.1. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/tinhTong.java">Bài tập tính tổng 2 số</a>
 </br>
 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/pTBacNhat.java">Bài tập giải phương trình bậc nhất</a>
 </br>
