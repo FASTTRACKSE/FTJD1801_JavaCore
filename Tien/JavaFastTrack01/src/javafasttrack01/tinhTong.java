@@ -3,10 +3,11 @@ package javafasttrack01;
 import java.util.Scanner;
 
 public class tinhTong {
+	public static Scanner sc;
 
 	public static void main(String[] args) {
 		int soA, soB, tongHaiSo;
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		System.out.print("Nhập số A: ");
 			soA = sc.nextInt();
 		System.out.print("Nhập số B: ");
