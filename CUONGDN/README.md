@@ -11,7 +11,7 @@
 <a href = "https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/CUONGDN/giai%20phuong%20trinh%20bac%202/src/giaiphuongtrinhbac2/giaiphuongtrinhbac2.java"> giai phuong trinh bac 2 </a>
 
 
-<a href = "https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/CUONGDN/tinhtongngaithua/src/tinhtongngaithua/tinhtongngaithua.javaa" > tinh tong giai thua  </a>
+<a href = "https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/CUONGDN/tinhtongngaithua/src/tinhtongngaithua/tinhtongngaithua.java" > tinh tong giai thua  </a>
 
 <a href = "https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/CUONGDN/baitap6/src/tonggiaithuachan/tonggiaithuachan.java"> tinh tong giai thua chan </a>
 
