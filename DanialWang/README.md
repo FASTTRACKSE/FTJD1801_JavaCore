@@ -2,7 +2,7 @@
 Java OOP, Java Swing Development of FTJD1801
 Danial Wang
 
-1. <a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/DanialWang/HelloWorld/src/fastrackse/practice1><practice1></n>
+1. <a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/DanialWang/HelloWorld/src/fastrackse/practice1>practice1</n>
 
 
 
