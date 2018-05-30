@@ -1,11 +1,11 @@
 # Tien's working directory
 <ol>
-    <li><a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/Tien/JavaFastTrack01/src/javafasttrack01">1. Unit 1:</a>
+    <li><a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/Tien/JavaFastTrack01/src/javafasttrack01">Unit 1:</a>
     </br>
     </li>
     <ol>
-      <li>
-        <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/tinhTong.java">1.1         Bài tập tính tổng 2 số</a>
+      <li value="a">
+        <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/tinhTong.java">              Bài tập tính tổng 2 số</a>
       </li>
     </ol>
   </li>
