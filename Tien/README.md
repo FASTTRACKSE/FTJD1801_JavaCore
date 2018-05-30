@@ -13,4 +13,12 @@
         <li>
             <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/sumOneToN.java">Bài tập tính tổng từ 1 đến n</a>
         </li>
+        <li>
+            <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/PTBac2.java">Bài tập giải phương trình bậc 2</a>
+        </li>
+        <li>
+            <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/TinhTongGiaiThua.java">Bài tập tính tổng từ 1! đến n!</a>
+        </li>        
 </ol>
+
+        
