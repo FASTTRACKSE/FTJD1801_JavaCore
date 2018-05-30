@@ -6,3 +6,6 @@
 
 
 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/tinhtongtu1denN.java"> tinh tong tu 1 den N
+
+
+<a href=""> Giai PT bat2
