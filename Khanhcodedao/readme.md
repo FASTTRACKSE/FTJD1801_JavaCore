@@ -9,3 +9,6 @@
 
 
 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/GiaiPT_Bat2.java"> Giai PT bat2
+
+
+<a href=""> Quan ly HS
