@@ -6,7 +6,7 @@ public class GiaiPTBac2 {
 
 	public static void main(String[] args) {
 		Scanner sc=new Scanner (System.in);
-		double a,b,c,x1,x2,delta,x;
+		double a,b,c,delta, x1,x2,x;
 		System.out.println("Nhập a");
 		a=sc.nextDouble();
 		System.out.println("Nhập b");
@@ -16,12 +16,12 @@ public class GiaiPTBac2 {
 		delta=b*b-4*a*c;
 		if (delta<0)
 		{
-			System.out.println("PT vô nghiệm");
+			System.out.println("PT vô nghiệm :");
 		}
 		else {
 			if (delta==0)
 		{
-			System.out.println("PT có nghiêm"+(-b/2*a));
+			System.out.println("PT có nghiêm là :"+(-b/2*a));
 			
 		}
 			else {
