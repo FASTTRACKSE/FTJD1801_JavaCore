@@ -1,7 +1,8 @@
-package baitap5;
+package baitap6;
+
 import java.util.Scanner;
 
-public class tonggiaithua {
+public class giaithuachan {
 
 	public static void main(String[] args) {
 		int a ,s = 0 , i, n, gt = 1;
@@ -10,10 +11,13 @@ public class tonggiaithua {
 		n = sc.nextInt();
 		for (i = 1; i<=n ; i++) {
 			gt = gt * i;
-			s=s+gt;
+			if(i%2 == 0) {
+				s=s+gt;
+			}
 			
 		}
 		System.out.println("Kết quả: "+s);
+
 	}
 
 }
