@@ -18,11 +18,9 @@ public class TaoMenu {
 			int choice = sc.nextInt();
 			if (choice == 1) {
 				System.out.println("You add a sutdent");
-			}
-			else if (choice == 2) {
+			} else if (choice == 2) {
 				System.out.println("You delete a student");
-			}
-			else if (choice == 3) {
+			} else if (choice == 3) {
 				System.out.println("Exit");
 				break;
 			}
