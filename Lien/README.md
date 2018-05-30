@@ -2,8 +2,7 @@
 Java OOP, Java Swing Development of FTJD1801
 </br>
 1. Unit 1:
-</br>
-    1.1. <a href=https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Lien/JavaFastTrack/src/baitap1/TinhTong.java>Bài tập tính tổng</a>
+</br> <a href=https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Lien/JavaFastTrack/src/baitap1/TinhTong.java>Bài tập tính tổng</a>
 </br>
 <a href=https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Lien/JavaFastTrack/src/baitap2/PTB1.java>  Bài tập PTB1</a>
 </br>
