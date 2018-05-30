@@ -9,3 +9,7 @@ Java OOP, Java Swing Development of FTJD1801
 </br>
   <a href=https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/Lien/JavaFastTrack/src/baitap3>1.3 Bài tập tính tổng từ 1 đến n</a>
 </br>
+  <a href=https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/75988bd0533b66d7f4e226edf0109d93722a855a>1.4 Bài tập PTB2</a>
+ </br>
+<a href= https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/c39bf8c2e0bd01bde8217bcb82ac03136002a61b>1.5 bài tập giai thừa</a>
+</br>
