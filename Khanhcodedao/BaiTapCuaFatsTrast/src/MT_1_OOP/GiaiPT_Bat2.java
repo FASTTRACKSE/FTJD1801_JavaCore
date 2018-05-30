@@ -19,16 +19,16 @@ public class GiaiPT_Bat2 {   // pt Ax2 + Bx +c = 0
 	if(D < 0) {
 		System.out.println(" phuong trinh vo nghiem .");
 	}
-	if(D==0) {
+	else if(D==0) {
 		System.out.println(" phuong trinh co nghiem kep X1 = X2 = "+((-b)/2*a));
 	}
-	else {
+	else{
 		System.out.println(" phuong trinh co 2 nghiem phan biet ");
 		X1 = (-b + Math.sqrt(D))/(2*a);
 		X2= (-b - Math.sqrt(D))/(2*a);
 		
-		System.out.printf(" %.1f "+X1);
-		System.out.printf(" %.1f "+X1);
+		System.out.printf(" %.1f ",X1);
+		System.out.printf(" %.1f ",X2);
 	}
  }
 }

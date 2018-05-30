@@ -9,10 +9,11 @@ public class tonggiaithua {
 		System.out.println("Nhập vào số n: ");
 		n = sc.nextInt();
 		for (i = 1; i<=n ; i++) {
-			gt *=i;
-			System.out.println("Kết quả: "+gt);
+			gt = gt * i;
+			s=s+gt;
+			
 		}
-
+		System.out.println("Kết quả: "+s);
 	}
 
 }
