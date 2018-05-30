@@ -19,6 +19,9 @@
         <li>
             <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/TinhTongGiaiThua.java">Bài tập tính tổng từ 1! đến n!</a>
         </li>        
+        <li>
+            <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/TTGiaiThuaSoChan.java">Bài tập tính các số chẵn từ 1! đến n!</a>
+        </li>
 </ol>
 
         
