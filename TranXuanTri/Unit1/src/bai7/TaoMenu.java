@@ -19,10 +19,10 @@ public class TaoMenu {
 			if (choice == 1) {
 				System.out.println("You add a sutdent");
 			}
-			if (choice == 2) {
+			else if (choice == 2) {
 				System.out.println("You delete a student");
 			}
-			if (choice == 3) {
+			else if (choice == 3) {
 				System.out.println("Exit");
 				break;
 			}
