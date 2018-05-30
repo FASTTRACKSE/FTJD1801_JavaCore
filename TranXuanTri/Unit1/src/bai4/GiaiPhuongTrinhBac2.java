@@ -20,19 +20,34 @@ public class GiaiPhuongTrinhBac2 {
 		scanner.close();
 		
 		double delta = b^2 - 4*a*c;
-		
-		if (delta <0) {
-			System.out.println("phuong trinh vo nghiem");
+		if (a==0) {
+			if (b==0) {
+				if (c==0) {
+					System.out.println("Phuong trinh vo so nghiem");
+				}
+				else {
+					System.out.println("Phuong trinh vo nghiem");
+				}
+			}
+			else {
+				x = -c/b;
+				System.out.println("Phuong trinh co nghiem la " +x);
+			}
 		}
-		if (delta == 0) {
+		else {
+		
+			if (delta <0) {
+			System.out.println("phuong trinh vo nghiem");
+			}
+			if (delta == 0) {
 			x = -b/2*a;
 			System.out.println("phuong trinh co 1 nghiem "+x);
-		}
-		if (delta > 0) {
+			}
+			if (delta > 0) {
 			 x1 = ((-b + Math.sqrt(delta))/2*a);
 			 x2 = ((-b - Math.sqrt(delta))/2*a);
 			 System.out.printf ("Phuong trinh co 2 nghiem x1 = %.2f, x2 = %.2f", x1,x2);
+			}
 		}
 	}
-
 }

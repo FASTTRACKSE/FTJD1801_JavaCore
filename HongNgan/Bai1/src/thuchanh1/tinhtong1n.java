@@ -15,7 +15,7 @@ public class tinhtong1n {
 		{
 			s=s+i;
 		}
-		System.out.println("tổng"+s);
+		System.out.println("Tổng"+s);
 
 	}
 
