@@ -16,5 +16,5 @@ Java OOP, Java Swing Development of FTJD1801
 </br>
 <a href=https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/6243ea5a35c2c5c4882c5d61b62afdb3ec8aa3ad>1.6 bài tập tính tổng giai thừa chẵn</a>
 </br>
-<a href=https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/15788abcf9874023c6657d9f5847936a5e79779f>1.7 bào tập menu</a>
+<a href=https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/15788abcf9874023c6657d9f5847936a5e79779f>1.7 bài tập menu</a>
 </br>
