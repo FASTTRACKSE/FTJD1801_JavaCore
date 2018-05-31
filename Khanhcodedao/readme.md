@@ -14,4 +14,4 @@
 
 5 <ahref=""> Tinh Tong n Giai Thua
 
-6 ahref=""> Tinh Giai Thua Chan
+6 ahref=""> Tinh Tong Giai Thua Chan
