@@ -8,4 +8,5 @@
   1.4 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai4/GiaiPhuongTrinhBac2.java"> Giai phuong trinh bac 2 </a> <br>
   1.5 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai5/TinhNGiaiThua.java"> Tinh tong n giai thua </a> <br>
   1.6 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai6/TinhTongGiaiThuaChan.java"> Tinh tong giai thua chan </a> <br>
-  1.7 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai7/TaoMenu.java"> Tao menu </a>
+  1.7 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai7/TaoMenu.java"> Tao menu </a> <br>
+  1.8 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai8/TinhTienDien.java"> Tinh Tien Dien </a>
