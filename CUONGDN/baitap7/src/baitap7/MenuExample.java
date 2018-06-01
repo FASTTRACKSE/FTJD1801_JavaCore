@@ -1,11 +1,8 @@
-package bai7;
-
+package baitap7;
 import java.util.Scanner;
-
-public class TaoMenu {
+public class MenuExample {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		while (true) {
 			System.out.println("-------");
 			System.out.println("Menu");
@@ -21,10 +18,10 @@ public class TaoMenu {
 			} else if (choice == 2) {
 				System.out.println("You delete a student");
 			} else if (choice == 3) {
-				System.out.println("Exit");
+				System.out.println("Exit program");
 				break;
-			}
-		}
 	}
 
+}
+	}
 }
