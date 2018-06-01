@@ -18,4 +18,4 @@
 
 7  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/QuanLyTienDien.java">  Tinh tien dien
 
-8 <a href"https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/BaiTapTichHopKienThuc.java"> bai tap tich hop kien thuc 
+8 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/BaiTapTichHopKienThuc.java"> bai tap tich hop kien thuc 
