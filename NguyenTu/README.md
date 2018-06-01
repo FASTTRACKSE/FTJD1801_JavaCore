@@ -7,3 +7,4 @@ Unit 1</br>
     1.5<a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/e35b1cbf3ecf2ba9e9ff3797d640ab9e3ad07584">Giai thừa chẵn</a></br>
 MenuExam</br>
 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/ea7f8fe1988f4afde5a122050b14b547e0a638b2">MenuExam</a></br>
+    1.1<a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/265f7d675759507071d6f4f60f9b77c085459ad6">Tiền điện<a></br>
