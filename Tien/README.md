@@ -25,6 +25,9 @@
         <li>
             <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/Menu01.java">Bài tập menu cơ bản</a>
         </li>
+        <li>
+            <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/TinhTienDien.java">Bài tập tính tiền điện</a>
+        </li>     
 </ol>
 
         
