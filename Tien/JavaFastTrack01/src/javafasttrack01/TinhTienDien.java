@@ -17,5 +17,6 @@ public class TinhTienDien {
 		}
 		System.out.println("Số tiền điện là: "+tienDien);
 	}
-
+	
 }
+		
