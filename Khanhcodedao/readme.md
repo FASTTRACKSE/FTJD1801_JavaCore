@@ -15,3 +15,5 @@
 5  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/TinhGiaiThua.java"> Tinh Tong n Giai Thua
 
 6  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/TinhTongGiaiThua_Chan.java"> Tinh Tong Giai Thua Chan
+
+7  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/QuanLyTienDien.java">  Tinh tien dien
