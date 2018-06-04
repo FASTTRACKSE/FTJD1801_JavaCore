@@ -21,12 +21,10 @@ unit 1:
 
 8 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/BaiTapTichHopKienThuc.java"> bai tap tich hop kien thuc 
 
-9 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/InBangCuuChuong.java"> In bang cuu chuong 
+9 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/InBangCuuChuong.java"> In bang cuu chuong .
  
 
-
 unit 2 :
-
 
 
 10<a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/XepdanhSachHocSinh.java"> xep loai hoc sinh
