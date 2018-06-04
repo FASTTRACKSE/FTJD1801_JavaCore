@@ -1,5 +1,5 @@
 <ol>
-<li><p>UNIT.1</p>
+<li><p>UNIT1</p>
 
    <Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/thuchanh1/giaiptbacnhat.java"> Giải Phương trinh bậc I </a></li>
    <li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/thuchanh1/tinhtong.java" >Tính Tổng </a></li>
@@ -10,4 +10,6 @@
    <li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/thuchanh1/TinhTienDien.java">Tính Tiền Điện </a></li>
 </Ul>
 </li>
+<li><p>UNIT2</p>
+<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/Unit2/BangCuuChuong"> Bảng Cửu Chương </a></li>
 </ol>
