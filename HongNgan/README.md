@@ -11,5 +11,5 @@
 </Ul>
 </li>
 <li><p>UNIT2</p>
-<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/Unit2/BangCuuChuong"> Bảng Cửu Chương </a></li>
+<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/Unit2/BangCuuChuong.java"> Bảng Cửu Chương </a></li>
 </ol>
