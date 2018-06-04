@@ -8,32 +8,32 @@ public class XepdanhSachHocSinh {
 		
 		for(int i =0; i<HocSinh.length;i++) {
 			if(Diem[i]<5) {
-				System.out.println(" hoc sinh : "+HocSinh[i]+" ");
-				System.out.println(" diem :"+Diem[i]+" ");
+				System.out.println(" hoc sinh : "+HocSinh[i]);
+				System.out.println(" diem :"+Diem[i]);
 				System.out.println(" xep loai yeu");
 				System.out.println("-------------------------");
 			}
 			else if(Diem[i]>=5 && Diem[i]<6.5) {
-				System.out.println(" hoc sinh : "+HocSinh[i]+" ");
-				System.out.println(" diem :"+Diem[i]+" ");
+				System.out.println(" hoc sinh : "+HocSinh[i]);
+				System.out.println(" diem :"+Diem[i]);
 				System.out.println(" xep loai trung binh ");
 				System.out.println("-----------------------------");
 			}
 			else if(Diem[i]>=6.5 && Diem[i]<7.5) {
-				System.out.println(" hoc sinh : "+HocSinh[i]+" ");
-				System.out.println(" diem :"+Diem[i]+" ");
+				System.out.println(" hoc sinh : "+HocSinh[i]);
+				System.out.println(" diem :"+Diem[i]);
 				System.out.println(" xep loai kha ");
 				System.out.println("-----------------------------");
 			}
 			else if(Diem[i]>=7.5 && Diem[i]<9) {
-				System.out.println(" hoc sinh : "+HocSinh[i]+" ");
-				System.out.println(" diem :"+Diem[i]+" ");
+				System.out.println(" hoc sinh : "+HocSinh[i]);
+				System.out.println(" diem :"+Diem[i]);
 				System.out.println(" xep loai gioi ");
 				System.out.println("-----------------------------");
 			}
 			else if(Diem[i]>=9 && Diem[i]<=10) {
-				System.out.println(" hoc sinh : "+HocSinh[i]+" ");
-				System.out.println(" diem :"+Diem[i]+" ");
+				System.out.println(" hoc sinh : "+HocSinh[i]);
+				System.out.println(" diem :"+Diem[i]);
 				System.out.println(" xep loai xuat sac ");
 				System.out.println("-----------------------------");
 			}
