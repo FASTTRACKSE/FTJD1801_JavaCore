@@ -64,7 +64,7 @@ public class DoiSoRaChu {
 				}
 				switch (tram) {
 				case 0: {
-					if (ngan != 0) {
+					if (ngan != 0 && (chuc != 0 || donvi !=0)) {
 						System.out.print("khong tram ");
 					}
 					break;
@@ -108,9 +108,9 @@ public class DoiSoRaChu {
 				}
 				switch (chuc) {
 				case 0: {
-					if ((ngan != 0)) {
+					if (ngan != 0 && donvi !=0) {
 						System.out.print("le ");
-					} else if (tram != 0) {
+					} else if (tram != 0 && donvi !=0) {
 						System.out.print("le ");
 					}
 					break;
