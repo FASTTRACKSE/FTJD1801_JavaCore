@@ -16,3 +16,7 @@
 <a href = "https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/CUONGDN/baitap6/src/tonggiaithuachan/tonggiaithuachan.java"> tinh tong giai thua chan </a>
 
 <a href = "https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/CUONGDN/baitap7/src/baitap7/MenuExample.java"> MenuExample </a>
+
+<a href = "https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/CUONGDN/tinhtiendien/src/tinhtiendien/TinhTienDien.java"> Tinhtiendien </a>
+
+<a href = "https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/CUONGDN/SapXepSinhVien.java"> SapxepSinhVien </a>
