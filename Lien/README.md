@@ -24,3 +24,7 @@ Java OOP, Java Swing Development of FTJD1801
 </br>
 <a href =https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/27681530083d382f8b0197b37488a4bdcd345b81>    **bài tập bảng cửu chương</a>
 </br>
+2. Unit 2:
+</br>
+<a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/3cf78e8de22c8902e1643b4b79de91857c0ca7b4>2.1 bài tập sinh viên</a>
+</br>
