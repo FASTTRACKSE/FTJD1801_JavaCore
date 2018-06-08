@@ -34,5 +34,8 @@
         <li>
             <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/BangDiemSinhVien.java ">Bài tập bảng điểm sinh viên</a>
         </li>
+        <li>
+            <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/ChuyenDoiSo.java">Bài tập Chuyển đổi số thành chữ</a>
+        </li>
 </ol>
 
