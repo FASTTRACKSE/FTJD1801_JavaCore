@@ -26,6 +26,9 @@ public class ChuyenDoiSo {
 			if(dem == 2 && quyDoi >= 1 && kiemTra == 5) {
 				loiViet = "lăm "; 
 			}
+			if(dem == 2 && quyDoi >=2 && kiemTra == 1) {
+				loiViet = "mốt ";
+			}
 			switch(quyDoi) {
 				case 0: if(dem == 1) {				
 							loiViet = "" + loiViet;
