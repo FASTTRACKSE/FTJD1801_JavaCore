@@ -34,6 +34,6 @@ unit 2 :
 
 3 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/sanpham.java"> bai tap 1 lap3
 
-4 <a href =""> san pham 2
+4 <a href =""> bai tap 2 lap3
  
 5 <a href ="">  bt1 QLSV
