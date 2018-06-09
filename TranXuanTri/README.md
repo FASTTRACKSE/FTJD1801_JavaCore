@@ -9,4 +9,8 @@
   1.5 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai5/TinhNGiaiThua.java"> Tinh tong n giai thua </a> <br>
   1.6 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai6/TinhTongGiaiThuaChan.java"> Tinh tong giai thua chan </a> <br>
   1.7 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai7/TaoMenu.java"> Tao menu </a> <br>
-  1.8 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai8/TinhTienDien.java"> Tinh Tien Dien </a>
+  1.8 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai8/TinhTienDien.java"> Tinh Tien Dien </a> <br>
+  1.9 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/tonghop/BaiTongHop.java"> Bai tap tong hop </a>
+2. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit2/src"> Unit 2 </a> <br>
+  2.1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit2/src/bai1/BangCuuChuong.java"> Bang cuu chuong </a> <br>
+  2.2 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit2/src/bai2/DanhSachSinhVien.java"> Danh sach sinh vien </a> <br>

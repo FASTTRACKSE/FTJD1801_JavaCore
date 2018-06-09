@@ -20,3 +20,7 @@ Java OOP, Java Swing Development of FTJD1801
 </br>
 <a href= https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/cae37420adf7d63f01291d3c60e31957b65b9ed0>1.8 bài tập tính tiền điện</a>
 </br>
+<a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/b9e2312387c735253cb69e57564631782c856c1b>1.9 *bài tập tổng hợp </a>
+</br>
+<a href =https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/27681530083d382f8b0197b37488a4bdcd345b81>    **bài tập bảng cửu chương</a>
+</br>
