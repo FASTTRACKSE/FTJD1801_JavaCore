@@ -36,4 +36,4 @@ unit 2 :
 
 4 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/TT_sanpham.java"> bai tap 2 lap3
  
-5 <a href ="">  bt1 QLSV
+5 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/Unit_3_QLSV.java">  bt1 QLSV
