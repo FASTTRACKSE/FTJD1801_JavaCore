@@ -59,5 +59,4 @@ public class Unit_3_QLSV {
 		String st = QL.xepLoai();             // phai tao cho no 1 kieu du lieu tra ve
 		System.out.println(" xep loai : "+st);// xuat ra man hinh
 	}
-
 }
