@@ -2,7 +2,7 @@ package MT_1_OOP;
 
 import java.util.Scanner;
 
-public class TT_sanpham {
+public class Sanpham {
 
 	public String tensp;
 	public double gia;
@@ -22,9 +22,9 @@ public class TT_sanpham {
 	}
 	public static void main(String[] args) {
 		
-		TT_sanpham sp1 = new TT_sanpham();
+		Sanpham sp1 = new Sanpham();
 		sp1.nhap();
-		TT_sanpham sp2 = new TT_sanpham();
+		Sanpham sp2 = new Sanpham();
 		sp2.nhap();
 		
 		sp1.hienThi();
