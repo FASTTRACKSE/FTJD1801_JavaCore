@@ -30,3 +30,5 @@ Java OOP, Java Swing Development of FTJD1801
 </br>
 <a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/3cf78e8de22c8902e1643b4b79de91857c0ca7b4>2.1 bài tập sinh viên</a>
 </br>
+<a href= https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/3d9468babeb8f30cb0acb5782c95c4ca6ca80c23 2.2 bài tập list sản phẩm</a>
+</br>
