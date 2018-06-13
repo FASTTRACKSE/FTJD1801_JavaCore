@@ -40,5 +40,15 @@
         <li>
             <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/MenuGiaiPhuongTrinh.java">Bài tập menu giải phương trình</a>
         </li>
+    </ol>
+    <li>
+        <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/Tien/JavaFastTrack01/src/oop">Unit 2: OOP</a>
+    </li>
+    <ol>
+        <li>
+            <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/oop/Student.java"> Bài tập Sinh viên</a>
+        </li>
+    </ol>
 </ol>
-
+    
+    
