@@ -37,5 +37,8 @@
         <li>
             <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/ChuyenDoiSo.java">Bài tập Chuyển đổi số thành chữ</a>
         </li>
+        <li>
+            <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/javafasttrack01/MenuGiaiPhuongTrinh.java">Bài tập menu giải phương trình</a>
+        </li>
 </ol>
 
