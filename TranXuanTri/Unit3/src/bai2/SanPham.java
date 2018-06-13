@@ -1,5 +1,5 @@
 package bai2;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SanPham {
@@ -28,36 +28,38 @@ public class SanPham {
 		this.giamGia = sc.nextDouble();
 	}
 	public void xuat() {
-		System.out.println(this.tenSanPham + "||" + this.donGia + "||" + this.giamGia + "||" + this.getThue());
+		System.out.println(this.tenSanPham + " || " + this.donGia + " || " + this.giamGia + " || " + this.getThue());
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		SanPham[] spList = new SanPham[5];
-		for (int i = 0; i < spList.length; i++) {
+		ArrayList <SanPham> spList = new ArrayList<SanPham>();
+//		SanPham[] spList = new SanPham[5];
+		for (int i = 0; i < 3; i++) {
 			SanPham sp = new SanPham();
 			sp.nhap();
-			spList[i] = sp;
+			spList.add(sp);
+//			spList[i] = sp;
 		}
-		double tam;
-		SanPham spTam = new SanPham();
-		for (int a = 0; a < spList.length - 1; a++) {
-			for (int b = spList.length - 1; b >= 1; b--) {
-				double x = spList[b - 1].donGia;
-				double y = spList[b].donGia;
-				if (x > y) {
-					tam = y;
-					y = x;
-					x = tam;
-					spTam = spList[b];
-					spList[b] = spList[b - 1];
-					spList[b - 1] = spTam;
-				}
-			}
-		}
+//		double tam;
+//		SanPham spTam = new SanPham();
+//		for (int a = 0; a < spList.size() - 1; a++) {
+//			for (int b = spList.size() - 1; b >= 1; b--) {
+//				double x = spList[b - 1].donGia;
+//				double y = spList[b].donGia;
+//				if (spList.get(b-1).donGia > spList.get(b).donGia) {
+//					tam = spList.get(b).donGia;
+//					spList.get(b).donGia = spList.get(b-1).donGia;
+//					spList.get(b-1).donGia = tam;
+//					spTam = spList.get(b);
+//					spList.get(b) = spList.get(b-1);
+//					spList.get(b-1) = spTam;
+//				}
+//			}
+//		}
 		System.out.println("Don gia tu thap den cao");
-		for (int i = 0; i < spList.length; i++) {
-			spList[i].xuat();
+		for (int i = 0; i < spList.size(); i++) {
+			spList.get(i).xuat();
 		}
 	}
 }
