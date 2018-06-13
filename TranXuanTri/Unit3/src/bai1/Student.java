@@ -8,7 +8,8 @@ public class Student {
 	public int age;
 	public String address;
 	public double gpa;
-	
+	public int java;
+	public int html;
 	public void input() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Input student id: ");
@@ -23,15 +24,36 @@ public class Student {
 		System.out.print("Input student address: ");
 		this.address = sc.nextLine();
 		
-		System.out.print("Input student gpa: ");
-		this.gpa = sc.nextDouble();
-	}
+		System.out.print("Input student java point: ");
+		this.java = sc.nextInt();
+		
+		System.out.print("Input student html point: ");
+		this.html = sc.nextInt();
+	}	
+	
 	public void output() {
-		System.out.println(this.id + "|" + this.name + "|" + this.age + "|" + this.address + "|" + this.gpa);
+		System.out.print(this.id + "|" + this.name + "|" + this.age + "|" + this.address + "|" + calGpa());
 	}
+	
+	public String gpa() {
+		if (gpa>=8) {
+			return "A";
+		}
+		else if (gpa>=6) {
+			return "B";
+		}
+		else  
+			return "C";
+	}
+	
+	public double calGpa() {
+		return gpa = (java + html)/2;
+	}
+	
 	public static void main(String agr[]) {
 		Student st = new Student();
 		st.input();
 		st.output();
+		System.out.print("|" + st.gpa());
 	}
 }
