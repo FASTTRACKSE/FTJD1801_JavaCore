@@ -3,63 +3,83 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SanPham {
-	public String tenSanPham;
-	public double donGia;
-	public double giamGia;
-	public double getThue() {
-		return this.donGia*10/100;
+	private String tenSanPham;
+	private double donGia;
+	private double giamGia;
+
+	public double getThueThuNhap() {
+		return this.donGia * 10 / 100;
 	}
-	public SanPham(String tenSanPham,double donGia, double giamGia) {
+
+	public SanPham() {
+	}
+
+	public SanPham(String tenSanPham, double donGia, double giamGia) {
 		this.tenSanPham = tenSanPham;
 		this.donGia = donGia;
 		this.giamGia = giamGia;
 	}
-	public SanPham() {
+
+	public SanPham(String tenSanPham, double donGia) {
+		this.tenSanPham = tenSanPham;
+		this.donGia = donGia;
+		// this(tenSanPham, donGia, 0);
 	}
+
+	public String getTenSanPham() {
+		return tenSanPham;
+	}
+
+	public void setTenSanPham(String tenSanPham) {
+		this.tenSanPham = tenSanPham;
+	}
+
+	public double getDonGia() {
+		return donGia;
+	}
+
+	public void setDonGia(double donGia) {
+		this.donGia = donGia;
+	}
+
+	public double getGiamGia() {
+		return giamGia;
+	}
+
+	public void setGiamGia(double giamGia) {
+		this.giamGia = giamGia;
+	}
+
 	public void nhap() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Nhap ten san pham: ");
 		this.tenSanPham = sc.nextLine();
-		
+
 		System.out.print("Nhap don gia: ");
 		this.donGia = sc.nextDouble();
-		
+
 		System.out.print("Nhap giam gia: ");
 		this.giamGia = sc.nextDouble();
 	}
+
 	public void xuat() {
-		System.out.println(this.tenSanPham + " || " + this.donGia + " || " + this.giamGia + " || " + this.getThue());
+		System.out.println(
+				this.tenSanPham + " || " + this.donGia + " || " + this.giamGia + " || " + this.getThueThuNhap());
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ArrayList <SanPham> spList = new ArrayList<SanPham>();
-//		SanPham[] spList = new SanPham[5];
-		for (int i = 0; i < 3; i++) {
-			SanPham sp = new SanPham();
-			sp.nhap();
-			spList.add(sp);
-//			spList[i] = sp;
-		}
-//		double tam;
-//		SanPham spTam = new SanPham();
-//		for (int a = 0; a < spList.size() - 1; a++) {
-//			for (int b = spList.size() - 1; b >= 1; b--) {
-//				double x = spList[b - 1].donGia;
-//				double y = spList[b].donGia;
-//				if (spList.get(b-1).donGia > spList.get(b).donGia) {
-//					tam = spList.get(b).donGia;
-//					spList.get(b).donGia = spList.get(b-1).donGia;
-//					spList.get(b-1).donGia = tam;
-//					spTam = spList.get(b);
-//					spList.get(b) = spList.get(b-1);
-//					spList.get(b-1) = spTam;
-//				}
-//			}
-//		}
-		System.out.println("Don gia tu thap den cao");
-		for (int i = 0; i < spList.size(); i++) {
-			spList.get(i).xuat();
-		}
+		ArrayList<SanPham> spList = new ArrayList<SanPham>();
+		SanPham sp1 = new SanPham();
+		sp1.nhap();
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Nhap ten san pham: ");
+		String ten = sc.nextLine();
+		System.out.print("Nhap gia san pham: ");
+		double gia = Double.parseDouble(sc.nextLine());
+		SanPham sp2 = new SanPham(ten, gia);
+		sp1.xuat();
+		sp2.xuat();
+
 	}
 }
