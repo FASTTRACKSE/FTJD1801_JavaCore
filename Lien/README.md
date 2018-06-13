@@ -32,3 +32,7 @@ Java OOP, Java Swing Development of FTJD1801
 </br>
 <a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/3d9468babeb8f30cb0acb5782c95c4ca6ca80c23> 2.2 bài tập list sản phẩm</a>
 </br>
+3.Unit3: TRUY XUẤT VÀ DỮ LIỆU
+</br>
+<a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/4617d17e01e97eec82a2fec538423ec55b51495e>3.1 bài tập nâng cấp lớp sản phẩm</a>
+</br>
