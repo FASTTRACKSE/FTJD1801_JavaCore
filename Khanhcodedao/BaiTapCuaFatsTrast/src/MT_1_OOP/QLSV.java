@@ -80,7 +80,7 @@ public class QLSV {
 				System.out.println(" 2 : cap nhat thong tim sinh vien theo ID .");
 				System.out.println(" 3 : xoa sinh vien theo ID");
 				System.out.println(" 4 : hien thi toan bo sinh vien co trong danh sach .");
-				System.out.println(" 5 thoat chuong trinh .");
+				System.out.println(" 5 : thoat chuong trinh .");
 				
 			int luachon;
 			do {
@@ -112,43 +112,46 @@ public class QLSV {
 						if(sua.equalsIgnoreCase(danhsachsv.get(i).getId())) {   // neu thoa dk moi cho chay
 							dem++;
 							danhsachsv.get(i).nhap();     //  sau khi tim duoc cho nguoi dung nhap lai
+							
+							System.out.printf("\t\t====DANH SACH SINH VIEN SAU KHI DA SUA====");
+							System.out.printf("\n\t\t%-20s %-10s %-20s %-10s ","Ten sinh vien","ID","Dia Chi","DiemTB");
+							for(int j=0; j<danhsachsv.size(); j++) {
+								danhsachsv.get(j).xuat();	
+							}
 						}
 					}
 					if(dem ==0) {
 						System.out.println(" khong co sinh vien theo tim kiem cua ban .");
 					}
-					System.out.printf("\t\t====DANH SACH SINH VIEN SAU KHI DA SUA====");
-					System.out.printf("\n\t\t%-20s %-10s %-20s %-10s ","Ten sinh vien","ID","Dia Chi","DiemTB");
-					for(int i=0; i<danhsachsv.size(); i++) {
-						danhsachsv.get(i).xuat();	
-					}
+					
 					
 					System.out.println("");
 					break;
 				}
 				case 3 :{
 					int dem=0;
-					String xoa;
 					System.out.println(" Nhap vao ma so sinh vien can xoa : ");
-					xoa = sc.nextLine();
+					String xoa = sc.nextLine();
 					
 					for(int i =0; i<danhsachsv.size(); i++) {
 						if(xoa.equalsIgnoreCase(danhsachsv.get(i).getId())) {   // neu thoa dk moi cho chay
 							dem++;
 							danhsachsv.remove(i);     //  sau khi tim duoc xoa luôn
+							
+							System.out.printf("\t\t====DANH SACH SINH VIEN SAU KHI DA SUA====");
+							System.out.printf("\n\t\t%-20s %-10s %-20s %-10s ","Ten sinh vien","ID","Dia Chi","DiemTB");
+							for(int j=0; j<danhsachsv.size(); j++) {
+								danhsachsv.get(j).xuat();	
+							}
 						}
 					}
 					if(dem ==0) {
 						System.out.println(" khong co sinh vien theo tim kiem cua ban .");
 					}
-					System.out.printf("\t\t====DANH SACH SINH VIEN SAU KHI DA SUA====");
-					System.out.printf("\n\t\t%-20s %-10s %-20s %-10s ","Ten sinh vien","ID","Dia Chi","DiemTB");
-					for(int i=0; i<danhsachsv.size(); i++) {
-						danhsachsv.get(i).xuat();	
-					}
+					
 					break;
 				}
-				case 4 :{
+				case 4 :{  // sap xep theo trinh tu diem giam dan
 					Collections.sort(danhsachsv, (QLSV sv1 , QLSV sv2) ->{  // collection.sprt  la cau lenh thuc hien thao tac sap xep theo 1 trinh tu nao do
 						if(sv1.getGpa() > sv2.getGpa()){
 							return -1;
