@@ -2,9 +2,8 @@ package bai3;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
-
-import bai2.SanPham;
 
 public class SinhVien {
 	private String id;
@@ -128,10 +127,11 @@ public class SinhVien {
 				}
 
 			} else if (choice == 4) {
-//				Collections.sort(Students, new Comparator<super Students>);
-//				public int compare(Students sv1,Students sv2)
-//				return sv1.getName.compareTo(sv2.getName)
-
+				Collections.sort(Students,new Comparator<SinhVien>() {
+				public int compare(SinhVien sv1,SinhVien sv2) {
+				return sv1.getName().compareTo(sv2.getName());
+				}
+				});
 			} else if (choice == 5) {
 				for (int i = 0; i < Students.size(); i++) {
 					Students.get(i).xuat();
