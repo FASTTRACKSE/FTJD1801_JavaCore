@@ -79,8 +79,9 @@ public class QLSV {
 				System.out.println(" 1 : nhap thong tin sinh vien .");
 				System.out.println(" 2 : cap nhat thong tim sinh vien theo ID .");
 				System.out.println(" 3 : xoa sinh vien theo ID");
-				System.out.println(" 4 : hien thi toan bo sinh vien co trong danh sach .");
-				System.out.println(" 5 : thoat chuong trinh .");
+				System.out.println(" 4 : xap xep sinh vien theo diem .");
+				System.out.println(" 5 : hien thi toan bo sinh vien co trong danh sach .");
+				System.out.println(" 6 : thoat chuong trinh .");
 				
 			int luachon;
 			do {
@@ -174,6 +175,16 @@ public class QLSV {
 					break;
 				}
 				case 5 :{
+					for( int i=0; i<danhsachsv.size();i++) {
+						System.out.printf("\n sinh vien thu : "+(i+1));  // de no in ra sinh vien thu may cho nguoi dung khong nham lan
+						System.out.printf("\n\t\t%-20s %-10s %-20s %-10s ","Ten sinh vien","ID","Dia Chi","DiemTB");
+						danhsachsv.get(i).xuat();
+					}
+					System.out.println("");
+					break;
+				}
+				
+				case 6 :{
 					System.out.println(" ban da thoat chuong trinh .");
 					break;
 				}
@@ -183,7 +194,7 @@ public class QLSV {
 				
 				}
 		
-		}while(luachon != 5);
+		}while(luachon != 6);
 	}
 
 }
