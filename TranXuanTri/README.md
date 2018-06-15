@@ -14,3 +14,6 @@
 2. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit2/src"> Unit 2 </a> <br>
   2.1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit2/src/bai1/BangCuuChuong.java"> Bang cuu chuong </a> <br>
   2.2 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit2/src/bai2/DanhSachSinhVien.java"> Danh sach sinh vien </a> <br>
+3. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit3"> Unit 3 </a><br>
+  3.1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit3/src/bai1/Student.java"> Student </a><br>
+  3.2 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit3/src/bai2/SanPham.java"> San Pham </a><br>

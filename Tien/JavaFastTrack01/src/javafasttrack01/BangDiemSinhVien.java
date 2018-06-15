@@ -6,23 +6,13 @@ public class BangDiemSinhVien {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int i = 0;
-		String tenSV[] = new String[] {}, tenTG;
-		double diemSV[] = new double[] {}, diemTG;		
-		Scanner input = new Scanner(System.in);
-		while(true) {
-			System.out.println("Nhập vào sinh viên thứ "+(i+1)+" :");
-			tenSV[i] = input.nextLine();
-			System.out.println("Nhập vào điểm: ");
-			diemSV[i] = input.nextDouble();			
-			System.out.println("Nhập 'Stop' để dừng!!!");
-			if(tenSV[i]=="Stop") {
-				break;
-			}
-			i++;
-		}
-		for(int j = 0; j <= tenSV.length-1; j++) {
-			for(int k = j + 1; k <= tenSV.length; k++) {
+		int phanTu;		
+		String tenSV[] = new String[]{"Trần Tài A" , "Trần Tài B" , "Trần Tài C" , "Trần Tài D" , "Trần Tài E"};
+		String tenTG,hocLuc;
+		double diemSV[] = new double[]{5.8 , 8.2 , 4.5 , 9.1 , 6.7};
+		double diemTG;		
+		for(int j = 0; j < tenSV.length-1; j++) {
+			for(int k = j + 1; k < tenSV.length; k++) {
 				if(diemSV[j]>diemSV[k]) {
 					diemTG = diemSV[j];
 					diemSV[j] = diemSV[k];
@@ -33,9 +23,19 @@ public class BangDiemSinhVien {
 				}
 			}
 		}
-		for(int l = 0; l <= tenSV.length; l++) {
-			System.out.println("Tên sinh viên: "+tenSV[l]+"   |   Điểm sinh viên: "+diemSV[l]);
+		for(int l = 0; l <= tenSV.length-1; l++) {
+			if(diemSV[l]<5) {
+				hocLuc = "Yếu";
+			}else if(diemSV[l]<6.5){
+				hocLuc = "Trung Bình";
+			}else if(diemSV[l]<7.5) {
+				hocLuc = "Khá";
+			}else if(diemSV[l]<9) {
+				hocLuc = "Giỏi";
+			}else {
+				hocLuc = "Xuất sắc";
+			}
+			System.out.println("Tên sinh viên: "+tenSV[l]+"   |   Điểm sinh viên: "+diemSV[l]+"   |   Học lực: "+hocLuc);
 		}
 	}
-
 }

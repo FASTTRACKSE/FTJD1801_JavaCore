@@ -24,3 +24,15 @@ Java OOP, Java Swing Development of FTJD1801
 </br>
 <a href =https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/27681530083d382f8b0197b37488a4bdcd345b81>    **bài tập bảng cửu chương</a>
 </br>
+<a href= https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/73c92513937006655e3adafa22ee312dc7e2616b> ***bài tập số thành chữ</a>
+</br>
+2. Unit 2:
+</br>
+<a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/3cf78e8de22c8902e1643b4b79de91857c0ca7b4>2.1 bài tập sinh viên</a>
+</br>
+<a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/3d9468babeb8f30cb0acb5782c95c4ca6ca80c23> 2.2 bài tập list sản phẩm</a>
+</br>
+3.Unit3: TRUY XUẤT VÀ DỮ LIỆU
+</br>
+<a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/4617d17e01e97eec82a2fec538423ec55b51495e>3.1 bài tập nâng cấp lớp sản phẩm</a>
+</br>
