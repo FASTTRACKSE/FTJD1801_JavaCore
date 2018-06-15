@@ -1,6 +1,7 @@
 package bai3;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import bai2.SanPham;
@@ -98,34 +99,38 @@ public class SinhVien {
 			System.out.println("4. Sap xep sinh vien theo ten");
 			System.out.println("5. Hien thi danh sach sinh vien");
 			System.out.println("0. Ket thuc chuong trinh");
-			System.out.println("Chon thao tac");
+			System.out.print("Chon thao tac");
 			Scanner sc = new Scanner(System.in);
 			int choice = Integer.parseInt(sc.nextLine());
 			if (choice == 1) {
-				System.out.println("Nhap so luong sinh vien");
-				Scanner sc1 = new Scanner(System.in);
-				int soluong = Integer.parseInt(sc1.nextLine());
+				System.out.print("Nhap so luong sinh vien");
+				int soluong = Integer.parseInt(sc.nextLine());
 				for (int i = 0; i < soluong; i++) {
 					SinhVien st = new SinhVien();
 					st.nhap();
 					Students.add(st);
 				}
 			} else if (choice == 2) {
-				System.out.println("Nhap so ID sinh vien can cap nhat");
-				Scanner sc2 = new Scanner(System.in);
-				int id1 = Integer.parseInt(sc2.nextLine());
+				System.out.print("Nhap so ID sinh vien can cap nhat");
+				String idSua = sc.nextLine();
 				for (int i = 0; i < Students.size(); i++) {
-					if (Students.get(i).id.equals(id1)) {
-						System.out.print("Nhap ten sinh vien ");
-						String newName = sc.nextLine();
-						Students.get(i).setName(newName);
+					if (Students.get(i).getId().equals(idSua)) {
+						Students.get(i).nhap();
 					}
 				}
 			} else if (choice == 3) {
-				System.out.println("Xoa sinh vien theo ID");
+				System.out.print("Nhap so ID sinh vien can xoa");
+				String idXoa = sc.nextLine();
+				for (int i = 0; i < Students.size(); i++) {
+					if (Students.get(i).getId().equals(idXoa)) {
+						Students.remove(i);
+					}
+				}
 
 			} else if (choice == 4) {
-				System.out.println("Sap xep sinh vien theo ten");
+//				Collections.sort(Students, new Comparator<super Students>);
+//				public int compare(Students sv1,Students sv2)
+//				return sv1.getName.compareTo(sv2.getName)
 
 			} else if (choice == 5) {
 				for (int i = 0; i < Students.size(); i++) {
