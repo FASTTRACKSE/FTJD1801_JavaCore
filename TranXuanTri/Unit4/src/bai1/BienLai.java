@@ -47,6 +47,8 @@ public class BienLai extends KhachHang {
 	}
 	public static void main(String[] args) {
 		ArrayList<BienLai> bills = new ArrayList<BienLai>();
+		ArrayList<BienLai> tam = new ArrayList<BienLai>();
+		
 		while (true) {
 				System.out.println("-------");
 				System.out.println("1.Nhap thong tin khach hang");
@@ -59,8 +61,8 @@ public class BienLai extends KhachHang {
 				int choice = Integer.parseInt(sc.nextLine());
 				if (choice == 1) {
 					System.out.print("Nhap so luong khach hang");
-					int soluong = Integer.parseInt(sc.nextLine());
-					for (int i = 0; i < soluong; i++) {
+					int soLuong = Integer.parseInt(sc.nextLine());
+					for (int i = 0; i < soLuong; i++) {
 					BienLai bill = new BienLai();
 					bill.nhap();
 					bills.add(bill);
@@ -82,9 +84,44 @@ public class BienLai extends KhachHang {
 						}
 						});
 				} else if (choice == 4) {
-					bills.get(bills.size()-1).xuat();
-				} else if (choice == 5) {
+					double max = bills.get(0).soTien;
+					int maxIndex = 0;
+					for (int i = 0;i<bills.size();i++) {
+						if (max>bills.get(i).soTien) {
+							max = bills.get(i).soTien;
+							maxIndex = i;
+						}
+					}
+					System.out.println(maxIndex);
+					bills.get(maxIndex).xuat();
 					
+				} else if (choice == 5) {
+					for (int i=0;i<bills.size();i++) {
+						BienLai billTam = new BienLai();
+						tam.add(billTam);
+					}
+					for (int i=0;i<bills.size();i++) {
+						for (int j=0;j<bills.size();j++) {
+							if (bills.get(i).hoTen!=tam.get(j).hoTen) {
+								tam.add(bills.get(i));
+							}
+							else {
+								tam.get(j).soTien+=bills.get(i).soTien;
+							}
+						}
+					}
+					double max = tam.get(0).soTien;
+					int maxIndex = 0;
+					for (int i = 0;i<tam.size();i++) {
+						if (max>tam.get(i).soTien) {
+							max = tam.get(i).soTien;
+							maxIndex = i;
+						}
+					}
+					tam.get(maxIndex).xuat();
+					for (int i = 0; i < tam.size();i++) {
+						tam.get(i).xuat();
+					}
 				}
 				else if (choice == 0) {
 					System.out.println("Exit");
