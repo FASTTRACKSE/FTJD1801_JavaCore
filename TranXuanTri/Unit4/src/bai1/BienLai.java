@@ -87,33 +87,37 @@ public class BienLai extends KhachHang {
 					double max = bills.get(0).soTien;
 					int maxIndex = 0;
 					for (int i = 0;i<bills.size();i++) {
-						if (max>bills.get(i).soTien) {
+						if (max<=bills.get(i).soTien) {
 							max = bills.get(i).soTien;
 							maxIndex = i;
+							//System.out.println(maxIndex);
 						}
 					}
-					System.out.println(maxIndex);
+//					System.out.println(maxIndex);
 					bills.get(maxIndex).xuat();
 					
 				} else if (choice == 5) {
+
+
+						tam.add(bills.get(0));
+
 					for (int i=0;i<bills.size();i++) {
-						BienLai billTam = new BienLai();
-						tam.add(billTam);
-					}
-					for (int i=0;i<bills.size();i++) {
-						for (int j=0;j<bills.size();j++) {
-							if (bills.get(i).hoTen!=tam.get(j).hoTen) {
-								tam.add(bills.get(i));
+						for (int j=1;j<bills.size();j++) {
+							if (bills.get(j).hoTen.equals(tam.get(i).hoTen)) {
+								tam.get(i).soTien+=bills.get(j).soTien;
 							}
 							else {
-								tam.get(j).soTien+=bills.get(i).soTien;
+//								System.out.println(tam.get(j).soTien);
+//								System.out.println(bills.get(i).soTien);
+//								tam.get(j).soTien+=bills.get(i).soTien;
+								tam.add(bills.get(j));
 							}
 						}
 					}
 					double max = tam.get(0).soTien;
 					int maxIndex = 0;
 					for (int i = 0;i<tam.size();i++) {
-						if (max>tam.get(i).soTien) {
+						if (max<=tam.get(i).soTien) {
 							max = tam.get(i).soTien;
 							maxIndex = i;
 						}

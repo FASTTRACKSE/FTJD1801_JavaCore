@@ -5,6 +5,10 @@ import java.util.Scanner;
 public abstract class SinhVienFpt {
 	public String hoTen;
 	public String nganh;
+	
+	public SinhVienFpt() {
+		super();
+	}
 	public SinhVienFpt(String hoTen, String nganh) {
 		super();
 		this.hoTen = hoTen;

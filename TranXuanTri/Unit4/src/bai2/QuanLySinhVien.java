@@ -3,15 +3,8 @@ package bai2;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class QuanLySinhVien extends SinhVienIT {
-	public void nhapt() {
-		super.nhap();
-		
-	}
-	public QuanLySinhVien(String hoTen, String nganh) {
-		super(hoTen, nganh);
-		// TODO Auto-generated constructor stub
-	}
+public class QuanLySinhVien {
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -30,6 +23,8 @@ public class QuanLySinhVien extends SinhVienIT {
 				System.out.println("nhap so luong sinh vien");
 				int soLuong = Integer.parseInt(sc.nextLine());
 				for (int i=0;i<soLuong;i++) {
+					SinhVienFpt sv = new SinhVienFpt();
+					sv.hoTen = "a";
 					
 				}
 			}
@@ -41,12 +36,6 @@ public class QuanLySinhVien extends SinhVienIT {
 			}
 			}
 		}
-	}
-
-	@Override
-	public double getDiem() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }
