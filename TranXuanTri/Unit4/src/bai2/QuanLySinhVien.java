@@ -27,7 +27,6 @@ public class QuanLySinhVien {
 					System.out.println("sinh vien thuoc nganh nao");
 					String nganh = sc.nextLine();
 					if (nganh.equals("IT") || nganh.equalsIgnoreCase("IT")) {
-						System.out.print("sinh vien thuoc nganh IT");
 						SinhVienIT sv = new SinhVienIT();
 						sv.nhap();
 						sinhVienList.add(sv);

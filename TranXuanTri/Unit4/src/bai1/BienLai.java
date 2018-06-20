@@ -36,14 +36,17 @@ public class BienLai extends KhachHang {
 		this.chiSoCu = sc.nextInt();
 		System.out.print("nhap chi so moi ");
 		this.chiSoMoi = sc.nextInt();
+		this.tinhTien();
 	}
 	public void xuat() {
 		super.xuat();
-		System.out.print(" | " + this.chiSoCu+ " | " + this.chiSoMoi+ " || so tien: " + this.tinhTien());
+		System.out.print(" | " + this.chiSoCu+ " | " + this.chiSoMoi+ " || so tien: " + this.soTien);
 		System.out.println("");
 	}
-	public double tinhTien() {
-		return this.soTien = (this.chiSoMoi-this.chiSoCu)*750;
+	public void tinhTien() {
+
+this.soTien = (this.chiSoMoi-this.chiSoCu)*750;
+
 	}
 
 	public static void main(String[] args) {
@@ -100,29 +103,37 @@ public class BienLai extends KhachHang {
 			} else if (choice == 5) {
 
 				tam.add(bills.get(0));
-
-				for (int i = 0; i < bills.size(); i++) {
-					for (int j = 1; j < bills.size(); j++) {
-						if (bills.get(j).hoTen.equals(tam.get(i).hoTen)) {
+				for (int j = 0;j<tam.size();j++) {
+				for (int i = 1; i < bills.size(); i++) {
+					BienLai bl = bills.get(i);
+					
+						if (bl.hoTen.equals(tam.get(j).hoTen)) {
 							System.out.println("Cong tien");
-							tam.get(i).soTien = bills.get(j).soTien + tam.get(i).soTien;
+							BienLai bll = new BienLai();
+							bll = tam.get(j);
+							bll.soTien = bl.soTien + tam.get(j).soTien;
+							System.out.println(bll.soTien);
+							//tam.get(j).setSoTien(bll.soTien);
+							bll.xuat();
+							tam.set(j, bll);
+							//tam.get(j).soTien = ;
 						} else {
 							// System.out.println(tam.get(j).soTien);
 							// System.out.println(bills.get(i).soTien);
 							// tam.get(j).soTien+=bills.get(i).soTien;
-							tam.add(bills.get(j));
+							tam.add(bl);
 						}
 					}
 				}
-				double max = tam.get(0).soTien;
-				int maxIndex = 0;
-				for (int i = 0; i < tam.size(); i++) {
-					if (max <= tam.get(i).soTien) {
-						max = tam.get(i).soTien;
-						maxIndex = i;
-					}
-				}
-				tam.get(maxIndex).xuat();
+//				double max = tam.get(0).soTien;
+//				int maxIndex = 0;
+//				for (int i = 0; i < tam.size(); i++) {
+//					if (max <= tam.get(i).soTien) {
+//						max = tam.get(i).soTien;
+//						maxIndex = i;
+//					}
+//				}
+//				tam.get(maxIndex).xuat();
 				for (int i = 0; i < tam.size(); i++) {
 					tam.get(i).xuat();
 				}
