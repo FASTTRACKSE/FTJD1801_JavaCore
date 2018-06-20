@@ -28,15 +28,15 @@ public abstract class SinhVienFpt {
 			return "Yeu";
 		}
 		else if (getDiem()<6.5) {
-			return "trung binh";
+			return "Trung binh";
 		}
 		else if (getDiem()<7.5) {
-			return "kha";
+			return "Kha";
 		}
 		else if (getDiem()<9) {
-			return "gioi";
+			return "Gioi";
 		}
-		else return "xuat sac";
+		else return "Xuat sac";
 	}
 	public void xuat() {
 		System.out.println(this.hoTen + " || " + this.nganh + " || " + getDiem() + " || " + getHocLuc());

@@ -12,6 +12,13 @@ public class SinhVienIT extends SinhVienFpt {
 		this.diemCss = diemCss;
 		this.diemHtml = diemHtml;
 	}
+	
+	public SinhVienIT() {
+		super();
+	}
+
+
+
 	public void nhap() {
 		super.nhap();
 		Scanner sc = new Scanner(System.in);
@@ -27,5 +34,7 @@ public class SinhVienIT extends SinhVienFpt {
 		// TODO Auto-generated method stub
 		return (this.diemJava*2 + this.diemHtml + this.diemCss)/4;
 	}
-	
+	public void xuat() {
+		System.out.println(this.hoTen + " || " + this.nganh + " || " + getDiem() + " || " + getHocLuc());
+	}
 }

@@ -6,6 +6,9 @@ public class SinhVienBiz extends SinhVienFpt {
 	public double diemMarketing;
 	public double diemSales;
 	
+	public SinhVienBiz() {
+		super();
+	}
 	public SinhVienBiz(String hoTen, String nganh, double diemMarketing, double diemSales) {
 		super(hoTen, nganh);
 		this.diemMarketing = diemMarketing;

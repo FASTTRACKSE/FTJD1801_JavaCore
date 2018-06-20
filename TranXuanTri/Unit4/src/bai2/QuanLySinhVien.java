@@ -1,14 +1,16 @@
 package bai2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
+import java.util.Comparator;
 
 public class QuanLySinhVien {
 	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ArrayList<QuanLySinhVien> sinhVienList = new ArrayList<QuanLySinhVien>();
+		ArrayList<SinhVienFpt> sinhVienList = new ArrayList<SinhVienFpt>();
 		while (true) {
 			System.out.println("-------");
 			System.out.println("1. Nhap danh sach sinh vien");
@@ -18,23 +20,56 @@ public class QuanLySinhVien {
 			System.out.println("5. Ket thuc");
 			Scanner sc = new Scanner(System.in);
 			int choice = Integer.parseInt(sc.nextLine());
-			switch (choice) {
-			case 1: {
+			if (choice == 1) {
 				System.out.println("nhap so luong sinh vien");
 				int soLuong = Integer.parseInt(sc.nextLine());
 				for (int i=0;i<soLuong;i++) {
-					SinhVienFpt sv = new SinhVienFpt();
-					sv.hoTen = "a";
-					
+					System.out.println("sinh vien thuoc nganh nao");
+					String nganh = sc.nextLine();
+					if (nganh.equals("IT")||nganh.equalsIgnoreCase("IT")) {
+						System.out.print("sinh vien thuoc nganh IT");
+					SinhVienIT sv = new SinhVienIT();
+					sv.nhap();
+					sinhVienList.add(sv);
+					}
+					else if (nganh.equals("Biz")||nganh.equalsIgnoreCase("Biz")) {
+						SinhVienBiz sv = new SinhVienBiz();
+						sv.nhap();
+						sinhVienList.add(sv);
+					}
+					else System.out.println("Sai");
 				}
 			}
-			case 2: {
-				System.out.println("You delete a student");
-			} case 3: {
-				System.out.println("Exit");
-				break;
+			if (choice == 2) {
+				for (int i=0;i<sinhVienList.size();i++) {
+						sinhVienList.get(i).xuat();
+				}
+			} else if (choice == 3) {
+				System.out.println("Danh sach sinh vien co hoc luc gioi: ");
+				for (int i=0;i<sinhVienList.size();i++) {
+					if (sinhVienList.get(i).getHocLuc().equals("Gioi")) {
+						sinhVienList.get(i).xuat();
+					}
+				}
 			}
+			else if (choice==4) {
+				Collections.sort(sinhVienList, new Comparator<SinhVienFpt>() {
+					public int compare(SinhVienFpt sv1,SinhVienFpt sv2) {
+						if(sv1.getDiem() > sv2.getDiem()) {
+							return -1;
+						}
+						else if (sv1.getDiem() == sv2.getDiem()) {
+							return 0;
+						}
+						else return 1;
+					}
+				});
+				System.out.println("Danh sach sinh vien sap xep theo diem: ");
+				for (int i=0;i<sinhVienList.size();i++) {
+					sinhVienList.get(i).xuat();
+				}
 			}
+			
 		}
 	}
 
