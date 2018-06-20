@@ -57,7 +57,35 @@ public class QuanLyBienLai {
 							}
 						}
 					} break;
-			case 6: break;
+			case 6: 
+					ArrayList<BienLai> dsBienLai = new ArrayList<BienLai>();
+					BienLai bl5 = new BienLai();
+					bl5 = dsBienLai.get(0);
+					for(int i = 0; i < listBienLai.size(); i++) {
+						for(int j = 0; j < dsBienLai.size(); j++) {
+							if(listBienLai.get(i).getHoTen().equals(dsBienLai.get(j).getHoTen())) {								
+								dsBienLai.get(j).setTienDien(bl5.getTienDien()+listBienLai.get(i).getTienDien());
+							}
+							else {
+								dsBienLai.add(listBienLai.get(i));
+							}
+						}
+					}
+					for(int i = 0; i < dsBienLai.size(); i++) {
+						System.out.println("Tên chủ hộ: "+dsBienLai.get(i)+"  |  Tổng tiền điện: "+dsBienLai.get(i).getTienDien());						
+					}
+					for(int i = 0; i < dsBienLai.size() - 1; i++) {
+						for(int j = i + 1; j < dsBienLai.size(); j++) {
+							if(dsBienLai.get(i).getTienDien() > dsBienLai.get(j).getTienDien()) {
+								bl5 = dsBienLai.get(i);
+							}
+							else {
+								bl5 = dsBienLai.get(j);
+							}
+						}
+					}
+					System.out.println("Hộ sử dụng nhiều điện nhất: \nTên chủ hộ: "+bl5.getHoTen()+"  |  Tổng tiền điện: "+bl5.getTienDien());
+					break;
 			default: System.out.println("Mục chọn không có trong menu!!!"); break;
 			}
 			if(mChon == 0) {
