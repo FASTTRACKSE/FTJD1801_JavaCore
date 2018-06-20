@@ -51,7 +51,6 @@ this.soTien = (this.chiSoMoi-this.chiSoCu)*750;
 
 	public static void main(String[] args) {
 		ArrayList<BienLai> bills = new ArrayList<BienLai>();
-		ArrayList<BienLai> tam = new ArrayList<BienLai>();
 
 		while (true) {
 			System.out.println("-------");
@@ -101,28 +100,37 @@ this.soTien = (this.chiSoMoi-this.chiSoCu)*750;
 				bills.get(maxIndex).xuat();
 
 			} else if (choice == 5) {
-
-				tam.add(bills.get(0));
-				for (int j = 0;j<tam.size();j++) {
+				ArrayList<BienLai> tam = new ArrayList<BienLai>();
+				BienLai b1 = new BienLai();
+				b1 = bills.get(0);
+				
+				tam.add(b1);
+				
 				for (int i = 1; i < bills.size(); i++) {
-					BienLai bl = bills.get(i);
 					
+					BienLai bl = bills.get(i);
+					boolean boo = false;
+					for (int j = 0;j<tam.size();j++) {
+						System.out.println(bl.hoTen + tam.get(j).hoTen);
+						
 						if (bl.hoTen.equals(tam.get(j).hoTen)) {
-							System.out.println("Cong tien");
+							System.out.println("Cong tien"+i);
 							BienLai bll = new BienLai();
-							bll = tam.get(j);
+							bll.hoTen = tam.get(j).hoTen;
+							bll.chiSoCu = tam.get(j).chiSoCu;
+							bll.chiSoMoi = tam.get(j).chiSoMoi;
 							bll.soTien = bl.soTien + tam.get(j).soTien;
-							System.out.println(bll.soTien);
+							//System.out.println(bll.soTien);
 							//tam.get(j).setSoTien(bll.soTien);
-							bll.xuat();
+							//bll.xuat();
 							tam.set(j, bll);
 							//tam.get(j).soTien = ;
-						} else {
-							// System.out.println(tam.get(j).soTien);
-							// System.out.println(bills.get(i).soTien);
-							// tam.get(j).soTien+=bills.get(i).soTien;
-							tam.add(bl);
-						}
+							boo = true;
+							break;
+						} 
+					}
+					if (!boo) {
+						tam.add(bl);
 					}
 				}
 //				double max = tam.get(0).soTien;
