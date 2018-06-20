@@ -16,13 +16,14 @@ public class KhachHang {
 		this.soNha = soNha;
 		this.maSoCongTo = maSoCongTo;
 	}
+
 	public void nhap() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("nhap ho va ten khach hang ");
+		System.out.print("nhap ho va ten khach hang ");
 		this.hoTen = sc.nextLine();
-		System.out.println("nhap so nha khach hang ");
+		System.out.print("nhap so nha khach hang ");
 		this.soNha = sc.nextLine();
-		System.out.println("nhap ma so cong to");
+		System.out.print("nhap ma so cong to ");
 		this.maSoCongTo = sc.nextLine();
 	}
 	public void xuat() {
