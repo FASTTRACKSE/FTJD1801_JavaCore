@@ -16,6 +16,7 @@ public class SanPham {
 		this.giamGia = giamGia;
 	}
 	
+	
 
 	public SanPham() {
 		super();
