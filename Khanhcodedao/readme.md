@@ -44,3 +44,9 @@ unit 3
 3 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/SanPham.java"> updete San Pham
 
 4 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/QLSV.java"> Quan Ly Sinh Vien
+
+
+unit 4 
+
+
+1 <a href ="">  bai tap 1 lap4
