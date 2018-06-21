@@ -36,3 +36,9 @@ Java OOP, Java Swing Development of FTJD1801
 </br>
 <a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/4617d17e01e97eec82a2fec538423ec55b51495e>3.1 bài tập nâng cấp lớp sản phẩm</a>
 </br>
+<a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/d53a80d07ec4990bad14276ffa2663f67475cb6b>3.2 quản lí sinh viên</a>
+</br>
+<a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/60edbd118acec2f99b11857057eaff1698ccde9b>3.3 quản lí tính tiền điện</a>
+</br>
+<a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/15413d8296c34c56e407a9b7b257526e794306f0>3.4 sinh viên fpt</a>
+</br>
