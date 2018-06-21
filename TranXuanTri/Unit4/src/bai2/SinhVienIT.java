@@ -36,6 +36,6 @@ public class SinhVienIT extends SinhVienFpt {
 	}
 
 	public void xuat() {
-		System.out.println(this.hoTen + " || " + this.nganh + " || " + getDiem() + " || " + getHocLuc());
+		System.out.println(this.hoTen + " || " + this.nganh + " || Diem trung binh " + getDiem() + " || Diem HTML " + this.diemHtml + " || Diem Java " + this.diemJava + " || Diem css" + this.diemCss + " || "  + getHocLuc());
 	}
 }
