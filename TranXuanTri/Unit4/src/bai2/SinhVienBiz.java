@@ -30,5 +30,7 @@ public class SinhVienBiz extends SinhVienFpt {
 		// TODO Auto-generated method stub
 		return (this.diemMarketing * 2 + this.diemSales) / 3;
 	}
-
+	public void xuat() {
+		System.out.println(this.hoTen + " || " + this.nganh + " || Diem trung binh: " + this.getDiem() + " || Diem Marketing: " + this.diemMarketing + " || Diem Sales: " + this.diemSales + " || " + this.getHocLuc());
+	}
 }
