@@ -54,10 +54,9 @@ public class NhanVien extends CanBo{
 		soNgayCong = Integer.parseInt(sc.nextLine());
 	}
 	
-	@Override
-	public String toString() {
-		System.out.println(super.toString());
-		return "  |  Phòng ban: " + phongBan + "  |  Chức vụ: " + chucVu + "  |  Số ngày công: " + soNgayCong;
+	public void xuat() {
+		super.xuat();
+		System.out.println("  |  Phòng ban: " + phongBan + "  |  Chức vụ: " + chucVu + "  |  Số ngày công: " + soNgayCong);
 	}
 
 	@Override

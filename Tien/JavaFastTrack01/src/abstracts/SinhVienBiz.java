@@ -1,5 +1,6 @@
 package abstracts;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SinhVienBiz extends SinhVienFpt{
@@ -33,8 +34,8 @@ public class SinhVienBiz extends SinhVienFpt{
 		this.diemSales = diemSales;
 	}
 	
-	public void nhap() {
-		super.nhap();
+	public void nhap(ArrayList<SinhVienFpt> list) {
+		super.nhap(list);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Điểm Marketing: ");
 		diemMarketing = Double.parseDouble(sc.nextLine());

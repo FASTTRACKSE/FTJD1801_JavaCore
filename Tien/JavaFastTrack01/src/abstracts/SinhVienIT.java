@@ -1,5 +1,6 @@
 package abstracts;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SinhVienIT extends SinhVienFpt{
@@ -51,8 +52,8 @@ public class SinhVienIT extends SinhVienFpt{
 		this.diemCss = diemCss;
 	}
 	
-	public void nhap() {
-		super.nhap();
+	public void nhap(ArrayList<SinhVienFpt> list) {
+		super.nhap(list);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Điểm Java: ");
 		diemJava = Double.parseDouble(sc.nextLine());
