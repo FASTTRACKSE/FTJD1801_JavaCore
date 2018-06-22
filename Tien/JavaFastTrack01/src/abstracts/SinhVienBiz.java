@@ -1,5 +1,7 @@
 package abstracts;
 
+import java.util.Scanner;
+
 public class SinhVienBiz extends SinhVienFpt{
 	private double diemMarketing;
 	private double diemSales;
@@ -30,7 +32,25 @@ public class SinhVienBiz extends SinhVienFpt{
 	public void setDiemSales(double diemSales) {
 		this.diemSales = diemSales;
 	}
-
+	
+	public void nhap() {
+		super.nhap();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Điểm Marketing: ");
+		diemMarketing = Double.parseDouble(sc.nextLine());
+		System.out.println("Điểm Sales: ");
+		diemSales = Double.parseDouble(sc.nextLine());
+	}
+	
+	public void xuat() {
+		super.xuat();
+	}
+	
+	public void xuatBiz() {
+		super.xuat();
+		System.out.println("Điểm Marketing: "+diemMarketing+"  |  Điểm Sales: "+diemSales);
+	}
+	
 	@Override
 	public double getDiem() {
 		// TODO Auto-generated method stub

@@ -1,5 +1,7 @@
 package abstracts;
 
+import java.util.Scanner;
+
 public class SinhVienIT extends SinhVienFpt{
 	
 	private double diemJava;
@@ -48,8 +50,25 @@ public class SinhVienIT extends SinhVienFpt{
 	public void setDiemCss(double diemCss) {
 		this.diemCss = diemCss;
 	}
+	
+	public void nhap() {
+		super.nhap();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Điểm Java: ");
+		diemJava = Double.parseDouble(sc.nextLine());
+		System.out.println("Điểm Html: ");
+		diemHtml = Double.parseDouble(sc.nextLine());
+		System.out.println("Điểm CSS: ");
+		diemCss = Double.parseDouble(sc.nextLine());
+	}
 
-
+	public void xuat() {
+		super.xuat();		
+	}
+	public void xuatIT() {
+		super.xuat();
+		System.out.println("Điểm Java: "+diemJava+"  |  Điểm Html: "+diemHtml+"  |  Điểm CSS: "+diemCss);
+	}
 	@Override
 	public double getDiem() {
 		// TODO Auto-generated method stub

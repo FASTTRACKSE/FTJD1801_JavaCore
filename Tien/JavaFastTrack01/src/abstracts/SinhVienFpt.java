@@ -1,9 +1,15 @@
 package abstracts;
 
+import java.util.Scanner;
+
 public abstract class SinhVienFpt {
 	private String hoTen;
 	private String nganh;
-	
+	private double diem;
+	public void setDiem(double diem) {
+		this.diem = diem;
+	}
+
 	public SinhVienFpt() {
 		super();
 	}
@@ -44,7 +50,16 @@ public abstract class SinhVienFpt {
 		}else return "Xuất sắc";
 	}
 	
+	public void nhap() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Họ tên: ");
+		hoTen = sc.nextLine();
+		System.out.println("Ngành: ");
+		nganh = sc.nextLine();
+	}
+	
 	public void xuat() {
-		System.out.println(this.hoTen+this.nganh+this.getDiem()+this.getHocLuc());
+		this.diem = this.getDiem();
+		System.out.println("Họ tên: "+this.hoTen+"  |  Ngành: "+nganh+"  |  Điểm trung bình: "+this.diem+"  |  Học lực: "+this.getHocLuc());
 	}
 }
