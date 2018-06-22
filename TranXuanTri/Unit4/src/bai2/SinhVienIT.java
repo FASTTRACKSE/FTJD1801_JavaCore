@@ -1,5 +1,6 @@
 package bai2;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SinhVienIT extends SinhVienFpt {
@@ -7,8 +8,10 @@ public class SinhVienIT extends SinhVienFpt {
 	public double diemCss;
 	public double diemHtml;
 
-	public SinhVienIT(String hoTen, String nganh, double diemJava, double diemCss, double diemHtml) {
-		super(hoTen, nganh);
+
+
+	public SinhVienIT(double diemJava, double diemCss, double diemHtml) {
+		super();
 		this.diemJava = diemJava;
 		this.diemCss = diemCss;
 		this.diemHtml = diemHtml;
@@ -18,15 +21,45 @@ public class SinhVienIT extends SinhVienFpt {
 		super();
 	}
 
-	public void nhap() {
-		super.nhap();
+	public void nhap(ArrayList<SinhVienFpt> arr) {
+		super.nhap(arr);
 		Scanner sc = new Scanner(System.in);
+		for (;;) {
+			try {
 		System.out.println("nhap diem java ");
 		this.diemJava = Double.parseDouble(sc.nextLine());
+		SinhVienException.chkDiem(diemJava);
+		break;
+			}
+			catch (SinhVienException e) {
+				System.err.println(e);
+				System.out.println();
+			}
+		}
+		for (;;) {
+			try {
 		System.out.println("nhap diem css ");
 		this.diemCss = Double.parseDouble(sc.nextLine());
+		SinhVienException.chkDiem(diemCss);
+		break;
+			}
+			catch (SinhVienException e) {
+				System.err.println(e);
+				System.out.println();
+			}
+		}
+		for (;;) {
+			try {
 		System.out.println("nhap diem html ");
 		this.diemHtml = Double.parseDouble(sc.nextLine());
+		SinhVienException.chkDiem(diemHtml);
+		break;
+			}
+			catch (SinhVienException e) {
+				System.err.println(e);
+				System.out.println();
+			}
+		}
 	}
 
 	@Override

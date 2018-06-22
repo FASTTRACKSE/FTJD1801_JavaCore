@@ -29,11 +29,11 @@ public class QuanLySinhVien {
 					String nganh = sc.nextLine();
 					if (nganh.equals("IT") || nganh.equalsIgnoreCase("IT")) {
 						SinhVienIT sv = new SinhVienIT();
-						sv.nhap();
+						sv.nhap(sinhVienList);
 						sinhVienList.add(sv);
 					} else if (nganh.equals("Biz") || nganh.equalsIgnoreCase("Biz")) {
 						SinhVienBiz sv = new SinhVienBiz();
-						sv.nhap();
+						sv.nhap(sinhVienList);
 						sinhVienList.add(sv);
 					} else
 						System.out.println("Sai");
@@ -41,7 +41,7 @@ public class QuanLySinhVien {
 			}
 			if (choice == 2) {
 				for (int i = 0; i < sinhVienList.size(); i++) {
-					sinhVienList.get(i).xuat();
+					sinhVienList.get(i).xuat1();
 				}
 			} else if (choice == 3) {
 				System.out.println("Danh sach sinh vien co hoc luc gioi: ");
