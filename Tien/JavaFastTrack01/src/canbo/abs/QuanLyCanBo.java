@@ -25,7 +25,7 @@ public class QuanLyCanBo {
 			case 1: System.out.println("Bạn muốn nhập cán bộ loại nào: ");
 					System.out.println("1. Giảng viên \n2. Nhân viên");
 					String loaiSV = sc.nextLine();
-					System.out.println("Bạn muốn nhập bao nhiêu sinh viên: ");
+					System.out.println("Bạn muốn nhập bao nhiêu cán bộ: ");
 					int soLuong = Integer.parseInt(sc.nextLine());					
 					for(int i = 0; i < soLuong; i++) {
 						if(loaiSV.equals("1")) {							
@@ -46,7 +46,7 @@ public class QuanLyCanBo {
 									if(list instanceof GiangVien) {
 										GiangVien gv2 = (GiangVien) list;
 										if(gv2.getKhoa().equals(khoa)) {
-											System.out.println(gv2);
+											gv2.xuat();
 										}
 									}
 								} break;
@@ -56,7 +56,7 @@ public class QuanLyCanBo {
 									if(list instanceof NhanVien) {
 										NhanVien nv2 = (NhanVien) list;
 										if(nv2.getPhongBan().equals(phongBan)) {
-											System.out.println(nv2);
+											nv2.xuat();
 										}
 									}
 								} break;

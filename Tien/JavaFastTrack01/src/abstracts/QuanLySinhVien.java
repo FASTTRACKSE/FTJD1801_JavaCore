@@ -35,11 +35,11 @@ public class QuanLySinhVien {
 					for(int i = 0; i < soLuong; i++) {
 						if(loaiSV.equals("IT")) {
 							SinhVienIT it = new SinhVienIT();
-							it.nhap();
+							it.nhap(students);
 							students.add(it);
 						}else if(loaiSV.equals("Biz")) {
 							SinhVienBiz  biz = new SinhVienBiz();
-							biz.nhap();
+							biz.nhap(students);
 							students.add(biz);
 						}						
 					} break;

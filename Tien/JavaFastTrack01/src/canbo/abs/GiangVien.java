@@ -54,10 +54,9 @@ public class GiangVien extends CanBo{
 		soTietDay = Integer.parseInt(sc.nextLine());
 	}
 	
-	@Override
-	public String toString() {
-		System.out.println(super.toString());
-		return "  |  Khoa: " + khoa + "  |  Trình độ: " + trinhdo + "  |  Số tiết dạy: " + soTietDay;
+	public void xuat() {
+		super.xuat();
+		System.out.println("  |  Khoa: " + khoa + "  |  Trình độ: " + trinhdo + "  |  Số tiết dạy: " + soTietDay);
 	}
 
 	@Override

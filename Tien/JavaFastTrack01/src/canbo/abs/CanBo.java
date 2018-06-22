@@ -37,15 +37,13 @@ public abstract class CanBo {
 	public void nhap() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Họ tên cán bộ: ");
-		sc.nextLine();		
+		hoTen = sc.nextLine();		
 		System.out.println("Hệ số lương: ");
 		heSoLuong = Double.parseDouble(sc.nextLine());
 	}
 
-	@Override
-	public String toString() {
-		return "Họ tên: " + this.hoTen + "  |  Phụ cấp: " + this.getPhuCap() + "  |  Hệ số lương: " + this.heSoLuong + "  |  Tiền lương: "
-				+ this.tinhLuong();
+	public void xuat() {
+		System.out.print("Họ tên: " + this.hoTen + "  |  Phụ cấp: " + this.getPhuCap() + "  |  Hệ số lương: " + this.heSoLuong + "  |  Tiền lương: "+ this.tinhLuong());
 	}
 	
 }
