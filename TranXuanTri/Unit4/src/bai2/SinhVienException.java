@@ -42,5 +42,6 @@ public class SinhVienException extends Exception {
 		if ((diem<0.0)||(diem>10.0)) {
 			throw new SinhVienException("nhap sai, nhap lai");
 		}
+
 	}
 }

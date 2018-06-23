@@ -23,43 +23,12 @@ public class SinhVienIT extends SinhVienFpt {
 
 	public void nhap(ArrayList<SinhVienFpt> arr) {
 		super.nhap(arr);
-		Scanner sc = new Scanner(System.in);
-		for (;;) {
-			try {
 		System.out.println("nhap diem java ");
-		this.diemJava = Double.parseDouble(sc.nextLine());
-		SinhVienException.chkDiem(diemJava);
-		break;
-			}
-			catch (SinhVienException e) {
-				System.err.println(e);
-				System.out.println();
-			}
-		}
-		for (;;) {
-			try {
+		this.diemJava = super.nhapDiem();
 		System.out.println("nhap diem css ");
-		this.diemCss = Double.parseDouble(sc.nextLine());
-		SinhVienException.chkDiem(diemCss);
-		break;
-			}
-			catch (SinhVienException e) {
-				System.err.println(e);
-				System.out.println();
-			}
-		}
-		for (;;) {
-			try {
+		this.diemCss = super.nhapDiem();
 		System.out.println("nhap diem html ");
-		this.diemHtml = Double.parseDouble(sc.nextLine());
-		SinhVienException.chkDiem(diemHtml);
-		break;
-			}
-			catch (SinhVienException e) {
-				System.err.println(e);
-				System.out.println();
-			}
-		}
+		this.diemHtml = super.nhapDiem();
 	}
 
 	@Override

@@ -41,7 +41,21 @@ public abstract class SinhVienFpt {
 	public void setMaSinhVien(String maSinhVien) {
 		this.maSinhVien = maSinhVien;
 	}
-
+	public double nhapDiem() {
+		Scanner sc = new Scanner(System.in);
+		double diem;
+		for (;;) {
+			try {
+			diem = Double.parseDouble(sc.nextLine());
+			SinhVienException.chkDiem(diem);
+			return diem;
+			}
+			catch (SinhVienException e) {
+				System.err.println(e);
+				System.out.println();
+			}
+		}
+	}
 	public void nhap(ArrayList<SinhVienFpt> arr) {
 		Scanner sc = new Scanner(System.in);
 		for (;;) {
