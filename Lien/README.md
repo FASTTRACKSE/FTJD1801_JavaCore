@@ -1,2 +1,2 @@
-# Truong Thi My Lien demo
+# Truong Thi My Lien
 Java OOP, Java Swing Development of FTJD1801
