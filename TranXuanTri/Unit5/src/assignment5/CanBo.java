@@ -46,7 +46,7 @@ public abstract class CanBo {
 		this.heSoLuong = Double.parseDouble(sc.nextLine());
 	}
 	public void xuat() {
-		System.out.print(this.hoTen + " || He so luong: " + this.heSoLuong + " || Phu cap: " + this.phuCap);
+		System.out.print(this.hoTen + " || He so luong: " + this.heSoLuong + " || Phu cap: " );
 	}
 	public abstract double tinhLuong();
 	public abstract double getPhuCap();
