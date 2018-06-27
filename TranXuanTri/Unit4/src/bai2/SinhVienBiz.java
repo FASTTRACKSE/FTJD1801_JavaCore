@@ -1,5 +1,6 @@
 package bai2;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SinhVienBiz extends SinhVienFpt {
@@ -10,19 +11,19 @@ public class SinhVienBiz extends SinhVienFpt {
 		super();
 	}
 
-	public SinhVienBiz(String hoTen, String nganh, double diemMarketing, double diemSales) {
-		super(hoTen, nganh);
+	public SinhVienBiz(double diemMarketing, double diemSales) {
+		super();
 		this.diemMarketing = diemMarketing;
 		this.diemSales = diemSales;
 	}
 
-	public void nhap() {
-		super.nhap();
+	public void nhap(ArrayList<SinhVienFpt> arr) {
+		super.nhap(arr);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("nhap diem marketing ");
-		this.diemMarketing = Double.parseDouble(sc.nextLine());
+		this.diemMarketing = super.nhapDiem();
 		System.out.println("nhap diem sales ");
-		this.diemSales = Double.parseDouble(sc.nextLine());
+		this.diemSales = super.nhapDiem();
 	}
 
 	@Override
