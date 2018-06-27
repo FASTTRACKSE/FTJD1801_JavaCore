@@ -3,6 +3,8 @@ package sinhvienFPT;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import unit3.SinhVienException;
+
 public abstract class SinhVienFPT {
 	private String maSv;
 	private String hoTen;
@@ -64,21 +66,57 @@ public abstract class SinhVienFPT {
 			return "Xuất Sắc";
 	}
 
-	public void nhap() {
-		ArrayList<SinhVienFPT> list = new ArrayList();
+	public void nhap(ArrayList<SinhVienFPT> list) {
 		Scanner sc = new Scanner(System.in);
+		for(;;) {
+			System.out.println("Nhập mã sinh viên: ");
+			this.maSv = sc.nextLine();
+			try {
+				SinhVienException.chkMasv(maSv, list);
+				break;
+			} catch(SinhVienException a) {
+				System.err.println(a);
+				System.out.println();
+			}
+			try {
+				SinhVienException.chkMasvr(maSv);
+				break;
+			}catch(SinhVienException e){
+				System.err.println(e);
+				System.out.println();
+			}
+		}
 		
-		System.out.println("Nhập mã sinh viên: ");
-		this.maSv = sc.nextLine();
 		
+		
+		for(;;) {
 		System.out.println("Nhập họ tên: ");
 		this.hoTen = sc.nextLine();
+		try {
+			SinhVienException.chkName(hoTen);
+			break;
+		} catch (SinhVienException e) {
+			// TODO Auto-generated catch block
+			System.err.println(e);
+			System.out.println();
+		}
+		}
+		
 		
 		System.out.println("Nhập ngành: ");
 		this.nganh = sc.nextLine();
 		
+		for(;;) {
 		System.out.println("Nhập điểm: ");
 		this.diem = Double.parseDouble(sc.nextLine());
+		try {
+			SinhVienException.chkDiem(diem);
+			break;
+		}catch(SinhVienException e) {
+			System.err.println(e);
+			System.out.println();
+		}
+	}
 	}
 	public void xuat() {
 		this.diem = getDiem();
