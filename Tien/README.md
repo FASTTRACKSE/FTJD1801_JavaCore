@@ -51,11 +51,17 @@
         <li>
             <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/oop/SanPham.java"> Bài tập Sản phẩm</a>
         </li>
-        
         <li>
             <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/Tien/JavaFastTrack01/src/menu/student">Bài tập Sinh Viên 2</a>
         </li>
+        <li>
+            <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/Tien/JavaFastTrack01/src/quanlytiendien">Bài tập quản lý tiền điện</a>
+        </li>
+        <li>
+            <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/Tien/JavaFastTrack01/src/abstracts">Bài tập Sinh Viên 3 ( Đã cập nhật ngoại lệ ) </a>
+        </li>
+        <li>
+            <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/Tien/JavaFastTrack01/src/canbo/abs">Bài tập quản lý cán bộ trường</a>
+        </li>
     </ol>
 </ol>
-    
-    
