@@ -8,17 +8,27 @@ public abstract class SinhVienFpt {
 	private String hoTen;
 	private String nganh;
 	private double diem;
+	private int tuoi;
 
 	public SinhVienFpt() {
 		super();
 	}
 
-	public SinhVienFpt(String maSV, String hoTen, String nganh, double diem) {
+	public int getTuoi() {
+		return tuoi;
+	}
+
+	public void setTuoi(int tuoi) {
+		this.tuoi = tuoi;
+	}
+
+	public SinhVienFpt(String maSV, String hoTen, String nganh, double diem, int tuoi) {
 		super();
 		this.maSV = maSV;
 		this.hoTen = hoTen;
 		this.nganh = nganh;
 		this.diem = diem;
+		this.tuoi = tuoi;
 	}
 
 	public String getMaSV() {
@@ -88,13 +98,40 @@ public abstract class SinhVienFpt {
 				System.out.println();
 			}
 		}
+		for (;;) {
+			System.out.println("Tuổi: ");
+			tuoi = Integer.parseInt(sc.nextLine());
+			try {
+				SinhVienException.checkTuoi(tuoi);
+				break;
+			} catch (SinhVienException e) {
+				System.err.println(e);
+				System.out.println();
+			}
+		}
 		System.out.println("Ngành: ");
 		nganh = sc.nextLine();
 	}
 
+	public double nhapDiem() {
+		double diem;
+		Scanner sc = new Scanner(System.in);
+		for (;;) {
+			diem = Double.parseDouble(sc.nextLine());
+			try {
+				SinhVienException.checkDiem(diem);
+				break;
+			} catch (SinhVienException e) {
+				System.err.println(e);
+				System.out.println("Mời nhập lại: ");
+			}
+		}
+		return diem;
+	}
+
 	public void xuat() {
 		this.diem = this.getDiem();
-		System.out.println("Mã sinh viên: "+this.maSV+"  |  Họ tên: " + this.hoTen + "  |  Ngành: " + nganh + "  |  Điểm trung bình: " + this.diem
-				+ "  |  Học lực: " + this.getHocLuc());
+		System.out.println("Mã sinh viên: " + this.maSV + "  |  Họ tên: " + this.hoTen +"  |  Tuổi: " + this.tuoi+"  |  Ngành: " + nganh
+				+ "  |  Điểm trung bình: " + this.diem + "  |  Học lực: " + this.getHocLuc());
 	}
 }
