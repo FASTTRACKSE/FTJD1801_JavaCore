@@ -36,11 +36,12 @@ public class SinhVienBiz extends SinhVienFpt{
 	
 	public void nhap(ArrayList<SinhVienFpt> list) {
 		super.nhap(list);
+		SinhVienBiz svb = new SinhVienBiz();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Điểm Marketing: ");
-		diemMarketing = Double.parseDouble(sc.nextLine());
+		diemMarketing = svb.nhapDiem();
 		System.out.println("Điểm Sales: ");
-		diemSales = Double.parseDouble(sc.nextLine());
+		diemSales = svb.nhapDiem();
 	}
 	
 	public void xuat() {

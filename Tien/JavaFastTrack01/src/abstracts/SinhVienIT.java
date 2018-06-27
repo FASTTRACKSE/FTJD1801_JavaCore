@@ -54,13 +54,14 @@ public class SinhVienIT extends SinhVienFpt{
 	
 	public void nhap(ArrayList<SinhVienFpt> list) {
 		super.nhap(list);
+		SinhVienIT svi = new SinhVienIT();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Điểm Java: ");
-		diemJava = Double.parseDouble(sc.nextLine());
+		diemJava = svi.nhapDiem();
 		System.out.println("Điểm Html: ");
-		diemHtml = Double.parseDouble(sc.nextLine());
+		diemHtml = svi.nhapDiem();
 		System.out.println("Điểm CSS: ");
-		diemCss = Double.parseDouble(sc.nextLine());
+		diemCss = svi.nhapDiem();
 	}
 
 	public void xuat() {
