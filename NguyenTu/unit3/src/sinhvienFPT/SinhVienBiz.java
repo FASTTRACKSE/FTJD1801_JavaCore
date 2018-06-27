@@ -1,62 +1,47 @@
-package abstracts;
+package sinhvienFPT;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SinhVienBiz extends SinhVienFpt{
+public class SinhVienBiz extends SinhVienFPT {
 	private double diemMarketing;
 	private double diemSales;
-	
 	public SinhVienBiz() {
 		super();
 	}
-		
 	public SinhVienBiz(double diemMarketing, double diemSales) {
 		super();
 		this.diemMarketing = diemMarketing;
 		this.diemSales = diemSales;
 	}
-
-	
 	public double getDiemMarketing() {
 		return diemMarketing;
 	}
-
 	public void setDiemMarketing(double diemMarketing) {
 		this.diemMarketing = diemMarketing;
 	}
-
 	public double getDiemSales() {
 		return diemSales;
 	}
-
 	public void setDiemSales(double diemSales) {
 		this.diemSales = diemSales;
 	}
-	
-	public void nhap(ArrayList<SinhVienFpt> list) {
-		super.nhap(list);
-		SinhVienBiz svb = new SinhVienBiz();
+	public void nhap(ArrayList<SinhVienFPT>list) {
+		super.nhap();
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Điểm Marketing: ");
-		diemMarketing = svb.nhapDiem();
-		System.out.println("Điểm Sales: ");
-		diemSales = svb.nhapDiem();
+		System.out.println("Điểm marketing: ");
+		this.diemMarketing = Double.parseDouble(sc.nextLine());
+		System.out.println("Điểm sales: ");
+		this.diemSales = Double.parseDouble(sc.nextLine());
 	}
-	
 	public void xuat() {
 		super.xuat();
 	}
-	
-	public void xuatBiz() {
+	public void xuat3() {
 		super.xuat();
-		System.out.println("Điểm Marketing: "+diemMarketing+"  |  Điểm Sales: "+diemSales);
+		System.out.println("Điểm marketing: " +this.diemMarketing+ "    |   Điểm sales: " +this.diemSales);
 	}
-	
-	@Override
 	public double getDiem() {
-		// TODO Auto-generated method stub
-		return 	(2*diemMarketing+diemSales)/3;
+		return (2*this.diemMarketing+this.diemSales)/3;
 	}
-	
 }
