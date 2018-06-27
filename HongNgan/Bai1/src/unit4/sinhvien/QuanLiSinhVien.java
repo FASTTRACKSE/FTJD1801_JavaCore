@@ -17,16 +17,16 @@ public class QuanLiSinhVien {
 			System.out.println("4. Sắp xếp danh sách sinh viên theo điểm");
 			System.out.println("5. Xuất danh sách sinh viên IT");
 			System.out.println("6. Xuất danh sách sinh viên Biz");
-			System.out.println("0. Thoát");
+			System.out.println("0. Thoátt");
 			System.out.print("Mời chọn : ");
 			int mChon = Integer.parseInt(sc.nextLine());
 			switch(mChon) {
-			case 1: System.out.println("Bạn muốn nhập sinh viên thuộc ngành nào : ");
+			case 1: System.out.println("Bạn muốn nhập sinh viên ngành nào: ");
 					String nganh = sc.nextLine();
 					System.out.println(" Nhập số lượng sinh viên: ");
 					int soLuong = Integer.parseInt(sc.nextLine());					
 					for(int i = 0; i < soLuong; i++) {
-						if(nganh.equals("IT")) {
+						if(nganh.equals("It")) {
 							SinhVienIT svIt = new SinhVienIT();
 							svIt.nhap(students);
 							students.add(svIt);
@@ -40,7 +40,7 @@ public class QuanLiSinhVien {
 						svFPT.xuat();
 					} break;
 			case 3: for(SinhVienFPT svFPT : students) {
-						if(svFPT.getHocLuc().equals("Giỏi")) {
+						if(svFPT.getHocLuc().equals(" Giỏi ")) {
 							svFPT.xuat();
 						}
 					} break;
