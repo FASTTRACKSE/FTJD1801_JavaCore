@@ -59,12 +59,13 @@ public class GiangVien extends CanBo {
 	}
 	public void xuat() {
 		super.xuat();
-		System.out.print(this.phuCap + " || khoa: " + this.khoa + " || Trinh do:" + this.trinhDo + " || So tiet day trong thang: " + this.soTietDay + " || " + this.tinhLuong());
+		System.out.println (this.phuCap + " || khoa: " + this.khoa + " || Trinh do:" + this.trinhDo + " || So tiet day trong thang: " + this.soTietDay + " || " + this.tinhLuong());
 	}
+
 	@Override
 	public double tinhLuong() {
 		// TODO Auto-generated method stub
-		return this.heSoLuong*730+this.getPhuCap()+this.soTietDay*45;
+		return this.heSoLuong * 730 + this.getPhuCap() + this.soTietDay * 45;
 	}
 
 	@Override

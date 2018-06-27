@@ -23,7 +23,7 @@ public class QuanLyCanBo {
 			case 1:
 				System.out.println("nhap so luong can bo: ");
 				int soLuong = Integer.parseInt(sc.nextLine());
-				
+
 				System.out.println("Can bo la: ");
 				System.out.println("1. Giang vien");
 				System.out.println("2. Nhan vien");
@@ -40,7 +40,7 @@ public class QuanLyCanBo {
 					}
 				}
 				break;
-			case 2: 
+			case 2:
 				System.out.println("Ban muon xuat can bo nao?");
 				System.out.println("1. Giang vien");
 				System.out.println("2. Nhan vien");
@@ -65,16 +65,16 @@ public class QuanLyCanBo {
 					}
 				}
 				break;
-			
-			case 3: 
-				
+
+			case 3:
+
 				double tongLuong = 0;
 				for (CanBo cb : canBoList) {
 					tongLuong += cb.tinhLuong();
 				}
 				System.out.println("Tong so luong truong phai tra: " + tongLuong);
 				break;
-			case 4: 
+			case 4:
 				Collections.sort(canBoList, new Comparator<CanBo>() {
 					public int compare(CanBo cb1, CanBo cb2) {
 						if (cb1.tinhLuong() > cb2.tinhLuong()) {
@@ -90,7 +90,7 @@ public class QuanLyCanBo {
 							return 0;
 						}
 					}
-				}); 
+				});
 				System.out.println("Danh sach sau sap xep: ");
 				for (CanBo cb : canBoList) {
 					if (cb instanceof GiangVien) {
@@ -102,7 +102,8 @@ public class QuanLyCanBo {
 					}
 				}
 				break;
-			case 0: break;
+			case 0:
+				break;
 			}
 
 		}

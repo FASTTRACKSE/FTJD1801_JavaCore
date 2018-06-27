@@ -6,7 +6,7 @@ public class NhanVien extends CanBo {
 	public String phongBan;
 	public int soNgayCong;
 	public String chucVu;
-	
+
 	public NhanVien() {
 		super();
 	}
@@ -41,6 +41,7 @@ public class NhanVien extends CanBo {
 	public void setChucVu(String chucVu) {
 		this.chucVu = chucVu;
 	}
+
 	public void nhap() {
 		super.nhap();
 		Scanner sc = new Scanner(System.in);
@@ -55,24 +56,28 @@ public class NhanVien extends CanBo {
 		} else if (chonPhong == 3) {
 			this.chucVu = "nhan vien";
 		}
-		
+
 		System.out.print("nhap so ngay lam viec: ");
 		this.soNgayCong = Integer.parseInt(sc.nextLine());
 	}
+
 	public void xuat() {
 		super.xuat();
-		System.out.print(this.phuCap + " || Phong ban: " + this.phongBan + " || Chuc vu: " + this.chucVu + " || So ngay lam viec: " + this.soNgayCong);
+		System.out.println(this.phuCap + " || Phong ban: " + this.phongBan + " || Chuc vu: " + this.chucVu
+				+ " || So ngay lam viec: " + this.soNgayCong);
 	}
+
 	@Override
 	public double tinhLuong() {
 		// TODO Auto-generated method stub
-		return this.heSoLuong*730 + this.phuCap + this.soNgayCong*30;
+
+		return this.heSoLuong * 730 + this.phuCap + this.soNgayCong * 30;
 	}
 
 	@Override
 	public double getPhuCap() {
 		// TODO Auto-generated method stub
-		if(this.chucVu.equals("truong phong")) {
+		if (this.chucVu.equals("truong phong")) {
 			return 2000;
 		} else if (this.chucVu.equals("pho phong")) {
 			return 1000;
