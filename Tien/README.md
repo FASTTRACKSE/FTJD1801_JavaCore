@@ -51,6 +51,10 @@
         <li>
             <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Tien/JavaFastTrack01/src/oop/SanPham.java"> Bài tập Sản phẩm</a>
         </li>
+        
+        <li>
+            <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/Tien/JavaFastTrack01/src/menu/student">Bài tập Sinh Viên 2</a>
+        </li>
     </ol>
 </ol>
     
