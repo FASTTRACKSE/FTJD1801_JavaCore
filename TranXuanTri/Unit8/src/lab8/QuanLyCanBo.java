@@ -53,6 +53,7 @@ public class QuanLyCanBo implements Serializable {
 				System.out.println("Ban muon xuat can bo nao?");
 				System.out.println("1. Giang vien");
 				System.out.println("2. Nhan vien");
+				System.out.println("3. Xuat toan bo danh sach can bo");
 				int phanLoai2 = Integer.parseInt(sc.nextLine());
 				if (phanLoai2 == 1) {
 					System.out.println("Ban muon xuat thong tin giang vien khoa nao ?");
@@ -71,6 +72,10 @@ public class QuanLyCanBo implements Serializable {
 						if (nv.getPhongBan().equals(phong)) {
 							nv.xuat();
 						}
+					}
+				} else if (phanLoai2 == 3) {
+					for (CanBo cb : canBoList) {
+						cb.xuat();
 					}
 				}
 				break;
@@ -132,11 +137,14 @@ public class QuanLyCanBo implements Serializable {
 					ArrayList<CanBo> cb1 = (ArrayList<CanBo>) ois.readObject(); ;
 					System.out.println("Doc tu file");
 					for (CanBo cb : cb1) {
-						System.out.println(cb.hoTen);
+						if (cb instanceof GiangVien) {
+							GiangVien gv = (GiangVien) cb;
+							gv.xuat();
+						} else if  (cb instanceof NhanVien) {
+							NhanVien nv = (NhanVien) cb;
+							nv.xuat();
+						}
 					}
-					
-						
-					
 					ois.close();
 					fis.close();
 				}

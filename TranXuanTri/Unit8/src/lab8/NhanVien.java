@@ -64,8 +64,8 @@ public class NhanVien extends CanBo implements Serializable {
 
 	public void xuat() {
 		super.xuat();
-		System.out.println(this.phuCap + " || Phong ban: " + this.phongBan + " || Chuc vu: " + this.chucVu
-				+ " || So ngay lam viec: " + this.soNgayCong);
+		System.out.println(getPhuCap() + " || Phong ban: " + this.phongBan + " || Chuc vu: " + this.chucVu
+				+ " || So ngay lam viec: " + this.soNgayCong + " || Luong: " + tinhLuong());
 	}
 
 	@Override
@@ -79,11 +79,11 @@ public class NhanVien extends CanBo implements Serializable {
 	public double getPhuCap() {
 		// TODO Auto-generated method stub
 		if (this.chucVu.equals("truong phong")) {
-			return 2000;
+			return this.phuCap = 2000;
 		} else if (this.chucVu.equals("pho phong")) {
-			return 1000;
+			return this.phuCap = 1000;
 		} else if (this.chucVu.equals("nhan vien")) {
-			return 500;
+			return this.phuCap = 500;
 		}
 		return 0;
 	}
