@@ -32,7 +32,7 @@ unit 2 :
  
 2 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/OOP_InSoraChu.java"> In So Ra Chu 
 
-2 <a href ="">  bt1 QLSV
+2 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/Unit_3_QLSV.java">  bt1 QLSV
 
 unit 3 
 
