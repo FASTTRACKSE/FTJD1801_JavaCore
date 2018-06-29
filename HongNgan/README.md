@@ -29,7 +29,7 @@
    
 </li>
 <li><p>UNIT8</p> 
-<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/unit8/Test.java"> Test về luồng </a></li>
+<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/unit8/Test.java"> Test </a></li>
   
 </ul>
    
