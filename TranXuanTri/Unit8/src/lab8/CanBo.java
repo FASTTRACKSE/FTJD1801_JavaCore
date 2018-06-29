@@ -3,6 +3,7 @@ package lab8;
 import java.io.Serializable;
 import java.util.Scanner;
 
+
 public abstract class CanBo implements Serializable{
 	public String hoTen;
 	public double heSoLuong;
@@ -41,10 +42,28 @@ public abstract class CanBo implements Serializable{
 
 	public void nhap() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Nhap ho ten can bo: ");
-		this.hoTen = sc.nextLine();
-		System.out.println("Nhap he so luong: ");
-		this.heSoLuong = Double.parseDouble(sc.nextLine());
+		for (;;) {
+			System.out.println("Nhap ho ten can bo: ");
+			this.hoTen = sc.nextLine(); 
+			try {
+				CanBoException.chkHoTen(hoTen);
+				break;
+			} catch (CanBoException e) {
+				System.err.println(e);
+				System.out.println();
+			}
+			}
+			for (;;) {
+			System.out.println("Nhap he so luong: ");
+			this.heSoLuong = Double.parseDouble(sc.nextLine());
+			try {
+				CanBoException.chkSo(heSoLuong);
+				break;
+			} catch (CanBoException e) {
+				System.err.println(e);
+				System.out.println();
+			}
+			}
 	}
 
 	public void xuat() {

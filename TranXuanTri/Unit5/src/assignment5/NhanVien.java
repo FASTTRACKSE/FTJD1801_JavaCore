@@ -47,18 +47,28 @@ public class NhanVien extends CanBo {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("nhap phong ban lam viec: ");
 		this.phongBan = sc.nextLine();
-		System.out.print("nhap chuc vu: 1. Truong phong, 2. Pho phong, 3. Nhan vien");
-		int chonPhong = Integer.parseInt(sc.nextLine());
-		if (chonPhong == 1) {
-			this.chucVu = "truong phong";
-		} else if (chonPhong == 2) {
-			this.chucVu = "pho phong";
-		} else if (chonPhong == 3) {
-			this.chucVu = "nhan vien";
+		for (;;) {
+			System.out.print("nhap chuc vu:");
+			this.chucVu = sc.nextLine();
+			try {
+				CanBoException.chkChucVu(chucVu);
+				break;
+			} catch (CanBoException e) {
+				System.err.println(e);
+				System.out.println();
+			}
 		}
-
+		for (;;) {
 		System.out.print("nhap so ngay lam viec: ");
 		this.soNgayCong = Integer.parseInt(sc.nextLine());
+		try {
+			CanBoException.chkSo(soNgayCong);
+			break;
+		} catch (CanBoException e) {
+			System.err.println(e);
+			System.out.println();
+		}
+		}
 	}
 
 	public void xuat() {
