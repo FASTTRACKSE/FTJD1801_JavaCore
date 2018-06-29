@@ -15,7 +15,7 @@ public class javahomework3 {
 		
 		int sum = 0;
 		for (int i = 0; i <= n; i++) {
-			sum = sum +i;
+			sum = sum +i; //i++ means the value of i increases by 1, i <= n
 		}
 		System.out.println("Sum of value is " + sum);
 	}
