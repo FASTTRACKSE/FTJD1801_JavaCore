@@ -13,7 +13,7 @@ unit 1:
 
 4  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/QuanLyHS.java"> Quan ly HS
 
-5  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/TinhTongGiaiThua_Chan.java"> Tinh Tong n Giai Thua 
+5  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/OOP/src/unit_1/TinhGiaiThua.java"> Tinh Tong n Giai Thua 
 
 6  <a href=""> Tinh Tong Giai Thua Chan
 
