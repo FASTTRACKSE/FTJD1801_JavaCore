@@ -37,7 +37,7 @@ unit 2 :
 unit 3 
 
 
-1 <a href =""> bai tap 1 lap3
+1 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/SanPham.java"> bai tap 1 lap3
  
 2 <a href =""> bai tap 2 lap3
  
