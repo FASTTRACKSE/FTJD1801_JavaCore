@@ -1,6 +1,12 @@
 package canbo;
 
 import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,6 +23,8 @@ public class QuanLiCanBo {
 			System.out.println("2. Hiển thị thông tin cán bộ");
 			System.out.println("3. Tổng số lương phải trả cho cán bộ");
 			System.out.println("4. Sắp xếp cán bộ theo lương");
+			System.out.println("5. Lưu xuống file");
+			System.out.println("6. Hiện thị dánh sách cán bộ tứ file");
 			System.out.println("0. Thoát");
 			System.out.print("Chọn thao tác");
 			int choice = Integer.parseInt(sc.nextLine());
@@ -71,6 +79,30 @@ public class QuanLiCanBo {
 				}
 
 				);
+			case 5:
+				FileOutputStream fos;
+				try {
+					fos = new FileOutputStream("fileobject.dat");
+					ObjectOutputStream oos = new ObjectOutputStream(fos);
+					oos.writeObject(listCanBo);
+					oos.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}break;
+			case 6:
+				try {
+					FileInputStream fis = new FileInputStream("fileobject.dat");
+					ObjectInputStream ois = new ObjectInputStream(fis);
+					@SuppressWarnings("unchecked")
+					ArrayList<CanBo> list = (ArrayList<CanBo>)ois.readObject();
+					for (CanBo cb : list) {
+						cb.xuat();
+					}
+				}catch(Exception e) {
+					
+				}
+				
 			}
 		}
 	}

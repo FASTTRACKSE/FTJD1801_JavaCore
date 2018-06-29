@@ -1,8 +1,9 @@
 package canbo;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class CanBo {
+public abstract class CanBo implements Serializable {
 	private String hoTen;
 	private double heSL;
 
@@ -54,7 +55,7 @@ public abstract class CanBo {
 		System.out.println("Hệ số lương: ");
 		this.heSL = Double.parseDouble(sc.nextLine());
 		try {
-			CanBoEx.chkSoThuc(getPhuCap());
+			CanBoEx.chkSoThuc(this.heSL);
 			break;
 		}catch(CanBoEx e) {
 			System.err.println(e);

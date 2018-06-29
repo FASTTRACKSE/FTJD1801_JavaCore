@@ -38,7 +38,7 @@ public class CanBoEx extends Exception {
 	static public void chkSoNguyen(int n) throws CanBoEx {
 		if (n < 0) throw new CanBoEx("So am khong hop le"); 
 		}
-		static public void chkSoThuc(float n) throws CanBoEx {
+		static public void chkSoThuc(double n) throws CanBoEx {
 		if (n < 0) throw new CanBoEx("So am khong hop le"); 
 		}
 
