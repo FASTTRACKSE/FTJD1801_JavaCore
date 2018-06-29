@@ -31,7 +31,10 @@ public class SinhVienIT extends SinhVienFPT {
 		System.out.println("Nhap diem Html: ");
 		this.diemHtml = Double.parseDouble(sc.nextLine());
 	}
-
+	public void xuatIt() {
+		super.xuat();
+		System.out.println("Điểm Java: "+diemJava+"  |  Điểm Css: "+diemCss+"  |  Điểm Html: "+diemHtml);
+	}
 	@Override
 	public double getDiem() {
 		return (2 * diemJava + diemHtml + diemCss) / 4;
