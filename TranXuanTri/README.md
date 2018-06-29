@@ -22,4 +22,6 @@
   4.1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit4/src/bai1/BienLai.java"> Bien lai thu tien dien </a> <br>
   4.2 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit4/src/bai2/QuanLySinhVien.java"> Quan ly sinh vien (update exception) </a> <br>
 5. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit5"> Unit 5 </a> <br>
-  5.1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit5/src/assignment5/QuanLyCanBo.java"> Quan ly can bo </a><br>
+  5.1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit5/src/assignment5/QuanLyCanBo.java"> Quan ly can bo (update exception) </a><br>
+6. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit8"> Unit 6 </a> <br>
+  6.1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit8/src/lab8"> Quan ly can bo (update exception, i/o </a> <br>
