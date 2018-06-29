@@ -11,10 +11,10 @@ public class GiaiPhuongTrinhBacNhat {
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.print("nhap so a ");
-		a = scanner.nextInt();
+		a = scanner.nextInt(); //type a from keyboard
 		
 		System.out.print("nhap so b ");
-		b = scanner.nextInt();
+		b = scanner.nextInt(); //type b from keyboard
 		scanner.close();
 		if (a==0) {
 			if (b==0) {
