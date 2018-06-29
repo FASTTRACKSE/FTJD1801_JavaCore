@@ -1,9 +1,10 @@
 package abstracts;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class SinhVienFpt {
+public abstract class SinhVienFpt implements Serializable{
 	private String maSV;
 	private String hoTen;
 	private String nganh;
@@ -63,21 +64,21 @@ public abstract class SinhVienFpt {
 
 	public String getHocLuc() {
 		if (getDiem() < 5) {
-			return "Yáº¿u";
+			return "Yếu";
 		} else if (getDiem() <= 6.5) {
-			return "Trung BÃ¬nh";
+			return "Trung Bình";
 		} else if (getDiem() <= 7.5) {
-			return "KhÃ¡";
+			return "Khá";
 		} else if (getDiem() < 9) {
-			return "Giá»�i";
+			return "Giỏi";
 		} else
-			return "Xuáº¥t sáº¯c";
+			return "Xuất sắc";
 	}
 
 	public void nhap(ArrayList<SinhVienFpt> list) {
 		Scanner sc = new Scanner(System.in);
 		for (;;) {
-			System.out.println("MÃ£ sinh viÃªn: ");
+			System.out.println("Mã sinh viên: ");
 			maSV = sc.nextLine();
 			try {
 				SinhVienException.checkMaSV(maSV, list);
@@ -88,7 +89,7 @@ public abstract class SinhVienFpt {
 			}
 		}
 		for (;;) {
-			System.out.println("Há»� tÃªn: ");
+			System.out.println("Họ tên: ");
 			hoTen = sc.nextLine();
 			try {
 				SinhVienException.checkHoTen(hoTen);
@@ -99,7 +100,7 @@ public abstract class SinhVienFpt {
 			}
 		}
 		for (;;) {
-			System.out.println("Tuá»•i: ");
+			System.out.println("Tuổi: ");
 			tuoi = Integer.parseInt(sc.nextLine());
 			try {
 				SinhVienException.checkTuoi(tuoi);
@@ -109,7 +110,7 @@ public abstract class SinhVienFpt {
 				System.out.println();
 			}
 		}
-		System.out.println("NgÃ nh: ");
+		System.out.println("Ngành: ");
 		nganh = sc.nextLine();
 	}
 
@@ -123,15 +124,23 @@ public abstract class SinhVienFpt {
 				break;
 			} catch (SinhVienException e) {
 				System.err.println(e);
-				System.out.println("Má»�i nháº­p láº¡i: ");
+				System.out.println("Mời nhập lại: ");
 			}
 		}
 		return diem;
 	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "SinhVienFpt [maSV=" + maSV + ", hoTen=" + hoTen + ", nganh=" + nganh + ", diem=" + diem + ", tuoi="
+				+ tuoi + "]";
+	}
 
 	public void xuat() {
 		this.diem = this.getDiem();
-		System.out.println("MÃ£ sinh viÃªn: " + this.maSV + "  |  Há»� tÃªn: " + this.hoTen +"  |  Tuá»•i: " + this.tuoi+"  |  NgÃ nh: " + nganh
-				+ "  |  Ä�iá»ƒm trung bÃ¬nh: " + this.diem + "  |  Há»�c lá»±c: " + this.getHocLuc());
+		System.out.println("Mã sinh viên: " + this.maSV + "  |  Họ tên: " + this.hoTen +"  |  Tuổi: " + this.tuoi+"  |  Ngành: " + nganh
+				+ "  |  Điểm trung bình: " + this.diem + "  |  Học lực: " + this.getHocLuc());
 	}
 }

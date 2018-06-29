@@ -35,20 +35,22 @@ public class SinhVienException extends Exception {
 				throw new SinhVienException("Mã sinh viên đã có!!!");
 			}
 		}
-		if(maSV.equals("")) {
+		if (maSV.equals("")) {
 			throw new SinhVienException("Mã sinh viên không được rỗng!!!");
 		}
 	}
-	static public void checkDiem(double diem) throws SinhVienException{
-		if(diem < 0 || diem > 10) {
+
+	static public void checkDiem(double diem) throws SinhVienException {
+		if (diem < 0 || diem > 10) {
 			throw new SinhVienException("Điểm phải nằm trong khoảng từ 0.0 đến 10.0!!!");
 		}
 	}
-	static public void checkTuoi(int tuoi) throws SinhVienException{
-		if(tuoi != (int)tuoi) {
+
+	static public void checkTuoi(int tuoi) throws SinhVienException {
+		if (tuoi != (int) tuoi) {
 			throw new SinhVienException("Tuổi phải là kiểu số nguyên!!!");
 		}
-		if(tuoi < 0 || tuoi > 100) {
+		if (tuoi < 0 || tuoi > 100) {
 			throw new SinhVienException("Tuổi phải nằm trong khoảng từ 0 đếm 100!!!");
 		}
 	}
