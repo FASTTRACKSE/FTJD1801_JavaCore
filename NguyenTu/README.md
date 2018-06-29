@@ -14,3 +14,9 @@ Bài Tập Tổng</br>
 Unit 3</br>
     <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/ff4960c3d8a84e8bd1b32a5538ee133bdb9f2b28">SinhVienManagement</a></br>
     <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/8abd3a7bb63cf82b3b47559ec62823c7d649f286">Quản lí sinh viên OOP</a></br>
+    <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/a58b378f7aa8f2e3b9105243db824a2a1f0ed233">Biên lai tiền điện</a></br>
+    Sinh Viên Exception</br>
+    <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/0df92a3c5803c3ab51a9cae3d528f9b5a04af9a6">SVException</a></br>
+    <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/9f4a7eb6473a92cc6d4db5390606c05d708986ab">Sinh Viên FPT Exception</a></br>
+   
+    
