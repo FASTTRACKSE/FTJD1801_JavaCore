@@ -8,7 +8,7 @@ unit 1:
  2  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/tinhtongtu1denN.java"> tinh tong tu 1 den N
 
 
-3  <a href=""> Giai PT bat2
+3  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/GiaiPT_Bat2.java"> Giai PT bat2
 
 
 4  <a href=""> Quan ly HS
