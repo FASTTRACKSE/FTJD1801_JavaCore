@@ -15,7 +15,7 @@ unit 1:
 
 5  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/OOP/src/unit_1/TinhGiaiThua.java"> Tinh Tong n Giai Thua 
 
-6  <a href=""> Tinh Tong Giai Thua Chan
+6  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/OOP/src/unit_1/TinhGiaiThua_Chan.java"> Tinh Tong Giai Thua Chan
 
 7  <a href="">  Tinh tien dien
 
