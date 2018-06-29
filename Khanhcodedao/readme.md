@@ -11,7 +11,7 @@ unit 1:
 3  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/GiaiPT_Bat2.java"> Giai PT bat2
 
 
-4  <a href=""> Quan ly HS
+4  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/QuanLyHS.java"> Quan ly HS
 
 5  <a href=""> Tinh Tong n Giai Thua
 
