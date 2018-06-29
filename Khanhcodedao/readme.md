@@ -19,7 +19,7 @@ unit 1:
 
 7  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/OOP/src/unit_1/QuanLyTienDien.java">  Tinh tien dien
 
-8 <a href=""> bai tap tich hop kien thuc 
+8 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/OOP/src/unit_1/Unit_1_BaiTapTichHopKienThuc.java"> bai tap tich hop kien thuc 
 
 9 <a href=""> In bang cuu chuong .
  
