@@ -15,7 +15,7 @@ public abstract class CanBo {
 	public CanBo() {
 	}
 	
-	public CanBo(String hoten, double hesoluong, double phucap) {
+	public CanBo(String hoten, double hesoluong, double phucap ,String maCB) {
 		this.hoTen = hoten;
 		this.heSoLuong = hesoluong;
 		this.phuCap = phucap;
@@ -83,7 +83,7 @@ public abstract class CanBo {
 			System.out.print(" Nhap vao ma can bo : ");
 			maCB = sc.nextLine();
 			try {
-				ArrayList<CanBo> list = new ArrayList<>();
+				ArrayList<CanBo> list = new ArrayList< CanBo>();
 				SuLyNgoaiLe.chkMCB(maCB, list );
 				break;
 			}catch(SuLyNgoaiLe e) {
@@ -96,6 +96,7 @@ public abstract class CanBo {
 	public void xuat() {
 		System.out.println(" Ten can bo : "+hoTen);
 		System.out.println(" He so luong : "+heSoLuong);
+		System.out.println(" Ma can bo : "+maCB);
 	}
 	
 	abstract public  double getTinhLuong();
