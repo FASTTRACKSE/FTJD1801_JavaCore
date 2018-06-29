@@ -15,4 +15,23 @@
    <li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/Unit2/TinhDiemTb.java"> Sắp Xếp Điểm SV </a></li>
 </ul>
 </li>
+<li><p>UNIT3</p>
+<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/unit3/QuanliSinhVien.java"> Quản lí Sinh Vien </a></li>
+   <li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/unit3/SanPham.java"> Quản lí Sản Phẩm </a></li>
+    <li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/unit3/Student.java"> Student </a></li>
+</ul>
+</li>
+<li><p>UNIT4+5+6+7</p> 
+<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/HongNgan/Bai1/src/unit4/canbo"> Quản lí Cán Bộ </a></li>
+   <li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/HongNgan/Bai1/src/unit4/sinhvien">Quản Lí Sinh Viên </a></li>
+    <li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/HongNgan/Bai1/src/unit4/tiendien"> Quản Lý tiền điện</a></li>
+</ul>
+   
+</li>
+<li><p>UNIT8</p> 
+<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/unit8/Test.java"> Test </a></li>
+  
+</ul>
+   
+</li>
 </ol>

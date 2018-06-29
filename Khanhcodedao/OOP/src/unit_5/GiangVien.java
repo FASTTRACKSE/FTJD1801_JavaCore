@@ -81,9 +81,9 @@ public class GiangVien extends CanBo{
 	@Override
 	public void xuat() {
 		super.xuat();
-		System.out.println(" khoa cong tac : "+khoa);
-		System.out.println(" trinh do : "+trinhDo);
-		System.out.println(" so tiet day : "+soTietDay);
+		System.out.println(" Khoa cong tac : "+khoa);
+		System.out.println(" Trinh do : "+trinhDo);
+		System.out.println(" So tiet day : "+soTietDay);
 	}
 
 	@Override

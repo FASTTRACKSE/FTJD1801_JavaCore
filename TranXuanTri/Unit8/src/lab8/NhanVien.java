@@ -1,8 +1,9 @@
-package assignment5;
+package lab8;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class NhanVien extends CanBo {
+public class NhanVien extends CanBo implements Serializable {
 	public String phongBan;
 	public int soNgayCong;
 	public String chucVu;
@@ -46,7 +47,6 @@ public class NhanVien extends CanBo {
 		super.nhap();
 		Scanner sc = new Scanner(System.in);
 		System.out.print("nhap phong ban lam viec: ");
-		this.phongBan = sc.nextLine();
 		for (;;) {
 			System.out.print("nhap chuc vu:");
 			this.chucVu = sc.nextLine();
@@ -59,22 +59,22 @@ public class NhanVien extends CanBo {
 			}
 		}
 		for (;;) {
-		System.out.print("nhap so ngay lam viec: ");
-		this.soNgayCong = Integer.parseInt(sc.nextLine());
-		try {
-			CanBoException.chkSo(soNgayCong);
-			break;
-		} catch (CanBoException e) {
-			System.err.println(e);
-			System.out.println();
-		}
+			System.out.print("nhap so ngay lam viec: ");
+			this.soNgayCong = Integer.parseInt(sc.nextLine());
+			try {
+				CanBoException.chkSo(soNgayCong);
+				break;
+			} catch (CanBoException e) {
+				System.err.println(e);
+				System.out.println();
+			}
 		}
 	}
 
 	public void xuat() {
 		super.xuat();
-		System.out.println(this.phuCap + " || Phong ban: " + this.phongBan + " || Chuc vu: " + this.chucVu
-				+ " || So ngay lam viec: " + this.soNgayCong);
+		System.out.println(getPhuCap() + " || Phong ban: " + this.phongBan + " || Chuc vu: " + this.chucVu
+				+ " || So ngay lam viec: " + this.soNgayCong + " || Luong: " + tinhLuong());
 	}
 
 	@Override
@@ -88,11 +88,11 @@ public class NhanVien extends CanBo {
 	public double getPhuCap() {
 		// TODO Auto-generated method stub
 		if (this.chucVu.equals("truong phong")) {
-			return 2000;
+			return this.phuCap = 2000;
 		} else if (this.chucVu.equals("pho phong")) {
-			return 1000;
+			return this.phuCap = 1000;
 		} else if (this.chucVu.equals("nhan vien")) {
-			return 500;
+			return this.phuCap = 500;
 		}
 		return 0;
 	}

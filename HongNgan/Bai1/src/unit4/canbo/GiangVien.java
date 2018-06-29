@@ -1,6 +1,9 @@
-package assignment5;
+package unit4.canbo;
+
 
 import java.util.Scanner;
+
+import unit4.sinhvien.SinhVienException;
 
 public class GiangVien extends CanBo {
 	public String khoa;
@@ -41,38 +44,37 @@ public class GiangVien extends CanBo {
 	public void setSoTietDay(int soTietDay) {
 		this.soTietDay = soTietDay;
 	}
-
 	public void nhap() {
 		super.nhap();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Nhap khoa: ");
 		this.khoa = sc.nextLine();
-		for (;;) {
-			System.out.println("Nhap trinh do: ");
-			this.trinhDo = sc.nextLine();
-			try {
-				CanBoException.chkTrinhDo(trinhDo);
-				break;
-			} catch (CanBoException e) {
-				System.err.println(e);
-				System.out.println();
-			}
+		
+		for(;;) {
+		System.out.println("Nhap trinh do: ");
+		this.trinhDo = sc.nextLine();
+		try {
+			CanBoException.chkTrinhDo(trinhDo);;
+			break;
+		}catch(Exception e) {
+			System.err.println(e);
 		}
-		for (;;) {
-			System.out.println("Nhap so tiet day trong thang: ");
-			this.soTietDay = Integer.parseInt(sc.nextLine());
-			try {
-				CanBoException.chkSo(soTietDay);
-				break;
-			} catch (CanBoException e) {
-				System.err.println(e);
-				System.out.println();
-			}
+		}
+		
+		for(;;) {
+		System.out.println("Nhap so tiet day : ");
+		this.soTietDay = Integer.parseInt(sc.nextLine());
+		try {
+			CanBoException.chkSoNguyen(soTietDay);;
+			break;
+		}catch(Exception e) {
+			System.err.println(e);
+		}
 		}
 	}
 	public void xuat() {
 		super.xuat();
-		System.out.println (this.phuCap + " || khoa: " + this.khoa + " || Trinh do:" + this.trinhDo + " || So tiet day trong thang: " + this.soTietDay + " || " + this.tinhLuong());
+		System.out.println (this.phuCap + " | khoa: " + this.khoa + " | Trinh do:" + this.trinhDo + " | So tiet day trong thang: " + this.soTietDay + " || " + this.tinhLuong());
 	}
 
 	@Override

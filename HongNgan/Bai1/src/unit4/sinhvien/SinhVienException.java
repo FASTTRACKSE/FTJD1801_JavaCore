@@ -34,4 +34,18 @@ public class SinhVienException  extends Exception{
 		}
 		}
 	}
+	static public void checkDiem(double diem) throws SinhVienException{
+		if(diem < 0 || diem > 10) {
+			throw new SinhVienException("diem phai tu 0->10");
+		}
+	}
+	static public void checkTuoi(double tuoi ) throws SinhVienException{
+		if(tuoi<0 || tuoi >100) {
+			throw new SinhVienException("tuoi nho hon 100");
+		}
+		if (tuoi!= (int)tuoi) {
+			throw new SinhVienException("tuoi phai la so nguyen");
+			
+		}
+	}
 }

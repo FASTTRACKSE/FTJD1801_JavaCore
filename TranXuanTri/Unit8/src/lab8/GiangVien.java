@@ -1,12 +1,13 @@
-package assignment5;
+package lab8;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class GiangVien extends CanBo {
+public class GiangVien extends CanBo implements Serializable {
 	public String khoa;
 	public String trinhDo;
 	public int soTietDay;
-	
+
 	public GiangVien() {
 		super();
 	}
@@ -70,9 +71,11 @@ public class GiangVien extends CanBo {
 			}
 		}
 	}
+
 	public void xuat() {
 		super.xuat();
-		System.out.println (this.phuCap + " || khoa: " + this.khoa + " || Trinh do:" + this.trinhDo + " || So tiet day trong thang: " + this.soTietDay + " || " + this.tinhLuong());
+		System.out.println(getPhuCap() + " || khoa: " + this.khoa + " || Trinh do:" + this.trinhDo
+				+ " || So tiet day trong thang: " + this.soTietDay + " || Luong: " + this.tinhLuong());
 	}
 
 	@Override
@@ -85,13 +88,13 @@ public class GiangVien extends CanBo {
 	public double getPhuCap() {
 		// TODO Auto-generated method stub
 		if (getTrinhDo().equals("cu nhan")) {
-			return 300;
+			return this.phuCap = 300;
 		} else if (getTrinhDo().equals("thac si")) {
-			return 500;
+			return this.phuCap = 500;
 		} else if (getTrinhDo().equals("tien si")) {
-			return 1000;
-		} else 
-		return 0;
+			return this.phuCap = 1000;
+		} else
+			return 0;
 	}
 
 }
