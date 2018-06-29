@@ -5,15 +5,15 @@ unit 1:
 
  1  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/GiaiPTBat_1.java"> Giai phuong trinh bac 1 </a>
 
- 2  <a href=""> tinh tong tu 1 den N
+ 2  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/tinhtongtu1denN.java"> tinh tong tu 1 den N
 
 
-3  <a href=""> Giai PT bat2
+3  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/GiaiPT_Bat2.java"> Giai PT bat2
 
 
-4  <a href=""> Quan ly HS
+4  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/QuanLyHS.java"> Quan ly HS
 
-5  <a href=""> Tinh Tong n Giai Thua
+5  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/TinhTongGiaiThua_Chan.java"> Tinh Tong n Giai Thua 
 
 6  <a href=""> Tinh Tong Giai Thua Chan
 
