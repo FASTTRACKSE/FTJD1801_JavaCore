@@ -45,7 +45,7 @@ public class SinhVienException extends Exception {
 		}
 	}
 	static public void checkTuoi(int tuoi) throws SinhVienException{
-		if(tuoi == (int)tuoi) {
+		if(tuoi != (int)tuoi) {
 			throw new SinhVienException("Tuổi phải là kiểu số nguyên!!!");
 		}
 		if(tuoi < 0 || tuoi > 100) {

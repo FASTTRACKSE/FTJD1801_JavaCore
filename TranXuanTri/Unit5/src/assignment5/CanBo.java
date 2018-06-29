@@ -40,10 +40,28 @@ public abstract class CanBo {
 
 	public void nhap() {
 		Scanner sc = new Scanner(System.in);
+		for (;;) {
 		System.out.println("Nhap ho ten can bo: ");
-		this.hoTen = sc.nextLine();
+		this.hoTen = sc.nextLine(); 
+		try {
+			CanBoException.chkHoTen(hoTen);
+			break;
+		} catch (CanBoException e) {
+			System.err.println(e);
+			System.out.println();
+		}
+		}
+		for (;;) {
 		System.out.println("Nhap he so luong: ");
 		this.heSoLuong = Double.parseDouble(sc.nextLine());
+		try {
+			CanBoException.chkSo(heSoLuong);
+			break;
+		} catch (CanBoException e) {
+			System.err.println(e);
+			System.out.println();
+		}
+		}
 	}
 
 	public void xuat() {

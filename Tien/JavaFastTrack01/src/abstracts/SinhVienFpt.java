@@ -63,21 +63,21 @@ public abstract class SinhVienFpt {
 
 	public String getHocLuc() {
 		if (getDiem() < 5) {
-			return "Yếu";
+			return "Yáº¿u";
 		} else if (getDiem() <= 6.5) {
-			return "Trung Bình";
+			return "Trung BÃ¬nh";
 		} else if (getDiem() <= 7.5) {
-			return "Khá";
+			return "KhÃ¡";
 		} else if (getDiem() < 9) {
-			return "Giỏi";
+			return "Giá»�i";
 		} else
-			return "Xuất sắc";
+			return "Xuáº¥t sáº¯c";
 	}
 
 	public void nhap(ArrayList<SinhVienFpt> list) {
 		Scanner sc = new Scanner(System.in);
 		for (;;) {
-			System.out.println("Mã sinh viên: ");
+			System.out.println("MÃ£ sinh viÃªn: ");
 			maSV = sc.nextLine();
 			try {
 				SinhVienException.checkMaSV(maSV, list);
@@ -88,7 +88,7 @@ public abstract class SinhVienFpt {
 			}
 		}
 		for (;;) {
-			System.out.println("Họ tên: ");
+			System.out.println("Há»� tÃªn: ");
 			hoTen = sc.nextLine();
 			try {
 				SinhVienException.checkHoTen(hoTen);
@@ -99,7 +99,7 @@ public abstract class SinhVienFpt {
 			}
 		}
 		for (;;) {
-			System.out.println("Tuổi: ");
+			System.out.println("Tuá»•i: ");
 			tuoi = Integer.parseInt(sc.nextLine());
 			try {
 				SinhVienException.checkTuoi(tuoi);
@@ -109,7 +109,7 @@ public abstract class SinhVienFpt {
 				System.out.println();
 			}
 		}
-		System.out.println("Ngành: ");
+		System.out.println("NgÃ nh: ");
 		nganh = sc.nextLine();
 	}
 
@@ -123,7 +123,7 @@ public abstract class SinhVienFpt {
 				break;
 			} catch (SinhVienException e) {
 				System.err.println(e);
-				System.out.println("Mời nhập lại: ");
+				System.out.println("Má»�i nháº­p láº¡i: ");
 			}
 		}
 		return diem;
@@ -131,7 +131,7 @@ public abstract class SinhVienFpt {
 
 	public void xuat() {
 		this.diem = this.getDiem();
-		System.out.println("Mã sinh viên: " + this.maSV + "  |  Họ tên: " + this.hoTen +"  |  Tuổi: " + this.tuoi+"  |  Ngành: " + nganh
-				+ "  |  Điểm trung bình: " + this.diem + "  |  Học lực: " + this.getHocLuc());
+		System.out.println("MÃ£ sinh viÃªn: " + this.maSV + "  |  Há»� tÃªn: " + this.hoTen +"  |  Tuá»•i: " + this.tuoi+"  |  NgÃ nh: " + nganh
+				+ "  |  Ä�iá»ƒm trung bÃ¬nh: " + this.diem + "  |  Há»�c lá»±c: " + this.getHocLuc());
 	}
 }
