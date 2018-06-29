@@ -3,7 +3,7 @@
  
 unit 1:
 
- 1  <a href=""> Giai phuong trinh bac 1 </a>
+ 1  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/GiaiPTBat_1.java"> Giai phuong trinh bac 1 </a>
 
  2  <a href=""> tinh tong tu 1 den N
 
