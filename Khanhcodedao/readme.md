@@ -3,7 +3,7 @@
  
 unit 1:
 
- 1  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP"> Giai phuong trinh bac 1 </a>
+ 1  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/GiaiPTBat_1.java"> Giai phuong trinh bac 1 </a>
 
  2  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/tinhtongtu1denN.java"> tinh tong tu 1 den N
 
@@ -13,13 +13,13 @@ unit 1:
 
 4  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/QuanLyHS.java"> Quan ly HS
 
-5  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/TinhGiaiThua.java"> Tinh Tong n Giai Thua
+5  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/OOP/src/unit_1/TinhGiaiThua.java"> Tinh Tong n Giai Thua 
 
-6  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/TinhTongGiaiThua_Chan.java"> Tinh Tong Giai Thua Chan
+6  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/OOP/src/unit_1/TinhGiaiThua_Chan.java"> Tinh Tong Giai Thua Chan
 
-7  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/QuanLyTienDien.java">  Tinh tien dien
+7  <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/OOP/src/unit_1/QuanLyTienDien.java">  Tinh tien dien
 
-8 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/BaiTapTichHopKienThuc.java"> bai tap tich hop kien thuc 
+8 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/OOP/src/unit_1/Unit_1_BaiTapTichHopKienThuc.java"> bai tap tich hop kien thuc 
 
 9 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/InBangCuuChuong.java"> In bang cuu chuong .
  
@@ -27,7 +27,7 @@ unit 1:
 unit 2 :
 
 
-1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/XepdanhSachHocSinh.java"> xep loai hoc sinh
+1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/OOP/src/unit_1/XepdanhSachHocSinh.java"> xep loai hoc sinh
  
  
 2 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/OOP_InSoraChu.java"> In So Ra Chu 
@@ -37,11 +37,11 @@ unit 2 :
 unit 3 
 
 
-1 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/sanpham.java"> bai tap 1 lap3
+1 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/SanPham.java"> bai tap 1 lap3
  
-2 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/TT_sanpham.java"> bai tap 2 lap3
+2 <a href =""> bai tap 2 lap3
  
-3 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/SanPham.java"> updete San Pham
+3 <a href =""> updete San Pham
 
 4 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/QLSV.java"> Quan Ly Sinh Vien
 
