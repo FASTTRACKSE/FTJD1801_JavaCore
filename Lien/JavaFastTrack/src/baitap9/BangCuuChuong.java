@@ -7,15 +7,13 @@ public class BangCuuChuong {
 	    }
 
 	public static void main(String[] args) {
-		 Scanner nc=new Scanner(System.in);
-	       
-	        System.out.println("hãy nhập vào một số của bảng cửu chương:");
-	        int i=nc.nextInt();
-	       int num=1;
-	        while(num<=10){
-	            System.out.printf("\n%d * "+i+" = %d",num,(num * i));
-	            num++;
-	        }
+		
+		for(int i=1; i<=10;i++){
+			System.out.println("");
+	       for(int j=2; j<=10; j++) {
+	    	   System.out.print(j+" x "+i+" = "+(i*j)+"\t");
+	       }
+		}
 		
 
 	}
