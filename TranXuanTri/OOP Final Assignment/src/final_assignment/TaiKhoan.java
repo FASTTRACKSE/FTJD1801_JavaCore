@@ -1,12 +1,13 @@
 package final_assignment;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class TaiKhoan {
+public class TaiKhoan implements Serializable {
 	
 	String tenTaiKhoan;
 	String maThe;
-	int maPIN;
+	String maPIN;
 	String trangThaiTaiKhoan;
 	String loaiTienTe;
 	double soDuTaiKhoan;	
@@ -15,7 +16,7 @@ public class TaiKhoan {
 		
 	}
 
-	public TaiKhoan(String maThe, int maPIN) {
+	public TaiKhoan(String maThe, String maPIN) {
 		this.maThe = maThe;
 		this.maPIN = maPIN;
 	}
@@ -31,27 +32,60 @@ public class TaiKhoan {
 	
 	public void nhap() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Nhap ho ten chu tai khoan: ");
-		this.tenTaiKhoan = sc.nextLine();
-		System.out.println("Nhap ma so the: ");
-		this.maThe = sc.nextLine();	
-		System.out.println("Nhap ma PIN: ");
-		this.maPIN = Integer.parseInt(sc.nextLine());
+		for (;;) {
+			System.out.println("Nhap ho ten chu tai khoan: ");
+			this.tenTaiKhoan = sc.nextLine();
+			try {
+				MyException.chkHoTen(tenTaiKhoan);
+				break;
+			} catch (MyException e) {
+				System.err.println(e);
+				System.out.println();
+			}
+		}
+		taoTheTu();
 		sc.close();
 	}
 	
 	public void taoTheTu() {
 		Scanner sc = new Scanner(System.in);
+		for (;;) {
 		System.out.println("Nhap ma so the: ");
 		this.maThe = sc.nextLine();	
+		try {
+			MyException.chkMaSoThe(maThe);
+			break;
+		} catch (MyException e) {
+			System.err.println(e);
+			System.out.println();
+		}
+		}
+		for (;;) {
 		System.out.println("Nhap ma PIN: ");
-		this.maPIN = Integer.parseInt(sc.nextLine());
+		this.maPIN = sc.nextLine();
+		try {
+			MyException.chkMaPIN(maPIN);
+			break;
+		} catch (MyException e) {
+			System.err.println(e);
+			System.out.println();
+		}
+		}
 		sc.close();
 	}
 	public void taoID() {
 		Scanner sc = new Scanner(System.in);
+		for (;;) {
 		System.out.println("Nhap ho ten chu tai khoan: ");
 		this.tenTaiKhoan = sc.nextLine();
+		try {
+			MyException.chkHoTen(tenTaiKhoan);
+			break;
+		}catch (MyException e) {
+			System.err.println(e);
+			System.out.println();
+		}
+		}
 		System.out.println("Nhap trang thai tai khoan: ");
 		this.trangThaiTaiKhoan = sc.nextLine();
 		System.out.println("Nhap loai tien te: ");

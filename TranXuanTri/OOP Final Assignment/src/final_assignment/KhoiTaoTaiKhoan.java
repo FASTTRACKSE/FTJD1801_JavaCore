@@ -3,7 +3,7 @@ package final_assignment;
 import java.io.*;
 import java.util.ArrayList;
 
-public class KhoiTaoTaiKhoan {
+public class KhoiTaoTaiKhoan implements Serializable {
 	ArrayList<TaiKhoan> theTuList = new ArrayList<TaiKhoan>();
 	ArrayList<TaiKhoan> idList = new ArrayList<TaiKhoan>();
 	TaiKhoan taiKhoan;
@@ -41,7 +41,7 @@ public class KhoiTaoTaiKhoan {
 			fis.close();
 
 	}
-	public static boolean dangNhap(boolean notA)  {
+	public boolean dangNhap()  {
 		System.out.println("Dang nhap vao tai khoan");
 		TaiKhoan tk1 = new TaiKhoan();
 		tk1.nhap();
@@ -58,17 +58,17 @@ public class KhoiTaoTaiKhoan {
 			
 		if ((tk.tenTaiKhoan.equals(tk1.tenTaiKhoan)) && (tk.maThe.equals(tk1.maThe))) {
 			System.out.println("Dung");
-			return notA = true;
+			return true;
 		} else {
 			System.out.println("sai");
-			return notA = false;
+			return false;
 		}
 		
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		System.out.println(notA);
-		return notA;
+		return false;
+
 		
 	}
 }

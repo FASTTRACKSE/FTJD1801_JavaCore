@@ -33,16 +33,16 @@ public class MyException extends Exception {
 		if (maThe.length()!=14) {
 			throw new MyException ("Nhap du 14 ki tu");
 		}
-		String reMaThe = "[0-9] {14}";
+		String reMaThe = "[0-9]{14}";
 		if (!maThe.matches(reMaThe)) {
 			throw new MyException ("Nhap ki tu trong khoang 0 den 9");
 		}
 	}
 	static public void chkMaPIN (String maPIN) throws MyException {
-		if (maPIN.length()!=14) {
+		if (maPIN.length()!=6) {
 			throw new MyException ("Nhap du 6 ki tu");
 		}
-		String reMaPIN = "[0-9] {6}";
+		String reMaPIN = "[0-9]{6}";
 		if (!maPIN.matches(reMaPIN)) {
 			throw new MyException ("Nhap ki tu trong khoang 0 den 9");
 		}
