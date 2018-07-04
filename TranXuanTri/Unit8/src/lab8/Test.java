@@ -42,6 +42,7 @@ public class Test implements Serializable {
 		this.heSoLuong = Double.parseDouble(sc.nextLine());
 	}
 	public static void main(String[] args) {
+		//output stream
 		try {
 		FileOutputStream fos = new FileOutputStream("nhanvien.dat");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -54,6 +55,7 @@ public class Test implements Serializable {
 			System.out.println("Co loi " + e);
 		}
 		
+		//input stream
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
