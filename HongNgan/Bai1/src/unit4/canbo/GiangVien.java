@@ -1,11 +1,12 @@
 package unit4.canbo;
 
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import unit4.sinhvien.SinhVienException;
 
-public class GiangVien extends CanBo {
+public class GiangVien extends CanBo implements Serializable {
 	public String khoa;
 	public String trinhDo;
 	public int soTietDay;

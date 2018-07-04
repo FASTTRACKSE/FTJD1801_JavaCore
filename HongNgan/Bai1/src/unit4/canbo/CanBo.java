@@ -1,12 +1,7 @@
 package unit4.canbo;
-
-
+import java.io.Serializable;
 import java.util.Scanner;
-
-
-
-
-public abstract class CanBo {
+public abstract class CanBo implements Serializable {
 	public String maCanBo;
 	public String hoTen;
 	public double heSoLuong;

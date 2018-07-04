@@ -24,18 +24,18 @@ public class Test implements Serializable {
 		this.heSoLuong = Double.parseDouble(sc.nextLine());
 	}
 	public static void main(String[] args) {
-		try {
-		FileOutputStream fos = new FileOutputStream("nv.dat");
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		Test ts = new Test();
-		ts.nhap();
-		oos.writeObject(ts);
-		oos.close();
-		}
-		catch (Exception e) {
-			System.out.println("Co loi " + e);
-		}
-		
+//		try {
+//		FileOutputStream fos = new FileOutputStream("nhanvien.dat");
+//		ObjectOutputStream oos = new ObjectOutputStream(fos);
+//		Test ts = new Test();
+//		ts.nhap();
+//		oos.writeObject(ts);
+//		oos.close();
+//		}
+//		catch (Exception e) {
+//			System.out.println("Co loi " + e);
+//		}
+//		
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
