@@ -6,10 +6,7 @@ import java.util.ArrayList;
 public class KhoiTaoTaiKhoan implements Serializable {
 	ArrayList<TaiKhoan> theTuList = new ArrayList<TaiKhoan>();
 	ArrayList<TaiKhoan> idList = new ArrayList<TaiKhoan>();
-	TaiKhoan taiKhoan;
-	public KhoiTaoTaiKhoan() {
-		
-	}
+	ArrayList<TaiKhoan> tkList = new ArrayList<TaiKhoan>();
 	
 	public void theTu() throws IOException {
 			FileOutputStream fos = new FileOutputStream("theTu.dat");
@@ -19,16 +16,18 @@ public class KhoiTaoTaiKhoan implements Serializable {
 			theTuList.add(tk);
 			oos.writeObject(theTuList);
 			oos.close();
+			fos.close();
 	}
-	
+
 	public void ID() throws IOException {
-			FileOutputStream fos = new FileOutputStream("ID.dat");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			FileOutputStream fos1 = new FileOutputStream("ID.dat");
+			ObjectOutputStream oos1 = new ObjectOutputStream(fos1);
 			TaiKhoan tk = new TaiKhoan();
 			tk.taoID();
 			idList.add(tk);
-			oos.writeObject(idList);
-			oos.close();
+			oos1.writeObject(idList);
+			oos1.close();
+			fos1.close();
 	}
 	public void xuat() throws IOException, ClassNotFoundException {	
 		FileInputStream fis = null;
@@ -36,7 +35,7 @@ public class KhoiTaoTaiKhoan implements Serializable {
 			fis = new FileInputStream("ID.dat");
 			ois = new ObjectInputStream(fis);
 			TaiKhoan tk = (TaiKhoan) ois.readObject();
-			System.out.println(tk.tenTaiKhoan);
+			tk.xuat();
 			ois.close();
 			fis.close();
 
@@ -68,7 +67,8 @@ public class KhoiTaoTaiKhoan implements Serializable {
 			System.out.println(e);
 		}
 		return false;
-
-		
+	}
+	public double rutTien(double tienRut, double tienTK) {
+		return tienTK - tienRut;
 	}
 }

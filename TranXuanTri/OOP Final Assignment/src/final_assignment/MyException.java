@@ -47,4 +47,9 @@ public class MyException extends Exception {
 			throw new MyException ("Nhap ki tu trong khoang 0 den 9");
 		}
 	}
+	static public void chkRutTien (double tienRut, double tienDu) throws MyException {
+		if (tienRut>tienDu) {
+			throw new MyException ("Nhap sai so tien");
+		}
+	}
 }

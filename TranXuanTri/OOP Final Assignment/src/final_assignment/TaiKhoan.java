@@ -2,6 +2,7 @@ package final_assignment;
 
 import java.io.Serializable;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class TaiKhoan implements Serializable {
 	
@@ -44,9 +45,14 @@ public class TaiKhoan implements Serializable {
 			}
 		}
 		taoTheTu();
-		sc.close();
+
 	}
-	
+	public void xuat() {
+		System.out.println("Ho ten chu tai khoan: " + this.tenTaiKhoan );
+		System.out.println("Ma the tai khoan: " + this.maThe );
+		System.out.println("So du tai khoan: " + this.soDuTaiKhoan );
+		
+	}
 	public void taoTheTu() {
 		Scanner sc = new Scanner(System.in);
 		for (;;) {
@@ -71,7 +77,6 @@ public class TaiKhoan implements Serializable {
 			System.out.println();
 		}
 		}
-		sc.close();
 	}
 	public void taoID() {
 		Scanner sc = new Scanner(System.in);
@@ -92,6 +97,5 @@ public class TaiKhoan implements Serializable {
 		this.loaiTienTe = sc.nextLine();
 		System.out.println("Nhap so du tai khoan: ");
 		this.soDuTaiKhoan = Double.parseDouble(sc.nextLine());
-		sc.close();
 	}
 }
