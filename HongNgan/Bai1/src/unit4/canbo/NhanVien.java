@@ -1,7 +1,8 @@
 package unit4.canbo;
+import java.io.Serializable;
 import java.util.Scanner;
 
-	public class NhanVien extends CanBo {
+	public class NhanVien extends CanBo implements Serializable {
 		public String phongBan;
 		public int soNgayCong;
 		public String chucVu;

@@ -1,5 +1,10 @@
 package unit4.canbo;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,7 +13,7 @@ import java.util.Scanner;
 import unit4.sinhvien.SinhVienBiz;
 import unit4.sinhvien.SinhVienFPT;
 
-public class QuanLiCanBo {
+public class QuanLiCanBo implements Serializable {
 
 	public static void main(String[] args) {
 		ArrayList<CanBo> canBolist = new ArrayList<CanBo>();
@@ -16,9 +21,10 @@ public class QuanLiCanBo {
 		while (true) {
 			System.out.println("1. Nhap thong tin danh sach can bo trong truong");
 			System.out.println("2. Xuat danh sach giang vien hoac nhan vien");
-			System.out.println("3. Xuất sinh viên có học lực giỏi");
-			System.out.println("4. Tong so luong truong phai tra");
-			System.out.println("5. Sap xep");
+			System.out.println("3. Tong so luong truong phai tra");
+			System.out.println("4. Sap xep");
+			System.out.println("5. Ghi du lieu vao file nhanvien.dat");
+			System.out.println("6. Doc du lieu tu file nhanvien.dat");
 			System.out.println("0. Thoátt");
 			System.out.print("Mời chọn : ");
 			int mChon = Integer.parseInt(sc.nextLine());
@@ -63,6 +69,14 @@ public class QuanLiCanBo {
 				}
 				break;
 
+			case 3:
+
+				double tongLuong = 0;
+				for (CanBo cb : canBolist) {
+					tongLuong += cb.tinhLuong();
+				}
+				System.out.println("Tong so luong truong phai tra: " + tongLuong);
+				break;
 			case 4: {
 				Collections.sort(canBolist, new Comparator<CanBo>() {
 					public int compare(CanBo cb1, CanBo cb2) {
@@ -76,20 +90,61 @@ public class QuanLiCanBo {
 									return (cb1.hoTen.compareTo(cb2.hoTen));
 								}
 							});
-							System.out.println();
 							return 0;
 						}
 					}
 				});
-				System.out.println("Sap xep la");
-				System.out.println();
-				for (int i = 0; i < canBolist.size(); i++) {
-					canBolist.get(i).xuat();
-					System.out.println("");
+				System.out.println("Danh sach sau sap xep: ");
+				for (CanBo cb : canBolist) {
+					if (cb instanceof GiangVien) {
+						GiangVien gv = (GiangVien) cb;
+						gv.xuat();
+					} else if (cb instanceof NhanVien) {
+						NhanVien nv = (NhanVien) cb;
+						nv.xuat();
+					}
 				}
+
 				break;
 
 			}
+			case 5:
+				try {
+					FileOutputStream fos = new FileOutputStream("nhanvien.dat");
+					ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+					oos.writeObject(canBolist);
+					System.out.println("Da doc ");
+
+					oos.close();
+				} catch (Exception e) {
+					System.out.println("Co loi " + e);
+				}
+				break;
+			case 6:
+				FileInputStream fis = null;
+				ObjectInputStream ois = null;
+				try {
+					fis = new FileInputStream("nhanvien.dat");
+					ois = new ObjectInputStream(fis);
+					ArrayList<CanBo> cb1 = (ArrayList<CanBo>) ois.readObject();
+					;
+					System.out.println("Doc tu file ");
+					for (CanBo cb : cb1) {
+						if (cb instanceof GiangVien) {
+							GiangVien gv = (GiangVien) cb;
+							gv.xuat();
+						} else if (cb instanceof NhanVien) {
+							NhanVien nv = (NhanVien) cb;
+							nv.xuat();
+						}
+					}
+					ois.close();
+					fis.close();
+				} catch (Exception e) {
+					System.out.println("Co loi " + e);
+				}
+				break;
 			case 0:
 				break;
 			}
