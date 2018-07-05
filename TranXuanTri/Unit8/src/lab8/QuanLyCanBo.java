@@ -137,14 +137,16 @@ public class QuanLyCanBo implements Serializable {
 					ArrayList<CanBo> cb1 = (ArrayList<CanBo>) ois.readObject(); ;
 					System.out.println("Doc tu file");
 					for (CanBo cb : cb1) {
-						if (cb instanceof GiangVien) {
-							GiangVien gv = (GiangVien) cb;
-							gv.xuat();
-						} else if  (cb instanceof NhanVien) {
-							NhanVien nv = (NhanVien) cb;
-							nv.xuat();
-						}
+//						if (cb instanceof GiangVien) {
+//							GiangVien gv = (GiangVien) cb;
+//							gv.xuat();
+//						} else if  (cb instanceof NhanVien) {
+//							NhanVien nv = (NhanVien) cb;
+//							nv.xuat();
+//						}
+						cb.xuat();
 					}
+					
 					ois.close();
 					fis.close();
 				}

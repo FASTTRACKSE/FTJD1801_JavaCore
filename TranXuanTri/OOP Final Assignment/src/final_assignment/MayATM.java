@@ -18,13 +18,14 @@ public class MayATM implements Serializable {
 			switch (choice) {
 			case 1: 
 				//ma the: 00000000000000
-				menu.theTu();
+		//		menu.theTu();
 				menu.ID();
 				menu.xuat();
 				break;
 			case 2: 
-				menu.dangNhap();
+	//			menu.dangNhap();
 				while (true) {
+					
 					System.out.println("1. Rut tien: ");
 					System.out.println("2. Xem thong tin tai khoan: ");
 					int choice1 = Integer.parseInt(sc1.nextLine());
@@ -36,7 +37,7 @@ public class MayATM implements Serializable {
 					}
 				}
 			case 3: 
-				menu.dangNhap();
+		//		menu.dangNhap();
 				break;
 			}
 		}
