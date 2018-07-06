@@ -77,12 +77,12 @@ public class Students {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentsmanagement",  "root","");
 //			Statement stmt = con.createStatement();
-			String query = "UPDATE students SET idStudents='"+ id +"', name='" + name + "', group='"+group+"' WHERE idStudents = '"+idSua+"'";
+			String query = "UPDATE students SET idStudents= (\""+id+"\"), name=(\"" + name + "\"), group=(\""+group+"\") WHERE idStudents = (\""+idSua+"\")";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
-			preparedStmt.setInt(1, 4);
-			preparedStmt.setString(2, "Fred");
-			preparedStmt.setString(3, "java");
-			preparedStmt.setInt(4, 3);
+//			preparedStmt.setInt(1, 4);
+//			preparedStmt.setString(2, "Fred");
+//			preparedStmt.setString(3, "java");
+//			preparedStmt.setInt(4, 3);
 			preparedStmt.executeUpdate();
 			con.close();
 		} catch (Exception e ) {
