@@ -29,7 +29,7 @@ public class SoThanhChu {
         		 else if(dem == 4) {
         			 ketQua = "" +ketQua;
         		 }
-        		 else if(quyDoi == 1) {
+        	 }else if(quyDoi == 1) {
             		 if(dem==1) {
             			 ketQua = " một " +ketQua;
             		 }
@@ -42,109 +42,109 @@ public class SoThanhChu {
             		 else if(dem == 4) {
             			 ketQua = " một nghìn " +ketQua;
             		 }
-            		 else if(quyDoi == 2) {
+        	 } else if(quyDoi == 2) {
                 		 if(dem==1) {
-                			 ketQua = "hai" +ketQua;
+                			 ketQua = "hai " +ketQua;
                 		 }
                 		 else if(dem == 2) {
-                			 ketQua = "hai mươi" +ketQua;
+                			 ketQua = "hai mươi " +ketQua;
                 		 }
                 		 else if(dem == 3) {
-                			 ketQua = "hai trăm" +ketQua;
+                			 ketQua = "hai trăm " +ketQua;
                 		 }
                 		 else if(dem == 4) {
-                			 ketQua = "hai nghìn" +ketQua;
+                			 ketQua = "hai nghìn " +ketQua;
                 		 }
-                		 else if(quyDoi == 3) {
+        	 } else if(quyDoi == 3) {
                     		 if(dem==1) {
-                    			 ketQua = "ba" +ketQua;
+                    			 ketQua = "ba " +ketQua;
                     		 }
                     		 else if(dem == 2) {
-                    			 ketQua = "ba mươi" +ketQua;
+                    			 ketQua = "ba mươi " +ketQua;
                     		 }
                     		 else if(dem == 3) {
-                    			 ketQua = "ba trăm" +ketQua;
+                    			 ketQua = "ba trăm " +ketQua;
                     		 }
                     		 else if(dem == 4) {
-                    			 ketQua = "ba nghìn" +ketQua;
+                    			 ketQua = "ba nghìn " +ketQua;
                     		 }
-                    		 else if(quyDoi == 0) {
+        	 }else if(quyDoi == 4) {
                         		 if(dem==1) {
-                        			 ketQua = "bốn" +ketQua;
+                        			 ketQua = "bốn " +ketQua;
                         		 }
                         		 else if(dem == 2) {
-                        			 ketQua = "bốn mươi" +ketQua;
+                        			 ketQua = "bốn mươi " +ketQua;
                         		 }
                         		 else if(dem == 3) {
-                        			 ketQua = "bốn trăm" +ketQua;
+                        			 ketQua = "bốn trăm " +ketQua;
                         		 }
                         		 else if(dem == 4) {
-                        			 ketQua = "bốn nghìn" +ketQua;
+                        			 ketQua = "bốn nghìn " +ketQua;
                         		 }
-                        		 else if(quyDoi == 5) {
+        	 }else if(quyDoi == 5) {
                             		 if(dem==1) {
-                            			 ketQua = "năm" +ketQua;
+                            			 ketQua = "năm " +ketQua;
                             		 }
                             		 else if(dem == 2) {
-                            			 ketQua = "năm mươi" +ketQua;
+                            			 ketQua = "năm mươi " +ketQua;
                             		 }
                             		 else if(dem == 3) {
-                            			 ketQua = "năm trăm" +ketQua;
+                            			 ketQua = "năm trăm " +ketQua;
                             		 }
                             		 else if(dem == 4) {
-                            			 ketQua = "năm nghìn" +ketQua;
+                            			 ketQua = "năm nghìn " +ketQua;
                             		 }
-                            		 else if(quyDoi == 6) {
+        	 }else if(quyDoi == 6) {
                                 		 if(dem==1) {
-                                			 ketQua = "sáu" +ketQua;
+                                			 ketQua = "sáu " +ketQua;
                                 		 }
                                 		 else if(dem == 2) {
-                                			 ketQua = "sáu mươi" +ketQua;
+                                			 ketQua = "sáu mươi " +ketQua;
                                 		 }
                                 		 else if(dem == 3) {
-                                			 ketQua = "sáu trăm" +ketQua;
+                                			 ketQua = "sáu trăm " +ketQua;
                                 		 }
                                 		 else if(dem == 4) {
-                                			 ketQua = "sáu nghìn" +ketQua;
+                                			 ketQua = "sáu nghìn " +ketQua;
                                 		 }
-                                		 else if(quyDoi == 7) {
+        	 }else if(quyDoi == 7) {
                                     		 if(dem==1) {
-                                    			 ketQua = "bảy" +ketQua;
+                                    			 ketQua = "bảy " +ketQua;
                                     		 }
                                     		 else if(dem == 2) {
-                                    			 ketQua = "bảy mươi" +ketQua;
+                                    			 ketQua = "bảy mươi " +ketQua;
                                     		 }
                                     		 else if(dem == 3) {
-                                    			 ketQua = "bảy trăm" +ketQua;
+                                    			 ketQua = "bảy trăm " +ketQua;
                                     		 }
                                     		 else if(dem == 4) {
-                                    			 ketQua = "bảy nghìn" +ketQua;
+                                    			 ketQua = "bảy nghìn " +ketQua;
                                     		 }
-                                    		 else if(quyDoi == 8) {
+        	 } else if(quyDoi == 8) {
                                         		 if(dem==1) {
-                                        			 ketQua = "tám" +ketQua;
+                                        			 ketQua = "tám " +ketQua;
                                         		 }
                                         		 else if(dem == 2) {
-                                        			 ketQua = "tám mươi" +ketQua;
+                                        			 ketQua = "tám mươi " +ketQua;
                                         		 }
                                         		 else if(dem == 3) {
-                                        			 ketQua = "tám trăm" +ketQua;
+                                        			 ketQua = "tám trăm " +ketQua;
                                         		 }
                                         		 else if(dem == 4) {
-                                        			 ketQua = "tám nghìn" +ketQua;
+                                        			 ketQua = "tám nghìn " +ketQua;
                                         		 }
-                                        		 else if(quyDoi == 9) {
+        	 } else if(quyDoi == 9) {
                                             		 if(dem==1) {
-                                            			 ketQua = "chín" +ketQua;
+                                            			 ketQua = "chín " +ketQua;
                                             		 }
                                             		 else if(dem == 2) {
-                                            			 ketQua = "chín mươi" +ketQua;
+                                            			 ketQua = "chín mươi " +ketQua;
                                             		 }
                                             		 else if(dem == 3) {
-                                            			 ketQua = "chín trăm" +ketQua;
+                                            			 ketQua = "chín trăm " +ketQua;
                                             		 }
                                             		 else if(dem == 4) {
-                                            			 ketQua = "chín ngh" +ketQua;
+                                            			 ketQua = "chín nghìn" +ketQua;
                                             		 }
         	 }
          }
