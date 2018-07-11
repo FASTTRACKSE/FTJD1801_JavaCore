@@ -65,7 +65,7 @@ public class ID extends TheTu {
 		}
 		for (;;) {
 		System.out.println("Nhap ma so the: ");
-		this.maThe = sc.nextLine();	
+		this.maThe = sc.nextLine();
 		try {
 			MyException.chkMaSoThe(maThe);
 			break;
@@ -92,7 +92,7 @@ public class ID extends TheTu {
 		fos1.close();
 	}
 	public void xuat() {
-		System.out.println(this.tenTaiKhoan + "||" + this.trangThaiTaiKhoan + "||" + this.soDuTaiKhoan + "||" + this.maThe);
+		System.out.println("Chu tai khoan: " + this.tenTaiKhoan + "|| Trang thai tai khoan: " + this.trangThaiTaiKhoan + "|| So du tai khoan: " + this.soDuTaiKhoan + "|| Loai tien te: " + this.loaiTienTe);
 	}
 	public void output() throws IOException, ClassNotFoundException {	
 		FileInputStream fis = null;

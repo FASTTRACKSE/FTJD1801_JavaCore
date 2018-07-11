@@ -1,7 +1,6 @@
 package final_assignment;
 
 import java.io.*;
-import java.io.Serializable;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -50,4 +49,20 @@ public class TheTu implements Serializable {
 	oos.close();
 	fos.close();
 }
+	public void xuat() {
+		System.out.println(this.maPIN + "||" + this.maThe);
+	}
+	public void output() throws IOException, ClassNotFoundException {	
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+			fis = new FileInputStream("theTu.dat");
+			ois = new ObjectInputStream(fis);
+			ArrayList<TheTu> the = (ArrayList<TheTu>) ois.readObject();
+			for (TheTu the1:the) {
+				the1.xuat();
+			}
+			ois.close();
+			fis.close();
+
+	}
 }

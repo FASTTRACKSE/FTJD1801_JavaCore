@@ -4,15 +4,40 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class giaoDich extends ID {
+public class GiaoDich extends ID {
 	String thoiGian;
 	double tienGiaoDich;
 	String tenTaiKhoan;
-	ArrayList<giaoDich> bill = new ArrayList<giaoDich>();
-	  public giaoDich() {
+	ArrayList<GiaoDich> bill = new ArrayList<GiaoDich>();
+	  public GiaoDich() {
 		super();
 	}
-	public ArrayList<giaoDich> nhapGiaoDich(double tienGiaoDich, String thoiGian, String maThe, ArrayList<giaoDich> bill) throws IOException, ClassNotFoundException {
+	  
+	public String getThoiGian() {
+		return thoiGian;
+	}
+
+	public void setThoiGian(String thoiGian) {
+		this.thoiGian = thoiGian;
+	}
+
+	public double getTienGiaoDich() {
+		return tienGiaoDich;
+	}
+
+	public void setTienGiaoDich(double tienGiaoDich) {
+		this.tienGiaoDich = tienGiaoDich;
+	}
+
+	public String getTenTaiKhoan() {
+		return tenTaiKhoan;
+	}
+
+	public void setTenTaiKhoan(String tenTaiKhoan) {
+		this.tenTaiKhoan = tenTaiKhoan;
+	}
+
+	public ArrayList<GiaoDich> nhapGiaoDich(double tienGiaoDich, String thoiGian, String maThe, ArrayList<GiaoDich> bill) throws IOException, ClassNotFoundException {
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 			fis = new FileInputStream("ID.dat");
@@ -20,20 +45,24 @@ public class giaoDich extends ID {
 			ArrayList<ID> id = (ArrayList<ID>) ois.readObject();
 			for (ID id1:id) {
 				if (maThe.equals(id1.maThe)) {
-					giaoDich bill1 = new giaoDich();
+					GiaoDich bill1 = new GiaoDich();
 					bill1.tenTaiKhoan = id1.tenTaiKhoan;
 					bill1.maThe = id1.maThe;
-					bill1.thoiGian = thoiGian;
-					bill1.tienGiaoDich = tienGiaoDich;
+					bill1.thoiGian=thoiGian;
+					bill1.setTienGiaoDich(tienGiaoDich);
 					bill.add(bill1);
 				}
 			}
+			ois.close();
 			return bill;
 	}
 	public void giaoDich(double tienGiaoDich, String thoiGian, String maThe) throws IOException, ClassNotFoundException {
 		  FileOutputStream fos1 = new FileOutputStream("giaoDich.dat");
 			ObjectOutputStream oos1 = new ObjectOutputStream(fos1);
 			nhapGiaoDich(tienGiaoDich, thoiGian, maThe, bill);
+//			for (GiaoDich gd: bill) {
+//				gd.xuat();
+//			}
 			oos1.writeObject(bill);
 			oos1.close();
 			fos1.close();
@@ -46,7 +75,7 @@ public class giaoDich extends ID {
 		ObjectInputStream ois = null;
 			fis = new FileInputStream("giaoDich.dat");
 			ois = new ObjectInputStream(fis);
-			ArrayList<giaoDich> gd = (ArrayList<giaoDich>) ois.readObject();
+			ArrayList<GiaoDich> gd = (ArrayList<GiaoDich>) ois.readObject();
 			for (ID gd1:gd) {
 				gd1.xuat();
 			}

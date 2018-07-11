@@ -14,10 +14,10 @@ public class DangNhap implements Serializable {
 			ArrayList<TheTu> the = (ArrayList<TheTu>) ois.readObject();
 			for (TheTu the1 : the) {
 		if ((maThe.equals(the1.maThe)) && (maPIN.equals(the1.maPIN))) {
-			System.out.println("Dung");
+//			System.out.println("Dung");
 			return true;
 		} else {
-			System.out.println("sai");
+//			System.out.println("sai");
 			return false;
 		}
 			}
@@ -47,16 +47,13 @@ public class DangNhap implements Serializable {
 			fis.close();
 			return 0;
 	}
-	  public static String showCalendar(Calendar calendar) {
+	  public String showCalendar(Calendar calendar) {
 	      int year = calendar.get(Calendar.YEAR);
 	      int month = calendar.get(Calendar.MONTH);
 	      int day = calendar.get(Calendar.DAY_OF_MONTH);
 	      int hour = calendar.get(Calendar.HOUR_OF_DAY);
 	      int minute = calendar.get(Calendar.MINUTE);
 	      int second = calendar.get(Calendar.SECOND);
-	      int millis = calendar.get(Calendar.MILLISECOND);
-	      System.out.println(" " + year + "-" + (month + 1) + "-" + day + " "
-	              + hour + ":" + minute + ":" + second );
 	      return  " " + year + "-" + (month + 1) + "-" + day + " "
 	              + hour + ":" + minute + ":" + second;
 	  }
