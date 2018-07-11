@@ -1,16 +1,24 @@
 package final_assignment;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public class MayATM implements Serializable {
+public class MayATM  {
 
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
+		ArrayList<TheTu> theTuList = new ArrayList<TheTu>();
+		ArrayList<User> idList = new ArrayList<User>();
+		ArrayList<GiaoDich> gdList = new ArrayList<GiaoDich>();
+		
 		Scanner sc = new Scanner(System.in);
-		ID menu = new ID();
+		
+//		idList = LuuFile.output();
+//		theTuList = LuuFile.output1();
+		
 		while (true) {
 			System.out.println("1. Tao tai khoan moi: ");
 			System.out.println("2. Dang nhap tai khoan: ");
@@ -19,15 +27,28 @@ public class MayATM implements Serializable {
 			switch (choice) {
 			case 1: 
 				//ma the: 00000000000000
-				menu.taoTaiKhoan();
-				menu.output();
+				User user = new User();
+				TheTu the = new TheTu();
+				
+				//tao thong tin
+				user.nhapID();
+				the.setMaThe(user.getId());
+				the.nhapTheTu();
+				
+				//luu vao list
+				idList.add(user);
+				theTuList.add(the);
+				
+				//user.output();
 				break;
 			case 2: 
-				DangNhap menu1 = new DangNhap();
-				TheTu the1 = new TheTu();
-				the1.taoTheTu();
-				boolean check = menu1.dangNhap(the1.maThe,the1.maPIN);
-				if (check==true) {
+				
+				System.out.println("nhap so the");
+				String soThe = sc.nextLine();
+				System.out.println("nhap ma pin");
+				String pin = sc.nextLine();
+				for (TheTu the1: theTuList) {
+				if (the1.dangNhap(soThe, pin)) {
 					System.out.println("----Dang nhap thanh cong----");
 				while (true) {
 					System.out.println("1. Rut tien: ");
@@ -36,36 +57,62 @@ public class MayATM implements Serializable {
 					int choice1 = Integer.parseInt(sc.nextLine());
 					switch (choice1) {
 					case 1:
+						
 						System.out.print("Nhap so tien can rut: ");
 						double tienRut = Double.parseDouble(sc.nextLine());
-						menu1.rutTien(tienRut, the1.maThe);
-					    Calendar c = Calendar.getInstance();
-					    System.out.println("Thong tin giao dich");
-					    GiaoDich gd = new GiaoDich();
-					    gd.giaoDich(tienRut, menu1.showCalendar(c), the1.maThe);
-					    gd.output();
+						for (User user1: idList) {
+						if (soThe.equals(user1.getId())) {
+							double soDuHienTai = user1.getSoDuTaiKhoan();
+							double soDuMoi = soDuHienTai - tienRut;
+							user1.setSoDuTaiKhoan(soDuMoi);
+							
+						    Calendar c = Calendar.getInstance();
+						    System.out.println("Thong tin giao dich");
+						    GiaoDich gd = new GiaoDich();
+						    gd.setTenTaiKhoan(user1.getTenTaiKhoan());
+						    gd.setId(user1.getId());
+						    gd.setTienGiaoDich(tienRut);
+						    gd.setThoiGian(showCalendar(c));
+						    gdList.add(gd);
+						}		
+						}
 						break;
 					case 2:
-						menu.output();
+						for (User id: idList) {
+							id.xuat();
+						}
 						break;
 					case 3:
-						GiaoDich gd1 = new GiaoDich();
-						gd1.output();
+						for (GiaoDich gd1: gdList) {
+							gd1.xuat();
+						}
 						break;
 					}
 				}
 				}
+				
 				else {
 					System.out.println("Dang nhap that bai");
 				}
+				}
 				break;
 			case 3: 
+				LuuFile.luuID(idList);
+				LuuFile.luuTheTu(theTuList);
 				break;
 			}
 
 		}
 
 	}
-
-
+	  public static String showCalendar(Calendar calendar) {
+	      int year = calendar.get(Calendar.YEAR);
+	      int month = calendar.get(Calendar.MONTH);
+	      int day = calendar.get(Calendar.DAY_OF_MONTH);
+	      int hour = calendar.get(Calendar.HOUR_OF_DAY);
+	      int minute = calendar.get(Calendar.MINUTE);
+	      int second = calendar.get(Calendar.SECOND);
+	      return  " " + year + "-" + (month + 1) + "-" + day + " "
+	              + hour + ":" + minute + ":" + second;
+	  }
 }
