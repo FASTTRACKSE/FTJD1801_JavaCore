@@ -10,15 +10,15 @@ public class MayATM  {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		ArrayList<TheTu> theTuList = new ArrayList<TheTu>();
-		ArrayList<User> idList = new ArrayList<User>();
-		ArrayList<GiaoDich> gdList = new ArrayList<GiaoDich>();
+//		ArrayList<TheTu> theTuList = new ArrayList<TheTu>();
+//		ArrayList<User> idList= new ArrayList<User>();
+//		ArrayList<GiaoDich> gdList = new ArrayList<GiaoDich>();
 		
 		Scanner sc = new Scanner(System.in);
 		
-//		idList = LuuFile.output();
-//		theTuList = LuuFile.output1();
-		
+		ArrayList<User> idList = LuuFile.output();
+		ArrayList<TheTu> theTuList = LuuFile.output1();
+		ArrayList<GiaoDich> gdList = LuuFile.output2();
 		while (true) {
 			System.out.println("1. Tao tai khoan moi: ");
 			System.out.println("2. Dang nhap tai khoan: ");
@@ -34,7 +34,8 @@ public class MayATM  {
 				user.nhapID();
 				the.setMaThe(user.getId());
 				the.nhapTheTu();
-				
+				user.xuat();
+				the.xuat();
 				//luu vao list
 				idList.add(user);
 				theTuList.add(the);
@@ -54,6 +55,7 @@ public class MayATM  {
 					System.out.println("1. Rut tien: ");
 					System.out.println("2. Xem thong tin tai khoan: ");
 					System.out.println("3. Xem lich su giao dich: ");
+					System.out.println("4. Dang xuat: ");
 					int choice1 = Integer.parseInt(sc.nextLine());
 					switch (choice1) {
 					case 1:
@@ -87,8 +89,16 @@ public class MayATM  {
 							gd1.xuat();
 						}
 						break;
+					case 4:  
+						System.out.println("Dang xuat thanh cong");
+						LuuFile.luuID(idList);
+						LuuFile.luuTheTu(theTuList);
+						LuuFile.luuGiaoDich(gdList);
+						break;
 					}
+					if (choice1==4) break;
 				}
+				
 				}
 				
 				else {
@@ -97,8 +107,6 @@ public class MayATM  {
 				}
 				break;
 			case 3: 
-				LuuFile.luuID(idList);
-				LuuFile.luuTheTu(theTuList);
 				break;
 			}
 
