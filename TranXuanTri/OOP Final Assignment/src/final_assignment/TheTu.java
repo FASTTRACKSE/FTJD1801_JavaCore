@@ -2,7 +2,6 @@ package final_assignment;
 
 import java.io.*;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class TheTu implements Serializable {
 

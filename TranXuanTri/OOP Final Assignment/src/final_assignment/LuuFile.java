@@ -71,17 +71,18 @@ public class LuuFile {
 			System.out.println(e);
 		}
 	}
-	static ArrayList<GiaoDich> output2()  {	
+
+	static ArrayList<GiaoDich> output2() {
 		try {
-		FileInputStream fis = null;
-		ObjectInputStream ois = null;
+			FileInputStream fis = null;
+			ObjectInputStream ois = null;
 			fis = new FileInputStream("giaoDich.dat");
 			ois = new ObjectInputStream(fis);
 			ArrayList<GiaoDich> gd = (ArrayList<GiaoDich>) ois.readObject();
 			ois.close();
 			fis.close();
 			return gd;
-		}		catch (Exception e ) {
+		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return null;

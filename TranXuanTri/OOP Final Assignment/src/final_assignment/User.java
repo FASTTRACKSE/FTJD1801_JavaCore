@@ -1,7 +1,6 @@
 package final_assignment;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class User implements Serializable {
@@ -10,7 +9,7 @@ public class User implements Serializable {
 	String trangThaiTaiKhoan;
 	String loaiTienTe;
 	double soDuTaiKhoan;
-	
+
 	public String getId() {
 		return id;
 	}
@@ -50,6 +49,7 @@ public class User implements Serializable {
 	public void setSoDuTaiKhoan(double soDuTaiKhoan) {
 		this.soDuTaiKhoan = soDuTaiKhoan;
 	}
+
 	public void nhapID() {
 		Scanner sc = new Scanner(System.in);
 		for (;;) {
@@ -64,15 +64,15 @@ public class User implements Serializable {
 			}
 		}
 		for (;;) {
-		System.out.println("Nhap ma so the: ");
-		this.id = sc.nextLine();
-		try {
-			MyException.chkMaSoThe(id);
-			break;
-		} catch (MyException e) {
-			System.err.println(e);
-			System.out.println();
-		}
+			System.out.println("Nhap ma so the: ");
+			this.id = sc.nextLine();
+			try {
+				MyException.chkMaSoThe(id);
+				break;
+			} catch (MyException e) {
+				System.err.println(e);
+				System.out.println();
+			}
 		}
 		System.out.println("Nhap trang thai tai khoan: ");
 		this.trangThaiTaiKhoan = sc.nextLine();
@@ -83,9 +83,8 @@ public class User implements Serializable {
 	}
 
 	public void xuat() {
-		System.out.println("Chu tai khoan: " + getTenTaiKhoan() + "|| Trang thai tai khoan: " 
-							+ getTrangThaiTaiKhoan() + "|| So du tai khoan: " + getSoDuTaiKhoan() + "|| Loai tien te: " + getLoaiTienTe());
+		System.out.println("Chu tai khoan: " + getTenTaiKhoan() + "|| Trang thai tai khoan: " + getTrangThaiTaiKhoan()
+				+ "|| So du tai khoan: " + getSoDuTaiKhoan() + "|| Loai tien te: " + getLoaiTienTe());
 	}
-	
 
 }

@@ -44,6 +44,7 @@ public class GiaoDich extends User {
 			oos1.close();
 			fos1.close();
 	  }
+
 	public void xuat() {
 		System.out.println(this.tenTaiKhoan + "||" + this.id + "||" + this.tienGiaoDich + "||" + this.thoiGian);
 	}
