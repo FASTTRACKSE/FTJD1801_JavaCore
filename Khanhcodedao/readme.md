@@ -32,8 +32,13 @@ unit 2 :
  
 2 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/OOP_InSoraChu.java"> In So Ra Chu 
 
-3 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/sanpham.java"> bai tap 1 lap3
+2 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/Unit_3_QLSV.java">  bt1 QLSV
 
-4 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/TT_sanpham.java"> bai tap 2 lap3
+unit 3 
+
+
+1 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/sanpham.java"> bai tap 1 lap3
  
-5 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/Unit_3_QLSV.java">  bt1 QLSV
+2 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/TT_sanpham.java"> bai tap 2 lap3
+ 
+3 <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/Khanhcodedao/BaiTapCuaFatsTrast/src/MT_1_OOP/SanPham.java"> updete San Pham
