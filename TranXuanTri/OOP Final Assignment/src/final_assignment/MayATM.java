@@ -12,7 +12,7 @@ public class MayATM  {
 		// TODO Auto-generated method stub
 //		ArrayList<TheTu> theTuList = new ArrayList<TheTu>();
 //		ArrayList<User> idList= new ArrayList<User>();
-		// ArrayList<GiaoDich> gdList = new ArrayList<GiaoDich>();
+// 		ArrayList<GiaoDich> gdList = new ArrayList<GiaoDich>();
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -107,6 +107,8 @@ public class MayATM  {
 				}
 				break;
 			case 3: 
+				LuuFile.luuID(idList);
+				LuuFile.luuTheTu(theTuList);
 				break;
 			}
 
