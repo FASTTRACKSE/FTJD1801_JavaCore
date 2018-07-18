@@ -7,19 +7,28 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Vector;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class MyWindows extends JFrame{
 	ResultSet rs = null;
+	Statement stmt;
 	public MyWindows() {
 		super("QUAN LY SINH VIEN");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		JPanel main = new JPanel();
+		main.setLayout(new BorderLayout());
+		
 		JPanel pnMain = new JPanel();
 		pnMain.setLayout(new BorderLayout());
 		
@@ -45,7 +54,7 @@ public class MyWindows extends JFrame{
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentmanagement","root","");
-			Statement stmt = con.createStatement();
+			stmt = con.createStatement();
 			 rs = stmt.executeQuery("Select * from students");
 			
 		} catch (Exception ex) {
@@ -70,14 +79,9 @@ public class MyWindows extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentmanagement","root","");
-					Statement stmt = con.createStatement();
-					 rs = stmt.executeQuery("Insert into students(Student_ID,Name,Group) values(6,'abc','12a')");
-					
-					
-					con.close();
+				try {					
+					stmt.execute("Insert into students(Student_ID,Name,`Group`) values("+txtID.getText()+",\'"+txtName.getText()+"\',\'"+txtGroup.getText()+"\')");
+					JOptionPane.showMessageDialog(null, "Thêm thành công!!!");					
 				} catch (Exception ex) {
 					// TODO: handle exception
 					System.err.println(ex);
@@ -85,14 +89,86 @@ public class MyWindows extends JFrame{
 			}
 		});
 		
+		JPanel tblData = new JPanel();
+		
+		
+		DefaultTableModel tblStudent = new DefaultTableModel();
+		tblStudent.addColumn("Mã sinh viên");
+		tblStudent.addColumn("Tên sinh viên");
+		tblStudent.addColumn("Lớp");
+
+		final JTable tbl = new JTable(tblStudent);
+		try {
+			while (rs.next()) {
+				String maSV = rs.getString(1);
+				String hoTen = rs.getString(2);
+				String lop = rs.getString(3);
+				Vector<String> vec = new Vector<String>();
+				vec.add(maSV);
+				vec.add(hoTen);
+				vec.add(lop);
+				tblStudent.addRow(vec);
+			} 
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		tbl.addMouseListener( new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int row=tbl.getSelectedRow();
+				
+				String id =(String)tbl.getValueAt(row, 0);
+				txtID.setText(id);
+				
+				String name=(String)tbl.getValueAt(row, 1);
+				txtName.setText(name);
+				
+				String group =(String)tbl.getValueAt(row, 2);
+				txtGroup.setText(group);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		tblData.add(tbl);
+		
+		main.add(pnMain, BorderLayout.CENTER);
+		main.add(tblData, BorderLayout.SOUTH);
+		
 		Container con = getContentPane();
-		con.add(pnMain);
+		con.add(main);
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MyWindows mainFrame = new MyWindows();		
-		mainFrame.setSize(400, 150);
+		mainFrame.setSize(400, 300);
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setVisible(true);
 	}
