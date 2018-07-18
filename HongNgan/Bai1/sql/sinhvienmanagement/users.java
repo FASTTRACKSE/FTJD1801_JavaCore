@@ -14,9 +14,7 @@ public class users {
 
 	public users() {
 		super();
-	
 	}
-
 	public users(int id, String userName, String password, String role) {
 		super();
 		this.id = id;
@@ -42,11 +40,11 @@ public class users {
 				if (this.userName.equals(userName) && this.password.equals(_pass)) {
 					role = rs.getString(4);
 					if (role.equals("GiangVien")) {
-						System.out.println("Xin chao giang vien: " + userName );
+						System.out.println("XIN CHAO GIANG VIEN: " + userName );
 						Student std = new Student();
 						std.show();
 					} else if (role.equals("Can Bo")) {
-						System.out.println("Xin chao can bo: " + userName);
+						System.out.println("XIN CHAO CAN BO: " + userName);
 						Student std = new Student();
 						std.add();
 					}

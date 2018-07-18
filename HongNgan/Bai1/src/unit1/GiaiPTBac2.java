@@ -1,4 +1,4 @@
-package thuchanh1;
+package unit1;
 
 import java.util.Scanner;
 

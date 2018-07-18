@@ -59,50 +59,47 @@ public class Student {
 			System.out.println(e);
 		}
 	}
+
 	public void edit() {
-		String newname;String newgroup;
+		String newname;
+		String newgroup;
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Nhap id sinh vien can sua: ");
 		String idSua = sc.nextLine();
-		
+
 		System.out.print("Nhap id sinh vien cap nhat: ");
 		String id = sc.nextLine();
-		
+
 		System.out.print("Input new name :");
 		newname = sc.nextLine();
-		
+
 		System.out.print("Input new group :");
 		newgroup = sc.nextLine();
-		
+
 		try {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student","root", "");
-		Statement stmt = con.createStatement();
-
-		stmt.executeUpdate("update students set id= \""+id+"\",name =\""+newname+"\",group=\""+newgroup+"\" where id = \""+idSua+"\" ");
-		 System.out.println("Cap nhap thanh cong");
-		
-
-		} catch(Exception e) {
-		System.out.println(e);
-		} 
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "");
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate("update students set id= \"" + id + "\",name =\"" + newname + "\",group1=\"" + newgroup
+					+ "\" where id = \"" + idSua + "\" ");
+			System.out.println("CAP NHAP THANH CONG");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
+
 	public void delete() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Nhap id can xoa ");
 		String idXoa = sc.nextLine();
-		
 		try {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student","root", "");
-		Statement stmt = con.createStatement();
-
-		stmt.executeUpdate("delete from students WHERE id = \""+idXoa+"\" ");
-		 System.out.println("Da xoa thanh cong");
-		
-
-		} catch(Exception e) {
-		System.out.println(e);
-		} 
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "");
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate("delete from students WHERE id = \"" + idXoa + "\" ");
+			System.out.println("DA XOA THANH CONG");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 }

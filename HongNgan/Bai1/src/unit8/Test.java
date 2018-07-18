@@ -11,7 +11,7 @@ public class Test implements Serializable {
 	public String hoTen;
 	public double heSoLuong;
 	public double phuCap;
-	
+
 	public Test() {
 		super();
 	}
@@ -23,31 +23,31 @@ public class Test implements Serializable {
 		System.out.println("Nhap he so luong: ");
 		this.heSoLuong = Double.parseDouble(sc.nextLine());
 	}
+
 	public static void main(String[] args) {
-//		try {
-//		FileOutputStream fos = new FileOutputStream("nhanvien.dat");
-//		ObjectOutputStream oos = new ObjectOutputStream(fos);
-//		Test ts = new Test();
-//		ts.nhap();
-//		oos.writeObject(ts);
-//		oos.close();
-//		}
-//		catch (Exception e) {
-//			System.out.println("Co loi " + e);
-//		}
-//		
+		try {
+			FileOutputStream fos = new FileOutputStream("canbo.dat");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			Test ts = new Test();
+			ts.nhap();
+			oos.writeObject(ts);
+			oos.close();
+		} catch (Exception e) {
+			System.out.println("Co loi " + e);
+		}
+
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
-			fis = new FileInputStream("nhanvien.dat");
+			fis = new FileInputStream("canbo.dat");
 			ois = new ObjectInputStream(fis);
 			Test ts1 = (Test) ois.readObject();
 			System.out.println(ts1.hoTen);
+			System.out.println(ts1.heSoLuong);
 			ois.close();
 			fis.close();
-		}
-		catch (Exception e) {
-			System.out.println("Co loi " + e);
+		} catch (Exception io) {
+			System.out.println("Co loi " + io);
 		}
 	}
 }

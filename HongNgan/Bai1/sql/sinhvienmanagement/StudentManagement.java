@@ -18,8 +18,8 @@ public class StudentManagement extends Student {
 			System.out.println("------QUAN LY SINH VIEN------");
 			System.out.println("Xin vui long chon phim chuc nang");
 			System.out.println("Phim 1. Xem danh sach sinh vien");
-			System.out.println("Phim 2. Them  sinh vien");
-			System.out.println("Phim 3. Sua  sinh vien");
+			System.out.println("Phim 2. Them sinh vien");
+			System.out.println("Phim 3. Sua sinh vien");
 			System.out.println("Phim 4. Xoa sinh vien");
 			System.out.println("Phim 5. Dang xuat");
 			int choice = sc.nextInt();
@@ -43,7 +43,7 @@ public class StudentManagement extends Student {
 			if (choice == 5) {
 				break;
 			}
-
+			
 		}
 
 	}

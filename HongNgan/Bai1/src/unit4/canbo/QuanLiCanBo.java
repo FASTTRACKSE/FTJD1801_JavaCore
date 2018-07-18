@@ -128,7 +128,7 @@ public class QuanLiCanBo implements Serializable {
 					fis = new FileInputStream("nhanvien.dat");
 					ois = new ObjectInputStream(fis);
 					ArrayList<CanBo> cb1 = (ArrayList<CanBo>) ois.readObject();
-					;
+					
 					System.out.println("Doc tu file ");
 					for (CanBo cb : cb1) {
 						if (cb instanceof GiangVien) {
