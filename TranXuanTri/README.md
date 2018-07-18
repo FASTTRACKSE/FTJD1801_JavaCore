@@ -1,6 +1,6 @@
 # Javacore Working Folder of TranXuanTri
 ## Thư mục làm việc của Trí
- 
+I. JAVA OOP
 1. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit1/src"> Unit 1 </a> <br>
   1.1<a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai1/TinhTong.java"> Tinh Tong </a> <br>
   1.2<a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit1/src/bai2/GiaiPhuongTrinhBacNhat.java"> Giai phuong trinh bac nhat </a> <br>
@@ -26,3 +26,8 @@
 6. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit8"> Unit 6 </a> <br>
   6.1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit8/src/lab8"> Quan ly can bo (update exception, i/o) </a> <br>
 7. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/OOP%20Final%20Assignment/src/final_assignment"> Final assignment: Mô phỏng máy ATM </a> <br>
+8. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit8/src/lab8"> I/O assignment </a> <br>
+II. MySQL <br>
+1. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/MySQL.final_assignment/src/final_assignment"> mysql final assignment </a> <br>
+III. Java Desktop <br>
+1.<a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/JavaDesktop.Unit1/src/bai1"> Bai 1 </a> <br>
