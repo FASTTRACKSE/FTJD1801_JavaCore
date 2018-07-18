@@ -47,6 +47,15 @@ public class StudentsManager extends JFrame{
 		JButton bnInsert = new JButton("Insert");
 		pnBtn.add(bnInsert);
 		bnInsert.addActionListener(new InsertClick());
+		
+		JButton bnUpdateID = new JButton("Update with ID");
+		pnBtn.add(bnUpdateID);
+		bnUpdateID.addActionListener(new UpdateIDClick());
+		
+		JButton bnUpdateName = new JButton("Update with name");
+		pnBtn.add(bnUpdateName);
+		bnUpdateName.addActionListener(new UpdateNameClick());
+		
 		main.add(pnBtn, BorderLayout.SOUTH);
 		Container con = getContentPane();
 		con.add(main);
@@ -122,9 +131,51 @@ public class StudentsManager extends JFrame{
 		}
 		
 	}
+	private class UpdateIDClick implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			try {
+				String id = txtID.getText();
+				String name = txtName.getText();
+				String group = txtGroup.getText();
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentsmanagement",  "root","");
+				String query = "UPDATE students SET name='" + name + "', groups='"+group+"' WHERE idStudents = '"+id+"'";
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+				preparedStmt.executeUpdate();
+				con.close();
+			} catch (Exception ex ) {
+				System.out.println(ex);
+			}
+		}
+		
+	}
+	private class UpdateNameClick implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			try {
+				String id = txtID.getText();
+				String name = txtName.getText();
+				String group = txtGroup.getText();
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentsmanagement",  "root","");
+				String query = "UPDATE students SET idStudents= '"+id+"', groups ='"+group+"' WHERE name = '"+name+"'";
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+				preparedStmt.executeUpdate();
+				con.close();
+			} catch (Exception ex ) {
+				System.out.println(ex);
+			}
+		}
+		
+	}
 	public static void main(String[] args) {
 		StudentsManager ui = new StudentsManager();
-		ui.setSize(300,150);
+		ui.setSize(500,150);
 		ui.setLocationRelativeTo(null);    
 		ui.setVisible(true);
 	}

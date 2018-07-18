@@ -63,8 +63,8 @@ public class Students {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Nhap id sinh vien can sua: ");
 		String idSua = sc.nextLine();
-		System.out.print("Nhap id sinh vien cap nhat: ");
-		String id = sc.nextLine();
+//		System.out.print("Nhap id sinh vien cap nhat: ");
+//		String id = sc.nextLine();
 		System.out.print("Nhap ho ten sinh vien cap nhat: ");
 		String name = sc.nextLine();
 		System.out.print("Nhap group sinh vien cap nhat: ");
@@ -72,8 +72,14 @@ public class Students {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentsmanagement",  "root","");
-			String query = "UPDATE students SET idStudents= (\""+id+"\"), name=(\"" + name + "\"), group=(\""+group+"\") WHERE idStudents = (\""+idSua+"\")";
+			Statement stmt = con.createStatement();
+//			stmt.executeUpdate("update students set name='"+name+"', group='"+group+"' where idStudents = '"+idSua+"'");
+			String query = "UPDATE students SET  name='"+name+"',groups='"+group+"'  WHERE idStudents = '"+idSua+"'";
+//			String query1 = "UPDATE students SET  group='"+group+"'  WHERE idStudents = '"+idSua+"'";
+			System.out.println(query);
 			PreparedStatement preparedStmt = con.prepareStatement(query);
+//			PreparedStatement preparedStmt1 = con.prepareStatement(query1);
+//			preparedStmt1.executeUpdate();
 			preparedStmt.executeUpdate();
 			con.close();
 		} catch (Exception e ) {
