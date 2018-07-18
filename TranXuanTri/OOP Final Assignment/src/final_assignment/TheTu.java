@@ -1,32 +1,36 @@
 package final_assignment;
 
 import java.io.*;
-import java.io.Serializable;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class TheTu implements Serializable {
 
 	String maThe;
 	String maPIN;
-	ArrayList<TheTu> theTuList = new ArrayList<TheTu>();
 
 	public TheTu() {
 
 	}
-	public void taoTheTu() {
+	
+	public String getMaThe() {
+		return maThe;
+	}
+
+	public void setMaThe(String maThe) {
+		this.maThe = maThe;
+	}
+
+	public String getMaPIN() {
+		return maPIN;
+	}
+
+	public void setMaPIN(String maPIN) {
+		this.maPIN = maPIN;
+	}
+
+
+	public void nhapTheTu() {
 		Scanner sc = new Scanner(System.in);
-		for (;;) {
-		System.out.println("Nhap ma so the: ");
-		this.maThe = sc.nextLine();	
-		try {
-			MyException.chkMaSoThe(maThe);
-			break;
-		} catch (MyException e) {
-			System.err.println(e);
-			System.out.println();
-		}
-		}
 		for (;;) {
 		System.out.println("Nhap ma PIN: ");
 		this.maPIN = sc.nextLine();
@@ -39,15 +43,14 @@ public class TheTu implements Serializable {
 		}
 		}
 	}
-	
-	public void theTu() throws IOException {
-	FileOutputStream fos = new FileOutputStream("theTu.dat");
-	ObjectOutputStream oos = new ObjectOutputStream(fos);
-	TheTu the = new TheTu();
-	the.taoTheTu();
-	theTuList.add(the);
-	oos.writeObject(theTuList);
-	oos.close();
-	fos.close();
-}
+
+	public void xuat() {
+		System.out.println(this.maPIN + "||" + this.maThe);
+	}
+
+	public boolean dangNhap(String maThe, String maPIN)  {
+		if ((maThe.equals(getMaThe()) && (maPIN.equals(getMaPIN())))) {
+			return true;
+		}else return false;
+	}
 }

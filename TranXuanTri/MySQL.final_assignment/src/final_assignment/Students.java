@@ -41,9 +41,7 @@ public class Students {
 			System.out.println(e);
 		}
 	}
-	//public void addStudent() {
 	public void addStudent() {
-		//chay thanh cong
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Nhap id sinh vien can them: ");
 		String id = sc.nextLine();
@@ -55,7 +53,6 @@ public class Students {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentsmanagement",  "root","");
 			Statement stmt = con.createStatement();
-//			stmt.executeUpdate("insert into students" + " value (4, 'nam', 'html')");
 			stmt.executeUpdate("insert into students values (\""+id+"\",\""+name+"\",\""+group+"\")");
 			con.close();
 		} catch (Exception e ) {
@@ -63,12 +60,11 @@ public class Students {
 		}
 	}
 	public void editStudent() {
-		//chua thuc hien duoc
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Nhap id sinh vien can sua: ");
 		String idSua = sc.nextLine();
-		System.out.print("Nhap id sinh vien cap nhat: ");
-		String id = sc.nextLine();
+//		System.out.print("Nhap id sinh vien cap nhat: ");
+//		String id = sc.nextLine();
 		System.out.print("Nhap ho ten sinh vien cap nhat: ");
 		String name = sc.nextLine();
 		System.out.print("Nhap group sinh vien cap nhat: ");
@@ -76,13 +72,14 @@ public class Students {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentsmanagement",  "root","");
-//			Statement stmt = con.createStatement();
-			String query = "UPDATE students SET idStudents= (\""+id+"\"), name=(\"" + name + "\"), group=(\""+group+"\") WHERE idStudents = (\""+idSua+"\")";
+			Statement stmt = con.createStatement();
+//			stmt.executeUpdate("update students set name='"+name+"', group='"+group+"' where idStudents = '"+idSua+"'");
+			String query = "UPDATE students SET  name='"+name+"',groups='"+group+"'  WHERE idStudents = '"+idSua+"'";
+//			String query1 = "UPDATE students SET  group='"+group+"'  WHERE idStudents = '"+idSua+"'";
+			System.out.println(query);
 			PreparedStatement preparedStmt = con.prepareStatement(query);
-//			preparedStmt.setInt(1, 4);
-//			preparedStmt.setString(2, "Fred");
-//			preparedStmt.setString(3, "java");
-//			preparedStmt.setInt(4, 3);
+//			PreparedStatement preparedStmt1 = con.prepareStatement(query1);
+//			preparedStmt1.executeUpdate();
 			preparedStmt.executeUpdate();
 			con.close();
 		} catch (Exception e ) {
@@ -90,20 +87,22 @@ public class Students {
 		}
 	}
 	public void deleteStudent() {
-		//chay thanh cong
+		System.out.print("Nhap ID sinh vien can xoa: ");
+		Scanner sc = new Scanner(System.in);
+		int idXoa = Integer.parseInt(sc.nextLine());
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentsmanagement",  "root","");
 			String query = "delete from students WHERE idStudents = ?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
-			 preparedStmt.setInt(1, 5);
+			 preparedStmt.setInt(1, idXoa);
 			 preparedStmt.executeUpdate();
 			con.close();
 		} catch (Exception e ) {
 			System.out.println(e);
 		}
 	}
-	public void editStudents() {
+	public void menuStudents() {
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			System.out.println("------QUAN LY SINH VIEN------");

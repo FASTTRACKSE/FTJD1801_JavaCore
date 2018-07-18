@@ -41,7 +41,7 @@ public class User {
 				} else if (role.equals("Can Bo")) {
 					System.out.println("Xin chao can bo: " + userName);
 					Students std = new Students();
-					std.editStudents();
+					std.menuStudents();
 				}
 			}
 

@@ -1,24 +1,17 @@
-package final_assignment;
-
-import java.io.*;
+package atm;
+import java.util.Scanner;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Scanner;
+public class CayATM {
 
-public class MayATM  {
-
-
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-//		ArrayList<TheTu> theTuList = new ArrayList<TheTu>();
-//		ArrayList<User> idList= new ArrayList<User>();
-// 		ArrayList<GiaoDich> gdList = new ArrayList<GiaoDich>();
+		ArrayList<TheTu> listtheTu = new ArrayList<TheTu>();
+		ArrayList<Users> listid = new ArrayList<Users>();
+		ArrayList<GiaoDich> listgd = new ArrayList<GiaoDich>();
 		
 		Scanner sc = new Scanner(System.in);
-		
-		ArrayList<User> idList = LuuFile.output();
-		ArrayList<TheTu> theTuList = LuuFile.output1();
-		ArrayList<GiaoDich> gdList = LuuFile.output2();
 		while (true) {
 			System.out.println("1. Tao tai khoan moi: ");
 			System.out.println("2. Dang nhap tai khoan: ");
@@ -27,18 +20,18 @@ public class MayATM  {
 			switch (choice) {
 			case 1: 
 				//ma the: 00000000000000
-				User user = new User();
+				Users user = new Users();
 				TheTu the = new TheTu();
 				
 				//tao thong tin
-				user.nhapID();
-				the.setMaThe(user.getId());
-				the.nhapTheTu();
+				user.nhap();
+				the.setMaTK(user.getId());
+				the.nhap();
 				user.xuat();
 				the.xuat();
 				//luu vao list
-				idList.add(user);
-				theTuList.add(the);
+				listid.add(user);
+				listtheTu.add(the);
 				
 				//user.output();
 				break;
@@ -48,8 +41,8 @@ public class MayATM  {
 				String soThe = sc.nextLine();
 				System.out.println("nhap ma pin");
 				String pin = sc.nextLine();
-				for (TheTu the1: theTuList) {
-				if (the1.dangNhap(soThe, pin)) {
+				for (TheTu the1: listtheTu) {
+				if (the1.login(soThe, pin)) {
 					System.out.println("----Dang nhap thanh cong----");
 				while (true) {
 					System.out.println("1. Rut tien: ");
@@ -62,38 +55,55 @@ public class MayATM  {
 						
 						System.out.print("Nhap so tien can rut: ");
 						double tienRut = Double.parseDouble(sc.nextLine());
-						for (User user1: idList) {
+						for (Users user1: listid) {
 						if (soThe.equals(user1.getId())) {
-							double soDuHienTai = user1.getSoDuTaiKhoan();
+							double soDuHienTai = user1.getSoDu();
 							double soDuMoi = soDuHienTai - tienRut;
-							user1.setSoDuTaiKhoan(soDuMoi);
+							user1.setSoDu(soDuMoi);
 							
 						    Calendar c = Calendar.getInstance();
 						    System.out.println("Thong tin giao dich");
 						    GiaoDich gd = new GiaoDich();
-						    gd.setTenTaiKhoan(user1.getTenTaiKhoan());
 						    gd.setId(user1.getId());
-						    gd.setTienGiaoDich(tienRut);
-						    gd.setThoiGian(showCalendar(c));
-						    gdList.add(gd);
+						    gd.setSoTien(tienRut);
+						    gd.setTgian(showCalendar(c));
+						    listgd.add(gd);
 						}		
 						}
 						break;
 					case 2:
-						for (User id: idList) {
+						for (Users id: listid) {
 							id.xuat();
 						}
 						break;
 					case 3:
-						for (GiaoDich gd1: gdList) {
+						for (GiaoDich gd1: listgd) {
 							gd1.xuat();
 						}
 						break;
 					case 4:  
 						System.out.println("Dang xuat thanh cong");
-						LuuFile.luuID(idList);
-						LuuFile.luuTheTu(theTuList);
-						LuuFile.luuGiaoDich(gdList);
+						try {
+							LuuFile.luuID(listid);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						try {
+							LuuFile.luuTheTu(listtheTu);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						try {
+							LuuFile.saveGiaoDich(listgd);
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						break;
 					}
 					if (choice1==4) break;
@@ -107,8 +117,18 @@ public class MayATM  {
 				}
 				break;
 			case 3: 
-				LuuFile.luuID(idList);
-				LuuFile.luuTheTu(theTuList);
+				try {
+					LuuFile.luuID(listid);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					LuuFile.luuTheTu(listtheTu);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			}
 
@@ -126,3 +146,5 @@ public class MayATM  {
 	              + hour + ":" + minute + ":" + second;
 	  }
 }
+
+

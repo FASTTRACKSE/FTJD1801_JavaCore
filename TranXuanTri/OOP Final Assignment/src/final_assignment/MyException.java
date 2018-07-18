@@ -5,8 +5,9 @@ package final_assignment;
 public class MyException extends Exception {
 
 	String err;
+
 	public MyException() {
-		
+
 	}
 	
 	public MyException(String err) {

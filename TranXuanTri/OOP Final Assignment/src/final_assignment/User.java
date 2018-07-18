@@ -1,18 +1,21 @@
 package final_assignment;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ID extends TheTu {
+public class User implements Serializable {
+	String id;
 	String tenTaiKhoan;
 	String trangThaiTaiKhoan;
 	String loaiTienTe;
 	double soDuTaiKhoan;
-	ArrayList<ID> idList = new ArrayList<ID>();
 
-	public ID() {
-		super();
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTenTaiKhoan() {
@@ -46,10 +49,7 @@ public class ID extends TheTu {
 	public void setSoDuTaiKhoan(double soDuTaiKhoan) {
 		this.soDuTaiKhoan = soDuTaiKhoan;
 	}
-	public void taoTaiKhoan() throws IOException {
-		super.theTu();
-		taoID();
-	}
+
 	public void nhapID() {
 		Scanner sc = new Scanner(System.in);
 		for (;;) {
@@ -64,15 +64,15 @@ public class ID extends TheTu {
 			}
 		}
 		for (;;) {
-		System.out.println("Nhap ma so the: ");
-		this.maThe = sc.nextLine();	
-		try {
-			MyException.chkMaSoThe(maThe);
-			break;
-		} catch (MyException e) {
-			System.err.println(e);
-			System.out.println();
-		}
+			System.out.println("Nhap ma so the: ");
+			this.id = sc.nextLine();
+			try {
+				MyException.chkMaSoThe(id);
+				break;
+			} catch (MyException e) {
+				System.err.println(e);
+				System.out.println();
+			}
 		}
 		System.out.println("Nhap trang thai tai khoan: ");
 		this.trangThaiTaiKhoan = sc.nextLine();
@@ -81,30 +81,10 @@ public class ID extends TheTu {
 		System.out.println("Nhap so du tai khoan: ");
 		this.soDuTaiKhoan = Double.parseDouble(sc.nextLine());
 	}
-	public void taoID() throws IOException {
-		FileOutputStream fos1 = new FileOutputStream("ID.dat");
-		ObjectOutputStream oos1 = new ObjectOutputStream(fos1);
-		ID id = new ID();
-		id.nhapID();
-		idList.add(id);
-		oos1.writeObject(idList);
-		oos1.close();
-		fos1.close();
-	}
-	public void xuat() {
-		System.out.println(this.tenTaiKhoan + "||" + this.trangThaiTaiKhoan + "||" + this.soDuTaiKhoan + "||" + this.maThe);
-	}
-	public void output() throws IOException, ClassNotFoundException {	
-		FileInputStream fis = null;
-		ObjectInputStream ois = null;
-			fis = new FileInputStream("ID.dat");
-			ois = new ObjectInputStream(fis);
-			ArrayList<ID> id = (ArrayList<ID>) ois.readObject();
-			for (ID id1:id) {
-				id1.xuat();
-			}
-			ois.close();
-			fis.close();
 
+	public void xuat() {
+		System.out.println("Chu tai khoan: " + getTenTaiKhoan() + "|| Trang thai tai khoan: " + getTrangThaiTaiKhoan()
+				+ "|| So du tai khoan: " + getSoDuTaiKhoan() + "|| Loai tien te: " + getLoaiTienTe());
 	}
+
 }
