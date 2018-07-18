@@ -29,14 +29,14 @@
    
 </li>
 <li><p>UNIT8</p> 
-<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/unit8/Test.java"> Test </a></li>
+<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/src/unit8/Test.java"> Test đọc lưu file </a></li>
   
-   <li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/HongNgan/Bai1/src/unit8/atm"> ATM </a></li>
+   <li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/HongNgan/Bai1/src/unit8/atm"> Mô phỏng máy ATM </a></li>
 </ul>
    
 </li>
 <li><p>Unit 1: Tạo giao diện cửa sổ với gói SWING </p> 
-<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/HongNgan/Bai1/sql/sinhvienmanagement"> SinhVienManagement </a></li>
+<Ul><li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/HongNgan/Bai1/sql/sinhvienmanagement"> SinhVienManagement sql</a></li>
    <li> <a href ="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/HongNgan/Bai1/sql/demowindows/MyWindow.java"> DemoWindow </a></li>
   
    
