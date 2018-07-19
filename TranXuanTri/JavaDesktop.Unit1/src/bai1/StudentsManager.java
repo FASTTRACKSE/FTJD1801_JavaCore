@@ -1,5 +1,7 @@
 package bai1;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
@@ -7,7 +9,7 @@ import java.awt.event.*;
 import java.sql.*;
 
 public class StudentsManager extends JFrame{
-
+	
 	ResultSet rs = null;
 	JTextField txtID;
 	JTextField txtName;
@@ -40,10 +42,22 @@ public class StudentsManager extends JFrame{
 		pn1.add(group);
 		txtGroup = new JTextField(20);
 		pn1.add(txtGroup);
-
+		
+		ResultSet rs = connect();
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentmanagement","root","");
+			Statement stmt = con.createStatement();
+			 rs = stmt.executeQuery("Select * from students");
+			
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		
+		
 		JButton bnBack = new JButton("Back");
 		pnBtn.add(bnBack);
-		ResultSet rs = connect();
 		bnBack.addActionListener(new BackClick(rs));
 
 		JButton bnNext = new JButton("Next");
@@ -100,7 +114,7 @@ public class StudentsManager extends JFrame{
 
 		JButton bnUpdateID = new JButton("Update with ID");
 		pnBtn.add(bnUpdateID);
-		bnUpdateID.addActionListener(new UpdateIDClick());
+		bnUpdateID.addActionListener(new UpdateIDClick(rs));
 
 		JButton bnUpdateName = new JButton("Update with name");
 		pnBtn.add(bnUpdateName);
@@ -132,12 +146,27 @@ public class StudentsManager extends JFrame{
 			txtGroup.setText(group);
 			}});
 		JScrollPane sc=new JScrollPane(tbl);
+		JPanel pnTable=new JPanel();
+		pnTable.setLayout(new BorderLayout());
+		
+		JPanel pnFilter=new JPanel();
+		pnFilter.setLayout(new GridLayout(1, 2));
 		JComboBox cbo=new JComboBox();
 		cbo.addItem("ID");
 		cbo.addItem("Name");
 		cbo.addItem("Group");
-		add(cbo);
-		main.add(sc,BorderLayout.CENTER);
+		JTextField txtFilter = new JTextField(20);
+		
+		pnFilter.add(cbo);
+		pnFilter.add(txtFilter);
+		
+		JButton bnSearch = new JButton("search");
+		pnFilter.add(bnSearch);
+		
+		pnTable.add(pnFilter, BorderLayout.NORTH);
+		pnTable.add(sc, BorderLayout.CENTER);
+		main.add(pnTable,BorderLayout.CENTER);
+		
 		
 		Container con = getContentPane();
 //		con.setLayout(new BorderLayout());
@@ -150,6 +179,18 @@ public class StudentsManager extends JFrame{
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from students");
 			return rs;
+		} catch (Exception ex ) {
+			System.out.println(ex);
+		}
+		return null;
+	}
+	private Statement connect1() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentsmanagement",  "root","");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from students");
+			return stmt;
 		} catch (Exception ex ) {
 			System.out.println(ex);
 		}
@@ -215,6 +256,11 @@ public class StudentsManager extends JFrame{
 		
 	}
 	private class UpdateIDClick implements ActionListener {
+		ResultSet rs;
+		public UpdateIDClick(ResultSet rs) {
+			// TODO Auto-generated constructor stub
+			this.rs = rs;
+		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
