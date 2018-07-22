@@ -16,7 +16,8 @@ public class QuanLySinhVien {
 			System.out.println("1. Nhap danh sach sinh vien");
 			System.out.println("2. Xuat thong tin danh sach sinh vien");
 			System.out.println("3. Xuat danh sach sinh vien co hoc luc gioi");
-			System.out.println("4. Sap xep danh sach sinh vien theo diem");
+			System.out.println("4. Sap xep danh sach sinh vien theo diem ");
+			System.out.println("5. Xuat ra sinh vien theo nganh ");
 			System.out.println("0. Ket thuc");
 			Scanner sc = new Scanner(System.in);
 			int choice = Integer.parseInt(sc.nextLine());
@@ -27,13 +28,12 @@ public class QuanLySinhVien {
 					System.out.println("sinh vien thuoc nganh nao");
 					String nganh = sc.nextLine();
 					if (nganh.equals("IT") || nganh.equalsIgnoreCase("IT")) {
-						System.out.print("sinh vien thuoc nganh IT");
 						SinhVienIT sv = new SinhVienIT();
-						sv.nhap();
+						sv.nhap(sinhVienList);
 						sinhVienList.add(sv);
 					} else if (nganh.equals("Biz") || nganh.equalsIgnoreCase("Biz")) {
 						SinhVienBiz sv = new SinhVienBiz();
-						sv.nhap();
+						sv.nhap(sinhVienList);
 						sinhVienList.add(sv);
 					} else
 						System.out.println("Sai");
@@ -41,7 +41,7 @@ public class QuanLySinhVien {
 			}
 			if (choice == 2) {
 				for (int i = 0; i < sinhVienList.size(); i++) {
-					sinhVienList.get(i).xuat();
+					sinhVienList.get(i).xuat1();
 				}
 			} else if (choice == 3) {
 				System.out.println("Danh sach sinh vien co hoc luc gioi: ");
@@ -64,6 +64,21 @@ public class QuanLySinhVien {
 				System.out.println("Danh sach sinh vien sap xep theo diem: ");
 				for (int i = 0; i < sinhVienList.size(); i++) {
 					sinhVienList.get(i).xuat();
+				}
+			} else if (choice == 5) {
+				System.out.println("Sinh vien thuoc nganh IT ");
+				for (SinhVienFpt svFPT : sinhVienList) {
+					if (svFPT instanceof SinhVienIT) {
+						SinhVienIT svIT = (SinhVienIT) svFPT;
+						svIT.xuat();
+					}
+				}
+				System.out.println("Sinh vien thuoc nganh Biz ");
+				for (SinhVienFpt svFPT : sinhVienList) {
+					if (svFPT instanceof SinhVienBiz) {
+						SinhVienBiz svBiz = (SinhVienBiz) svFPT;
+						svBiz.xuat();
+					}
 				}
 			} else if (choice == 0) {
 				System.out.println("Exit");
