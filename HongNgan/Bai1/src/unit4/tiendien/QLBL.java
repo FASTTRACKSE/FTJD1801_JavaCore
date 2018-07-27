@@ -11,27 +11,27 @@ public class QLBL  {
 
 	public static void main(String[] args) {
 		while(true) {
-			System.out.println("1. Nhập Thông tin Hộ Dân");
-			System.out.println("2. Hiển Thị Thông Tin");
-			System.out.println("3. Biên Lai có tiền thi tiền thu nhiều nhất");
-			System.out.println("4. Sấp xếp biên lai tăng dần");
-			System.out.println("0. Kết thúc chương trình");
-			System.out.print("Chọn thao tác");
+			System.out.println("1. Nhap thong tin go dan");
+			System.out.println("2. Hien thi thong tin");
+			System.out.println("3. Bien lai co tien thu nhieu nhat");
+			System.out.println("4. Sap xep bien lai tang dan");
+			System.out.println("0. Ket thuc chuong trinh");
+			System.out.print("Chon thao tac");
 			Scanner sc = new Scanner(System.in);
 			int choice = Integer.parseInt(sc.nextLine());
 			ArrayList<BienLai> listBl = new ArrayList<BienLai>();
 			switch(choice) {
-				case 1: System.out.println("Nhập số gia đình: ");
+				case 1: System.out.println("Nhap so gia dinh: ");
 				int n=Integer.parseInt(sc.nextLine());
 					for(int i = 0; i < n; i++) {
-						System.out.println("Nhập thông tin biên lai của hộ gia đình thứ " + (i + 1) + ": ");
+						System.out.println("Nhap thong tin cua ho dan thu " + (i + 1) + ": ");
 						BienLai bl= new BienLai();
 						bl.nhap();
 						listBl.add(bl);	
 					}
-				case 2:System.out.println("Thông tin biên lai của các hộ gia đình: ");
+				case 2:System.out.println("Thong tin bien lai cua cac ho gia dinh: ");
 					for(int i = 0; i < listBl.size(); i++) {
-						System.out.println("Thông tin biên lai hộ gia đình thứ " + (i + 1) + ": ");
+						System.out.println("Thong tin bien lai cua ho gia dinh thu " + (i + 1) + ": ");
 						listBl.get(i).xuat();
 					}
 				case 3:
@@ -61,9 +61,9 @@ public class QLBL  {
 						
 			        });
 
-			        System.out.println("Danh sách sắp xếp biên lai tăng dần theo số tiền phải trả ");
+			        System.out.println("Sap xep tang dan ");
 			        for (int i = 0; i < listBl.size(); i++) {
-			            System.out.println("Tên: " + listBl.get(i).hoTen + " ThanhToan: " + listBl.get(i).getThanhToan());
+			            System.out.println("Ten: " + listBl.get(i).hoTen + " ThanhToan: " + listBl.get(i).getThanhToan());
 			        }
 					
 				case 0:

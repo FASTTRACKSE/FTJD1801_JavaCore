@@ -21,9 +21,9 @@ public class SinhVienBiz extends SinhVienFpt {
 		super.nhap(arr);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("nhap diem marketing ");
-		this.diemMarketing = Double.parseDouble(sc.nextLine());
+		this.diemMarketing = super.nhapDiem();
 		System.out.println("nhap diem sales ");
-		this.diemSales = Double.parseDouble(sc.nextLine());
+		this.diemSales = super.nhapDiem();
 	}
 
 	@Override

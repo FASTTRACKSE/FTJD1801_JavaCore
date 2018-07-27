@@ -20,4 +20,6 @@
   3.3 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit3/src/bai3/SinhVien.java"> Sinh Vien </a><br>
 4. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit4/src"> Unit 4 </a> <br>
   4.1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit4/src/bai1/BienLai.java"> Bien lai thu tien dien </a> <br>
-  4.2 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit4/src/bai2/QuanLySinhVien.java"> Quan ly sinh vien </a> <br>
+  4.2 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit4/src/bai2/QuanLySinhVien.java"> Quan ly sinh vien (update exception) </a> <br>
+5. <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/tree/master/TranXuanTri/Unit5"> Unit 5 </a> <br>
+  5.1 <a href="https://github.com/FASTTRACKSE/FTJD1801_JavaCore/blob/master/TranXuanTri/Unit5/src/assignment5/QuanLyCanBo.java"> Quan ly can bo </a><br>
