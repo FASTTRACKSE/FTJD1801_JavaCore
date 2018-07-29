@@ -41,21 +41,34 @@ public class GiangVien extends CanBo {
 	public void setSoTietDay(int soTietDay) {
 		this.soTietDay = soTietDay;
 	}
+
 	public void nhap() {
 		super.nhap();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Nhap khoa: ");
 		this.khoa = sc.nextLine();
-		System.out.println("Nhap trinh do: 1. Tien si, 2. Thac si, 3. Cu nhan");
-		int chonTrinhDo = Integer.parseInt(sc.nextLine());
-		if (chonTrinhDo == 1) {
-			this.trinhDo = "tien si";
-		} else if (chonTrinhDo == 2) {
-			this.trinhDo = "thac si";
-		} else this.trinhDo = "cu nhan";
-		
-		System.out.println("Nhap so tiet day trong thang: ");
-		this.soTietDay = Integer.parseInt(sc.nextLine());
+		for (;;) {
+			System.out.println("Nhap trinh do: ");
+			this.trinhDo = sc.nextLine();
+			try {
+				CanBoException.chkTrinhDo(trinhDo);
+				break;
+			} catch (CanBoException e) {
+				System.err.println(e);
+				System.out.println();
+			}
+		}
+		for (;;) {
+			System.out.println("Nhap so tiet day trong thang: ");
+			this.soTietDay = Integer.parseInt(sc.nextLine());
+			try {
+				CanBoException.chkSo(soTietDay);
+				break;
+			} catch (CanBoException e) {
+				System.err.println(e);
+				System.out.println();
+			}
+		}
 	}
 	public void xuat() {
 		super.xuat();

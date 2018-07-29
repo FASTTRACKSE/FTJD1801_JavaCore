@@ -42,3 +42,5 @@ Java OOP, Java Swing Development of FTJD1801
 </br>
 <a href = https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/2cc28e9c54da3ae16dcee429d061fd5d94800327>3.4 sinh viên fpt</a>
 </br>
+<a href =https://github.com/FASTTRACKSE/FTJD1801_JavaCore/commit/688edea7f70963bdbc5230a4e23ad804c8640d14>3.5 SinhVien Exception</a>
+</br>

@@ -1,4 +1,4 @@
-package unit3;
+package unit3.tiendien;
 
 import java.util.Scanner;
 

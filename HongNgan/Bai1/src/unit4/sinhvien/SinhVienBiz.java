@@ -25,6 +25,10 @@ public class SinhVienBiz extends SinhVienFPT {
 		System.out.println("Nhap diem Sales: ");
 		this.diemSales=Double.parseDouble(sc.nextLine());
 	}
+	public void xuatBiz() {
+		super.xuat();
+		System.out.println("Điểm Marketing: "+diemMarketing+"  |  Điểm Sales: "+diemSales);
+	}
 	@Override
 	public double getDiem() {
 		// TODO Auto-generated method stub

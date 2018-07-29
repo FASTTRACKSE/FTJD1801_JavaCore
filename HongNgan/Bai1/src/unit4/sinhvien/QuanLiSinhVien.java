@@ -54,6 +54,18 @@ public class QuanLiSinhVien {
 								return -1;
 						}
 					}); break;
+			case 5: for(SinhVienFPT svFpt : students) {
+				if(svFpt instanceof SinhVienIT) {
+					SinhVienIT svIT = (SinhVienIT) svFpt;
+					svIT.xuatIt();
+				}
+			} break;
+	case 6: for(SinhVienFPT svFpt : students) {
+				if(svFpt instanceof SinhVienBiz) {
+					SinhVienBiz svBiz = (SinhVienBiz) svFpt;
+					svBiz.xuatBiz();
+				}
+			} break;	
 	}
 		
 }

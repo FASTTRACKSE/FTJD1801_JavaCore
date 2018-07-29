@@ -27,7 +27,7 @@ public class SinhVienBiz extends SinhVienFPT {
 		this.diemSales = diemSales;
 	}
 	public void nhap(ArrayList<SinhVienFPT>list) {
-		super.nhap();
+		super.nhap(list);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Điểm marketing: ");
 		this.diemMarketing = Double.parseDouble(sc.nextLine());

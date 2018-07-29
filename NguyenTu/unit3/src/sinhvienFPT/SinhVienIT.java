@@ -3,6 +3,8 @@ package sinhvienFPT;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import unit3.SinhVienException;
+
 public class SinhVienIT extends SinhVienFPT {
 	private double diemJava;
 	private double diemHtml;
@@ -35,14 +37,23 @@ public class SinhVienIT extends SinhVienFPT {
 		this.diemCss = diemCss;
 	}
 	public void nhap(ArrayList<SinhVienFPT>list) {
-		super.nhap();
+		super.nhap(list);
 		Scanner sc = new Scanner(System.in);
+		for(;;) {
 		System.out.println("Điểm Java: ");
 		this.diemJava = Double.parseDouble(sc.nextLine());
 		System.out.println("Điểm Html: ");
 		this.diemHtml = Double.parseDouble(sc.nextLine());
 		System.out.println("Điểm CSS: ");
 		this.diemCss = Double.parseDouble(sc.nextLine());
+		try {
+			SinhVienException.chkDiem0(diemJava);
+			
+		}catch(SinhVienException e) {
+			System.err.println(e);
+			System.out.println();
+		}
+		}
 	}
 	public void xuat() {
 		super.xuat();
