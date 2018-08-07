@@ -224,7 +224,7 @@ public class MainWindows extends JFrame {
 						dm.setRowCount(0);	
 						try {
 							while (rs.next()) {
-								System.out.println(rs.getString(1)+rs.getString(2)+rs.getString(3));
+							System.out.println(rs.getString(1)+rs.getString(2)+rs.getString(3));
 							dm.addRow(new String[]{rs.getString(1),rs.getString(2),rs.getString(3)});
 							}
 						} catch (SQLException ex) {
@@ -254,9 +254,10 @@ public class MainWindows extends JFrame {
 						dm.setRowCount(0);	
 						try {
 							while (rs.next()) {
-								System.out.println(rs.getString(1)+rs.getString(2)+rs.getString(3));
+							System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3));
 							dm.addRow(new String[]{rs.getString(1),rs.getString(2),rs.getString(3)});
 							}
+							
 						} catch (SQLException ex) {
 							// TODO Auto-generated catch block
 							ex.printStackTrace();
@@ -270,7 +271,6 @@ public class MainWindows extends JFrame {
 				}
 			}
 		});
-		
 		
 		Container con = getContentPane();
 		con.add(main);
