@@ -1,4 +1,4 @@
-package javaDesktop.finalProjectUI;
+package fasttrackse.quanlytiendien.UI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -15,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 public class PnThongKeUI {
 	JPanel pnTxt = new JPanel();
 	JPanel pnTxt1 = new JPanel();
-	JComboBox cbo2;
+	JComboBox<String> cbo2;
 	public JPanel pnThongKe() {
 		JPanel pnThongKe = new JPanel();
 		pnThongKe.setLayout(new BorderLayout());
@@ -27,13 +26,13 @@ public class PnThongKeUI {
 		pnThongKe.setBorder(titlebor2);
 		pnThongKe.setPreferredSize(new Dimension(800, 800));
 		JPanel pnFilter=new JPanel();
-		//pnFilter.setLayout(new GridLayout(1, 3));
+		//pnFilter.setLayout(new BoxLayout(pnFilter, BoxLayout.X_AXIS));
 		pn1.add(pnFilter);
 		
 		JPanel _pnTxt1 = new JPanel();
 		JPanel _pnTxt2 = new JPanel();
-		
-		JTextField msKhachHang = new JTextField(20);
+		//_pnTxt1.setPreferredSize(new Dimension(300, 50));
+		JTextField msKhachHang = new JTextField(10);
 		
 		pnTxt.add(_pnTxt1);
 		pnTxt.add(_pnTxt2);
@@ -44,7 +43,7 @@ public class PnThongKeUI {
 		_pnTxt2.add(msKhachHang);
 		JPanel pnKhuVuc = new JPanel();
 		pnKhuVuc.setLayout(new GridLayout(1, 2));
-		JComboBox cbo1=new JComboBox();
+		JComboBox<String> cbo1=new JComboBox<String>();
 		cbo1.addItem("Quận...");
 		cbo1.addItem("Hải Châu");
 		cbo1.addItem("Thanh Khê");
@@ -54,13 +53,13 @@ public class PnThongKeUI {
 		cbo1.addItem("Hòa Vang");
 		cbo1.addItem("Cẩm Lệ");
 		cbo1.addItem("Hoàng Sa");
-		cbo2 = new JComboBox();
+		cbo2 = new JComboBox<String>();
 		cbo2.addItem("Phường ...");
 		cbo1.addItemListener(new ItemListener() {
 			
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
-				// TODO Auto-generated method stub
+				
 				int i = cbo1.getSelectedIndex();
 				switch (i) {
 				case 0:
@@ -85,7 +84,7 @@ public class PnThongKeUI {
 					cbo2.addItem("Tam Thuận");
 					cbo2.addItem("Tân Chính");
 					cbo2.addItem("Thạc Gián");
-					cbo2.addItem("Thanh Khê Đông");
+					cbo2.addItem("Thanh Khê �?ông");
 					cbo2.addItem("Thanh Khê Tây");
 					cbo2.addItem("Vĩnh Trung");
 					cbo2.addItem("Xuân Hà");
@@ -93,10 +92,10 @@ public class PnThongKeUI {
 				case 3: 
 					cbo2.removeAllItems();
 					cbo2.addItem("An Hải Bắc");
-					cbo2.addItem("An Hải Đông");
+					cbo2.addItem("An Hải �?ông");
 					cbo2.addItem("An Hải Tây");
 					cbo2.addItem("Mân Thái");
-					cbo2.addItem("Nại Hiên Đông");
+					cbo2.addItem("Nại Hiên �?ông");
 					cbo2.addItem("Phước Mỹ");
 					cbo2.addItem("Thọ Quang");
 					break;
@@ -147,7 +146,7 @@ public class PnThongKeUI {
 		pnKhuVuc.add(cbo2);
 		_pnTxt1.add(pnKhuVuc);
 		JLabel kh = new JLabel("Khách hàng");
-		JComboBox cbo=new JComboBox();
+		JComboBox<String> cbo=new JComboBox<String>();
 		cbo.addItem("Khách hàng.....");
 		cbo.addItem("Tất cả khách hàng");
 		cbo.addItem("Theo khu vực");
@@ -159,7 +158,7 @@ public class PnThongKeUI {
 			
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
+			
 				int n = cbo.getSelectedIndex();
 				switch(n) {
 				case 0:
@@ -197,7 +196,7 @@ public class PnThongKeUI {
 		pnTxt1.add(_pnTxt4);
 		pnTxt1.add(_pnTxt5);
 		
-		JTextField year = new JTextField(10);
+		JTextField year = new JTextField(5);
 		_pnTxt3.add(year);
 		
 		JTextField month1 = new JTextField(5);
@@ -230,7 +229,7 @@ public class PnThongKeUI {
 //		_pnTxt2.add(msKhachHang);
 //		JPanel _pnFilter1 = new JPanel();
 //		_pnFilter1.setLayout(new GridLayout(1, 2));
-		JComboBox cbo3=new JComboBox();
+		JComboBox<String> cbo3=new JComboBox<String>();
 		cbo3.addItem("Thời gian.....");
 		cbo3.addItem("Năm:");
 		cbo3.addItem("Khoảng thời gian:");
@@ -242,7 +241,7 @@ public class PnThongKeUI {
 			
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
+			
 				int i = cbo3.getSelectedIndex();
 				switch(i) {
 				case 0:
@@ -290,4 +289,5 @@ public class PnThongKeUI {
 		pnThongKe.add(sc, BorderLayout.CENTER);
 		return pnThongKe;
 	}
+
 }

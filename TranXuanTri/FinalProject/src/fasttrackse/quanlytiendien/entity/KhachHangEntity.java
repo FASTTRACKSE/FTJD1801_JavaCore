@@ -1,7 +1,7 @@
-package quanLyTienDien;
+package fasttrackse.quanlytiendien.entity;
 
 
-public class QuanLyKhachHang {
+public class KhachHangEntity {
 	private String maKhachHang;
 	private String hoTen;
 	private String diaChi;
@@ -11,7 +11,7 @@ public class QuanLyKhachHang {
 	private String email;
 	private String maSoCongTo;
 
-	public QuanLyKhachHang() {
+	public KhachHangEntity() {
 		super();
 	}
 	public String getMaKhachHang() {

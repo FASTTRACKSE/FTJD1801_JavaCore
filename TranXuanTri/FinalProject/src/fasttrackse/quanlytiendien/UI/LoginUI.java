@@ -1,13 +1,15 @@
-package javaDesktop.finalProjectUI;
+package fasttrackse.quanlytiendien.UI;
 
 import javax.swing.*;
-import javax.swing.border.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginUI extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JButton btnKhachHang;
 	JButton btnBienLai;
 	JButton btnThongKe;
@@ -36,8 +38,7 @@ public class LoginUI extends JFrame {
 
 		btnKhachHang = new JButton("Quản lý khách hàng");
 		jsp1.add(btnKhachHang);
-		// jsp2.add(pnKhach.pnKhachHang(),BorderLayout.CENTER);
-		
+
 		jsp3.add(pnKhach.pnKhachHang());
 		jsp4.add(pnBienLai.pnBienLai());
 		jsp5.add(pnThongKe.pnThongKe());
@@ -89,7 +90,7 @@ public class LoginUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				jsp5.setVisible(true);
 				jsp3.setVisible(false);
 				jsp4.setVisible(false);

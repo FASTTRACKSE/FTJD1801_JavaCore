@@ -1,6 +1,6 @@
-package javaDesktop.finalProject.main;
+package fasttrackse.quanlytiendien.main;
 
-import javaDesktop.finalProjectUI.LoginUI;
+import fasttrackse.quanlytiendien.UI.LoginUI;
 
 public class Main {
 

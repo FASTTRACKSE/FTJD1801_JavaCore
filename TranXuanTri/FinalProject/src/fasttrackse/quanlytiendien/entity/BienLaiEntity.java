@@ -1,8 +1,8 @@
-package quanLyTienDien;
+package fasttrackse.quanlytiendien.entity;
 
 import java.util.Date;
 
-public class QuanLyBienLai {
+public class BienLaiEntity {
 	private String maSoCongToDien;
 	private Date ngayNhap;
 	private Date chuKiNhap;

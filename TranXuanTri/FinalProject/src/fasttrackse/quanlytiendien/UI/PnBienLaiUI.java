@@ -1,15 +1,9 @@
-package javaDesktop.finalProjectUI;
+package fasttrackse.quanlytiendien.UI;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -54,7 +48,7 @@ public class PnBienLaiUI {
 		
 		JLabel maCongTo = new JLabel("  Mã công tơ điện:");
 		pnText.add(maCongTo);
-		JComboBox cbo = new JComboBox();
+		JComboBox<String> cbo = new JComboBox<String>();
 		cbo.addItem("Mã số công tơ...");
 		pnText.add(cbo);
 		JLabel ngayNhap = new JLabel("  Ngày nhập:");
