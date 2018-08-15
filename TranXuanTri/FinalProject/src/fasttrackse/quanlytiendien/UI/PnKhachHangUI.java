@@ -3,45 +3,50 @@ package fasttrackse.quanlytiendien.UI;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import fasttrackse.quanlytiendien.DAO.KhachHangDAO;
+import fasttrackse.quanlytiendien.entity.PhuongEntity;
+import fasttrackse.quanlytiendien.entity.QuanEntity;
 
 public class PnKhachHangUI {
 	ResultSet rs = null;
 	Statement stmt;
 	Connection con;
-	JComboBox<String> cbo = new JComboBox<String>();
-	JComboBox<String> cbo1 = new JComboBox<String>();
-	JComboBox<String> cboPhuong = new JComboBox<String>();
-	JComboBox<String> cboQuan;
+	JComboBox cboQuan = new JComboBox();
+	JComboBox cboPhuong = new JComboBox();
+	JComboBox cboPhuong1 = new JComboBox();
+	JComboBox cboQuan1;
+	JComboBox cboMaSoCongTo;
 	JTextField txtMaKH;
 	JTextField txtHoTen;
 	JTextField txtDiaChi;
 	JTextField txtDienThoai;
 	JTextField txtEmail;
-	JTextField txtMaSoCongTo;
-	public JPanel pnKhachHang () {
-		JPanel pnTab1=new JPanel();
+
+	public JPanel pnKhachHang() {
+		JPanel pnTab1 = new JPanel();
 		pnTab1.setLayout(new BorderLayout());
 		Border bor2 = BorderFactory.createLineBorder(Color.GRAY);
-		TitledBorder titlebor2=	new TitledBorder(bor2, "Thông tin khách hàng");
+		TitledBorder titlebor2 = new TitledBorder(bor2, "Thông tin khách hàng");
 		pnTab1.setBorder(titlebor2);
-		pnTab1.setPreferredSize(new Dimension(800, 800));
-		
+		pnTab1.setPreferredSize(new Dimension(800, 450));
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien","root","");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
 			stmt = con.createStatement();
 			rs = stmt.executeQuery("Select * from khachhang");
-			
+
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
-		DefaultTableModel dm=new DefaultTableModel();
+		DefaultTableModel dm = new DefaultTableModel();
 		dm.addColumn("Mã khách hàng");
 		dm.addColumn("Họ tên");
 		dm.addColumn("Địa chỉ");
@@ -50,30 +55,98 @@ public class PnKhachHangUI {
 		dm.addColumn("Điện thoại");
 		dm.addColumn("Email");
 		dm.addColumn("Mã số công tơ điện");
-		final JTable tbl=new JTable(dm);
+		final JTable tbl = new JTable(dm);
 		try {
 			while (rs.next()) {
-			dm.addRow(new String[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
+				dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
 		tbl.addMouseListener(new MouseListener() {
-			public void mouseReleased(MouseEvent e) {}
-			public void mousePressed(MouseEvent e) {}
-			public void mouseExited(MouseEvent e) {}
-			public void mouseEntered(MouseEvent e) {}
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
+			}
 
-				int row=tbl.getSelectedRow();
+			public void mousePressed(MouseEvent e) {
+			}
+
+			public void mouseExited(MouseEvent e) {
+			}
+
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			public void mouseClicked(MouseEvent e) {
+				int row = tbl.getSelectedRow();
+				String maKH = (String) tbl.getValueAt(row, 0);
+				String hoTen = (String) tbl.getValueAt(row, 1);
+				String diaChi = (String) tbl.getValueAt(row, 2);
+				String dienThoai = (String) tbl.getValueAt(row, 5);
+				String email = (String) tbl.getValueAt(row, 6);
+				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 7));
+				int idQuan = Integer.parseInt((String) tbl.getValueAt(row, 4));
+				int idPhuong = Integer.parseInt((String) tbl.getValueAt(row, 3));
+				switch (idQuan) {
+				case 490:
+					cboQuan1.setSelectedIndex(1);
+					break;
+				case 491:
+					cboQuan1.setSelectedIndex(2);
+					break;
+				case 492:
+					cboQuan1.setSelectedIndex(3);
+					break;
+				case 493:
+					cboQuan1.setSelectedIndex(4);
+					break;
+				case 494:
+					cboQuan1.setSelectedIndex(5);
+					break;
+				case 495:
+					cboQuan1.setSelectedIndex(6);
+					break;
+				case 496:
+					cboQuan1.setSelectedIndex(7);
+					break;
+				case 497:
+					cboQuan1.setSelectedIndex(8);
+					break;
+				case 498:
+					cboQuan1.setSelectedIndex(5);
+					break;
+				}
+				txtMaKH.setText(maKH);
+				txtHoTen.setText(hoTen);
+				txtDiaChi.setText(diaChi);
+				txtDienThoai.setText(dienThoai);
+				txtEmail.setText(email);
+				cboMaSoCongTo.setSelectedIndex(maCongTo);
 				
-				String maKH=(String)tbl.getValueAt(row, 0);
-				String hoTen=(String)tbl.getValueAt(row, 1);
-				String diaChi=(String)tbl.getValueAt(row, 2);
-				String dienThoai=(String)tbl.getValueAt(row, 5);
-				String email = (String)tbl.getValueAt(row, 6);
-				String maCongTo = (String)tbl.getValueAt(row, 7);
+				for (int i = 0; i < cboPhuong1.getItemCount(); i++) {
+					if (((ComboItem) (cboPhuong1.getItemAt(i))).getValue() == idPhuong) {
+						cboPhuong1.setSelectedIndex(i);
+					}
+				}
+
+//				cboPhuong1.setSelectedIndex(idPhuong);
+//				cboPhuong1.setSelectedItem(new ComboItem(value, label));
+			}
+		});
+		tbl.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) {
+			}
+
+			public void keyReleased(KeyEvent e) {
+
+				int row = tbl.getSelectedRow();
+				String maKH = (String) tbl.getValueAt(row, 0);
+				String hoTen = (String) tbl.getValueAt(row, 1);
+				String diaChi = (String) tbl.getValueAt(row, 2);
+				String dienThoai = (String) tbl.getValueAt(row, 5);
+				String email = (String) tbl.getValueAt(row, 6);
+				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 7));
 				int quan = Integer.parseInt((String) tbl.getValueAt(row, 4));
 				int phuong = Integer.parseInt((String) tbl.getValueAt(row, 3));
 				txtMaKH.setText(maKH);
@@ -81,324 +154,449 @@ public class PnKhachHangUI {
 				txtDiaChi.setText(diaChi);
 				txtDienThoai.setText(dienThoai);
 				txtEmail.setText(email);
-				txtMaSoCongTo.setText(maCongTo);
-				cboQuan.setSelectedIndex(quan);
-				cboPhuong.setSelectedIndex(phuong);
+				cboMaSoCongTo.setSelectedIndex(maCongTo);
+				cboQuan1.setSelectedIndex(quan);
+				cboPhuong1.setSelectedIndex(phuong);
+			}
+
+			public void keyPressed(KeyEvent e) {
 			}
 		});
-		JScrollPane sc=new JScrollPane(tbl);
+		JScrollPane sc = new JScrollPane(tbl);
 		pnTab1.add(sc, BorderLayout.CENTER);
 		JPanel pn = new JPanel();
 		pn.setLayout(new BorderLayout());
-		
-		JPanel pnFilter=new JPanel();
+
+		JPanel pnFilter = new JPanel();
 		pn.add(pnFilter, BorderLayout.SOUTH);
 		pnFilter.setLayout(new GridLayout(1, 3));
-		cbo = new JComboBox<String>();
-		cbo.addItem("Quận...");
-		cbo.addItem("Hải Châu");
-		cbo.addItem("Thanh Khê");
-		cbo.addItem("Sơn Trà");
-		cbo.addItem("Ngũ Hành Sơn");
-		cbo.addItem("Liên Chiểu");
-		cbo.addItem("Hòa Vang");
-		cbo.addItem("Cẩm Lệ");
-		cbo.addItem("Hoàng Sa");
-		cbo1 = new JComboBox<String>();
-		cbo1.addItem("Phường ...");
-		cbo.addItemListener(new selectPhuong1());
+		cboQuan = new JComboBox<String>();
+		cboQuan.addItem(new ComboItem(0, "Quận..."));
+		cboQuan();
+		cboPhuong = new JComboBox<String>();
+		cboPhuong.addItem(new ComboItem(0, "Phường..."));
 
-		pnFilter.add(cbo);
-		pnFilter.add(cbo1);
+		cboQuan.addItemListener(new CboPhuong());
+
+		pnFilter.add(cboQuan);
+		pnFilter.add(cboPhuong);
 		JButton btnSearch = new JButton("search");
 		pnFilter.add(btnSearch);
+		btnSearch.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int j = ((ComboItem) cboPhuong.getSelectedItem()).getValue();
+				int i = ((ComboItem) cboQuan.getSelectedItem()).getValue();
+				int n = cboQuan.getSelectedIndex();
+				
+				try {
+//					if (n == 0) {
+//						dm.setRowCount(0);
+//						while (rs.next()) {
+//							dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+//									rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
+//						}
+//					} else {
+						String sql = "select * from khachhang where idquan = '" + i + "'";
+						rs = stmt.executeQuery(sql);
+						dm.setRowCount(0);
+						while (rs.next()) {
+							if (rs.getInt(5) == i) {
+								if (rs.getInt(4) == j) {
+									dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3),
+											rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
+											rs.getString(8) });
+								}
+//							}
+						}
+						tbl.setModel(dm);
+						dm.fireTableDataChanged();
+					}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		pnTab1.add(pn, BorderLayout.NORTH);
-		
+
 		JPanel pnBtn = new JPanel();
 		pn.add(pnBtn, BorderLayout.NORTH);
 		JButton btnAdd = new JButton("Thêm khách hàng");
 		pnBtn.add(btnAdd);
-		btnAdd.addActionListener(new InsertClick());
-		//btnAdd.setEnabled(true);
+		btnAdd.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String maKhachHang = txtMaKH.getText();
+				String hoTen = txtHoTen.getText();
+				String diaChi = txtDiaChi.getText();
+				ComboItem quan = (ComboItem) cboQuan1.getSelectedItem();
+				ComboItem phuong = (ComboItem) cboPhuong1.getSelectedItem();
+				int idPhuong = phuong.getValue();
+				int idQuan = quan.getValue();
+				String dienThoai = txtDienThoai.getText();
+				String email = txtEmail.getText();
+				int maCongToDien = cboMaSoCongTo.getSelectedIndex();
+				KhachHangDAO kh = new KhachHangDAO();
+				kh.insert(maKhachHang, hoTen, diaChi, idPhuong, idQuan, dienThoai, email, maCongToDien);
+				dm.setRowCount(0);
+				ResultSet rs = connect();
+				try {
+					while (rs.next()) {
+						dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+								rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
+					}
+				} catch (SQLException ex) {
+
+					ex.printStackTrace();
+				}
+				tbl.setModel(dm);
+				dm.fireTableDataChanged();
+			}
+		});
+		// btnAdd.setEnabled(true);
 
 		JButton btnEdit = new JButton("Sửa thông tin khách hàng");
 		pnBtn.add(btnEdit);
-		btnEdit.addActionListener(new UpdateClick());
-		
+		btnEdit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String maKhachHang = txtMaKH.getText();
+				String hoTen = txtHoTen.getText();
+				String diaChi = txtDiaChi.getText();
+				ComboItem quan = (ComboItem) cboQuan1.getSelectedItem();
+				ComboItem phuong = (ComboItem) cboPhuong1.getSelectedItem();
+				int idPhuong = phuong.getValue();
+				int idQuan = quan.getValue();
+				String dienThoai = txtDienThoai.getText();
+				String email = txtEmail.getText();
+				int maCongToDien = cboMaSoCongTo.getSelectedIndex();
+				KhachHangDAO kh = new KhachHangDAO();
+				kh.update(maKhachHang, hoTen, diaChi, idPhuong, idQuan, dienThoai, email, maCongToDien);
+				dm.setRowCount(0);
+				ResultSet rs = connect();
+				try {
+					while (rs.next()) {
+						dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+								rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
+					}
+				} catch (SQLException ex) {
+
+					ex.printStackTrace();
+				}
+				tbl.setModel(dm);
+				dm.fireTableDataChanged();
+			}
+		});
+
 		JButton btnDelete = new JButton("Xóa khách hàng");
 		pnBtn.add(btnDelete);
-		btnDelete.addActionListener(new DeleteClick());
-		
+		btnDelete.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String maKhachHang = txtMaKH.getText();
+				KhachHangDAO kh = new KhachHangDAO();
+				kh.delete(maKhachHang);
+				dm.setRowCount(0);
+				ResultSet rs = connect();
+				try {
+					while (rs.next()) {
+						dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+								rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
+					}
+				} catch (SQLException ex) {
+
+					ex.printStackTrace();
+				}
+				tbl.setModel(dm);
+				dm.fireTableDataChanged();
+			}
+		});
+
 		JPanel pn1 = new JPanel();
 		pn.add(pn1, BorderLayout.CENTER);
 		JPanel pnText = new JPanel();
 		pnText.setLayout(new GridLayout(8, 2));
 		pn1.add(pnText, BorderLayout.CENTER);
-		
+
 		JLabel maKH = new JLabel("  Mã khách hàng");
 		pnText.add(maKH);
 		txtMaKH = new JTextField(10);
 		pnText.add(txtMaKH);
-		
+
 		JLabel hoTen = new JLabel("  Họ tên");
 		pnText.add(hoTen);
 		txtHoTen = new JTextField(20);
 		pnText.add(txtHoTen);
-		
+
 		JLabel diaChi = new JLabel("  Địa chỉ");
 		pnText.add(diaChi);
 		txtDiaChi = new JTextField(20);
 		pnText.add(txtDiaChi);
-		
+
 		JLabel quan = new JLabel("  Quận");
 		pnText.add(quan);
-		cboQuan = new JComboBox<String>();
-		cboQuan.addItem("Quận...");
-		cboQuan.addItem("Hải Châu");
-		cboQuan.addItem("Thanh Khê");
-		cboQuan.addItem("Sơn Trà");
-		cboQuan.addItem("Ngũ Hành Sơn");
-		cboQuan.addItem("Liên Chiểu");
-		cboQuan.addItem("Hòa Vang");
-		cboQuan.addItem("Cẩm Lệ");
-		cboQuan.addItem("Hoàng Sa");
-		pnText.add(cboQuan);
-		cboQuan.addItemListener(new selectPhuong());
-		
-		JLabel phuong = new JLabel("  Phư�?ng");
+		cboQuan1 = new JComboBox<String>();
+		cboQuan1.addItem("Quận...");
+		cboQuan1();
+		pnText.add(cboQuan1);
+		cboQuan1.addItemListener(new CboPhuong1());
+
+		JLabel phuong = new JLabel("  Phường");
 		pnText.add(phuong);
-		cboPhuong.addItem("Phường...");
-		pnText.add(cboPhuong);
-		
+		cboPhuong1.addItem("Phường...");
+		pnText.add(cboPhuong1);
+
 		JLabel dienThoai = new JLabel("  Điện Thoại");
 		pnText.add(dienThoai);
 		txtDienThoai = new JTextField(20);
 		pnText.add(txtDienThoai);
-		
+
 		JLabel email = new JLabel("  Email");
 		pnText.add(email);
 		txtEmail = new JTextField(20);
 		pnText.add(txtEmail);
-		
+
 		JLabel maSoCongTo = new JLabel("  Mã số công tơ");
 		pnText.add(maSoCongTo);
-		txtMaSoCongTo = new JTextField(20);
-		pnText.add(txtMaSoCongTo);	
+		cboMaSoCongTo = new JComboBox();
+		cboMaSoCongTo.addItem("Mã số công tơ.....");
+		cboMaCongTo();
+		pnText.add(cboMaSoCongTo);
 		return pnTab1;
 	}
-	 private class InsertClick implements ActionListener {
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String maKhachHang = txtMaKH.getText();
-			String hoTen = txtHoTen.getText();
-			String diaChi = txtDiaChi.getText();
-			int idPhuong = cboPhuong.getSelectedIndex();
-			int idQuan = cboQuan.getSelectedIndex();
-			String dienThoai = txtDienThoai.getText();
-			String email = txtEmail.getText();
-			String maCongToDien = txtMaSoCongTo.getText();
-			KhachHangDAO kh = new KhachHangDAO();
-			kh.insert(maKhachHang, hoTen, diaChi, idPhuong, idQuan, dienThoai, email, maCongToDien);
+	private void cboMaCongTo() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
+			Statement stmt = con.createStatement();
+			ResultSet rs1 = stmt.executeQuery("Select * from congtodien");
+			while (rs1.next()) {
+				cboMaSoCongTo.addItem(rs1.getInt(1));
+			}
+			con.close();
+		} catch (Exception ex) {
+			System.out.println(ex);
 		}
-	 }
-	 private class UpdateClick implements ActionListener {
+	}
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String maKhachHang = txtMaKH.getText();
-			String hoTen = txtHoTen.getText();
-			String diaChi = txtDiaChi.getText();
-			int idPhuong = cboPhuong.getSelectedIndex();
-			int idQuan = cboQuan.getSelectedIndex();
-			String dienThoai = txtDienThoai.getText();
-			String email = txtEmail.getText();
-			String maCongToDien = txtMaSoCongTo.getText();
-			KhachHangDAO kh = new KhachHangDAO();
-			kh.update(maKhachHang, hoTen, diaChi, idPhuong, idQuan, dienThoai, email, maCongToDien);
+	private void cboQuan1() {
+		QuanEntity quan = new QuanEntity();
+		quan.quan();
+		for (QuanEntity quan1 : quan.quan()) {
+			cboQuan1.addItem(new ComboItem(quan1.getMaQh(), quan1.getTenQuan()));
 		}
-	 }
-	 private class DeleteClick implements ActionListener {
+	}
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String maKhachHang = txtMaKH.getText();
-			KhachHangDAO kh = new KhachHangDAO();
-			kh.delete(maKhachHang);
+	private void cboQuan() {
+		QuanEntity quan = new QuanEntity();
+		quan.quan();
+		for (QuanEntity quan1 : quan.quan()) {
+			cboQuan.addItem(new ComboItem(quan1.getMaQh(), quan1.getTenQuan()));
 		}
-	 }
-	 private class selectPhuong implements ItemListener {
+	}
 
+	private class CboPhuong implements ItemListener {
 		@Override
 		public void itemStateChanged(ItemEvent e) {
+			// TODO Auto-generated method stub
 			int i = cboQuan.getSelectedIndex();
+			PhuongEntity phuong = new PhuongEntity();
 			switch (i) {
 			case 0:
 				cboPhuong.removeAllItems();
-				cboPhuong.addItem("Phường ...");
+				cboPhuong.addItem("Phường ....");
 				break;
 			case 1:
 				cboPhuong.removeAllItems();
-				cboPhuong.addItem("Thanh Bình");
-				cboPhuong.addItem("Thuận Phước");
-				cboPhuong.addItem("Thạch Thang");
-				cboPhuong.addItem("Hải Châu 1");
-				cboPhuong.addItem("Hải Châu 2");
-				cboPhuong.addItem("Phước Ninh");
-				cboPhuong.addItem("Hòa Thuận Tây");
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 490) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+
+					}
+				}
 				break;
-			case 2: 
+			case 2:
 				cboPhuong.removeAllItems();
-				cboPhuong.addItem("An Khê");
-				cboPhuong.addItem("Chính Gián");
-				cboPhuong.addItem("Hòa Khê");
-				cboPhuong.addItem("Tam Thuận");
-				cboPhuong.addItem("Tân Chính");
-				cboPhuong.addItem("Thạc Gián");
-				cboPhuong.addItem("Thanh Khê �?ông");
-				cboPhuong.addItem("Thanh Khê Tây");
-				cboPhuong.addItem("Vĩnh Trung");
-				cboPhuong.addItem("Xuân Hà");
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 491) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
-			case 3: 
+			case 3:
 				cboPhuong.removeAllItems();
-				cboPhuong.addItem("An Hải Bắc");
-				cboPhuong.addItem("An Hải �?ông");
-				cboPhuong.addItem("An Hải Tây");
-				cboPhuong.addItem("Mân Thái");
-				cboPhuong.addItem("Nại Hiên �?ông");
-				cboPhuong.addItem("Phước Mỹ");
-				cboPhuong.addItem("Thọ Quang");
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 492) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
-			case 4: 
+			case 4:
 				cboPhuong.removeAllItems();
-				cboPhuong.addItem("Hòa Hải");
-				cboPhuong.addItem("Hòa Quý");
-				cboPhuong.addItem("Khuê Mỹ");
-				cboPhuong.addItem("Mỹ An");
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 493) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
-			case 5: 
+			case 5:
 				cboPhuong.removeAllItems();
-				cboPhuong.addItem("Hòa Hiệp Bắc");
-				cboPhuong.addItem("Hòa Hiệp Nam");
-				cboPhuong.addItem("Hòa Khánh Bắc");
-				cboPhuong.addItem("Hòa Khánh Nam");
-				cboPhuong.addItem("Hòa Minh");
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 494) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
 			case 6:
 				cboPhuong.removeAllItems();
-				cboPhuong.addItem("Hòa Bắc");
-				cboPhuong.addItem("Hòa Châu");
-				cboPhuong.addItem("Hòa Khương");
-				cboPhuong.addItem("Hòa Liên");
-				cboPhuong.addItem("Hòa Nhơn");
-				cboPhuong.addItem("Hòa Ninh");
-				cboPhuong.addItem("Hòa Phong");
-				cboPhuong.addItem("Hòa Phú");
-				cboPhuong.addItem("Hòa Phước");
-				cboPhuong.addItem("Hòa Sơn");
-				cboPhuong.addItem("Hòa Tiến");
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 495) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
 			case 7:
 				cboPhuong.removeAllItems();
-				cboPhuong.addItem("Hòa An");
-				cboPhuong.addItem("Hòa Phát");
-				cboPhuong.addItem("Hòa Thọ Đông");
-				cboPhuong.addItem("Hòa Thọ Tây");
-				cboPhuong.addItem("Hòa Xuân");
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 497) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
 			case 8:
 				cboPhuong.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 498) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
 			}
 		}
-		 
-	 }
-	 private class selectPhuong1 implements ItemListener {
 
+	}
+
+	private class CboPhuong1 implements ItemListener {
 		@Override
 		public void itemStateChanged(ItemEvent e) {
-			int i = cbo.getSelectedIndex();
+			int i = cboQuan1.getSelectedIndex();
+			PhuongEntity phuong = new PhuongEntity();
 			switch (i) {
 			case 0:
-				cbo1.removeAllItems();
-				cbo1.addItem("Phường ...");
+				cboPhuong1.removeAllItems();
+				cboPhuong1.addItem("Phường ....");
 				break;
 			case 1:
-				cbo1.removeAllItems();
-				cbo1.addItem("Thanh Bình");
-				cbo1.addItem("Thuận Phước");
-				cbo1.addItem("Thạch Thang");
-				cbo1.addItem("Hải Châu 1");
-				cbo1.addItem("Hải Châu 2");
-				cbo1.addItem("Phước Ninh");
-				cbo1.addItem("Hòa Thuận Tây");
+				cboPhuong1.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 490) {
+						// cboPhuong1.addItem(phuong1.getTenPhuong());
+						cboPhuong1.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
-			case 2: 
-				cbo1.removeAllItems();
-				cbo1.addItem("An Khê");
-				cbo1.addItem("Chính Gián");
-				cbo1.addItem("Hòa Khê");
-				cbo1.addItem("Tam Thuận");
-				cbo1.addItem("Tân Chính");
-				cbo1.addItem("Thạc Gián");
-				cbo1.addItem("Thanh Khê �?ông");
-				cbo1.addItem("Thanh Khê Tây");
-				cbo1.addItem("Vĩnh Trung");
-				cbo1.addItem("Xuân Hà");
+			case 2:
+				cboPhuong1.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 491) {
+						cboPhuong1.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
-			case 3: 
-				cbo1.removeAllItems();
-				cbo1.addItem("An Hải Bắc");
-				cbo1.addItem("An Hải �?ông");
-				cbo1.addItem("An Hải Tây");
-				cbo1.addItem("Mân Thái");
-				cbo1.addItem("Nại Hiên �?ông");
-				cbo1.addItem("Phước Mỹ");
-				cbo1.addItem("Thọ Quang");
+			case 3:
+				cboPhuong1.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 492) {
+						cboPhuong1.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
-			case 4: 
-				cbo1.removeAllItems();
-				cbo1.addItem("Hòa Hải");
-				cbo1.addItem("Hòa Quý");
-				cbo1.addItem("Khuê Mỹ");
-				cbo1.addItem("Mỹ An");
+			case 4:
+				cboPhuong1.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 493) {
+						cboPhuong1.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
-			case 5: 
-				cbo1.removeAllItems();
-				cbo1.addItem("Hòa Hiệp Bắc");
-				cbo1.addItem("Hòa Hiệp Nam");
-				cbo1.addItem("Hòa Khánh Bắc");
-				cbo1.addItem("Hòa Khánh Nam");
-				cbo1.addItem("Hòa Minh");
+			case 5:
+				cboPhuong1.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 494) {
+						cboPhuong1.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
 			case 6:
-				cbo1.removeAllItems();
-				cbo1.addItem("Hòa Bắc");
-				cbo1.addItem("Hòa Châu");
-				cbo1.addItem("Hòa Khương");
-				cbo1.addItem("Hòa Liên");
-				cbo1.addItem("Hòa Nhơn");
-				cbo1.addItem("Hòa Ninh");
-				cbo1.addItem("Hòa Phong");
-				cbo1.addItem("Hòa Phú");
-				cbo1.addItem("Hòa Phước");
-				cbo1.addItem("Hòa Sơn");
-				cbo1.addItem("Hòa Tiến");
+				cboPhuong1.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 495) {
+						cboPhuong1.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
 			case 7:
-				cbo1.removeAllItems();
-				cbo1.addItem("Hòa An");
-				cbo1.addItem("Hòa Phát");
-				cbo1.addItem("Hòa Thọ Đông");
-				cbo1.addItem("Hòa Thọ Tây");
-				cbo1.addItem("Hòa Xuân");
+				cboPhuong1.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 497) {
+						cboPhuong1.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
 			case 8:
-				cbo1.removeAllItems();
+				cboPhuong1.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 498) {
+						cboPhuong1.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
 				break;
 			}
 		}
-		 
-	 }
+
+	}
+
+	private ResultSet connect() {
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from khachhang");
+			return rs;
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return null;
+	}
+
+	private class ComboItem {
+		private int value;
+		private String label;
+
+		public ComboItem(int value, String label) {
+			this.value = value;
+			this.label = label;
+		}
+
+		public int getValue() {
+			return this.value;
+		}
+
+		public String getLabel() {
+			return this.label;
+		}
+
+		@Override
+		public String toString() {
+			return label;
+		}
+	}
 }

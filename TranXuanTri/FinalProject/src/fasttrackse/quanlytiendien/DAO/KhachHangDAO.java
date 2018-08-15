@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+
 public class KhachHangDAO {
 	Statement stmt;
 	ResultSet rs;
@@ -21,25 +23,33 @@ public class KhachHangDAO {
 			System.out.println(ex);
 		}
 	}
-	public void insert(String maKhachHang,String hoTen,String diaChi, int idPhuong,int idQuan,String dienThoai, String email, String maCongToDien) {
+	public void insert(String maKhachHang,String hoTen,String diaChi, int idPhuong,int idQuan,String dienThoai, String email, int maSoCongTo) {
 		connect();
 		try {
+//			KhachHangEntity kh = new KhachHangEntity();
+//			kh.setMaKhachHang(maKhachHang);
+//			kh.setHoTen(hoTen);
+//			kh.setDiaChi(diaChi);
+//			kh.setQuan(idQuan);
+//			kh.setPhuong(idPhuong);
+//			kh.setEmail(email);
+//			kh.setMaSoCongTo(maSoCongTo);
 			stmt.executeUpdate("insert into khachhang values (\""+maKhachHang+"\",\""+hoTen+"\",\""+diaChi+"\", "
-															+ "\""+idPhuong+"\",\""+idQuan+"\",\""+dienThoai+"\",\""+email+"\",\""+maCongToDien+"\")");
+															+ "\""+idPhuong+"\",\""+idQuan+"\",\""+dienThoai+"\",\""+email+"\",\""+maSoCongTo+"\")");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	public void update(String maKhachHang,String hoTen,String diaChi, int idPhuong,int idQuan,String dienThoai, String email, String maCongToDien) {
+	public void update(String maKhachHang,String hoTen,String diaChi, int idPhuong,int idQuan,String dienThoai, String email, int maCongToDien) {
 		connect();
 		try {
-			String query = "UPDATE khachhang SET hoTen='" + hoTen + "', diaChi='"+diaChi+"',phuong='"+idPhuong+"',quan='"+idQuan+"',dienThoai='"+dienThoai+"',email='"+email+"',maCongToDien='"+maCongToDien+"' WHERE maKhachHang = '"+maKhachHang+"'";
+			String query = "UPDATE khachhang SET hoTen='" + hoTen + "', diaChi='"+diaChi+"',idphuong='"+idPhuong+"',idquan='"+idQuan+"',dienThoai='"+dienThoai+"',email='"+email+"',maCongToDien='"+maCongToDien+"' WHERE maKhachHang = '"+maKhachHang+"'";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			preparedStmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 	public void delete(String maKhachHang) {
 		connect();
 		try {

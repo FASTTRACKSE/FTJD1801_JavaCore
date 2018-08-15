@@ -5,11 +5,11 @@ public class KhachHangEntity {
 	private String maKhachHang;
 	private String hoTen;
 	private String diaChi;
-	private String phuong;
-	private String quan;
+	private int phuong;
+	private int quan;
 	private int dienThoai;
 	private String email;
-	private String maSoCongTo;
+	private int maSoCongTo;
 
 	public KhachHangEntity() {
 		super();
@@ -32,16 +32,16 @@ public class KhachHangEntity {
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
 	}
-	public String getPhuong() {
+	public int getPhuong() {
 		return phuong;
 	}
-	public void setPhuong(String phuong) {
+	public void setPhuong(int phuong) {
 		this.phuong = phuong;
 	}
-	public String getQuan() {
+	public int getQuan() {
 		return quan;
 	}
-	public void setQuan(String quan) {
+	public void setQuan(int quan) {
 		this.quan = quan;
 	}
 	public int getDienThoai() {
@@ -56,22 +56,10 @@ public class KhachHangEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getMaSoCongTo() {
+	public int getMaSoCongTo() {
 		return maSoCongTo;
 	}
-	public void setMaSoCongTo(String maSoCongTo) {
+	public void setMaSoCongTo(int maSoCongTo) {
 		this.maSoCongTo = maSoCongTo;
 	}
-	
-	public void nhapKH (String maKH, String hoTen, String diaChi, String phuong, String quan, int dienThoai, String email, String maSoCongTo) {
-
-	}
-	public void suaKH() {
-		
-	}
-	public void xoaKH() {
-		
-	}
-	
-	
 }
