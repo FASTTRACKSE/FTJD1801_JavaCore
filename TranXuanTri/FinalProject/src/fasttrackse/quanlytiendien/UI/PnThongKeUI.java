@@ -15,6 +15,7 @@ public class PnThongKeUI {
 	JPanel pnTxt = new JPanel();
 	JPanel pnTxt1 = new JPanel();
 	JComboBox<String> cbo2;
+
 	public JPanel pnThongKe() {
 		JPanel pnThongKe = new JPanel();
 		pnThongKe.setLayout(new BorderLayout());
@@ -22,28 +23,26 @@ public class PnThongKeUI {
 		pn1.setLayout(new GridLayout(3, 1));
 		pnThongKe.add(pn1, BorderLayout.NORTH);
 		Border bor2 = BorderFactory.createLineBorder(Color.GRAY);
-		TitledBorder titlebor2=	new TitledBorder(bor2, "Thống kê");
+		TitledBorder titlebor2 = new TitledBorder(bor2, "Thống kê");
 		pnThongKe.setBorder(titlebor2);
 		pnThongKe.setPreferredSize(new Dimension(800, 800));
-		JPanel pnFilter=new JPanel();
-		//pnFilter.setLayout(new BoxLayout(pnFilter, BoxLayout.X_AXIS));
+		JPanel pnFilter = new JPanel();
 		pn1.add(pnFilter);
-		
+
 		JPanel _pnTxt1 = new JPanel();
 		JPanel _pnTxt2 = new JPanel();
-		//_pnTxt1.setPreferredSize(new Dimension(300, 50));
 		JTextField msKhachHang = new JTextField(10);
-		
+
 		pnTxt.add(_pnTxt1);
 		pnTxt.add(_pnTxt2);
-		
+
 		_pnTxt1.setVisible(false);
 		_pnTxt2.setVisible(false);
-		
+
 		_pnTxt2.add(msKhachHang);
 		JPanel pnKhuVuc = new JPanel();
 		pnKhuVuc.setLayout(new GridLayout(1, 2));
-		JComboBox<String> cbo1=new JComboBox<String>();
+		JComboBox<String> cbo1 = new JComboBox<String>();
 		cbo1.addItem("Quận...");
 		cbo1.addItem("Hải Châu");
 		cbo1.addItem("Thanh Khê");
@@ -56,10 +55,10 @@ public class PnThongKeUI {
 		cbo2 = new JComboBox<String>();
 		cbo2.addItem("Phường ...");
 		cbo1.addItemListener(new ItemListener() {
-			
+
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
-				
+
 				int i = cbo1.getSelectedIndex();
 				switch (i) {
 				case 0:
@@ -76,7 +75,7 @@ public class PnThongKeUI {
 					cbo2.addItem("Phước Ninh");
 					cbo2.addItem("Hòa Thuận Tây");
 					break;
-				case 2: 
+				case 2:
 					cbo2.removeAllItems();
 					cbo2.addItem("An Khê");
 					cbo2.addItem("Chính Gián");
@@ -89,7 +88,7 @@ public class PnThongKeUI {
 					cbo2.addItem("Vĩnh Trung");
 					cbo2.addItem("Xuân Hà");
 					break;
-				case 3: 
+				case 3:
 					cbo2.removeAllItems();
 					cbo2.addItem("An Hải Bắc");
 					cbo2.addItem("An Hải �?ông");
@@ -99,14 +98,14 @@ public class PnThongKeUI {
 					cbo2.addItem("Phước Mỹ");
 					cbo2.addItem("Thọ Quang");
 					break;
-				case 4: 
+				case 4:
 					cbo2.removeAllItems();
 					cbo2.addItem("Hòa Hải");
 					cbo2.addItem("Hòa Quý");
 					cbo2.addItem("Khuê Mỹ");
 					cbo2.addItem("Mỹ An");
 					break;
-				case 5: 
+				case 5:
 					cbo2.removeAllItems();
 					cbo2.addItem("Hòa Hiệp Bắc");
 					cbo2.addItem("Hòa Hiệp Nam");
@@ -146,7 +145,7 @@ public class PnThongKeUI {
 		pnKhuVuc.add(cbo2);
 		_pnTxt1.add(pnKhuVuc);
 		JLabel kh = new JLabel("Khách hàng");
-		JComboBox<String> cbo=new JComboBox<String>();
+		JComboBox<String> cbo = new JComboBox<String>();
 		cbo.addItem("Khách hàng.....");
 		cbo.addItem("Tất cả khách hàng");
 		cbo.addItem("Theo khu vực");
@@ -155,12 +154,12 @@ public class PnThongKeUI {
 		pnFilter.add(cbo);
 		pnFilter.add(pnTxt);
 		cbo.addItemListener(new ItemListener() {
-			
+
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-			
+
 				int n = cbo.getSelectedIndex();
-				switch(n) {
+				switch (n) {
 				case 0:
 					_pnTxt1.setVisible(false);
 					_pnTxt2.setVisible(false);
@@ -180,25 +179,24 @@ public class PnThongKeUI {
 				}
 			}
 		});
-		
-		JPanel pnFilter1=new JPanel();
-		//pnFilter1.setLayout(new GridLayout(1, 3));
+
+		JPanel pnFilter1 = new JPanel();
 		pn1.add(pnFilter1);
 		JLabel bill = new JLabel("Biên lai");
 		JPanel _pnTxt3 = new JPanel();
 		JPanel _pnTxt4 = new JPanel();
 		JPanel _pnTxt5 = new JPanel();
-		
-//		JTextField ms = new JTextField(20);
-		
+
+		// JTextField ms = new JTextField(20);
+
 		pnFilter1.add(bill);
 		pnTxt1.add(_pnTxt3);
 		pnTxt1.add(_pnTxt4);
 		pnTxt1.add(_pnTxt5);
-		
+
 		JTextField year = new JTextField(5);
 		_pnTxt3.add(year);
-		
+
 		JTextField month1 = new JTextField(5);
 		JLabel m1 = new JLabel("/");
 		JTextField year1 = new JTextField(5);
@@ -213,37 +211,33 @@ public class PnThongKeUI {
 		_pnTxt4.add(month2);
 		_pnTxt4.add(m3);
 		_pnTxt4.add(year2);
-		
+
 		JTextField month3 = new JTextField(5);
 		JLabel m4 = new JLabel("/");
 		JTextField year4 = new JTextField(5);
 		_pnTxt5.add(month3);
 		_pnTxt5.add(m4);
 		_pnTxt5.add(year4);
-		
-		
+
 		_pnTxt3.setVisible(false);
 		_pnTxt4.setVisible(false);
 		_pnTxt5.setVisible(false);
-//		
-//		_pnTxt2.add(msKhachHang);
-//		JPanel _pnFilter1 = new JPanel();
-//		_pnFilter1.setLayout(new GridLayout(1, 2));
-		JComboBox<String> cbo3=new JComboBox<String>();
+
+		JComboBox<String> cbo3 = new JComboBox<String>();
 		cbo3.addItem("Thời gian.....");
 		cbo3.addItem("Năm:");
 		cbo3.addItem("Khoảng thời gian:");
 		cbo3.addItem("Kỳ:");
-		pnFilter1.add(cbo3);	
+		pnFilter1.add(cbo3);
 
 		pnFilter1.add(pnTxt1);
 		cbo3.addItemListener(new ItemListener() {
-			
+
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-			
+
 				int i = cbo3.getSelectedIndex();
-				switch(i) {
+				switch (i) {
 				case 0:
 					_pnTxt3.setVisible(false);
 					_pnTxt4.setVisible(false);
@@ -283,9 +277,8 @@ public class PnThongKeUI {
 		dm1.addColumn("Chu kì");
 		dm1.addColumn("Chỉ số");
 		dm1.addColumn("Số tiền");
-		final JTable tbl1=new JTable(dm1);
-		//dm.addRow(new String[]{"ID_002","25/07/2018","07/2018","0001"});
-		JScrollPane sc=new JScrollPane(tbl1);
+		final JTable tbl1 = new JTable(dm1);
+		JScrollPane sc = new JScrollPane(tbl1);
 		pnThongKe.add(sc, BorderLayout.CENTER);
 		return pnThongKe;
 	}

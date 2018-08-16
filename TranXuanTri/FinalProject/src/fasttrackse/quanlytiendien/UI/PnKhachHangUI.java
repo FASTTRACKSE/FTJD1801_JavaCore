@@ -123,15 +123,15 @@ public class PnKhachHangUI {
 				txtDienThoai.setText(dienThoai);
 				txtEmail.setText(email);
 				cboMaSoCongTo.setSelectedIndex(maCongTo);
-				
+
 				for (int i = 0; i < cboPhuong1.getItemCount(); i++) {
 					if (((ComboItem) (cboPhuong1.getItemAt(i))).getValue() == idPhuong) {
 						cboPhuong1.setSelectedIndex(i);
 					}
 				}
 
-//				cboPhuong1.setSelectedIndex(idPhuong);
-//				cboPhuong1.setSelectedItem(new ComboItem(value, label));
+				// cboPhuong1.setSelectedIndex(idPhuong);
+				// cboPhuong1.setSelectedItem(new ComboItem(value, label));
 			}
 		});
 		tbl.addKeyListener(new KeyListener() {
@@ -186,18 +186,27 @@ public class PnKhachHangUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int j = ((ComboItem) cboPhuong.getSelectedItem()).getValue();
-				int i = ((ComboItem) cboQuan.getSelectedItem()).getValue();
 				int n = cboQuan.getSelectedIndex();
-				
-				try {
-//					if (n == 0) {
-//						dm.setRowCount(0);
-//						while (rs.next()) {
-//							dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-//									rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
-//						}
-//					} else {
+				if (n == 0) {
+					try {
+						dm.setRowCount(0);
+						String sql = "select * from khachhang";
+						rs = stmt.executeQuery(sql);
+						while (rs.next()) {
+							dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+									rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
+							tbl.setModel(dm);
+							dm.fireTableDataChanged();
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+				} else {
+					int j = ((ComboItem) cboPhuong.getSelectedItem()).getValue();
+					int i = ((ComboItem) cboQuan.getSelectedItem()).getValue();
+					try {
 						String sql = "select * from khachhang where idquan = '" + i + "'";
 						rs = stmt.executeQuery(sql);
 						dm.setRowCount(0);
@@ -208,13 +217,14 @@ public class PnKhachHangUI {
 											rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
 											rs.getString(8) });
 								}
-//							}
+
+							}
+							tbl.setModel(dm);
+							dm.fireTableDataChanged();
 						}
-						tbl.setModel(dm);
-						dm.fireTableDataChanged();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
 					}
-				} catch (SQLException e1) {
-					e1.printStackTrace();
 				}
 			}
 		});
@@ -480,7 +490,6 @@ public class PnKhachHangUI {
 				break;
 			}
 		}
-
 	}
 
 	private class CboPhuong1 implements ItemListener {
@@ -581,17 +590,25 @@ public class PnKhachHangUI {
 		private int value;
 		private String label;
 
-		public ComboItem(int value, String label) {
-			this.value = value;
+		public String getLabel() {
+			return label;
+		}
+
+		public void setLabel(String label) {
 			this.label = label;
+		}
+
+		public void setValue(int value) {
+			this.value = value;
 		}
 
 		public int getValue() {
 			return this.value;
 		}
 
-		public String getLabel() {
-			return this.label;
+		public ComboItem(int value, String label) {
+			this.value = value;
+			this.label = label;
 		}
 
 		@Override

@@ -11,8 +11,7 @@ import javax.swing.JComboBox;
 public class QuanEntity {
 	private int maQh;
 	private String tenQuan;
-	
-	
+
 	public int getMaQh() {
 		return maQh;
 	}
@@ -31,21 +30,19 @@ public class QuanEntity {
 
 	public ArrayList<QuanEntity> quan() {
 		try {
-//			QuanEntity quan = new QuanEntity();
-			
 			ArrayList<QuanEntity> quanList = new ArrayList<QuanEntity>();
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien","root","");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
 			Statement stmt = con.createStatement();
 			ResultSet rs1 = stmt.executeQuery("Select * from devvn_quanhuyen");
-			while (rs1.next()) {	
-				if (rs1.getInt(4)==48) {
+			while (rs1.next()) {
+				if (rs1.getInt(4) == 48) {
 					QuanEntity quan = new QuanEntity();
 					quan.setMaQh(rs1.getInt(1));
 					quan.setTenQuan(rs1.getString(2));
 					quanList.add(quan);
 				}
-				
+
 			}
 			con.close();
 			return quanList;
