@@ -11,6 +11,7 @@ public class QuanLySinhVien {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<SinhVienFpt> sinhVienList = new ArrayList<SinhVienFpt>();
+		
 		while (true) {
 			System.out.println("-------");
 			System.out.println("1. Nhap danh sach sinh vien");
