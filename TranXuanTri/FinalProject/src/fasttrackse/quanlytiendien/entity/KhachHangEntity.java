@@ -6,7 +6,7 @@ public class KhachHangEntity {
 	private String diaChi;
 	private int phuong;
 	private int quan;
-	private int dienThoai;
+	private String dienThoai;
 	private String email;
 	private int maSoCongTo;
 
@@ -54,11 +54,11 @@ public class KhachHangEntity {
 		this.quan = quan;
 	}
 
-	public int getDienThoai() {
+	public String getDienThoai() {
 		return dienThoai;
 	}
 
-	public void setDienThoai(int dienThoai) {
+	public void setDienThoai(String dienThoai) {
 		this.dienThoai = dienThoai;
 	}
 

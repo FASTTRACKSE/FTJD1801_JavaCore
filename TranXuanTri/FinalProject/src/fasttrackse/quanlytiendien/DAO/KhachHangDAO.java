@@ -26,14 +26,6 @@ public class KhachHangDAO {
 	public void insert(String maKhachHang,String hoTen,String diaChi, int idPhuong,int idQuan,String dienThoai, String email, int maSoCongTo) {
 		connect();
 		try {
-//			KhachHangEntity kh = new KhachHangEntity();
-//			kh.setMaKhachHang(maKhachHang);
-//			kh.setHoTen(hoTen);
-//			kh.setDiaChi(diaChi);
-//			kh.setQuan(idQuan);
-//			kh.setPhuong(idPhuong);
-//			kh.setEmail(email);
-//			kh.setMaSoCongTo(maSoCongTo);
 			stmt.executeUpdate("insert into khachhang values (\""+maKhachHang+"\",\""+hoTen+"\",\""+diaChi+"\", "
 															+ "\""+idPhuong+"\",\""+idQuan+"\",\""+dienThoai+"\",\""+email+"\",\""+maSoCongTo+"\")");
 		} catch (SQLException e) {

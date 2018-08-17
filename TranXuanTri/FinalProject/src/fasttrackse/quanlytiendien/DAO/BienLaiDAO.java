@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.Collections;
+import java.util.Comparator;
 import fasttrackse.quanlytiendien.entity.BienLaiEntity;
 
 public class BienLaiDAO {
@@ -87,27 +88,6 @@ public class BienLaiDAO {
 		return year + "-" + (month + 1) + "-" + day;
 	}
 
-	public int getDay() {
-		connect();
-		Date date;
-		try {
-			while (rs.next()) {
-				date = rs.getDate(3);
-				// System.out.println(rs.getDate(2));
-				Calendar cal = Calendar.getInstance();
-				cal.setTime(date);
-				int year = cal.get(Calendar.YEAR);
-				int month = cal.get(Calendar.MONTH) + 1;
-				int day = cal.get(Calendar.DAY_OF_MONTH);
-				// System.out.println(day);
-				return day;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
-
 	public double tinhTien(double soDien) {
 		if (soDien <= 50) {
 			return 1.549 * (soDien);
@@ -125,6 +105,18 @@ public class BienLaiDAO {
 
 	public double getTienDien(int maCongTo, int chiSo) {
 		ArrayList<BienLaiEntity> bienLaiList = taoBienLaiList();
+
+		Collections.sort(bienLaiList, new Comparator<BienLaiEntity>() {
+			public int compare(BienLaiEntity sv1, BienLaiEntity sv2) {
+				if (sv1.getChiSoCongTo() > sv2.getChiSoCongTo()) {
+					return -1;
+				} else if (sv1.getChiSoCongTo() > sv2.getChiSoCongTo()) {
+					return 0;
+				} else
+					return 1;
+			}
+		});
+
 		for (BienLaiEntity bl : bienLaiList) {
 			if (bl.getMaSoCongToDien() == maCongTo) {
 				if (bl.getChiSoCongTo() < chiSo) {
@@ -150,8 +142,6 @@ public class BienLaiDAO {
 				bienLai.setChuKiNhap(rs1.getDate(4));
 				bienLai.setMaBienLai(rs1.getInt(1));
 				bienLai.setTienDien(rs1.getDouble(6));
-				System.out.println(bienLai.getMaSoCongToDien());
-				System.out.println(bienLai.getChiSoCongTo());
 				bienLaiList.add(bienLai);
 			}
 			return bienLaiList;

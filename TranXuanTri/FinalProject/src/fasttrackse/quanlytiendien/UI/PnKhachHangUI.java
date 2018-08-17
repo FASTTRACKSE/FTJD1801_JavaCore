@@ -4,13 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-
 import fasttrackse.quanlytiendien.DAO.KhachHangDAO;
+import fasttrackse.quanlytiendien.entity.ComboItem;
 import fasttrackse.quanlytiendien.entity.PhuongEntity;
 import fasttrackse.quanlytiendien.entity.QuanEntity;
 
@@ -123,9 +122,8 @@ public class PnKhachHangUI {
 				txtDienThoai.setText(dienThoai);
 				txtEmail.setText(email);
 				cboMaSoCongTo.setSelectedIndex(maCongTo);
-
 				for (int i = 0; i < cboPhuong1.getItemCount(); i++) {
-					if (((ComboItem) (cboPhuong1.getItemAt(i))).getValue() == idPhuong) {
+					if (((ComboItem) (cboPhuong1.getItemAt(i))).getId() == idPhuong) {
 						cboPhuong1.setSelectedIndex(i);
 					}
 				}
@@ -147,16 +145,48 @@ public class PnKhachHangUI {
 				String dienThoai = (String) tbl.getValueAt(row, 5);
 				String email = (String) tbl.getValueAt(row, 6);
 				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 7));
-				int quan = Integer.parseInt((String) tbl.getValueAt(row, 4));
-				int phuong = Integer.parseInt((String) tbl.getValueAt(row, 3));
+				int idQuan = Integer.parseInt((String) tbl.getValueAt(row, 4));
+				int idPhuong = Integer.parseInt((String) tbl.getValueAt(row, 3));
+				switch (idQuan) {
+				case 490:
+					cboQuan1.setSelectedIndex(1);
+					break;
+				case 491:
+					cboQuan1.setSelectedIndex(2);
+					break;
+				case 492:
+					cboQuan1.setSelectedIndex(3);
+					break;
+				case 493:
+					cboQuan1.setSelectedIndex(4);
+					break;
+				case 494:
+					cboQuan1.setSelectedIndex(5);
+					break;
+				case 495:
+					cboQuan1.setSelectedIndex(6);
+					break;
+				case 496:
+					cboQuan1.setSelectedIndex(7);
+					break;
+				case 497:
+					cboQuan1.setSelectedIndex(8);
+					break;
+				case 498:
+					cboQuan1.setSelectedIndex(5);
+					break;
+				}
 				txtMaKH.setText(maKH);
 				txtHoTen.setText(hoTen);
 				txtDiaChi.setText(diaChi);
 				txtDienThoai.setText(dienThoai);
 				txtEmail.setText(email);
 				cboMaSoCongTo.setSelectedIndex(maCongTo);
-				cboQuan1.setSelectedIndex(quan);
-				cboPhuong1.setSelectedIndex(phuong);
+				for (int i = 0; i < cboPhuong1.getItemCount(); i++) {
+					if (((ComboItem) (cboPhuong1.getItemAt(i))).getId() == idPhuong) {
+						cboPhuong1.setSelectedIndex(i);
+					}
+				}
 			}
 
 			public void keyPressed(KeyEvent e) {
@@ -204,8 +234,8 @@ public class PnKhachHangUI {
 					}
 
 				} else {
-					int j = ((ComboItem) cboPhuong.getSelectedItem()).getValue();
-					int i = ((ComboItem) cboQuan.getSelectedItem()).getValue();
+					int j = ((ComboItem) cboPhuong.getSelectedItem()).getId();
+					int i = ((ComboItem) cboQuan.getSelectedItem()).getId();
 					try {
 						String sql = "select * from khachhang where idquan = '" + i + "'";
 						rs = stmt.executeQuery(sql);
@@ -243,8 +273,8 @@ public class PnKhachHangUI {
 				String diaChi = txtDiaChi.getText();
 				ComboItem quan = (ComboItem) cboQuan1.getSelectedItem();
 				ComboItem phuong = (ComboItem) cboPhuong1.getSelectedItem();
-				int idPhuong = phuong.getValue();
-				int idQuan = quan.getValue();
+				int idPhuong = phuong.getId();
+				int idQuan = quan.getId();
 				String dienThoai = txtDienThoai.getText();
 				String email = txtEmail.getText();
 				int maCongToDien = cboMaSoCongTo.getSelectedIndex();
@@ -279,8 +309,8 @@ public class PnKhachHangUI {
 				String diaChi = txtDiaChi.getText();
 				ComboItem quan = (ComboItem) cboQuan1.getSelectedItem();
 				ComboItem phuong = (ComboItem) cboPhuong1.getSelectedItem();
-				int idPhuong = phuong.getValue();
-				int idQuan = quan.getValue();
+				int idPhuong = phuong.getId();
+				int idQuan = quan.getId();
 				String dienThoai = txtDienThoai.getText();
 				String email = txtEmail.getText();
 				int maCongToDien = cboMaSoCongTo.getSelectedIndex();
@@ -586,34 +616,4 @@ public class PnKhachHangUI {
 		return null;
 	}
 
-	private class ComboItem {
-		private int value;
-		private String label;
-
-		public String getLabel() {
-			return label;
-		}
-
-		public void setLabel(String label) {
-			this.label = label;
-		}
-
-		public void setValue(int value) {
-			this.value = value;
-		}
-
-		public int getValue() {
-			return this.value;
-		}
-
-		public ComboItem(int value, String label) {
-			this.value = value;
-			this.label = label;
-		}
-
-		@Override
-		public String toString() {
-			return label;
-		}
-	}
 }

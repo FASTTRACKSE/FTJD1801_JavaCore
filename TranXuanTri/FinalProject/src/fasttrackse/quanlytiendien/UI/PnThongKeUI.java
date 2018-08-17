@@ -4,19 +4,52 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import fasttrackse.quanlytiendien.DAO.ThongKeDAO;
+import fasttrackse.quanlytiendien.entity.BienLaiEntity;
+import fasttrackse.quanlytiendien.entity.ComboItem;
+import fasttrackse.quanlytiendien.entity.KhachHangEntity;
+import fasttrackse.quanlytiendien.entity.PhuongEntity;
+import fasttrackse.quanlytiendien.entity.QuanEntity;
+
 public class PnThongKeUI {
 	JPanel pnTxt = new JPanel();
 	JPanel pnTxt1 = new JPanel();
-	JComboBox<String> cbo2;
+	JComboBox cboPhuong;
+	JComboBox cboQuan;
+	JComboBox cbo;
+	JComboBox cbo3;
+	JComboBox cboNam;
+	JComboBox cboNam1;
+	JComboBox cboThang1;
+	JTextField month1;
+	JTextField year1;
+	JTextField month2;
+	JTextField year2;
+	JTextField msKhachHang;
+	DefaultTableModel dm1;
+	ArrayList<BienLaiEntity> blList;
+	ArrayList<KhachHangEntity> khList;
 
 	public JPanel pnThongKe() {
+		ThongKeDAO thongKe = new ThongKeDAO();
+		blList = thongKe.taoListBL();
+		khList = thongKe.taoListKH();
 		JPanel pnThongKe = new JPanel();
 		pnThongKe.setLayout(new BorderLayout());
 		JPanel pn1 = new JPanel();
@@ -31,7 +64,7 @@ public class PnThongKeUI {
 
 		JPanel _pnTxt1 = new JPanel();
 		JPanel _pnTxt2 = new JPanel();
-		JTextField msKhachHang = new JTextField(10);
+		msKhachHang = new JTextField(10);
 
 		pnTxt.add(_pnTxt1);
 		pnTxt.add(_pnTxt2);
@@ -42,110 +75,18 @@ public class PnThongKeUI {
 		_pnTxt2.add(msKhachHang);
 		JPanel pnKhuVuc = new JPanel();
 		pnKhuVuc.setLayout(new GridLayout(1, 2));
-		JComboBox<String> cbo1 = new JComboBox<String>();
-		cbo1.addItem("Quận...");
-		cbo1.addItem("Hải Châu");
-		cbo1.addItem("Thanh Khê");
-		cbo1.addItem("Sơn Trà");
-		cbo1.addItem("Ngũ Hành Sơn");
-		cbo1.addItem("Liên Chiểu");
-		cbo1.addItem("Hòa Vang");
-		cbo1.addItem("Cẩm Lệ");
-		cbo1.addItem("Hoàng Sa");
-		cbo2 = new JComboBox<String>();
-		cbo2.addItem("Phường ...");
-		cbo1.addItemListener(new ItemListener() {
+		cboQuan = new JComboBox<String>();
+		cboQuan.addItem(new ComboItem(0, "Quận..."));
+		cboQuan();
+		cboPhuong = new JComboBox<String>();
+		cboPhuong.addItem(new ComboItem(0, "Phường..."));
 
-			@Override
-			public void itemStateChanged(ItemEvent arg0) {
-
-				int i = cbo1.getSelectedIndex();
-				switch (i) {
-				case 0:
-					cbo2.removeAllItems();
-					cbo2.addItem("Phường ...");
-					break;
-				case 1:
-					cbo2.removeAllItems();
-					cbo2.addItem("Thanh Bình");
-					cbo2.addItem("Thuận Phước");
-					cbo2.addItem("Thạch Thang");
-					cbo2.addItem("Hải Châu 1");
-					cbo2.addItem("Hải Châu 2");
-					cbo2.addItem("Phước Ninh");
-					cbo2.addItem("Hòa Thuận Tây");
-					break;
-				case 2:
-					cbo2.removeAllItems();
-					cbo2.addItem("An Khê");
-					cbo2.addItem("Chính Gián");
-					cbo2.addItem("Hòa Khê");
-					cbo2.addItem("Tam Thuận");
-					cbo2.addItem("Tân Chính");
-					cbo2.addItem("Thạc Gián");
-					cbo2.addItem("Thanh Khê �?ông");
-					cbo2.addItem("Thanh Khê Tây");
-					cbo2.addItem("Vĩnh Trung");
-					cbo2.addItem("Xuân Hà");
-					break;
-				case 3:
-					cbo2.removeAllItems();
-					cbo2.addItem("An Hải Bắc");
-					cbo2.addItem("An Hải �?ông");
-					cbo2.addItem("An Hải Tây");
-					cbo2.addItem("Mân Thái");
-					cbo2.addItem("Nại Hiên �?ông");
-					cbo2.addItem("Phước Mỹ");
-					cbo2.addItem("Thọ Quang");
-					break;
-				case 4:
-					cbo2.removeAllItems();
-					cbo2.addItem("Hòa Hải");
-					cbo2.addItem("Hòa Quý");
-					cbo2.addItem("Khuê Mỹ");
-					cbo2.addItem("Mỹ An");
-					break;
-				case 5:
-					cbo2.removeAllItems();
-					cbo2.addItem("Hòa Hiệp Bắc");
-					cbo2.addItem("Hòa Hiệp Nam");
-					cbo2.addItem("Hòa Khánh Bắc");
-					cbo2.addItem("Hòa Khánh Nam");
-					cbo2.addItem("Hòa Minh");
-					break;
-				case 6:
-					cbo2.removeAllItems();
-					cbo2.addItem("Hòa Bắc");
-					cbo2.addItem("Hòa Châu");
-					cbo2.addItem("Hòa Khương");
-					cbo2.addItem("Hòa Liên");
-					cbo2.addItem("Hòa Nhơn");
-					cbo2.addItem("Hòa Ninh");
-					cbo2.addItem("Hòa Phong");
-					cbo2.addItem("Hòa Phú");
-					cbo2.addItem("Hòa Phước");
-					cbo2.addItem("Hòa Sơn");
-					cbo2.addItem("Hòa Tiến");
-					break;
-				case 7:
-					cbo2.removeAllItems();
-					cbo2.addItem("Hòa An");
-					cbo2.addItem("Hòa Phát");
-					cbo2.addItem("Hòa Thọ Đông");
-					cbo2.addItem("Hòa Thọ Tây");
-					cbo2.addItem("Hòa Xuân");
-					break;
-				case 8:
-					cbo2.removeAllItems();
-					break;
-				}
-			}
-		});
-		pnKhuVuc.add(cbo1);
-		pnKhuVuc.add(cbo2);
+		cboQuan.addItemListener(new CboPhuong());
+		pnKhuVuc.add(cboQuan);
+		pnKhuVuc.add(cboPhuong);
 		_pnTxt1.add(pnKhuVuc);
 		JLabel kh = new JLabel("Khách hàng");
-		JComboBox<String> cbo = new JComboBox<String>();
+		cbo = new JComboBox<String>();
 		cbo.addItem("Khách hàng.....");
 		cbo.addItem("Tất cả khách hàng");
 		cbo.addItem("Theo khu vực");
@@ -194,16 +135,24 @@ public class PnThongKeUI {
 		pnTxt1.add(_pnTxt4);
 		pnTxt1.add(_pnTxt5);
 
-		JTextField year = new JTextField(5);
-		_pnTxt3.add(year);
+		cboNam = new JComboBox();
+		int tam = 0;
+		for (BienLaiEntity bl : blList) {
+			int nam = getYear(bl.getNgayNhap());
+			if (nam != tam) {
+				cboNam.addItem(nam);
+				tam = nam;
+			}
+		}
+		_pnTxt3.add(cboNam);
 
-		JTextField month1 = new JTextField(5);
+		month1 = new JTextField(5);
 		JLabel m1 = new JLabel("/");
-		JTextField year1 = new JTextField(5);
+		year1 = new JTextField(5);
 		JLabel m2 = new JLabel(" - ");
-		JTextField month2 = new JTextField(5);
+		month2 = new JTextField(5);
 		JLabel m3 = new JLabel("/");
-		JTextField year2 = new JTextField(5);
+		year2 = new JTextField(5);
 		_pnTxt4.add(month1);
 		_pnTxt4.add(m1);
 		_pnTxt4.add(year1);
@@ -212,18 +161,32 @@ public class PnThongKeUI {
 		_pnTxt4.add(m3);
 		_pnTxt4.add(year2);
 
-		JTextField month3 = new JTextField(5);
+		cboNam1 = new JComboBox();
+		int tam1 = 0;
+		// cboNam1.addItem("Năm .....");
+		for (BienLaiEntity bl : blList) {
+			int nam = getYear(bl.getChuKiNhap());
+			if (nam != tam1) {
+				cboNam1.addItem(nam);
+				tam1 = nam;
+			}
+		}
 		JLabel m4 = new JLabel("/");
-		JTextField year4 = new JTextField(5);
-		_pnTxt5.add(month3);
+
+		cboThang1 = new JComboBox();
+		// cboThang1.addItem("Tháng ....");
+		for (int i = 1; i <= 12; i++) {
+			cboThang1.addItem(i);
+		}
+		_pnTxt5.add(cboNam1);
 		_pnTxt5.add(m4);
-		_pnTxt5.add(year4);
+		_pnTxt5.add(cboThang1);
 
 		_pnTxt3.setVisible(false);
 		_pnTxt4.setVisible(false);
 		_pnTxt5.setVisible(false);
 
-		JComboBox<String> cbo3 = new JComboBox<String>();
+		cbo3 = new JComboBox<String>();
 		cbo3.addItem("Thời gian.....");
 		cbo3.addItem("Năm:");
 		cbo3.addItem("Khoảng thời gian:");
@@ -261,12 +224,13 @@ public class PnThongKeUI {
 				}
 			}
 		});
+
 		JPanel pnBtn = new JPanel();
-		JButton search = new JButton("Search");
-		search.setSize(30, 40);
-		pnBtn.add(search);
+		JButton btnSearch = new JButton("Search");
+		btnSearch.setSize(30, 40);
+		pnBtn.add(btnSearch);
 		pn1.add(pnBtn);
-		DefaultTableModel dm1 = new DefaultTableModel();
+		dm1 = new DefaultTableModel();
 		dm1.addColumn("Mã khách hàng");
 		dm1.addColumn("Mã số công tơ");
 		dm1.addColumn("Họ tên");
@@ -278,9 +242,305 @@ public class PnThongKeUI {
 		dm1.addColumn("Chỉ số");
 		dm1.addColumn("Số tiền");
 		final JTable tbl1 = new JTable(dm1);
+		dm1.setRowCount(0);
+		for (BienLaiEntity bl : blList) {
+			for (KhachHangEntity kh1 : khList) {
+				if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+					showResult(bl, kh1);
+				}
+			}
+		}
+		tbl1.setModel(dm1);
+		dm1.fireTableDataChanged();
 		JScrollPane sc = new JScrollPane(tbl1);
 		pnThongKe.add(sc, BorderLayout.CENTER);
+		btnSearch.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				int n = cbo.getSelectedIndex();
+				int i = cbo3.getSelectedIndex();
+				switch (n) {
+				case 0:
+					dm1.setRowCount(0);
+					for (BienLaiEntity bl : blList) {
+						for (KhachHangEntity kh1 : khList) {
+							if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+								showResult(bl, kh1);
+							}
+						}
+					}
+					tbl1.setModel(dm1);
+					dm1.fireTableDataChanged();
+					break;
+				case 1:
+					dm1.setRowCount(0);
+					for (KhachHangEntity kh1 : khList) {
+						for (BienLaiEntity bl : blList) {
+							switch (i) {
+							case 1:
+								if (((int) (cboNam.getSelectedItem())) == getYear(bl.getNgayNhap())) {
+									if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+										showResult(bl, kh1);
+									}
+								}
+								break;
+							case 2:
+								int thang1 = Integer.parseInt(month1.getText());
+								int nam1 = Integer.parseInt(year1.getText());
+								int thang2 = Integer.parseInt(month2.getText());
+								int nam2 = Integer.parseInt(year2.getText());
+								int nam = getYear(bl.getNgayNhap());
+								int thang = getMonth(bl.getNgayNhap());
+								if ((nam1 <= nam) && (nam <= nam2)) {
+									if ((thang1 <= thang) && (thang <= thang2)) {
+										if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+											showResult(bl, kh1);
+										}
+									}
+								}
+								break;
+							case 3:
+								if (((int) cboNam1.getSelectedItem()) == getYear(bl.getChuKiNhap())) {
+									if (((int) cboThang1.getSelectedItem()) == getMonth(bl.getChuKiNhap())) {
+										if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+											showResult(bl, kh1);
+										}
+									}
+								}
+								break;
+							}
+						}
+					}
+					tbl1.setModel(dm1);
+					dm1.fireTableDataChanged();
+					break;
+				case 2:
+					dm1.setRowCount(0);
+					int index = cboQuan.getSelectedIndex();
+					if (index == 0) {
+						for (BienLaiEntity bl : blList) {
+							for (KhachHangEntity kh1 : khList) {
+								if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+									showResult(bl, kh1);
+								}
+							}
+						}
+					} else {
+						int phuong = ((ComboItem) cboPhuong.getSelectedItem()).getId();
+						int quan = ((ComboItem) cboQuan.getSelectedItem()).getId();
+						for (BienLaiEntity bl : blList) {
+							for (KhachHangEntity kh1 : khList) {
+								if ((kh1.getQuan() == quan) && (kh1.getPhuong() == phuong)) {
+									switch (i) {
+									case 1:
+										if (((int) (cboNam.getSelectedItem())) == getYear(bl.getNgayNhap())) {
+											if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+												showResult(bl, kh1);
+											}
+										}
+										break;
+									case 2:
+										int thang1 = Integer.parseInt(month1.getText());
+										int nam1 = Integer.parseInt(year1.getText());
+										int thang2 = Integer.parseInt(month2.getText());
+										int nam2 = Integer.parseInt(year2.getText());
+										int nam = getYear(bl.getNgayNhap());
+										int thang = getMonth(bl.getNgayNhap());
+										if ((nam1 <= nam) && (nam <= nam2)) {
+											if ((thang1 <= thang) && (thang <= thang2)) {
+												if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+													showResult(bl, kh1);
+												}
+											}
+										}
+										break;
+									case 3:
+										if (((int) cboNam1.getSelectedItem()) == getYear(bl.getChuKiNhap())) {
+											if (((int) cboThang1.getSelectedItem()) == getMonth(bl.getChuKiNhap())) {
+												if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+													showResult(bl, kh1);
+												}
+											}
+										}
+										break;
+									}
+								}
+							}
+						}
+					}
+					tbl1.setModel(dm1);
+					dm1.fireTableDataChanged();
+					break;
+				case 3:
+					dm1.setRowCount(0);
+					String idKH = msKhachHang.getText();
+					for (BienLaiEntity bl : blList) {
+						for (KhachHangEntity kh1 : khList) {
+							if (idKH.equals(kh1.getMaKhachHang())) {
+								switch (i) {
+								case 1:
+									if (((int) (cboNam.getSelectedItem())) == getYear(bl.getNgayNhap())) {
+										if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+											showResult(bl, kh1);
+										}
+									}
+									break;
+								case 2:
+									int thang1 = Integer.parseInt(month1.getText());
+									int nam1 = Integer.parseInt(year1.getText());
+									int thang2 = Integer.parseInt(month2.getText());
+									int nam2 = Integer.parseInt(year2.getText());
+									int nam = getYear(bl.getNgayNhap());
+									int thang = getMonth(bl.getNgayNhap());
+									if ((nam1 <= nam) && (nam <= nam2)) {
+										if ((thang1 <= thang) && (thang <= thang2)) {
+											if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+												showResult(bl, kh1);
+											}
+										}
+									}
+									break;
+								case 3:
+									if (((int) cboNam1.getSelectedItem()) == getYear(bl.getChuKiNhap())) {
+										if (((int) cboThang1.getSelectedItem()) == getMonth(bl.getChuKiNhap())) {
+											if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+												showResult(bl, kh1);
+											}
+										}
+									}
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		});
 		return pnThongKe;
 	}
 
+	private void cboQuan() {
+		QuanEntity quan = new QuanEntity();
+		quan.quan();
+		for (QuanEntity quan1 : quan.quan()) {
+			cboQuan.addItem(new ComboItem(quan1.getMaQh(), quan1.getTenQuan()));
+		}
+	}
+
+	private class CboPhuong implements ItemListener {
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			// TODO Auto-generated method stub
+			int i = cboQuan.getSelectedIndex();
+			PhuongEntity phuong = new PhuongEntity();
+			switch (i) {
+			case 0:
+				cboPhuong.removeAllItems();
+				cboPhuong.addItem("Phường ....");
+				break;
+			case 1:
+				cboPhuong.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 490) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+
+					}
+				}
+				break;
+			case 2:
+				cboPhuong.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 491) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
+				break;
+			case 3:
+				cboPhuong.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 492) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
+				break;
+			case 4:
+				cboPhuong.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 493) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
+				break;
+			case 5:
+				cboPhuong.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 494) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
+				break;
+			case 6:
+				cboPhuong.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 495) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
+				break;
+			case 7:
+				cboPhuong.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 497) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
+				break;
+			case 8:
+				cboPhuong.removeAllItems();
+				for (PhuongEntity phuong1 : phuong.phuong()) {
+					if (phuong1.getMaQuan() == 498) {
+						cboPhuong.addItem(new ComboItem(phuong1.getMaPhuong(), phuong1.getTenPhuong()));
+					}
+				}
+				break;
+			}
+		}
+	}
+
+	private int getDay(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+		return day;
+	}
+
+	private int getMonth(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		int month = cal.get(Calendar.MONTH) + 1;
+		return month;
+	}
+
+	private int getYear(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		int year = cal.get(Calendar.YEAR);
+		return year;
+	}
+
+	private void showResult(BienLaiEntity bl, KhachHangEntity kh) {
+		int year = getYear(bl.getNgayNhap());
+		int month = getMonth(bl.getNgayNhap());
+		int day = getDay(bl.getNgayNhap());
+		int namCK = getYear(bl.getChuKiNhap());
+		int thangCK = getMonth(bl.getChuKiNhap());
+		String ngayNhap = day + "-" + month + "-" + year;
+		String chuKiNhap = thangCK + "-" + namCK;
+		dm1.addRow(new String[] { kh.getMaKhachHang(), String.valueOf(kh.getMaSoCongTo()), kh.getHoTen(),
+				kh.getDiaChi(), String.valueOf(kh.getPhuong()), String.valueOf(kh.getQuan()), ngayNhap, chuKiNhap,
+				String.valueOf(bl.getChiSoCongTo()), String.valueOf(bl.getTienDien()) });
+
+	}
 }

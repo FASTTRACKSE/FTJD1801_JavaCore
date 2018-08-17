@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.sql.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.*;
@@ -13,6 +14,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import fasttrackse.quanlytiendien.DAO.BienLaiDAO;
+import fasttrackse.quanlytiendien.DAO.ThongKeDAO;
+import fasttrackse.quanlytiendien.entity.KhachHangEntity;
 
 public class PnBienLaiUI {
 	ResultSet rs;
@@ -43,10 +46,28 @@ public class PnBienLaiUI {
 		final JTable tbl = new JTable(dm);
 		BienLaiDAO connect = new BienLaiDAO();
 		rs = connect.connect1();
+		ThongKeDAO thongKe = new ThongKeDAO();
+		ArrayList<KhachHangEntity> khList = thongKe.taoListKH();
+
 		try {
 			while (rs.next()) {
-				dm.addRow(new String[] { rs.getString(1), null, rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6) });
+				for (KhachHangEntity kh1 : khList) {
+					if (kh1.getMaSoCongTo() == rs.getInt(2)) {
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(rs.getDate(3));
+						int year = cal.get(Calendar.YEAR);
+						int month = cal.get(Calendar.MONTH) + 1;
+						int day = cal.get(Calendar.DAY_OF_MONTH);
+						cal.setTime(rs.getDate(4));
+						int nam = cal.get(Calendar.YEAR);
+						int thang = cal.get(Calendar.MONTH) + 1;
+
+						String ngayNhap = day+"-"+month+"-"+year;
+						String chuKiNhap = thang+"-"+nam;
+						dm.addRow(new String[] { rs.getString(1), kh1.getMaKhachHang(), rs.getString(2),ngayNhap,
+								chuKiNhap, rs.getString(5), rs.getString(6) });
+					}
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -69,24 +90,12 @@ public class PnBienLaiUI {
 			public void mouseClicked(MouseEvent e) {
 				int row = tbl.getSelectedRow();
 				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 2));
-				String date = (String) tbl.getValueAt(row, 3);
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-				LocalDate localDate = LocalDate.parse(date, formatter);
-				int year = localDate.getYear();
-				int month = localDate.getMonthValue();
-				int dayOfMonth = localDate.getDayOfMonth();
 				String chiSo = (String) tbl.getValueAt(row, 5);
 				String date1 = (String) tbl.getValueAt(row, 4);
 				String maBienLai = (String) tbl.getValueAt(row, 0);
-				LocalDate localDate1 = LocalDate.parse(date1, formatter);
-				int year1 = localDate1.getYear();
-				int month1 = localDate1.getMonthValue();
 				txtMaBienLai.setText(maBienLai);
-				txtNgayNhap.setText(String.valueOf(dayOfMonth));
-				txtThangNhap.setText(String.valueOf(month));
-				txtNamNhap.setText(String.valueOf(year));
-				txtThang.setText(String.valueOf(month1));
-				txtNam.setText(String.valueOf(year1));
+				txtThang.setText(date1.substring(0,1));
+				txtNam.setText(date1.substring(2));
 				txtChiSo.setText(chiSo);
 				cboMaSoCongTo.setSelectedIndex(maCongTo);
 
@@ -99,22 +108,12 @@ public class PnBienLaiUI {
 			public void keyReleased(KeyEvent e) {
 				int row = tbl.getSelectedRow();
 				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 2));
-				String date = (String) tbl.getValueAt(row, 3);
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-				LocalDate localDate = LocalDate.parse(date, formatter);
-				int year = localDate.getYear();
-				int month = localDate.getMonthValue();
-				int dayOfMonth = localDate.getDayOfMonth();
 				String chiSo = (String) tbl.getValueAt(row, 5);
 				String date1 = (String) tbl.getValueAt(row, 4);
-				LocalDate localDate1 = LocalDate.parse(date1, formatter);
-				int year1 = localDate1.getYear();
-				int month1 = localDate1.getMonthValue();
-				txtNgayNhap.setText(String.valueOf(dayOfMonth));
-				txtThangNhap.setText(String.valueOf(month));
-				txtNamNhap.setText(String.valueOf(year));
-				txtThang.setText(String.valueOf(month1));
-				txtNam.setText(String.valueOf(year1));
+				String maBienLai = (String) tbl.getValueAt(row, 0);
+				txtMaBienLai.setText(maBienLai);
+				txtThang.setText(date1.substring(0,1));
+				txtNam.setText(date1.substring(2));
 				txtChiSo.setText(chiSo);
 				cboMaSoCongTo.setSelectedIndex(maCongTo);
 			}
@@ -136,7 +135,7 @@ public class PnBienLaiUI {
 		JPanel pn1 = new JPanel();
 		pn.add(pn1, BorderLayout.CENTER);
 		JPanel pnText = new JPanel();
-		pnText.setLayout(new GridLayout(5, 2));
+		pnText.setLayout(new GridLayout(4, 2));
 		pn1.add(pnText, BorderLayout.CENTER);
 
 		JLabel maCongTo = new JLabel("  Mã công tơ điện:");
@@ -150,20 +149,7 @@ public class PnBienLaiUI {
 		pnText.add(txtMaBienLai);
 		pnText.add(maCongTo);
 		pnText.add(cboMaSoCongTo);
-		JLabel ngayNhap = new JLabel("  Ngày nhập:");
-		pnText.add(ngayNhap);
-		JPanel ngayNhap1 = new JPanel();
-		txtNgayNhap = new JTextField(5);
-		ngayNhap1.add(txtNgayNhap);
-		JLabel command = new JLabel("/");
-		ngayNhap1.add(command);
-		txtThangNhap = new JTextField(5);
-		ngayNhap1.add(txtThangNhap);
-		JLabel command1 = new JLabel("/");
-		ngayNhap1.add(command1);
-		txtNamNhap = new JTextField(5);
-		ngayNhap1.add(txtNamNhap);
-		pnText.add(ngayNhap1);
+
 
 		JLabel chuKi = new JLabel("  Chu kì nhập:");
 		pnText.add(chuKi);
@@ -189,17 +175,32 @@ public class PnBienLaiUI {
 				int chiSo = Integer.parseInt(txtChiSo.getText());
 				int maBienLai = Integer.parseInt(txtMaBienLai.getText());
 				BienLaiDAO tienDien = new BienLaiDAO();
-				//tienDien.taoBienLaiList();
+				// tienDien.taoBienLaiList();
 				Calendar c = Calendar.getInstance();
 				String ngayNhap = BienLaiDAO.showCalendar(c);
 				double soTien = tienDien.getTienDien(maCongToDien, chiSo);
 				bienLai.insert(maBienLai, maCongToDien, ngayNhap, thangCK, namCK, chiSo, soTien);
 				dm.setRowCount(0);
-				rs=connect.connect1();
+				rs = connect.connect1();
 				try {
 					while (rs.next()) {
-						dm.addRow(new String[] { rs.getString(1), null, rs.getString(2), rs.getString(3), rs.getString(4),
-								rs.getString(5), rs.getString(6) });
+						for (KhachHangEntity kh1 : khList) {
+							if (kh1.getMaSoCongTo() == rs.getInt(2)) {
+								Calendar cal = Calendar.getInstance();
+								cal.setTime(rs.getDate(3));
+								int year = cal.get(Calendar.YEAR);
+								int month = cal.get(Calendar.MONTH) + 1;
+								int day = cal.get(Calendar.DAY_OF_MONTH);
+								cal.setTime(rs.getDate(4));
+								int nam = cal.get(Calendar.YEAR);
+								int thang = cal.get(Calendar.MONTH) + 1;
+
+								String ngayNhap1 = day+"-"+month+"-"+year;
+								String chuKiNhap = thang+"-"+nam;
+								dm.addRow(new String[] { rs.getString(1), kh1.getMaKhachHang(), rs.getString(2),ngayNhap1,
+										chuKiNhap, rs.getString(5), rs.getString(6) });
+							}
+						}
 					}
 				} catch (SQLException ex) {
 
@@ -223,11 +224,26 @@ public class PnBienLaiUI {
 				double soTien = 0;// tienDien.tienDien(maCongToDien, ngayNhap, chiSo);
 				bienLai.update(maBienLai, maCongToDien, ngayNhap, thangCK, namCK, chiSo, soTien);
 				dm.setRowCount(0);
-				rs=connect.connect1();
+				rs = connect.connect1();
 				try {
 					while (rs.next()) {
-						dm.addRow(new String[] { rs.getString(1), null, rs.getString(2), rs.getString(3), rs.getString(4),
-								rs.getString(5), rs.getString(6) });
+						for (KhachHangEntity kh1 : khList) {
+							if (kh1.getMaSoCongTo() == rs.getInt(2)) {
+								Calendar cal = Calendar.getInstance();
+								cal.setTime(rs.getDate(3));
+								int year = cal.get(Calendar.YEAR);
+								int month = cal.get(Calendar.MONTH) + 1;
+								int day = cal.get(Calendar.DAY_OF_MONTH);
+								cal.setTime(rs.getDate(4));
+								int nam = cal.get(Calendar.YEAR);
+								int thang = cal.get(Calendar.MONTH) + 1;
+
+								String ngayNhap1 = day+"-"+month+"-"+year;
+								String chuKiNhap = thang+"-"+nam;
+								dm.addRow(new String[] { rs.getString(1), kh1.getMaKhachHang(), rs.getString(2),ngayNhap1,
+										chuKiNhap, rs.getString(5), rs.getString(6) });
+							}
+						}
 					}
 				} catch (SQLException ex) {
 
@@ -238,17 +254,32 @@ public class PnBienLaiUI {
 			}
 		});
 		btnDelete.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int maBienLai = Integer.parseInt(txtMaBienLai.getText());
 				bienLai.delete(maBienLai);
 				dm.setRowCount(0);
-				rs=connect.connect1();
+				rs = connect.connect1();
 				try {
 					while (rs.next()) {
-						dm.addRow(new String[] { rs.getString(1), null, rs.getString(2), rs.getString(3), rs.getString(4),
-								rs.getString(5), rs.getString(6) });
+						for (KhachHangEntity kh1 : khList) {
+							if (kh1.getMaSoCongTo() == rs.getInt(2)) {
+								Calendar cal = Calendar.getInstance();
+								cal.setTime(rs.getDate(3));
+								int year = cal.get(Calendar.YEAR);
+								int month = cal.get(Calendar.MONTH) + 1;
+								int day = cal.get(Calendar.DAY_OF_MONTH);
+								cal.setTime(rs.getDate(4));
+								int nam = cal.get(Calendar.YEAR);
+								int thang = cal.get(Calendar.MONTH) + 1;
+
+								String ngayNhap = day+"-"+month+"-"+year;
+								String chuKiNhap = thang+"-"+nam;
+								dm.addRow(new String[] { rs.getString(1), kh1.getMaKhachHang(), rs.getString(2),ngayNhap,
+										chuKiNhap, rs.getString(5), rs.getString(6) });
+							}
+						}
 					}
 				} catch (SQLException ex) {
 
