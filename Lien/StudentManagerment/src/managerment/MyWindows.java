@@ -109,6 +109,14 @@ public class MyWindows extends JFrame{
 		} 
 		}
 		});
+		DefaultTableModel dm = new DefaultTableModel();
+		dm.addColumn("Id");
+		dm.addColumn("Name");
+		dm.addColumn("Group");
+		final JTable tbl=new JTable(dm);
+		
+		
+		
 		pnMain.add(btn, BorderLayout.SOUTH);
 		Button btnadd = new Button("Add");
 		btn.add(btnadd);
@@ -119,6 +127,22 @@ public class MyWindows extends JFrame{
 				stmt.execute("Insert into student(id,Name,`Group`) values(" + txtID.getText()
 						+ ",\'" + txtName.getText() + "\',\'" + txtClass.getText() + "\')");
 				JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
+				dm.setRowCount(0);
+				ResultSet rs = stmt.executeQuery("Select * from student");
+				
+				while (rs.next()) {
+					String maSV = rs.getString(1);
+					String hoTen = rs.getString(2);
+					String lop = rs.getString(3);
+					Vector<String> vec = new Vector<String>();
+					vec.add(maSV);
+					vec.addElement(hoTen);
+					vec.add(lop);
+					dm.addRow(vec);
+				}
+				tbl.setModel(dm);
+				dm.fireTableDataChanged();
+				
 			} catch (Exception e2) {
 				// TODO: handle exception
 				System.out.println(e2);
@@ -126,12 +150,9 @@ public class MyWindows extends JFrame{
 			}
 		});
 		
-		DefaultTableModel dm = new DefaultTableModel();
-		dm.addColumn("Id");
-		dm.addColumn("Name");
-		dm.addColumn("Group");
 		
-		final JTable tbl=new JTable(dm);
+		
+		
 		try {
 			while (rs.next()) {
 				String Id = rs.getString(1);
@@ -181,17 +202,11 @@ public class MyWindows extends JFrame{
 				txtID.setText(Id);
 				
 				String Name=(String)tbl.getValueAt(row, 1);
-				txtID.setText(Name);
+				txtName.setText(Name);
 				
 				String Group=(String)tbl.getValueAt(row, 2);
-				txtID.setText(Group);
-				
-				
-				
-
-				
+				txtClass.setText(Group);
 			}
-			
 		});
 		
 		JPanel tblData = new JPanel();
@@ -212,6 +227,72 @@ public class MyWindows extends JFrame{
 		JTextField txtTK = new JTextField();
 		
 		JButton btnTK = new JButton("Tim Kiem");
+		btnTK.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					// TODO Auto-generated method stub
+					int n = cbbLoai.getSelectedIndex();
+					String str = txtTK.getText();
+					if (n == 0) {
+						dm.setRowCount(0);
+						rs = stmt.executeQuery("select * from student where Id = " + str + "");
+						while (rs.next()) {
+							String Id = rs.getString(1);
+							String Name = rs.getString(2);
+							String Group = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(Id);
+							vec.add(Name);
+							vec.add(Group);
+							dm.addRow(vec);
+							
+						}  
+						tbl.setModel(dm);
+						dm.fireTableDataChanged();
+						
+
+					} 
+					else if (n == 1) {
+						dm.setRowCount(0);
+						rs = stmt.executeQuery("select * from student where Name = '" + str + "'");
+						while (rs.next()) {
+							String Id = rs.getString(1);
+							String Name = rs.getString(2);
+							String Group = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(Id);
+							vec.add(Name);
+							vec.add(Group);
+							dm.addRow(vec);
+							
+						}  
+						tbl.setModel(dm);
+						dm.fireTableDataChanged();
+						}
+					else if (n == 2) {
+						dm.setRowCount(0);
+						rs = stmt.executeQuery("select * from student where `Group` = '" + str + "'");
+						while (rs.next()) {
+							String Id = rs.getString(1);
+							String Name = rs.getString(2);
+							String Group = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(Id);
+							vec.add(Name);
+							vec.add(Group);
+							dm.addRow(vec);
+							
+						}  
+						tbl.setModel(dm);
+						dm.fireTableDataChanged();
+						}
+					} catch (Exception e2) {
+					System.err.println(e2);
+				}
+			}
+		});
 		
 		JPanel one = new JPanel();
 		JPanel two = new JPanel();
@@ -223,6 +304,8 @@ public class MyWindows extends JFrame{
 		pnTK.add(txtTK);
 		pnTK.add(two);
 		pnTK.add(btnTK);
+		
+		
 		
 		tblData.add(pnTK, BorderLayout.CENTER);
 		tblData.add(tbl, BorderLayout.SOUTH);
@@ -242,7 +325,7 @@ public class MyWindows extends JFrame{
 		MyWindows mainFrame = new MyWindows();
 				
 		
-		mainFrame.setSize(800,400);
+		mainFrame.setSize(1200,400);
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setVisible(true);
 

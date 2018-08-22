@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
@@ -155,8 +156,65 @@ public class MyWindows extends JFrame {
 							+ txtName.getText() + "\',\'" + txtGroup.getText() + "\')");
 					JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
 					tblStudent.setRowCount(0);
-					ResultSet rs = stmt.executeQuery("Select * from students");
-					
+					rs = stmt.executeQuery("Select * from students");
+
+					while (rs.next()) {
+						String maSV = rs.getString(1);
+						String hoTen = rs.getString(2);
+						String lop = rs.getString(3);
+						Vector<String> vec = new Vector<String>();
+						vec.add(maSV);
+						vec.add(hoTen);
+						vec.add(lop);
+						tblStudent.addRow(vec);
+					}
+					tbl.setModel(tblStudent);
+					tblStudent.fireTableDataChanged();
+
+				} catch (Exception ex) {
+					// TODO: handle exception
+					System.err.println(ex);
+				}
+			}
+		});
+		JPanel pnSearch = new JPanel();
+		pnSearch.setLayout(new GridLayout(1, 5));
+
+		JLabel lblRow = new JLabel("Tìm kiếm theo: ");
+
+		JComboBox cbo = new JComboBox();
+		cbo.addItem("Mã sinh viên");
+		cbo.addItem("Tên sinh viên");
+		cbo.addItem("Lớp");
+
+		JLabel lblSearch = new JLabel("Tìm kiếm: ");
+
+		JTextField txtSearch = new JTextField();
+
+		JButton btnSearch = new JButton("Tìm kiếm");
+
+		pnSearch.add(lblRow);
+		pnSearch.add(cbo);
+		pnSearch.add(lblSearch);
+		pnSearch.add(txtSearch);
+		pnSearch.add(btnSearch);
+
+		JPanel pnTable = new JPanel();
+		Border border = BorderFactory.createLineBorder(Color.RED);
+		TitledBorder borderTitle = BorderFactory.createTitledBorder(border, "Danh sách");
+		pnTable.setBorder(borderTitle);
+
+		btnSearch.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					// TODO Auto-generated method stub
+					int index = cbo.getSelectedIndex();
+					if (txtSearch.getText().equals("")) {
+						tblStudent.setRowCount(0);
+						rs = stmt.executeQuery("Select * from students");
+
 						while (rs.next()) {
 							String maSV = rs.getString(1);
 							String hoTen = rs.getString(2);
@@ -165,43 +223,90 @@ public class MyWindows extends JFrame {
 							vec.add(maSV);
 							vec.add(hoTen);
 							vec.add(lop);
-							tblStudent.addRow(vec);							
+							tblStudent.addRow(vec);
 						}
 						tbl.setModel(tblStudent);
 						tblStudent.fireTableDataChanged();
-					
-				} catch (Exception ex) {
-					// TODO: handle exception
-					System.err.println(ex);
+					}else {
+						if (index == 0) {
+							tblStudent.setRowCount(0);
+							rs = stmt.executeQuery(
+									"Select * from students where Student_ID = " + txtSearch.getText() + "");
+
+							while (rs.next()) {
+								String maSV = rs.getString(1);
+								String hoTen = rs.getString(2);
+								String lop = rs.getString(3);
+								Vector<String> vec = new Vector<String>();
+								vec.add(maSV);
+								vec.add(hoTen);
+								vec.add(lop);
+								tblStudent.addRow(vec);
+							}
+							tbl.setModel(tblStudent);
+							tblStudent.fireTableDataChanged();
+
+						} else if (index == 1) {
+							tblStudent.setRowCount(0);
+							rs = stmt.executeQuery(
+									"Select * from students where Name = \'" + txtSearch.getText() + "\'");
+
+							while (rs.next()) {
+								String maSV = rs.getString(1);
+								String hoTen = rs.getString(2);
+								String lop = rs.getString(3);
+								Vector<String> vec = new Vector<String>();
+								vec.add(maSV);
+								vec.add(hoTen);
+								vec.add(lop);
+								tblStudent.addRow(vec);
+							}
+							tbl.setModel(tblStudent);
+							tblStudent.fireTableDataChanged();
+
+						} else if (index == 2) {
+							tblStudent.setRowCount(0);
+							rs = stmt.executeQuery(
+									"Select * from students where `Group` = \'" + txtSearch.getText() + "\'");
+
+							while (rs.next()) {
+								String maSV = rs.getString(1);
+								String hoTen = rs.getString(2);
+								String lop = rs.getString(3);
+								Vector<String> vec = new Vector<String>();
+								vec.add(maSV);
+								vec.add(hoTen);
+								vec.add(lop);
+								tblStudent.addRow(vec);
+							}
+							tbl.setModel(tblStudent);
+							tblStudent.fireTableDataChanged();
+
+						} else if (index == 2) {
+							tblStudent.setRowCount(0);
+							rs = stmt.executeQuery(
+									"Select * from students where `Group` = \'" + txtSearch.getText() + "\'");
+
+							while (rs.next()) {
+								String maSV = rs.getString(1);
+								String hoTen = rs.getString(2);
+								String lop = rs.getString(3);
+								Vector<String> vec = new Vector<String>();
+								vec.add(maSV);
+								vec.add(hoTen);
+								vec.add(lop);
+								tblStudent.addRow(vec);
+							}
+							tbl.setModel(tblStudent);
+							tblStudent.fireTableDataChanged();
+
+						} 
+					}
+				} catch (Exception e2) {
+					System.err.println(e2);
 				}
 			}
 		});
-		JPanel pnSearch = new JPanel();
-		
-		JLabel lblRow = new JLabel("Tìm kiếm theo: ");
-		
-		JComboBox cbo=new JComboBox(); 
-		cbo.addItem("Mã sinh viên");
-		cbo.addItem("Tên sinh viên");
-		cbo.addItem("Lớp");
-		
-		JLabel lblSearch = new JLabel("Tìm kiếm: ");
-		
-		JTextField txtSearch = new JTextField();
-		
-		JButton btnSearch = new JButton("Tìm kiếm");
-		
-		pnSearch.add(lblRow);
-		pnSearch.add(cbo);
-		pnSearch.add(lblSearch);
-		pnSearch.add(txtSearch);
-		pnSearch.add(btnSearch);
-		
-		pnSearch.setLayout(new GridLayout(1, 5));
-		JPanel pnTable = new JPanel();
-		Border border=  BorderFactory.createLineBorder(Color.RED);
-		TitledBorder borderTitle=  BorderFactory.createTitledBorder(   border, "Danh sách");				
-		pnTable.setBorder(borderTitle);
 		
 		pnTable.add(tbl);
 		pnData.add(pnTable, BorderLayout.SOUTH);
