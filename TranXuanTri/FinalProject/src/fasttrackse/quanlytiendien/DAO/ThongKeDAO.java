@@ -19,11 +19,13 @@ public class ThongKeDAO {
 			khachHang.setMaKhachHang(rs.getString(1));
 			khachHang.setHoTen(rs.getString(2));
 			khachHang.setDiaChi(rs.getString(3));
-			khachHang.setPhuong(rs.getInt(4));
-			khachHang.setQuan(rs.getInt(5));
-			khachHang.setDienThoai(rs.getString(6));
-			khachHang.setEmail(rs.getString(7));
-			khachHang.setMaSoCongTo(rs.getInt(8));
+			khachHang.setIdPhuong(rs.getInt(4));
+			khachHang.setPhuong(rs.getString(5));
+			khachHang.setIdQuan(rs.getInt(6));
+			khachHang.setQuan(rs.getString(7));
+			khachHang.setDienThoai(rs.getString(8));
+			khachHang.setEmail(rs.getString(9));
+			khachHang.setMaSoCongTo(rs.getInt(10));
 			khachHangList.add(khachHang);
 		}
 		return khachHangList;

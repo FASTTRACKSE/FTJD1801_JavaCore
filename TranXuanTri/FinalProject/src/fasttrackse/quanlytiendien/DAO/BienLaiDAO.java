@@ -1,7 +1,6 @@
 package fasttrackse.quanlytiendien.DAO;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,7 +32,8 @@ public class BienLaiDAO {
 	public ResultSet connect1() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
+			con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/quanlytiendien?useUnicode=yes&characterEncoding=UTF-8", "root", "");
 			stmt = con.createStatement();
 			rs = stmt.executeQuery("Select * from bienlai");
 			return rs;
@@ -47,7 +47,7 @@ public class BienLaiDAO {
 			double soTien) {
 		connect();
 		try {
-			String chuKiNhap = namCK + "-" + thangCK + "-1";
+			String chuKiNhap = namCK + "-0" + thangCK + "-01";
 			stmt.executeUpdate("insert into bienlai values (\"" + maBienLai + "\",\"" + maCongToDien + "\",\""
 					+ ngayNhap + "\",\"" + chuKiNhap + "\", \"" + chiSoCongTo + "\",\"" + soTien + "\")");
 		} catch (SQLException e) {
@@ -60,9 +60,9 @@ public class BienLaiDAO {
 		connect();
 		try {
 			String chuKiNhap = namCK + "-" + thangCK + "-1";
-			String query = "UPDATE bienlai SET maCongToDien = '" + maCongToDien + "' ngayNhap='" + ngayNhap
-					+ "',chuKiNhap='" + chuKiNhap + "',chiSoCongTo='" + chiSoCongTo + "',soTien = '" + soTien
-					+ "' WHERE maBienLai = '" + maBienLai + "'";
+			String query = "UPDATE bienlai SET maCongToDien = '" + maCongToDien + "',chuKiNhap='" + chuKiNhap
+					+ "',chiSoCongTo='" + chiSoCongTo + "',soTien = '" + soTien + "' WHERE maBienLai = '" + maBienLai
+					+ "'";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			preparedStmt.executeUpdate();
 		} catch (SQLException e) {
@@ -103,8 +103,7 @@ public class BienLaiDAO {
 			return 1.549 * 50 + 1.600 * 50 + 1.858 * 100 + 2.340 * 100 + 2.615 * 100 + 2.701 * (soDien - 400);
 	}
 
-	public double getTienDien(int maCongTo, int chiSo) {
-		ArrayList<BienLaiEntity> bienLaiList = taoBienLaiList();
+	public double getTienDien(int maCongTo, int chiSo, ArrayList<BienLaiEntity> bienLaiList) {
 
 		Collections.sort(bienLaiList, new Comparator<BienLaiEntity>() {
 			public int compare(BienLaiEntity sv1, BienLaiEntity sv2) {
@@ -119,12 +118,58 @@ public class BienLaiDAO {
 
 		for (BienLaiEntity bl : bienLaiList) {
 			if (bl.getMaSoCongToDien() == maCongTo) {
-				if (bl.getChiSoCongTo() < chiSo) {
+				if (bl.getChiSoCongTo() <= chiSo) {
+					System.out.print(bl.getChiSoCongTo());
 					return tinhTien(chiSo - bl.getChiSoCongTo());
+				} else if (bl.getChiSoCongTo() > chiSo) {
+					System.out.println("Loi ");
+					return 0;
 				}
 			}
 		}
 		return tinhTien(chiSo - 0);
+	}
+
+	public double updateTienDien(int maCongTo, int chiSo, ArrayList<BienLaiEntity> bienLaiList) {
+
+		Collections.sort(bienLaiList, new Comparator<BienLaiEntity>() {
+			public int compare(BienLaiEntity sv1, BienLaiEntity sv2) {
+				if (sv1.getChiSoCongTo() > sv2.getChiSoCongTo()) {
+					return -1;
+				} else if (sv1.getChiSoCongTo() > sv2.getChiSoCongTo()) {
+					return 0;
+				} else
+					return 1;
+			}
+		});
+		int max1 = 0;
+		for (int i = 0; i < bienLaiList.size(); i++) {
+			if (bienLaiList.get(i).getMaSoCongToDien() == maCongTo) {
+				if (i == 0) {
+					max1 = bienLaiList.get(i).getChiSoCongTo();
+				} else if (bienLaiList.get(i).getChiSoCongTo() > max1) {
+					max1 = bienLaiList.get(i).getChiSoCongTo();
+				}
+			}
+		}
+		int max2 = 0;
+		for (int i = 0; i < bienLaiList.size(); i++) {
+			if (bienLaiList.get(i).getMaSoCongToDien() == maCongTo) {
+				if (bienLaiList.get(i).getChiSoCongTo() > max2 && bienLaiList.get(i).getChiSoCongTo() < max1) {
+					max2 = bienLaiList.get(i).getChiSoCongTo();
+				}
+			}
+		}
+		for (BienLaiEntity bl : bienLaiList) {
+			if (bl.getMaSoCongToDien() == maCongTo) {
+				if (bl.getChiSoCongTo() <= chiSo) {
+					return tinhTien(chiSo - max2);
+				} else if (max2 > chiSo) {
+					return 0;
+				}
+			}
+		}
+		return 0;
 	}
 
 	public ArrayList<BienLaiEntity> taoBienLaiList() {

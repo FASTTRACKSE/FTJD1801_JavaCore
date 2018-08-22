@@ -9,7 +9,10 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import fasttrackse.quanlytiendien.DAO.KhachHangDAO;
+import fasttrackse.quanlytiendien.DAO.QuanLyTienDienException;
+import fasttrackse.quanlytiendien.DAO.ThongKeDAO;
 import fasttrackse.quanlytiendien.entity.ComboItem;
+import fasttrackse.quanlytiendien.entity.KhachHangEntity;
 import fasttrackse.quanlytiendien.entity.PhuongEntity;
 import fasttrackse.quanlytiendien.entity.QuanEntity;
 
@@ -27,6 +30,8 @@ public class PnKhachHangUI {
 	JTextField txtDiaChi;
 	JTextField txtDienThoai;
 	JTextField txtEmail;
+	JButton btnEdit;
+	JButton btnDelete;
 
 	public JPanel pnKhachHang() {
 		JPanel pnTab1 = new JPanel();
@@ -34,36 +39,53 @@ public class PnKhachHangUI {
 		Border bor2 = BorderFactory.createLineBorder(Color.GRAY);
 		TitledBorder titlebor2 = new TitledBorder(bor2, "Thông tin khách hàng");
 		pnTab1.setBorder(titlebor2);
-		pnTab1.setPreferredSize(new Dimension(800, 450));
-
+		pnTab1.setPreferredSize(new Dimension(1000, 800));
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
+			con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/quanlytiendien?useUnicode=yes&characterEncoding=UTF-8", "root", "");
 			stmt = con.createStatement();
 			rs = stmt.executeQuery("Select * from khachhang");
-
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
+
 		DefaultTableModel dm = new DefaultTableModel();
 		dm.addColumn("Mã khách hàng");
 		dm.addColumn("Họ tên");
 		dm.addColumn("Địa chỉ");
+		dm.addColumn("");
 		dm.addColumn("Phường");
+		dm.addColumn("");
 		dm.addColumn("Quận");
 		dm.addColumn("Điện thoại");
 		dm.addColumn("Email");
-		dm.addColumn("Mã số công tơ điện");
+		dm.addColumn("Mã số công tơ");
 		final JTable tbl = new JTable(dm);
+//		 tbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tbl.getColumnModel().getColumn(0).setMaxWidth(100);
+		tbl.getColumnModel().getColumn(0).setPreferredWidth(100);
+		tbl.getColumnModel().getColumn(2).setPreferredWidth(150);
+		tbl.getColumnModel().getColumn(3).setMaxWidth(0);
+		tbl.getColumnModel().getColumn(4).setPreferredWidth(150);
+		tbl.getColumnModel().getColumn(5).setMaxWidth(0);
+		tbl.getColumnModel().getColumn(5).setMinWidth(0);
+		tbl.getColumnModel().getColumn(6).setPreferredWidth(150);
+		tbl.getColumnModel().getColumn(7).setPreferredWidth(75);
+		tbl.getColumnModel().getColumn(9).setPreferredWidth(100);
+		tbl.getColumnModel().getColumn(9).setMaxWidth(100);
+		tbl.setDefaultEditor(Object.class, null);
 		try {
 			while (rs.next()) {
 				dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
+						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getString(10) });
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
+
 		tbl.addMouseListener(new MouseListener() {
 			public void mouseReleased(MouseEvent e) {
 			}
@@ -78,14 +100,17 @@ public class PnKhachHangUI {
 			}
 
 			public void mouseClicked(MouseEvent e) {
+				btnEdit.setEnabled(true);
+				btnDelete.setEnabled(true);
+				cboMaSoCongTo.setEnabled(false);
 				int row = tbl.getSelectedRow();
 				String maKH = (String) tbl.getValueAt(row, 0);
 				String hoTen = (String) tbl.getValueAt(row, 1);
 				String diaChi = (String) tbl.getValueAt(row, 2);
-				String dienThoai = (String) tbl.getValueAt(row, 5);
-				String email = (String) tbl.getValueAt(row, 6);
-				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 7));
-				int idQuan = Integer.parseInt((String) tbl.getValueAt(row, 4));
+				String dienThoai = (String) tbl.getValueAt(row, 7);
+				String email = (String) tbl.getValueAt(row, 8);
+				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 9));
+				int idQuan = Integer.parseInt((String) tbl.getValueAt(row, 5));
 				int idPhuong = Integer.parseInt((String) tbl.getValueAt(row, 3));
 				switch (idQuan) {
 				case 490:
@@ -116,6 +141,7 @@ public class PnKhachHangUI {
 					cboQuan1.setSelectedIndex(5);
 					break;
 				}
+				txtMaKH.setEditable(false);
 				txtMaKH.setText(maKH);
 				txtHoTen.setText(hoTen);
 				txtDiaChi.setText(diaChi);
@@ -137,15 +163,16 @@ public class PnKhachHangUI {
 			}
 
 			public void keyReleased(KeyEvent e) {
-
+				btnEdit.setEnabled(true);
+				btnDelete.setEnabled(true);
 				int row = tbl.getSelectedRow();
 				String maKH = (String) tbl.getValueAt(row, 0);
 				String hoTen = (String) tbl.getValueAt(row, 1);
 				String diaChi = (String) tbl.getValueAt(row, 2);
-				String dienThoai = (String) tbl.getValueAt(row, 5);
+				String dienThoai = (String) tbl.getValueAt(row, 7);
 				String email = (String) tbl.getValueAt(row, 6);
-				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 7));
-				int idQuan = Integer.parseInt((String) tbl.getValueAt(row, 4));
+				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 9));
+				int idQuan = Integer.parseInt((String) tbl.getValueAt(row, 5));
 				int idPhuong = Integer.parseInt((String) tbl.getValueAt(row, 3));
 				switch (idQuan) {
 				case 490:
@@ -176,6 +203,7 @@ public class PnKhachHangUI {
 					cboQuan1.setSelectedIndex(5);
 					break;
 				}
+				txtMaKH.setEditable(false);
 				txtMaKH.setText(maKH);
 				txtHoTen.setText(hoTen);
 				txtDiaChi.setText(diaChi);
@@ -268,42 +296,69 @@ public class PnKhachHangUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String maKhachHang = txtMaKH.getText();
-				String hoTen = txtHoTen.getText();
-				String diaChi = txtDiaChi.getText();
-				ComboItem quan = (ComboItem) cboQuan1.getSelectedItem();
-				ComboItem phuong = (ComboItem) cboPhuong1.getSelectedItem();
-				int idPhuong = phuong.getId();
-				int idQuan = quan.getId();
-				String dienThoai = txtDienThoai.getText();
-				String email = txtEmail.getText();
-				int maCongToDien = cboMaSoCongTo.getSelectedIndex();
-				KhachHangDAO kh = new KhachHangDAO();
-				kh.insert(maKhachHang, hoTen, diaChi, idPhuong, idQuan, dienThoai, email, maCongToDien);
-				dm.setRowCount(0);
-				ResultSet rs = connect();
-				try {
-					while (rs.next()) {
-						dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-								rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
-					}
-				} catch (SQLException ex) {
+				if (cboQuan1.getSelectedIndex() == 0 || cboPhuong1.getSelectedIndex() == 0) {
+					JOptionPane.showMessageDialog(null, "Vui lòng chọn Quận, Phường");
+				} else {
+					try {
+						ComboItem quan = (ComboItem) cboQuan1.getSelectedItem();
+						ComboItem phuong = (ComboItem) cboPhuong1.getSelectedItem();
+						QuanLyTienDienException.chckText(txtMaKH.getText());
+						QuanLyTienDienException.chckText(txtHoTen.getText());
+						QuanLyTienDienException.chckText(txtDiaChi.getText());
+						QuanLyTienDienException.chckText(phuong.getName());
+						QuanLyTienDienException.chckText(quan.getName());
+						QuanLyTienDienException.chckText(txtDienThoai.getText());
+						QuanLyTienDienException.chckText(txtEmail.getText());
+						QuanLyTienDienException.chckComboBox(cboMaSoCongTo.getSelectedIndex());
+						QuanLyTienDienException.chckMaKH(txtMaKH.getText());
+						String maKhachHang = txtMaKH.getText();
+						String hoTen = txtHoTen.getText();
+						String diaChi = txtDiaChi.getText();
 
-					ex.printStackTrace();
+						int idPhuong = phuong.getId();
+						int idQuan = quan.getId();
+						String namePhuong = phuong.getName();
+						String nameQuan = quan.getName();
+						String dienThoai = txtDienThoai.getText();
+						String email = txtEmail.getText();
+						int maCongToDien = cboMaSoCongTo.getSelectedIndex();
+						KhachHangDAO kh = new KhachHangDAO();
+						kh.insert(maKhachHang, hoTen, diaChi, idPhuong, namePhuong, idQuan, nameQuan, dienThoai, email,
+								maCongToDien);
+						dm.setRowCount(0);
+						ResultSet rs = connect();
+						try {
+							while (rs.next()) {
+								dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3),
+										rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
+										rs.getString(8), rs.getString(9), rs.getString(10) });
+							}
+						} catch (SQLException ex) {
+
+							ex.printStackTrace();
+						}
+						tbl.setModel(dm);
+						dm.fireTableDataChanged();
+					} catch (QuanLyTienDienException ex) {
+						JOptionPane.showMessageDialog(null, ex);
+					}
 				}
-				tbl.setModel(dm);
-				dm.fireTableDataChanged();
 			}
 		});
 		// btnAdd.setEnabled(true);
 
-		JButton btnEdit = new JButton("Sửa thông tin khách hàng");
+		btnEdit = new JButton("Sửa thông tin khách hàng");
+		btnEdit.setEnabled(false);
+
 		pnBtn.add(btnEdit);
 		btnEdit.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				txtMaKH.setEditable(true);
+				btnEdit.setEnabled(false);
+				btnDelete.setEnabled(false);
 				String maKhachHang = txtMaKH.getText();
 				String hoTen = txtHoTen.getText();
 				String diaChi = txtDiaChi.getText();
@@ -311,17 +366,21 @@ public class PnKhachHangUI {
 				ComboItem phuong = (ComboItem) cboPhuong1.getSelectedItem();
 				int idPhuong = phuong.getId();
 				int idQuan = quan.getId();
+				String namePhuong = phuong.getName();
+				String nameQuan = quan.getName();
 				String dienThoai = txtDienThoai.getText();
 				String email = txtEmail.getText();
 				int maCongToDien = cboMaSoCongTo.getSelectedIndex();
 				KhachHangDAO kh = new KhachHangDAO();
-				kh.update(maKhachHang, hoTen, diaChi, idPhuong, idQuan, dienThoai, email, maCongToDien);
+				kh.update(maKhachHang, hoTen, diaChi, idPhuong, namePhuong, idQuan, nameQuan, dienThoai, email,
+						maCongToDien);
 				dm.setRowCount(0);
 				ResultSet rs = connect();
 				try {
 					while (rs.next()) {
 						dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-								rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
+								rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
+								rs.getString(10) });
 					}
 				} catch (SQLException ex) {
 
@@ -329,16 +388,29 @@ public class PnKhachHangUI {
 				}
 				tbl.setModel(dm);
 				dm.fireTableDataChanged();
+				txtMaKH.setText("");
+				txtHoTen.setText("");
+				txtDiaChi.setText("");
+				cboQuan1.setSelectedIndex(0);
+				cboPhuong1.setSelectedIndex(0);
+				txtDienThoai.setText("");
+				txtEmail.setText("");
+				cboMaSoCongTo.setSelectedIndex(0);
 			}
 		});
 
-		JButton btnDelete = new JButton("Xóa khách hàng");
+		btnDelete = new JButton("Xóa khách hàng");
+		btnDelete.setEnabled(false);
+
 		pnBtn.add(btnDelete);
 		btnDelete.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				txtMaKH.setEditable(true);
+				btnEdit.setEnabled(false);
+				btnDelete.setEnabled(false);
 				String maKhachHang = txtMaKH.getText();
 				KhachHangDAO kh = new KhachHangDAO();
 				kh.delete(maKhachHang);
@@ -347,7 +419,8 @@ public class PnKhachHangUI {
 				try {
 					while (rs.next()) {
 						dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-								rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
+								rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
+								rs.getString(10) });
 					}
 				} catch (SQLException ex) {
 
@@ -355,6 +428,14 @@ public class PnKhachHangUI {
 				}
 				tbl.setModel(dm);
 				dm.fireTableDataChanged();
+				txtMaKH.setText("");
+				txtHoTen.setText("");
+				txtDiaChi.setText("");
+				cboQuan1.setSelectedIndex(0);
+				cboPhuong1.setSelectedIndex(0);
+				txtDienThoai.setText("");
+				txtEmail.setText("");
+				cboMaSoCongTo.setSelectedIndex(0);
 			}
 		});
 
@@ -403,6 +484,7 @@ public class PnKhachHangUI {
 		pnText.add(txtEmail);
 
 		JLabel maSoCongTo = new JLabel("  Mã số công tơ");
+
 		pnText.add(maSoCongTo);
 		cboMaSoCongTo = new JComboBox();
 		cboMaSoCongTo.addItem("Mã số công tơ.....");
@@ -615,5 +697,4 @@ public class PnKhachHangUI {
 		}
 		return null;
 	}
-
 }

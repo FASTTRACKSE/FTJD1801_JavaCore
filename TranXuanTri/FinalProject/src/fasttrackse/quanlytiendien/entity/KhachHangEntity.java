@@ -4,8 +4,10 @@ public class KhachHangEntity {
 	private String maKhachHang;
 	private String hoTen;
 	private String diaChi;
-	private int phuong;
-	private int quan;
+	private int idPhuong;
+	private int idQuan;
+	private String phuong;
+	private String quan;
 	private String dienThoai;
 	private String email;
 	private int maSoCongTo;
@@ -38,20 +40,36 @@ public class KhachHangEntity {
 		this.diaChi = diaChi;
 	}
 
-	public int getPhuong() {
+	public int getIdPhuong() {
+		return idPhuong;
+	}
+
+	public void setIdPhuong(int phuong) {
+		this.idPhuong = phuong;
+	}
+
+	public String getPhuong() {
 		return phuong;
 	}
 
-	public void setPhuong(int phuong) {
+	public void setPhuong(String phuong) {
 		this.phuong = phuong;
 	}
 
-	public int getQuan() {
+	public String getQuan() {
 		return quan;
 	}
 
-	public void setQuan(int quan) {
+	public void setQuan(String quan) {
 		this.quan = quan;
+	}
+
+	public int getIdQuan() {
+		return idQuan;
+	}
+
+	public void setIdQuan(int quan) {
+		this.idQuan = quan;
 	}
 
 	public String getDienThoai() {

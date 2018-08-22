@@ -58,7 +58,7 @@ public class PnThongKeUI {
 		Border bor2 = BorderFactory.createLineBorder(Color.GRAY);
 		TitledBorder titlebor2 = new TitledBorder(bor2, "Thống kê");
 		pnThongKe.setBorder(titlebor2);
-		pnThongKe.setPreferredSize(new Dimension(800, 800));
+		pnThongKe.setPreferredSize(new Dimension(1000, 800));
 		JPanel pnFilter = new JPanel();
 		pn1.add(pnFilter);
 
@@ -228,7 +228,10 @@ public class PnThongKeUI {
 		JPanel pnBtn = new JPanel();
 		JButton btnSearch = new JButton("Search");
 		btnSearch.setSize(30, 40);
+		JButton btnReset = new JButton("Reset");
+
 		pnBtn.add(btnSearch);
+		pnBtn.add(btnReset);
 		pn1.add(pnBtn);
 		dm1 = new DefaultTableModel();
 		dm1.addColumn("Mã khách hàng");
@@ -241,7 +244,19 @@ public class PnThongKeUI {
 		dm1.addColumn("Chu kì");
 		dm1.addColumn("Chỉ số");
 		dm1.addColumn("Số tiền");
-		final JTable tbl1 = new JTable(dm1);
+		final JTable tbl = new JTable(dm1);
+		tbl.getColumnModel().getColumn(0).setMaxWidth(100);
+		tbl.getColumnModel().getColumn(1).setPreferredWidth(100);
+		tbl.getColumnModel().getColumn(0).setPreferredWidth(100);
+		tbl.getColumnModel().getColumn(2).setPreferredWidth(150);
+		tbl.getColumnModel().getColumn(1).setMaxWidth(100);
+		tbl.getColumnModel().getColumn(9).setMaxWidth(100);
+		tbl.getColumnModel().getColumn(8).setMaxWidth(100);
+		tbl.getColumnModel().getColumn(7).setMaxWidth(100);
+		tbl.getColumnModel().getColumn(6).setMaxWidth(100);
+		tbl.getColumnModel().getColumn(2).setMaxWidth(200);
+		tbl.setDefaultEditor(Object.class, null);
+
 		dm1.setRowCount(0);
 		for (BienLaiEntity bl : blList) {
 			for (KhachHangEntity kh1 : khList) {
@@ -250,10 +265,29 @@ public class PnThongKeUI {
 				}
 			}
 		}
-		tbl1.setModel(dm1);
+		tbl.setModel(dm1);
 		dm1.fireTableDataChanged();
-		JScrollPane sc = new JScrollPane(tbl1);
+		JScrollPane sc = new JScrollPane(tbl);
 		pnThongKe.add(sc, BorderLayout.CENTER);
+		btnReset.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dm1.setRowCount(0);
+				blList = thongKe.taoListBL();
+				khList = thongKe.taoListKH();
+				for (BienLaiEntity bl : blList) {
+					for (KhachHangEntity kh1 : khList) {
+						if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+							showResult(bl, kh1);
+						}
+					}
+				}
+				tbl.setModel(dm1);
+				dm1.fireTableDataChanged();
+			}
+		});
 		btnSearch.addActionListener(new ActionListener() {
 
 			@Override
@@ -271,7 +305,7 @@ public class PnThongKeUI {
 							}
 						}
 					}
-					tbl1.setModel(dm1);
+					tbl.setModel(dm1);
 					dm1.fireTableDataChanged();
 					break;
 				case 1:
@@ -313,7 +347,7 @@ public class PnThongKeUI {
 							}
 						}
 					}
-					tbl1.setModel(dm1);
+					tbl.setModel(dm1);
 					dm1.fireTableDataChanged();
 					break;
 				case 2:
@@ -332,7 +366,7 @@ public class PnThongKeUI {
 						int quan = ((ComboItem) cboQuan.getSelectedItem()).getId();
 						for (BienLaiEntity bl : blList) {
 							for (KhachHangEntity kh1 : khList) {
-								if ((kh1.getQuan() == quan) && (kh1.getPhuong() == phuong)) {
+								if ((kh1.getIdQuan() == quan) && (kh1.getIdPhuong() == phuong)) {
 									switch (i) {
 									case 1:
 										if (((int) (cboNam.getSelectedItem())) == getYear(bl.getNgayNhap())) {
@@ -370,7 +404,7 @@ public class PnThongKeUI {
 							}
 						}
 					}
-					tbl1.setModel(dm1);
+					tbl.setModel(dm1);
 					dm1.fireTableDataChanged();
 					break;
 				case 3:
