@@ -34,5 +34,17 @@ public class ActionComboBox {
 		}
 		return vec3;
 	}
-
+	public Vector<String> ArrComboBox2(ResultSet rs){
+		Vector<String> vec = new Vector<String>();
+		try {
+			while(rs.next()) {
+				ma = rs.getString(1);
+				vec.add(ma);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return vec;
+	}
 }

@@ -26,9 +26,7 @@ public class Display extends JFrame {
 
 		main.setLayout(new FlowLayout());
 
-		JFrame frmMain = new JFrame();
-		frmMain.setSize(400, 200);
-		frmMain.setLocationRelativeTo(null);
+		
 
 		JMenuBar menuBar = new JMenuBar();
 
@@ -119,6 +117,19 @@ public class Display extends JFrame {
 			}
 		});
 		
+		mnQLSach.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				main.removeAll();
+				main.repaint();
+				PanelQuanLySach pnSach = new PanelQuanLySach();
+				main.add(pnSach);
+				main.validate();
+			}
+		});
+		
 		mnQLTacGia.addActionListener(new ActionListener() {
 
 			@Override
@@ -154,6 +165,32 @@ public class Display extends JFrame {
 				main.repaint();
 				PanelQuanLyTheLoai pnTheLoai = new PanelQuanLyTheLoai();
 				main.add(pnTheLoai);
+				main.validate();
+			}
+		});
+		
+		mnQLChiTietMT.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				main.removeAll();
+				main.repaint();
+				PanelQuanLyChiTietMT pnChiTietMT = new PanelQuanLyChiTietMT();
+				main.add(pnChiTietMT);
+				main.validate();
+			}
+		});
+		
+		mnQLPhieuMT.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				main.removeAll();
+				main.repaint();
+				PanelQuanLyPhieuMT pnPhieuMT = new PanelQuanLyPhieuMT();
+				main.add(pnPhieuMT);
 				main.validate();
 			}
 		});
