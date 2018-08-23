@@ -2,6 +2,7 @@ package fasttrackse.quanlytiendien.DAO;
 
 import java.util.ArrayList;
 
+import fasttrackse.quanlytiendien.entity.BienLaiEntity;
 import fasttrackse.quanlytiendien.entity.KhachHangEntity;
 
 public class QuanLyTienDienException extends Exception {
@@ -33,6 +34,9 @@ public class QuanLyTienDienException extends Exception {
 		if (text.equals("")) {
 			throw new QuanLyTienDienException ("Vui lòng nhập đầy đủ thông tin");
 		}
+		if (text.length()==45) {
+			throw new QuanLyTienDienException ("Vui lòng ít hơn 45 kí tự");
+		}
 	}
 	static public void chckComboBox (int choice) throws QuanLyTienDienException {
 		if (choice == 0) {
@@ -47,5 +51,19 @@ public class QuanLyTienDienException extends Exception {
 				throw new QuanLyTienDienException ("Vui lòng nhập mã khách hàng khác");
 			}
 		}
+	}
+	static public void chckMaBL (int maBL) throws QuanLyTienDienException {
+		ThongKeDAO kh = new ThongKeDAO();
+		ArrayList<BienLaiEntity> blList =kh.taoListBL();
+		for (BienLaiEntity kh1:blList) {
+			if (kh1.getMaBienLai()==maBL) {
+				throw new QuanLyTienDienException ("Vui lòng không nhập trùng mã biên lai");
+			}
+		}
+	}
+	static public void chckBienLai (Boolean check) throws QuanLyTienDienException {
+			if (check==false) {
+				throw new QuanLyTienDienException ("Vui lòng chọn biên lai có chu kì gần nhất");
+			}
 	}
 }

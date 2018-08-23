@@ -5,12 +5,10 @@ import java.awt.event.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-
 import fasttrackse.quanlytiendien.DAO.BienLaiDAO;
 import fasttrackse.quanlytiendien.DAO.QuanLyTienDienException;
 import fasttrackse.quanlytiendien.DAO.ThongKeDAO;
@@ -26,13 +24,17 @@ public class PnBienLaiUI {
 	JTextField txtMaBienLai;
 	JButton btnUpdate;
 	JButton btnDelete;
-
+	ArrayList<BienLaiEntity> bienLaiList;
 	public JPanel pnBienLai() {
+		BienLaiDAO bienLai = new BienLaiDAO();
+		bienLaiList = bienLai.taoBienLaiList();
+		Color orange = Color.decode("#683f07");
 		BienLaiDAO tienDien = new BienLaiDAO();
 		JPanel pnTienDien = new JPanel();
 		pnTienDien.setLayout(new BorderLayout());
-		Border bor2 = BorderFactory.createLineBorder(Color.GRAY);
+		Border bor2 = BorderFactory.createLineBorder(Color.BLUE);
 		TitledBorder titlebor2 = new TitledBorder(bor2, "Thông tin biên lai");
+		titlebor2.setTitleColor(orange);
 		pnTienDien.setBorder(titlebor2);
 		pnTienDien.setPreferredSize(new Dimension(1000, 800));
 		DefaultTableModel dm = new DefaultTableModel();
@@ -89,18 +91,48 @@ public class PnBienLaiUI {
 			}
 
 			public void mouseClicked(MouseEvent e) {
-				btnUpdate.setEnabled(true);
-				btnDelete.setEnabled(true);
+				int max1 = 0;
 				int row = tbl.getSelectedRow();
 				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 2));
+				int chiSo1 = Integer.parseInt((String) tbl.getValueAt(row, 5));
+				ArrayList<BienLaiEntity> bienLaiList = bienLai.taoBienLaiList();
+				for (int i = 0; i < bienLaiList.size(); i++) {
+					if (bienLaiList.get(i).getMaSoCongToDien() == maCongTo) {
+						if (i == 0) {
+							max1 = bienLaiList.get(i).getChiSoCongTo();
+						} else if (bienLaiList.get(i).getChiSoCongTo() > max1) {
+							max1 = bienLaiList.get(i).getChiSoCongTo();
+						}
+					}
+				}
+				if (chiSo1==max1) {
+				btnUpdate.setEnabled(true);
+				btnDelete.setEnabled(true);
+				cboMaSoCongTo.setEnabled(false);
 				String chiSo = (String) tbl.getValueAt(row, 5);
 				String date1 = (String) tbl.getValueAt(row, 4);
 				String maBienLai = (String) tbl.getValueAt(row, 0);
 				txtMaBienLai.setText(maBienLai);
-				txtThang.setText(date1.substring(0, 1));
-				txtNam.setText(date1.substring(2));
+				for (String retval : date1.split("-")) {
+					if (retval.length() <= 2) {
+						txtThang.setText(retval);
+					} else if (retval.length() == 4) {
+						txtNam.setText(retval);
+					}
+				}
+
 				txtChiSo.setText(chiSo);
 				cboMaSoCongTo.setSelectedIndex(maCongTo);
+				} else {
+					btnUpdate.setEnabled(false);
+					btnDelete.setEnabled(false);
+					cboMaSoCongTo.setEnabled(true);
+					txtMaBienLai.setText("");
+					txtNam.setText("");
+					txtThang.setText("");
+					txtChiSo.setText("");
+					cboMaSoCongTo.setSelectedIndex(0);
+				}
 			}
 		});
 		tbl.addKeyListener(new KeyListener() {
@@ -108,18 +140,49 @@ public class PnBienLaiUI {
 			}
 
 			public void keyReleased(KeyEvent e) {
-				btnUpdate.setEnabled(true);
-				btnDelete.setEnabled(true);
+				int max1 = 0;
 				int row = tbl.getSelectedRow();
 				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 2));
+				int chiSo1 = Integer.parseInt((String) tbl.getValueAt(row, 5));
+				ArrayList<BienLaiEntity> bienLaiList = bienLai.taoBienLaiList();
+				for (int i = 0; i < bienLaiList.size(); i++) {
+					if (bienLaiList.get(i).getMaSoCongToDien() == maCongTo) {
+						if (i == 0) {
+							max1 = bienLaiList.get(i).getChiSoCongTo();
+						} else if (bienLaiList.get(i).getChiSoCongTo() > max1) {
+							max1 = bienLaiList.get(i).getChiSoCongTo();
+						}
+					}
+				}
+				if (chiSo1==max1) {
+				btnUpdate.setEnabled(true);
+				btnDelete.setEnabled(true);
+				cboMaSoCongTo.setEnabled(false);
 				String chiSo = (String) tbl.getValueAt(row, 5);
 				String date1 = (String) tbl.getValueAt(row, 4);
 				String maBienLai = (String) tbl.getValueAt(row, 0);
 				txtMaBienLai.setText(maBienLai);
-				txtThang.setText(date1.substring(0, 1));
-				txtNam.setText(date1.substring(2));
+				for (String retval : date1.split("-")) {
+					if (retval.length() <= 2) {
+						txtThang.setText(retval);
+					} else if (retval.length() == 4) {
+						txtNam.setText(retval);
+					}
+				}
+
 				txtChiSo.setText(chiSo);
 				cboMaSoCongTo.setSelectedIndex(maCongTo);
+				} else {
+					btnUpdate.setEnabled(false);
+					btnDelete.setEnabled(false);
+					cboMaSoCongTo.setEnabled(true);
+					txtMaBienLai.setText("");
+					txtNam.setText("");
+					txtThang.setText("");
+					txtChiSo.setText("");
+					cboMaSoCongTo.setSelectedIndex(0);
+				}
+			
 			}
 
 			public void keyPressed(KeyEvent e) {
@@ -170,7 +233,18 @@ public class PnBienLaiUI {
 		pnText.add(chiSo);
 		txtChiSo = new JTextField(15);
 		pnText.add(txtChiSo);
-		BienLaiDAO bienLai = new BienLaiDAO();
+
+		btnAdd.setForeground(orange);
+		btnDelete.setForeground(orange);
+		btnUpdate.setForeground(orange);
+
+		btnAdd.setFont(new Font(null, Font.BOLD, 13));
+		btnDelete.setFont(new Font(null, Font.BOLD, 13));
+		btnUpdate.setFont(new Font(null, Font.BOLD, 13));
+
+		btnAdd.setPreferredSize(new Dimension(200, 30));
+		btnDelete.setPreferredSize(new Dimension(200, 30));
+		btnUpdate.setPreferredSize(new Dimension(200, 30));
 
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -180,6 +254,7 @@ public class PnBienLaiUI {
 					QuanLyTienDienException.chckText(txtNam.getText());
 					QuanLyTienDienException.chckText(txtThang.getText());
 					QuanLyTienDienException.chckComboBox(cboMaSoCongTo.getSelectedIndex());
+					QuanLyTienDienException.chckMaBL(Integer.parseInt(txtMaBienLai.getText()));
 					int maCongToDien = cboMaSoCongTo.getSelectedIndex();
 					int thangCK = Integer.parseInt(txtThang.getText());
 					int namCK = Integer.parseInt(txtNam.getText());
@@ -221,6 +296,11 @@ public class PnBienLaiUI {
 					}
 					tbl.setModel(dm);
 					dm.fireTableDataChanged();
+					txtMaBienLai.setText("");
+					txtNam.setText("");
+					txtThang.setText("");
+					txtChiSo.setText("");
+					cboMaSoCongTo.setSelectedIndex(0);
 				} catch (QuanLyTienDienException ex) {
 					JOptionPane.showMessageDialog(null, ex);
 
@@ -237,15 +317,15 @@ public class PnBienLaiUI {
 					QuanLyTienDienException.chckComboBox(cboMaSoCongTo.getSelectedIndex());
 					BienLaiDAO bienLai = new BienLaiDAO();
 					ArrayList<BienLaiEntity> bienLaiList = bienLai.taoBienLaiList();
-
 					btnUpdate.setEnabled(false);
 					btnDelete.setEnabled(false);
+					cboMaSoCongTo.setEnabled(true);
+
 					int maCongToDien = cboMaSoCongTo.getSelectedIndex();
 					int thangCK = Integer.parseInt(txtThang.getText());
 					int namCK = Integer.parseInt(txtNam.getText());
 					int chiSo = Integer.parseInt(txtChiSo.getText());
 					int maBienLai = Integer.parseInt(txtMaBienLai.getText());
-					BienLaiDAO tienDien = new BienLaiDAO();
 					Calendar c = Calendar.getInstance();
 					String ngayNhap = BienLaiDAO.showCalendar(c);
 					double soTien = tienDien.updateTienDien(maCongToDien, chiSo, bienLaiList);
@@ -277,12 +357,18 @@ public class PnBienLaiUI {
 
 						ex.printStackTrace();
 					}
-					tbl.setModel(dm);
-					dm.fireTableDataChanged();
+
 				} catch (QuanLyTienDienException ex) {
 					JOptionPane.showMessageDialog(null, ex);
 
 				}
+				tbl.setModel(dm);
+				dm.fireTableDataChanged();
+				txtMaBienLai.setText("");
+				txtNam.setText("");
+				txtThang.setText("");
+				txtChiSo.setText("");
+				cboMaSoCongTo.setSelectedIndex(0);
 			}
 		});
 		btnDelete.addActionListener(new ActionListener() {
@@ -291,6 +377,7 @@ public class PnBienLaiUI {
 			public void actionPerformed(ActionEvent e) {
 				btnUpdate.setEnabled(false);
 				btnDelete.setEnabled(false);
+				cboMaSoCongTo.setEnabled(true);
 				int maBienLai = Integer.parseInt(txtMaBienLai.getText());
 				bienLai.delete(maBienLai);
 				dm.setRowCount(0);
@@ -332,17 +419,15 @@ public class PnBienLaiUI {
 	}
 
 	private void cboMaCongTo() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
-			Statement stmt = con.createStatement();
-			ResultSet rs1 = stmt.executeQuery("Select * from congtodien");
-			while (rs1.next()) {
-				cboMaSoCongTo.addItem(rs1.getInt(1));
+		ThongKeDAO kh = new ThongKeDAO();
+		ArrayList<KhachHangEntity> khList = kh.taoListKH();
+		int tam = 0;
+		for (KhachHangEntity kh1 : khList) {
+			if (tam != kh1.getMaSoCongTo()) {
+				cboMaSoCongTo.addItem(kh1.getMaSoCongTo());
+				tam = kh1.getMaSoCongTo();
 			}
-			con.close();
-		} catch (Exception ex) {
-			System.out.println(ex);
 		}
 	}
+
 }

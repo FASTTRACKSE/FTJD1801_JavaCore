@@ -3,16 +3,13 @@ package fasttrackse.quanlytiendien.UI;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
-import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import fasttrackse.quanlytiendien.DAO.KhachHangDAO;
 import fasttrackse.quanlytiendien.DAO.QuanLyTienDienException;
-import fasttrackse.quanlytiendien.DAO.ThongKeDAO;
 import fasttrackse.quanlytiendien.entity.ComboItem;
-import fasttrackse.quanlytiendien.entity.KhachHangEntity;
 import fasttrackse.quanlytiendien.entity.PhuongEntity;
 import fasttrackse.quanlytiendien.entity.QuanEntity;
 
@@ -34,10 +31,12 @@ public class PnKhachHangUI {
 	JButton btnDelete;
 
 	public JPanel pnKhachHang() {
+		Color green = Color.decode("#2c562e");
 		JPanel pnTab1 = new JPanel();
 		pnTab1.setLayout(new BorderLayout());
-		Border bor2 = BorderFactory.createLineBorder(Color.GRAY);
+		Border bor2 = BorderFactory.createLineBorder(Color.BLUE);
 		TitledBorder titlebor2 = new TitledBorder(bor2, "Thông tin khách hàng");
+		titlebor2.setTitleColor(green);
 		pnTab1.setBorder(titlebor2);
 		pnTab1.setPreferredSize(new Dimension(1000, 800));
 		try {
@@ -54,22 +53,28 @@ public class PnKhachHangUI {
 		dm.addColumn("Mã khách hàng");
 		dm.addColumn("Họ tên");
 		dm.addColumn("Địa chỉ");
-		dm.addColumn("");
+		dm.addColumn("111");
 		dm.addColumn("Phường");
-		dm.addColumn("");
+		dm.addColumn("222");
 		dm.addColumn("Quận");
 		dm.addColumn("Điện thoại");
 		dm.addColumn("Email");
 		dm.addColumn("Mã số công tơ");
 		final JTable tbl = new JTable(dm);
-//		 tbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tbl.getTableHeader().setResizingAllowed(false);
 		tbl.getColumnModel().getColumn(0).setMaxWidth(100);
 		tbl.getColumnModel().getColumn(0).setPreferredWidth(100);
+		tbl.getColumnModel().getColumn(1).setPreferredWidth(150);
+		tbl.getColumnModel().getColumn(1).setMinWidth(100);
+		tbl.getColumnModel().getColumn(1).setMinWidth(150);
 		tbl.getColumnModel().getColumn(2).setPreferredWidth(150);
 		tbl.getColumnModel().getColumn(3).setMaxWidth(0);
+		tbl.getColumnModel().getColumn(3).setMinWidth(0);
+		tbl.getColumnModel().getColumn(3).setPreferredWidth(0);
 		tbl.getColumnModel().getColumn(4).setPreferredWidth(150);
 		tbl.getColumnModel().getColumn(5).setMaxWidth(0);
 		tbl.getColumnModel().getColumn(5).setMinWidth(0);
+		tbl.getColumnModel().getColumn(5).setPreferredWidth(0);
 		tbl.getColumnModel().getColumn(6).setPreferredWidth(150);
 		tbl.getColumnModel().getColumn(7).setPreferredWidth(75);
 		tbl.getColumnModel().getColumn(9).setPreferredWidth(100);
@@ -165,12 +170,13 @@ public class PnKhachHangUI {
 			public void keyReleased(KeyEvent e) {
 				btnEdit.setEnabled(true);
 				btnDelete.setEnabled(true);
+				cboMaSoCongTo.setEnabled(false);
 				int row = tbl.getSelectedRow();
 				String maKH = (String) tbl.getValueAt(row, 0);
 				String hoTen = (String) tbl.getValueAt(row, 1);
 				String diaChi = (String) tbl.getValueAt(row, 2);
 				String dienThoai = (String) tbl.getValueAt(row, 7);
-				String email = (String) tbl.getValueAt(row, 6);
+				String email = (String) tbl.getValueAt(row, 8);
 				int maCongTo = Integer.parseInt((String) tbl.getValueAt(row, 9));
 				int idQuan = Integer.parseInt((String) tbl.getValueAt(row, 5));
 				int idPhuong = Integer.parseInt((String) tbl.getValueAt(row, 3));
@@ -227,7 +233,7 @@ public class PnKhachHangUI {
 
 		JPanel pnFilter = new JPanel();
 		pn.add(pnFilter, BorderLayout.SOUTH);
-		pnFilter.setLayout(new GridLayout(1, 3));
+		// pnFilter.setLayout(new GridLayout(1, 5));
 		cboQuan = new JComboBox<String>();
 		cboQuan.addItem(new ComboItem(0, "Quận..."));
 		cboQuan();
@@ -238,29 +244,25 @@ public class PnKhachHangUI {
 
 		pnFilter.add(cboQuan);
 		pnFilter.add(cboPhuong);
-		JButton btnSearch = new JButton("search");
+		JButton btnSearch = new JButton("Search");
+		JButton btnReset = new JButton("Reset");
+		btnSearch.setForeground(green);
+		btnReset.setForeground(green);
+		btnReset.setFont(new Font(null, Font.BOLD, 13));
+		btnSearch.setFont(new Font(null, Font.BOLD, 13));
+		btnSearch.setPreferredSize(new Dimension(100, 30));
+		btnReset.setPreferredSize(new Dimension(100, 30));
+		cboQuan.setPreferredSize(new Dimension(200, 30));
+		cboPhuong.setPreferredSize(new Dimension(200, 30));
 		pnFilter.add(btnSearch);
+		pnFilter.add(btnReset);
 		btnSearch.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int n = cboQuan.getSelectedIndex();
 				if (n == 0) {
-					try {
-						dm.setRowCount(0);
-						String sql = "select * from khachhang";
-						rs = stmt.executeQuery(sql);
-						while (rs.next()) {
-							dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-									rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) });
-							tbl.setModel(dm);
-							dm.fireTableDataChanged();
-						}
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-
+					JOptionPane.showMessageDialog(null, "Vui lòng chọn tiêu chí tìm kiếm");
 				} else {
 					int j = ((ComboItem) cboPhuong.getSelectedItem()).getId();
 					int i = ((ComboItem) cboQuan.getSelectedItem()).getId();
@@ -269,7 +271,7 @@ public class PnKhachHangUI {
 						rs = stmt.executeQuery(sql);
 						dm.setRowCount(0);
 						while (rs.next()) {
-							if (rs.getInt(5) == i) {
+							if (rs.getInt(6) == i) {
 								if (rs.getInt(4) == j) {
 									dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3),
 											rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
@@ -286,6 +288,30 @@ public class PnKhachHangUI {
 				}
 			}
 		});
+		btnReset.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					dm.setRowCount(0);
+					String sql = "select * from khachhang";
+					rs = stmt.executeQuery(sql);
+					while (rs.next()) {
+						dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+								rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
+								rs.getString(10) });
+					}
+					tbl.setModel(dm);
+					dm.fireTableDataChanged();
+					cboQuan.setSelectedIndex(0);
+					cboPhuong.setSelectedIndex(0);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		pnTab1.add(pn, BorderLayout.NORTH);
 
 		JPanel pnBtn = new JPanel();
@@ -296,8 +322,8 @@ public class PnKhachHangUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (cboQuan1.getSelectedIndex() == 0 || cboPhuong1.getSelectedIndex() == 0) {
-					JOptionPane.showMessageDialog(null, "Vui lòng chọn Quận, Phường");
+				if (cboQuan1.getSelectedIndex() == 0) {
+					JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
 				} else {
 					try {
 						ComboItem quan = (ComboItem) cboQuan1.getSelectedItem();
@@ -339,13 +365,20 @@ public class PnKhachHangUI {
 						}
 						tbl.setModel(dm);
 						dm.fireTableDataChanged();
+						txtMaKH.setText("");
+						txtHoTen.setText("");
+						txtDiaChi.setText("");
+						cboQuan1.setSelectedIndex(0);
+						cboPhuong1.setSelectedIndex(0);
+						txtDienThoai.setText("");
+						txtEmail.setText("");
+						cboMaSoCongTo.setSelectedIndex(0);
 					} catch (QuanLyTienDienException ex) {
 						JOptionPane.showMessageDialog(null, ex);
 					}
 				}
 			}
 		});
-		// btnAdd.setEnabled(true);
 
 		btnEdit = new JButton("Sửa thông tin khách hàng");
 		btnEdit.setEnabled(false);
@@ -359,6 +392,7 @@ public class PnKhachHangUI {
 				txtMaKH.setEditable(true);
 				btnEdit.setEnabled(false);
 				btnDelete.setEnabled(false);
+				cboMaSoCongTo.setEnabled(true);
 				String maKhachHang = txtMaKH.getText();
 				String hoTen = txtHoTen.getText();
 				String diaChi = txtDiaChi.getText();
@@ -411,6 +445,7 @@ public class PnKhachHangUI {
 				txtMaKH.setEditable(true);
 				btnEdit.setEnabled(false);
 				btnDelete.setEnabled(false);
+				cboMaSoCongTo.setEnabled(true);
 				String maKhachHang = txtMaKH.getText();
 				KhachHangDAO kh = new KhachHangDAO();
 				kh.delete(maKhachHang);
@@ -438,6 +473,16 @@ public class PnKhachHangUI {
 				cboMaSoCongTo.setSelectedIndex(0);
 			}
 		});
+		btnAdd.setForeground(green);
+		btnDelete.setForeground(green);
+		btnEdit.setForeground(green);
+		
+		btnAdd.setFont(new Font(null, Font.BOLD, 13));
+		btnDelete.setFont(new Font(null, Font.BOLD, 13));
+		btnEdit.setFont(new Font(null, Font.BOLD, 13));
+		btnAdd.setPreferredSize(new Dimension(200, 30));
+		btnDelete.setPreferredSize(new Dimension(200, 30));
+		btnEdit.setPreferredSize(new Dimension(200, 30));
 
 		JPanel pn1 = new JPanel();
 		pn.add(pn1, BorderLayout.CENTER);
@@ -490,6 +535,7 @@ public class PnKhachHangUI {
 		cboMaSoCongTo.addItem("Mã số công tơ.....");
 		cboMaCongTo();
 		pnText.add(cboMaSoCongTo);
+		cboMaSoCongTo.setEnabled(true);
 		return pnTab1;
 	}
 
@@ -685,7 +731,6 @@ public class PnKhachHangUI {
 	}
 
 	private ResultSet connect() {
-
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");

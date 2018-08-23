@@ -4,22 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-
 import fasttrackse.quanlytiendien.DAO.ThongKeDAO;
 import fasttrackse.quanlytiendien.entity.BienLaiEntity;
 import fasttrackse.quanlytiendien.entity.ComboItem;
@@ -43,20 +35,22 @@ public class PnThongKeUI {
 	JTextField year2;
 	JTextField msKhachHang;
 	DefaultTableModel dm1;
-	ArrayList<BienLaiEntity> blList;
-	ArrayList<KhachHangEntity> khList;
+	JTable tbl;
+//	ArrayList<BienLaiEntity> blList;
+//	ArrayList<KhachHangEntity> khList;
 
 	public JPanel pnThongKe() {
 		ThongKeDAO thongKe = new ThongKeDAO();
-		blList = thongKe.taoListBL();
-		khList = thongKe.taoListKH();
+		ArrayList<BienLaiEntity> blList = thongKe.taoListBL();
+		ArrayList<KhachHangEntity> khList = thongKe.taoListKH();
 		JPanel pnThongKe = new JPanel();
 		pnThongKe.setLayout(new BorderLayout());
 		JPanel pn1 = new JPanel();
 		pn1.setLayout(new GridLayout(3, 1));
 		pnThongKe.add(pn1, BorderLayout.NORTH);
-		Border bor2 = BorderFactory.createLineBorder(Color.GRAY);
-		TitledBorder titlebor2 = new TitledBorder(bor2, "Thống kê");
+		Border bor2 = BorderFactory.createLineBorder(Color.BLUE);
+		TitledBorder titlebor2 = new TitledBorder(bor2, "Thống kê báo cáo");
+		titlebor2.setTitleColor(Color.DARK_GRAY);
 		pnThongKe.setBorder(titlebor2);
 		pnThongKe.setPreferredSize(new Dimension(1000, 800));
 		JPanel pnFilter = new JPanel();
@@ -163,7 +157,6 @@ public class PnThongKeUI {
 
 		cboNam1 = new JComboBox();
 		int tam1 = 0;
-		// cboNam1.addItem("Năm .....");
 		for (BienLaiEntity bl : blList) {
 			int nam = getYear(bl.getChuKiNhap());
 			if (nam != tam1) {
@@ -229,7 +222,27 @@ public class PnThongKeUI {
 		JButton btnSearch = new JButton("Search");
 		btnSearch.setSize(30, 40);
 		JButton btnReset = new JButton("Reset");
-
+		btnReset.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			cbo.setSelectedIndex(0);
+			cbo3.setSelectedIndex(0);
+			dm1.setRowCount(0);
+			ArrayList<BienLaiEntity> blList = thongKe.taoListBL();
+			ArrayList<KhachHangEntity> khList = thongKe.taoListKH();
+			for (BienLaiEntity bl : blList) {
+				for (KhachHangEntity kh1 : khList) {
+					if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+						showResult(bl, kh1);
+					}
+				}
+			}
+			tbl.setModel(dm1);
+			dm1.fireTableDataChanged();
+			}
+		});
 		pnBtn.add(btnSearch);
 		pnBtn.add(btnReset);
 		pn1.add(pnBtn);
@@ -244,7 +257,7 @@ public class PnThongKeUI {
 		dm1.addColumn("Chu kì");
 		dm1.addColumn("Chỉ số");
 		dm1.addColumn("Số tiền");
-		final JTable tbl = new JTable(dm1);
+		tbl = new JTable(dm1);
 		tbl.getColumnModel().getColumn(0).setMaxWidth(100);
 		tbl.getColumnModel().getColumn(1).setPreferredWidth(100);
 		tbl.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -270,13 +283,13 @@ public class PnThongKeUI {
 		JScrollPane sc = new JScrollPane(tbl);
 		pnThongKe.add(sc, BorderLayout.CENTER);
 		btnReset.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				dm1.setRowCount(0);
-				blList = thongKe.taoListBL();
-				khList = thongKe.taoListKH();
+				ArrayList<BienLaiEntity> blList = thongKe.taoListBL();
+				ArrayList<KhachHangEntity> khList = thongKe.taoListKH();
 				for (BienLaiEntity bl : blList) {
 					for (KhachHangEntity kh1 : khList) {
 						if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
@@ -295,6 +308,8 @@ public class PnThongKeUI {
 				// TODO Auto-generated method stub
 				int n = cbo.getSelectedIndex();
 				int i = cbo3.getSelectedIndex();
+				ArrayList<BienLaiEntity> blList = thongKe.taoListBL();
+				ArrayList<KhachHangEntity> khList = thongKe.taoListKH();
 				switch (n) {
 				case 0:
 					dm1.setRowCount(0);
@@ -452,6 +467,9 @@ public class PnThongKeUI {
 				}
 			}
 		});
+		cbo.setPreferredSize(new Dimension(200, 30));
+		cbo3.setPreferredSize(new Dimension(200, 30));
+
 		return pnThongKe;
 	}
 
@@ -573,7 +591,7 @@ public class PnThongKeUI {
 		String ngayNhap = day + "-" + month + "-" + year;
 		String chuKiNhap = thangCK + "-" + namCK;
 		dm1.addRow(new String[] { kh.getMaKhachHang(), String.valueOf(kh.getMaSoCongTo()), kh.getHoTen(),
-				kh.getDiaChi(), String.valueOf(kh.getPhuong()), String.valueOf(kh.getQuan()), ngayNhap, chuKiNhap,
+				kh.getDiaChi(), kh.getPhuong(), kh.getQuan(), ngayNhap, chuKiNhap,
 				String.valueOf(bl.getChiSoCongTo()), String.valueOf(bl.getTienDien()) });
 
 	}

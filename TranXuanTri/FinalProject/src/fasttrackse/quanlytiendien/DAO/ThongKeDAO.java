@@ -10,7 +10,7 @@ public class ThongKeDAO {
 	public ArrayList<KhachHangEntity> taoListKH() {
 		try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien?useUnicode=yes&characterEncoding=UTF-8", "root", "");
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("Select * from khachhang");
 		ArrayList<KhachHangEntity> khachHangList = new ArrayList<KhachHangEntity>();
@@ -37,7 +37,7 @@ public class ThongKeDAO {
 	public ArrayList<BienLaiEntity> taoListBL() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien?useUnicode=yes&characterEncoding=UTF-8", "root", "");
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from bienlai");
 			ArrayList<BienLaiEntity> bienLaiList = new ArrayList<BienLaiEntity>();

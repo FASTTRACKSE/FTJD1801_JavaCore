@@ -119,10 +119,8 @@ public class BienLaiDAO {
 		for (BienLaiEntity bl : bienLaiList) {
 			if (bl.getMaSoCongToDien() == maCongTo) {
 				if (bl.getChiSoCongTo() <= chiSo) {
-					System.out.print(bl.getChiSoCongTo());
 					return tinhTien(chiSo - bl.getChiSoCongTo());
 				} else if (bl.getChiSoCongTo() > chiSo) {
-					System.out.println("Loi ");
 					return 0;
 				}
 			}
