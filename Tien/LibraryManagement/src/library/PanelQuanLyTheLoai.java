@@ -10,21 +10,22 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class PanelQuanLyTheLoai extends JPanel{
+public class PanelQuanLyTheLoai extends JPanel {
 	ResultSet rs = null;
 	Statement stmt;
-	
+
 	public PanelQuanLyTheLoai() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library?useUnicode=yes&characterEncoding=UTF-8", "root", "");
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/library?useUnicode=yes&characterEncoding=UTF-8", "root", "");
 			stmt = con.createStatement();
 			rs = stmt.executeQuery("Select * from theloaisach");
 
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
-		
+
 		JPanel pnNull = new JPanel();
 		Font fontOne = new Font(Font.SERIF, Font.PLAIN, 18);
 
@@ -52,12 +53,12 @@ public class PanelQuanLyTheLoai extends JPanel{
 		grTop.add(lblName);
 		pnTwo.add(txtName);
 		grTop.add(pnTwo);
-		 
+
 		JPanel pnThree = new JPanel();
 		pnThree.setLayout(new FlowLayout());
-		JLabel lblNote=new JLabel("Mô tả"); 
-		JTextArea txtaNote=new JTextArea(5, 15); 
-		JScrollPane scpNote=new JScrollPane(txtaNote);
+		JLabel lblNote = new JLabel("Mô tả");
+		JTextArea txtaNote = new JTextArea(5, 15);
+		JScrollPane scpNote = new JScrollPane(txtaNote);
 		scpNote.setPreferredSize(new Dimension(1000, 100));
 		lblNote.setFont(fontOne);
 		txtaNote.setFont(fontOne);
@@ -130,10 +131,10 @@ public class PanelQuanLyTheLoai extends JPanel{
 		}
 
 		Border border = BorderFactory.createLineBorder(Color.DARK_GRAY);
-		TitledBorder borderTitle = BorderFactory.createTitledBorder(border, "Danh sách tác giả");
+		TitledBorder borderTitle = BorderFactory.createTitledBorder(border, "Danh sách thể loại");
 
 		tbl.setFont(fontOne);
-		tbl.setPreferredScrollableViewportSize(new Dimension(1100, 300));
+		tbl.setPreferredScrollableViewportSize(new Dimension(1100, 350));
 		JScrollPane sc = new JScrollPane(tbl);
 		sc.setViewportView(tbl);
 		pnTable.add(sc);
@@ -229,8 +230,8 @@ public class PanelQuanLyTheLoai extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					stmt.executeUpdate("update theloaisach set TenTheLoai = \'" + txtName.getText() + "\', MoTa = \'" + txtaNote.getText()
-							+ "\' where MaTheLoai = \'" + txtID.getText() + "\'");
+					stmt.executeUpdate("update theloaisach set TenTheLoai = \'" + txtName.getText() + "\', MoTa = \'"
+							+ txtaNote.getText() + "\' where MaTheLoai = \'" + txtID.getText() + "\'");
 					JOptionPane.showMessageDialog(null, "Cập nhật thành công!!!");
 					tblTheLoai.setRowCount(0);
 					rs = stmt.executeQuery("Select * from theloaisach");
@@ -254,37 +255,42 @@ public class PanelQuanLyTheLoai extends JPanel{
 				}
 			}
 		});
-		
+
 		btnRemove.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
-				try {
-					stmt.execute("delete from theloaisach where MaTheLoai = \'" + txtID.getText() + "\'");
-					JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
-					tblTheLoai.setRowCount(0);
-					rs = stmt.executeQuery("Select * from theloaisach");
+				int dialogResult = JOptionPane.showConfirmDialog(null,
+						"Thao tác này sẽ xóa dữ liệu của bảng sách với cùng thể loại!!!", "Cảnh báo",
+						JOptionPane.YES_NO_OPTION);
+				if (dialogResult == JOptionPane.YES_OPTION) {
+					try {
+						stmt.execute("delete from sach where MaTheLoai = \'" + txtID.getText() + "\'");
+						stmt.execute("delete from theloaisach where MaTheLoai = \'" + txtID.getText() + "\'");
+						JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
+						tblTheLoai.setRowCount(0);
+						rs = stmt.executeQuery("Select * from theloaisach");
 
-					while (rs.next()) {
-						String maTheLoai = rs.getString(1);
-						String tenTheLoai = rs.getString(2);
-						String moTa = rs.getString(3);
-						Vector<String> vec = new Vector<String>();
-						vec.add(maTheLoai);
-						vec.add(tenTheLoai);
-						vec.add(moTa);
-						tblTheLoai.addRow(vec);
+						while (rs.next()) {
+							String maTheLoai = rs.getString(1);
+							String tenTheLoai = rs.getString(2);
+							String moTa = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(maTheLoai);
+							vec.add(tenTheLoai);
+							vec.add(moTa);
+							tblTheLoai.addRow(vec);
+						}
+						tbl.setModel(tblTheLoai);
+						tblTheLoai.fireTableDataChanged();
+
+					} catch (Exception ex) {
+						// TODO: handle exception
+						System.err.println(ex);
 					}
-					tbl.setModel(tblTheLoai);
-					tblTheLoai.fireTableDataChanged();
-
-				} catch (Exception ex) {
-					// TODO: handle exception
-					System.err.println(ex);
 				}
-				
+
 			}
 		});
 
@@ -314,7 +320,8 @@ public class PanelQuanLyTheLoai extends JPanel{
 					} else {
 						if (index == 0) {
 							tblTheLoai.setRowCount(0);
-							rs = stmt.executeQuery("Select * from theloaisach where MaTheLoai = " + txtValue.getText() + "");
+							rs = stmt.executeQuery(
+									"Select * from theloaisach where MaTheLoai = " + txtValue.getText() + "");
 
 							while (rs.next()) {
 								String maTheLoai = rs.getString(1);

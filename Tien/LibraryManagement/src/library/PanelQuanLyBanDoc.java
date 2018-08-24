@@ -24,6 +24,7 @@ public class PanelQuanLyBanDoc extends JPanel {
 	Statement stmt;
 	Connection con;
 	int i = 0, j = 1, indexOne, indexTwo, indexThree;
+	String one, two, three;
 	Vector<Vector> vecCbb;
 	Vector<Vector> vecCbb2;
 	Vector<Vector> vecCbb3;
@@ -273,25 +274,13 @@ public class PanelQuanLyBanDoc extends JPanel {
 		pnTable.setBorder(borderTitle);
 
 		cbbTinhThanh.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				indexOne = cbbTinhThanh.getSelectedIndex();
+				maTinhThanh = (String) vecCbb.get(0).get(indexOne);
 				cbbQuanHuyen.removeAllItems();
-				try {
-					maTinhThanh = (String) vecCbb.get(0).get(indexOne);
-					rsQuanHuyen = stmt
-							.executeQuery("Select MaQuanHuyen, TenQuanHuyen from quan_huyen_thixa where MaThanhPho = \'"
-									+ maTinhThanh + "\'");
-					vecCbb2 = atnCbb.ArrComboBox(rsQuanHuyen);
-					for (int i = 0; i < vecCbb2.get(0).size(); i++) {
-						cbbQuanHuyen.addItem(vecCbb2.get(0).get(i) + " | " + vecCbb2.get(1).get(i));
-					}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 			}
 		});
 
@@ -318,34 +307,22 @@ public class PanelQuanLyBanDoc extends JPanel {
 					}
 				}
 				indexTwo = cbbQuanHuyen.getSelectedIndex();
+				maQuanHuyen = (String) vecCbb2.get(0).get(indexTwo);
 				cbbXaPhuong.removeAllItems();
-				try {
-					maQuanHuyen =	(String) vecCbb2.get(0).get(indexTwo);
-					rsXaPhuong = stmt
-							.executeQuery("Select MaXaPhuong, TenXaPhuong from xa_phuong_thitran where MaQuanHuyen = \'"
-									+ maQuanHuyen + "\'");
-					vecCbb3 = atnCbb.ArrComboBox(rsXaPhuong);
-					for (int i = 0; i < vecCbb3.get(0).size(); i++) {
-						cbbXaPhuong.addItem(vecCbb3.get(0).get(i) + " | " + vecCbb3.get(1).get(i));
-					}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 			}
 		});
-		
+
 		cbbXaPhuong.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				indexThree = cbbXaPhuong.getSelectedIndex();
 				if (indexThree < 0) {
 					try {
-						maQuanHuyen =	(String) vecCbb2.get(0).get(indexTwo);
-						rsXaPhuong = stmt
-								.executeQuery("Select MaXaPhuong, TenXaPhuong from xa_phuong_thitran where MaQuanHuyen = \'"
+						maQuanHuyen = (String) vecCbb2.get(0).get(indexTwo);
+						rsXaPhuong = stmt.executeQuery(
+								"Select MaXaPhuong, TenXaPhuong from xa_phuong_thitran where MaQuanHuyen = \'"
 										+ maQuanHuyen + "\'");
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
@@ -356,12 +333,12 @@ public class PanelQuanLyBanDoc extends JPanel {
 						cbbXaPhuong.addItem(vecCbb3.get(0).get(i) + " | " + vecCbb3.get(1).get(i));
 					}
 				}
-				
+
 				indexThree = cbbXaPhuong.getSelectedIndex();
 				maXaPhuong = (String) vecCbb3.get(0).get(indexThree);
 			}
 		});
-		
+
 		tbl.addMouseListener(new MouseListener() {
 
 			@Override
@@ -385,6 +362,31 @@ public class PanelQuanLyBanDoc extends JPanel {
 
 				String soSach = (String) tbl.getValueAt(row, 8);
 				txtBorrow.setText(soSach);
+
+				String tinhThanh = (String) tbl.getValueAt(row, 5);
+				String quanHuyen = (String) tbl.getValueAt(row, 4);
+				String xaPhuong = (String) tbl.getValueAt(row, 3);
+
+				for (int i = 0; i < vecCbb.get(0).size(); i++) {
+					if (tinhThanh.equals(vecCbb.get(1).get(i))) {
+						one = (String) vecCbb.get(0).get(i);
+					}
+				}
+				cbbTinhThanh.setSelectedItem(one + " | " + tinhThanh);
+
+				for (int i = 0; i < vecCbb2.get(0).size(); i++) {
+					if (quanHuyen.equals(vecCbb2.get(1).get(i))) {
+						two = (String) vecCbb2.get(0).get(i);
+					}
+				}
+				cbbQuanHuyen.setSelectedItem(two + " | " + quanHuyen);
+
+				for (int i = 0; i < vecCbb3.get(0).size(); i++) {
+					if (xaPhuong.equals(vecCbb3.get(1).get(i))) {
+						three = (String) vecCbb3.get(0).get(i);
+					}
+				}
+				cbbXaPhuong.setSelectedItem(three + " | " + xaPhuong);
 			}
 
 			@Override
@@ -411,6 +413,20 @@ public class PanelQuanLyBanDoc extends JPanel {
 
 			}
 		});
+		
+		btnAdd.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				txtID.setText("");
+				txtBorrow.setText("");
+				txtAdd.setText("");
+				txtMail.setText("");
+				txtName.setText("");
+				txtPhone.setText("");
+			}
+		});
 
 		btnSave.addActionListener(new ActionListener() {
 
@@ -418,13 +434,14 @@ public class PanelQuanLyBanDoc extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					stmt.execute("Insert into bandoc values(\'" + txtID.getText() + "\',\'" + txtName.getText() + "\',\'"
-							+ txtAdd.getText() + "\',\'" + maXaPhuong + "\',\'"
-							+ maQuanHuyen + "\',\'" + maTinhThanh + "\',\'"
-							+ txtPhone.getText() + "\',\'" + txtMail.getText() + "\',\'" + txtBorrow.getText() + "\')");
+					stmt.execute("Insert into bandoc values(\'" + txtID.getText() + "\',\'" + txtName.getText()
+							+ "\',\'" + txtAdd.getText() + "\',\'" + maXaPhuong + "\',\'" + maQuanHuyen + "\',\'"
+							+ maTinhThanh + "\',\'" + txtPhone.getText() + "\',\'" + txtMail.getText() + "\',\'"
+							+ txtBorrow.getText() + "\')");
 					JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
 					tblBanDoc.setRowCount(0);
-					rs = stmt.executeQuery("SELECT MaBanDoc, HoTen, DiaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, SDT, Email, SoSachMuon FROM bandoc as bd, xa_phuong_thitran as xp, quan_huyen_thixa as qh, tinh_thanhpho as tt where xp.MaXaPhuong = bd.MaXaPhuong and qh.MaQuanHuyen = bd.MaQuanHuyen and tt.MaTinhThanh = bd.MaTinhThanh");
+					rs = stmt.executeQuery(
+							"SELECT MaBanDoc, HoTen, DiaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, SDT, Email, SoSachMuon FROM bandoc as bd, xa_phuong_thitran as xp, quan_huyen_thixa as qh, tinh_thanhpho as tt where xp.MaXaPhuong = bd.MaXaPhuong and qh.MaQuanHuyen = bd.MaQuanHuyen and tt.MaTinhThanh = bd.MaTinhThanh");
 
 					while (rs.next()) {
 						String maBanDoc = rs.getString(1);
@@ -457,20 +474,22 @@ public class PanelQuanLyBanDoc extends JPanel {
 				}
 			}
 		});
-		
+
 		btnUpdate.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
 					stmt.execute("update bandoc set HoTen = \'" + txtName.getText() + "\', DiaChi = \'"
 							+ txtAdd.getText() + "\', MaXaPhuong = \'" + maXaPhuong + "\', MaQuanHuyen = \'"
-							+ maQuanHuyen + "\', MaTinhThanh = \'" + maTinhThanh + "\', SDT = \'"
-							+ txtPhone.getText() + "\', Email = \'" + txtMail.getText() + "\', SoSachMuon = \'" + txtBorrow.getText() + "\' where MaBanDoc = \'" + txtID.getText() + "\'");
+							+ maQuanHuyen + "\', MaTinhThanh = \'" + maTinhThanh + "\', SDT = \'" + txtPhone.getText()
+							+ "\', Email = \'" + txtMail.getText() + "\', SoSachMuon = \'" + txtBorrow.getText()
+							+ "\' where MaBanDoc = \'" + txtID.getText() + "\'");
 					JOptionPane.showMessageDialog(null, "Cập nhật thành công!!!");
 					tblBanDoc.setRowCount(0);
-					rs = stmt.executeQuery("SELECT MaBanDoc, HoTen, DiaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, SDT, Email, SoSachMuon FROM bandoc as bd, xa_phuong_thitran as xp, quan_huyen_thixa as qh, tinh_thanhpho as tt where xp.MaXaPhuong = bd.MaXaPhuong and qh.MaQuanHuyen = bd.MaQuanHuyen and tt.MaTinhThanh = bd.MaTinhThanh");
+					rs = stmt.executeQuery(
+							"SELECT MaBanDoc, HoTen, DiaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, SDT, Email, SoSachMuon FROM bandoc as bd, xa_phuong_thitran as xp, quan_huyen_thixa as qh, tinh_thanhpho as tt where xp.MaXaPhuong = bd.MaXaPhuong and qh.MaQuanHuyen = bd.MaQuanHuyen and tt.MaTinhThanh = bd.MaTinhThanh");
 
 					while (rs.next()) {
 						String maBanDoc = rs.getString(1);
@@ -503,46 +522,54 @@ public class PanelQuanLyBanDoc extends JPanel {
 				}
 			}
 		});
-		
+
 		btnRemove.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				try {
-					stmt.execute("delete from bandoc where MaBanDoc = \'" + txtID.getText() + "\'");
-					JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
-					tblBanDoc.setRowCount(0);
-					rs = stmt.executeQuery("SELECT MaBanDoc, HoTen, DiaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, SDT, Email, SoSachMuon FROM bandoc as bd, xa_phuong_thitran as xp, quan_huyen_thixa as qh, tinh_thanhpho as tt where xp.MaXaPhuong = bd.MaXaPhuong and qh.MaQuanHuyen = bd.MaQuanHuyen and tt.MaTinhThanh = bd.MaTinhThanh");
+				int dialogResult = JOptionPane.showConfirmDialog(null,
+						"Thao tác này sẽ xóa dữ liệu của bạn đọc ở phiếu mượn trả!!!", "Cảnh báo", JOptionPane.YES_NO_OPTION);
+				if (dialogResult == JOptionPane.YES_OPTION) {
+					// Saving code here
 
-					while (rs.next()) {
-						String maBanDoc = rs.getString(1);
-						String hoTen = rs.getString(2);
-						String diaChi = rs.getString(3);
-						String xaPhuong = rs.getString(4);
-						String quanHuyen = rs.getString(5);
-						String tinhThanh = rs.getString(6);
-						String sdt = rs.getString(7);
-						String email = rs.getString(8);
-						String soSachMuon = rs.getString(9);
-						Vector<String> vec = new Vector<String>();
-						vec.add(maBanDoc);
-						vec.add(hoTen);
-						vec.add(diaChi);
-						vec.add(xaPhuong);
-						vec.add(quanHuyen);
-						vec.add(tinhThanh);
-						vec.add(sdt);
-						vec.add(email);
-						vec.add(soSachMuon);
-						tblBanDoc.addRow(vec);
+					try {
+						stmt.execute("delete from phieumuontra where MaBanDoc = \'" + txtID.getText() + "\'");
+						stmt.execute("delete from bandoc where MaBanDoc = \'" + txtID.getText() + "\'");
+						JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
+						tblBanDoc.setRowCount(0);
+						rs = stmt.executeQuery(
+								"SELECT MaBanDoc, HoTen, DiaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, SDT, Email, SoSachMuon FROM bandoc as bd, xa_phuong_thitran as xp, quan_huyen_thixa as qh, tinh_thanhpho as tt where xp.MaXaPhuong = bd.MaXaPhuong and qh.MaQuanHuyen = bd.MaQuanHuyen and tt.MaTinhThanh = bd.MaTinhThanh");
+
+						while (rs.next()) {
+							String maBanDoc = rs.getString(1);
+							String hoTen = rs.getString(2);
+							String diaChi = rs.getString(3);
+							String xaPhuong = rs.getString(4);
+							String quanHuyen = rs.getString(5);
+							String tinhThanh = rs.getString(6);
+							String sdt = rs.getString(7);
+							String email = rs.getString(8);
+							String soSachMuon = rs.getString(9);
+							Vector<String> vec = new Vector<String>();
+							vec.add(maBanDoc);
+							vec.add(hoTen);
+							vec.add(diaChi);
+							vec.add(xaPhuong);
+							vec.add(quanHuyen);
+							vec.add(tinhThanh);
+							vec.add(sdt);
+							vec.add(email);
+							vec.add(soSachMuon);
+							tblBanDoc.addRow(vec);
+						}
+						tbl.setModel(tblBanDoc);
+						tblBanDoc.fireTableDataChanged();
+
+					} catch (Exception ex) {
+						// TODO: handle exception
+						System.err.println(ex);
 					}
-					tbl.setModel(tblBanDoc);
-					tblBanDoc.fireTableDataChanged();
-
-				} catch (Exception ex) {
-					// TODO: handle exception
-					System.err.println(ex);
 				}
 			}
 		});
@@ -556,6 +583,10 @@ public class PanelQuanLyBanDoc extends JPanel {
 					int index = cbbType.getSelectedIndex();
 					if (txtValue.getText().equals("")) {
 						tblBanDoc.setRowCount(0);
+						for (int i = 0; i < vecCbb.get(0).size(); i++) {
+							System.out.print(vecCbb.get(0).get(i) + ", ");
+							System.out.print(vecCbb.get(1).get(i) + ", ");
+						}
 						rs = stmt.executeQuery(
 								"SELECT MaBanDoc, HoTen, DiaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, SDT, Email, SoSachMuon FROM bandoc as bd, xa_phuong_thitran as xp, quan_huyen_thixa as qh, tinh_thanhpho as tt where xp.MaXaPhuong = bd.MaXaPhuong and qh.MaQuanHuyen = bd.MaQuanHuyen and tt.MaTinhThanh = bd.MaTinhThanh");
 

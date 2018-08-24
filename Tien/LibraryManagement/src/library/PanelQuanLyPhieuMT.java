@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
@@ -35,10 +37,10 @@ public class PanelQuanLyPhieuMT extends JPanel {
 	ResultSet rsMaBanDoc = null;
 	Statement stmt;
 	Connection con;
-	int i = 0, j = 1, indexThree;
+	int i = 0, j = 1, indexThree, indexOne;
 	String one, two, three;
 	Vector<Vector> vecCbb;
-	String mbd;
+	String mbd, tinhTrang;
 	ActionComboBox atnCbb = new ActionComboBox();
 
 	public PanelQuanLyPhieuMT() {
@@ -108,15 +110,19 @@ public class PanelQuanLyPhieuMT extends JPanel {
 		pnFive.add(txtSLMuon);
 		grTop.add(pnFive);
 
-		JPanel pnSix = new JPanel();
-		pnSix.setLayout(new FlowLayout());
+		JPanel pnEight = new JPanel();
+		pnEight.setLayout(new FlowLayout());
 		JLabel lblTinhTrang = new JLabel("Tình trạng");
-		JTextField txtTinhTrang = new JTextField(15);
+		JComboBox cbbTinhTrang = new JComboBox();
+		cbbTinhTrang.addItem("Đang mượn");
+		cbbTinhTrang.addItem("Chưa trả hết");
+		cbbTinhTrang.addItem("Đã trả");
+		cbbTinhTrang.setPreferredSize(new Dimension(200, 30));
 		lblTinhTrang.setFont(fontOne);
-		txtTinhTrang.setFont(fontOne);
+		cbbTinhTrang.setFont(fontOne);
 		grTop.add(lblTinhTrang);
-		pnSix.add(txtTinhTrang);
-		grTop.add(pnSix);
+		pnEight.add(cbbTinhTrang);
+		grTop.add(pnEight);
 
 		vecCbb = atnCbb.ArrComboBox(rsMaBanDoc);
 		for (i = 0; i < vecCbb.get(0).size(); i++) {
@@ -196,7 +202,7 @@ public class PanelQuanLyPhieuMT extends JPanel {
 		TitledBorder borderTitle = BorderFactory.createTitledBorder(border, "Danh sách phiếu mượn trả");
 
 		tbl.setFont(fontOne);
-		tbl.setPreferredScrollableViewportSize(new Dimension(1100, 300));
+		tbl.setPreferredScrollableViewportSize(new Dimension(1100, 400));
 		JScrollPane sc = new JScrollPane(tbl);
 		sc.setViewportView(tbl);
 		pnTable.add(sc);
@@ -210,6 +216,15 @@ public class PanelQuanLyPhieuMT extends JPanel {
 
 				indexThree = cbbMaBanDoc.getSelectedIndex();
 				mbd = (String) vecCbb.get(0).get(indexThree);
+			}
+		});
+		
+		cbbTinhTrang.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				// TODO Auto-generated method stub
+				tinhTrang = (String) cbbTinhTrang.getSelectedItem();
 			}
 		});
 
@@ -237,7 +252,7 @@ public class PanelQuanLyPhieuMT extends JPanel {
 				txtSLMuon.setText(soLuongMuon);
 
 				String tinhTrang = (String) tbl.getValueAt(row, 4);
-				txtTinhTrang.setText(tinhTrang);
+				cbbTinhTrang.setSelectedItem(tinhTrang);
 			}
 
 			@Override
@@ -265,6 +280,19 @@ public class PanelQuanLyPhieuMT extends JPanel {
 			}
 		});
 
+		btnAdd.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				txtID.setText("");
+				txtNgayMuon.setText("");
+				txtSLMuon.setText("");
+				cbbTinhTrang.setSelectedIndex(0);
+				cbbMaBanDoc.setSelectedIndex(0);
+			}
+		});
+
 		btnSave.addActionListener(new ActionListener() {
 
 			@Override
@@ -272,7 +300,7 @@ public class PanelQuanLyPhieuMT extends JPanel {
 				// TODO Auto-generated method stub
 				try {
 					stmt.execute("Insert into phieumuontra values(\'" + txtID.getText() + "\',\'" + mbd + "\',\'"
-							+ txtNgayMuon.getText() + "\',\'" + txtSLMuon.getText() + "\',\'" + txtTinhTrang.getText()
+							+ txtNgayMuon.getText() + "\',\'" + txtSLMuon.getText() + "\',\'" + tinhTrang
 							+ "\')");
 					JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
 					tblSach.setRowCount(0);
@@ -308,10 +336,10 @@ public class PanelQuanLyPhieuMT extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					stmt.execute("update phieumuontra set maBanDoc = \'" + mbd + "\', NgayMuon = \'"
-							+ txtNgayMuon.getText() + "\', SoLuongMuon = \'" + txtSLMuon.getText()
-							+ "\', TinhTrang = \'" + txtTinhTrang.getText() + "\' where MaGiaoDich = \'"
-							+ txtID.getText() + "\'");
+					stmt.execute(
+							"update phieumuontra set maBanDoc = \'" + mbd + "\', NgayMuon = \'" + txtNgayMuon.getText()
+									+ "\', SoLuongMuon = \'" + txtSLMuon.getText() + "\', TinhTrang = \'"
+									+ tinhTrang + "\' where MaGiaoDich = \'" + txtID.getText() + "\'");
 					JOptionPane.showMessageDialog(null, "Cập nhật thành công!!!");
 					tblSach.setRowCount(0);
 					rs = stmt.executeQuery("select * from phieumuontra");
@@ -345,32 +373,38 @@ public class PanelQuanLyPhieuMT extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				try {
-					stmt.execute("delete from phieumuontra where MaGiaoDich = \'" + txtID.getText() + "\'");
-					JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
-					tblSach.setRowCount(0);
-					rs = stmt.executeQuery("select * from phieumuontra");
+				int dialogResult = JOptionPane.showConfirmDialog(null,
+						"Thao tác này sẽ xóa dữ liệu của phiếu mượn trả ở bảng chi tiết mượn trả!!!", "Cảnh báo",
+						JOptionPane.YES_NO_OPTION);
+				if (dialogResult == JOptionPane.YES_OPTION) {
+					try {
+						stmt.execute("delete from chitietmuontra where MaGiaoDich = \'" + txtID.getText() + "\'");
+						stmt.execute("delete from phieumuontra where MaGiaoDich = \'" + txtID.getText() + "\'");
+						JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
+						tblSach.setRowCount(0);
+						rs = stmt.executeQuery("select * from phieumuontra");
 
-					while (rs.next()) {
-						String maGD = rs.getString(1);
-						String maBanDoc = rs.getString(2);
-						String ngayMuon = rs.getString(3);
-						String soLuongMuon = rs.getString(4);
-						String tinhTrang = rs.getString(5);
-						Vector<String> vec = new Vector<String>();
-						vec.add(maGD);
-						vec.add(maBanDoc);
-						vec.add(ngayMuon);
-						vec.add(soLuongMuon);
-						vec.add(tinhTrang);
-						tblSach.addRow(vec);
+						while (rs.next()) {
+							String maGD = rs.getString(1);
+							String maBanDoc = rs.getString(2);
+							String ngayMuon = rs.getString(3);
+							String soLuongMuon = rs.getString(4);
+							String tinhTrang = rs.getString(5);
+							Vector<String> vec = new Vector<String>();
+							vec.add(maGD);
+							vec.add(maBanDoc);
+							vec.add(ngayMuon);
+							vec.add(soLuongMuon);
+							vec.add(tinhTrang);
+							tblSach.addRow(vec);
+						}
+						tbl.setModel(tblSach);
+						tblSach.fireTableDataChanged();
+
+					} catch (Exception ex) {
+						// TODO: handle exception
+						System.err.println(ex);
 					}
-					tbl.setModel(tblSach);
-					tblSach.fireTableDataChanged();
-
-				} catch (Exception ex) {
-					// TODO: handle exception
-					System.err.println(ex);
 				}
 			}
 		});

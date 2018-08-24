@@ -294,7 +294,7 @@ public class PanelQuanLySach extends JPanel {
 
 			}
 		});
-		
+
 		cbbTheLoai.addActionListener(new ActionListener() {
 
 			@Override
@@ -304,7 +304,7 @@ public class PanelQuanLySach extends JPanel {
 				maTheLoai = (String) vecCbb3.get(0).get(indexOne);
 			}
 		});
-		
+
 		tbl.addMouseListener(new MouseListener() {
 
 			@Override
@@ -316,30 +316,30 @@ public class PanelQuanLySach extends JPanel {
 
 				String name = (String) tbl.getValueAt(row, 1);
 				txtName.setText(name);
-				
+
 				String NXB = (String) tbl.getValueAt(row, 2);
-				for(int i = 0; i < vecCbb.get(0).size(); i++) {
-					if(vecCbb.get(1).get(i).equals(NXB)) {
+				for (int i = 0; i < vecCbb.get(0).size(); i++) {
+					if (vecCbb.get(1).get(i).equals(NXB)) {
 						one = (String) vecCbb.get(0).get(i) + " | " + vecCbb.get(1).get(i);
-						
+
 					}
 				}
 				cbbNXB.setSelectedItem(one);
-				
+
 				String tacGia = (String) tbl.getValueAt(row, 3);
-				for(int i = 0; i < vecCbb2.get(0).size(); i++) {
-					if(vecCbb2.get(1).get(i).equals(tacGia)) {
+				for (int i = 0; i < vecCbb2.get(0).size(); i++) {
+					if (vecCbb2.get(1).get(i).equals(tacGia)) {
 						two = (String) vecCbb2.get(0).get(i) + " | " + vecCbb2.get(1).get(i);
-						
+
 					}
 				}
 				cbbTacGia.setSelectedItem(two);
-				
+
 				String theLoai = (String) tbl.getValueAt(row, 4);
-				for(int i = 0; i < vecCbb3.get(0).size(); i++) {
-					if(vecCbb3.get(1).get(i).equals(theLoai)) {
+				for (int i = 0; i < vecCbb3.get(0).size(); i++) {
+					if (vecCbb3.get(1).get(i).equals(theLoai)) {
 						three = (String) vecCbb3.get(0).get(i) + " | " + vecCbb3.get(1).get(i);
-						
+
 					}
 				}
 				cbbTheLoai.setSelectedItem(three);
@@ -379,14 +379,30 @@ public class PanelQuanLySach extends JPanel {
 			}
 		});
 
+		btnAdd.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				txtID.setText("");
+				txtName.setText("");
+				txtNamXB.setText("");
+				txtSLCon.setText("");
+				txtSLTong.setText("");
+				cbbNXB.setSelectedIndex(0);
+				cbbTacGia.setSelectedIndex(0);
+				cbbTheLoai.setSelectedIndex(0);
+			}
+		});
+
 		btnSave.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					stmt.execute("Insert into sach values(\'" + txtID.getText() + "\',\'" + txtName.getText() + "\',\'" + maNXB
-							+ "\',\'" + maTacGia + "\',\'" + maTheLoai + "\',\'" + txtNamXB.getText() + "\',\'"
+					stmt.execute("Insert into sach values(\'" + txtID.getText() + "\',\'" + txtName.getText() + "\',\'"
+							+ maNXB + "\',\'" + maTacGia + "\',\'" + maTheLoai + "\',\'" + txtNamXB.getText() + "\',\'"
 							+ txtSLTong.getText() + "\',\'" + txtSLCon.getText() + "\')");
 					JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
 					tblSach.setRowCount(0);
@@ -473,39 +489,45 @@ public class PanelQuanLySach extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				try {
-					stmt.execute("delete from sach where MaSach = \'" + txtID.getText() + "\'");
-					JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
-					tblSach.setRowCount(0);
-					rs = stmt.executeQuery(
-							"SELECT MaSach, TenSach, TenXuatBan, TenTacGia, TenTheLoai, NamXuatBan, SoLuongTong, SoLuongCon FROM sach as s, nhaxuatban as nxb, theloaisach as tls, tacgia as tg where nxb.MaNXB = s.MaNXB and tls.MaTheLoai = s.MaTheLoai and tg.MaTacGia = s.MaTacGia");
+				int dialogResult = JOptionPane.showConfirmDialog(null,
+						"Thao tác này sẽ xóa dữ liệu của sách ở bảng chi tiết mượn trả!!!", "Cảnh báo",
+						JOptionPane.YES_NO_OPTION);
+				if (dialogResult == JOptionPane.YES_OPTION) {
+					try {
+						stmt.execute("delete from chitietmuontra where MaSach = \'" + txtID.getText() + "\'");
+						stmt.execute("delete from sach where MaSach = \'" + txtID.getText() + "\'");
+						JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
+						tblSach.setRowCount(0);
+						rs = stmt.executeQuery(
+								"SELECT MaSach, TenSach, TenXuatBan, TenTacGia, TenTheLoai, NamXuatBan, SoLuongTong, SoLuongCon FROM sach as s, nhaxuatban as nxb, theloaisach as tls, tacgia as tg where nxb.MaNXB = s.MaNXB and tls.MaTheLoai = s.MaTheLoai and tg.MaTacGia = s.MaTacGia");
 
-					while (rs.next()) {
-						String maSach = rs.getString(1);
-						String tenSach = rs.getString(2);
-						String maNXB = rs.getString(3);
-						String maTacGia = rs.getString(4);
-						String maTheLoai = rs.getString(5);
-						String namXB = rs.getString(6);
-						String slTong = rs.getString(7);
-						String slCon = rs.getString(8);
-						Vector<String> vec = new Vector<String>();
-						vec.add(maSach);
-						vec.add(tenSach);
-						vec.add(maNXB);
-						vec.add(maTacGia);
-						vec.add(maTheLoai);
-						vec.add(namXB);
-						vec.add(slTong);
-						vec.add(slCon);
-						tblSach.addRow(vec);
+						while (rs.next()) {
+							String maSach = rs.getString(1);
+							String tenSach = rs.getString(2);
+							String maNXB = rs.getString(3);
+							String maTacGia = rs.getString(4);
+							String maTheLoai = rs.getString(5);
+							String namXB = rs.getString(6);
+							String slTong = rs.getString(7);
+							String slCon = rs.getString(8);
+							Vector<String> vec = new Vector<String>();
+							vec.add(maSach);
+							vec.add(tenSach);
+							vec.add(maNXB);
+							vec.add(maTacGia);
+							vec.add(maTheLoai);
+							vec.add(namXB);
+							vec.add(slTong);
+							vec.add(slCon);
+							tblSach.addRow(vec);
+						}
+						tbl.setModel(tblSach);
+						tblSach.fireTableDataChanged();
+
+					} catch (Exception ex) {
+						// TODO: handle exception
+						System.err.println(ex);
 					}
-					tbl.setModel(tblSach);
-					tblSach.fireTableDataChanged();
-
-				} catch (Exception ex) {
-					// TODO: handle exception
-					System.err.println(ex);
 				}
 			}
 		});

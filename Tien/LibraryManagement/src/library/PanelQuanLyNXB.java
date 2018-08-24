@@ -29,13 +29,15 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class PanelQuanLyNXB extends JPanel{
+public class PanelQuanLyNXB extends JPanel {
 	ResultSet rs = null;
 	Statement stmt;
+
 	public PanelQuanLyNXB() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library?useUnicode=yes&characterEncoding=UTF-8", "root", "");
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/library?useUnicode=yes&characterEncoding=UTF-8", "root", "");
 			stmt = con.createStatement();
 			rs = stmt.executeQuery("Select * from nhaxuatban");
 
@@ -161,7 +163,7 @@ public class PanelQuanLyNXB extends JPanel{
 		TitledBorder borderTitle = BorderFactory.createTitledBorder(border, "Danh sách nhà xuất bản");
 
 		tbl.setFont(fontOne);
-		tbl.setPreferredScrollableViewportSize(new Dimension(1100, 300));
+		tbl.setPreferredScrollableViewportSize(new Dimension(1100, 400));
 		JScrollPane sc = new JScrollPane(tbl);
 		sc.setViewportView(tbl);
 		pnTable.add(sc);
@@ -181,7 +183,7 @@ public class PanelQuanLyNXB extends JPanel{
 
 				String add = (String) tbl.getValueAt(row, 2);
 				txtAdd.setText(add);
-				
+
 				String phone = (String) tbl.getValueAt(row, 3);
 				txtPhone.setText(phone);
 			}
@@ -263,8 +265,9 @@ public class PanelQuanLyNXB extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					stmt.executeUpdate("update nhaxuatban set TenXuatBan = \'" + txtName.getText() + "\', DiaChi = \'" + txtAdd.getText()
-							+ "\', SDT = \'" + txtPhone.getText() + "\' where MaNXB = \'" + txtID.getText() + "\'");
+					stmt.executeUpdate("update nhaxuatban set TenXuatBan = \'" + txtName.getText() + "\', DiaChi = \'"
+							+ txtAdd.getText() + "\', SDT = \'" + txtPhone.getText() + "\' where MaNXB = \'"
+							+ txtID.getText() + "\'");
 					JOptionPane.showMessageDialog(null, "Cập nhật thành công!!!");
 					tblNhaXuatBan.setRowCount(0);
 					rs = stmt.executeQuery("Select * from nhaxuatban");
@@ -290,37 +293,42 @@ public class PanelQuanLyNXB extends JPanel{
 				}
 			}
 		});
-		
+
 		btnRemove.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
-				try {
-					stmt.execute("delete from nhaxuatban where MaNXB = \'" + txtID.getText() + "\'");
-					JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
-					tblNhaXuatBan.setRowCount(0);
-					rs = stmt.executeQuery("Select * from nhaxuatban");
+				int dialogResult = JOptionPane.showConfirmDialog(null,
+						"Thao tác này sẽ xóa dữ liệu của bảng sách với cùng nhà xuất bản!!!", "Cảnh báo",
+						JOptionPane.YES_NO_OPTION);
+				if (dialogResult == JOptionPane.YES_OPTION) {
+					try {
+						stmt.execute("delete from sach where MaNXB = \'" + txtID.getText() + "\'");
+						stmt.execute("delete from nhaxuatban where MaNXB = \'" + txtID.getText() + "\'");
+						JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
+						tblNhaXuatBan.setRowCount(0);
+						rs = stmt.executeQuery("Select * from nhaxuatban");
 
-					while (rs.next()) {
-						String maTacGia = rs.getString(1);
-						String tenTacGia = rs.getString(2);
-						String nienDai = rs.getString(3);
-						Vector<String> vec = new Vector<String>();
-						vec.add(maTacGia);
-						vec.add(tenTacGia);
-						vec.add(nienDai);
-						tblNhaXuatBan.addRow(vec);
+						while (rs.next()) {
+							String maTacGia = rs.getString(1);
+							String tenTacGia = rs.getString(2);
+							String nienDai = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(maTacGia);
+							vec.add(tenTacGia);
+							vec.add(nienDai);
+							tblNhaXuatBan.addRow(vec);
+						}
+						tbl.setModel(tblNhaXuatBan);
+						tblNhaXuatBan.fireTableDataChanged();
+
+					} catch (Exception ex) {
+						// TODO: handle exception
+						System.err.println(ex);
 					}
-					tbl.setModel(tblNhaXuatBan);
-					tblNhaXuatBan.fireTableDataChanged();
-
-				} catch (Exception ex) {
-					// TODO: handle exception
-					System.err.println(ex);
 				}
-				
+
 			}
 		});
 

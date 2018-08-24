@@ -16,7 +16,8 @@ public class PanelQuanLyTacGia extends JPanel {
 	public PanelQuanLyTacGia() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library?useUnicode=yes&characterEncoding=UTF-8", "root", "");
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/library?useUnicode=yes&characterEncoding=UTF-8", "root", "");
 			stmt = con.createStatement();
 			rs = stmt.executeQuery("Select * from tacgia");
 
@@ -132,7 +133,7 @@ public class PanelQuanLyTacGia extends JPanel {
 		TitledBorder borderTitle = BorderFactory.createTitledBorder(border, "Danh sách tác giả");
 
 		tbl.setFont(fontOne);
-		tbl.setPreferredScrollableViewportSize(new Dimension(1100, 300));
+		tbl.setPreferredScrollableViewportSize(new Dimension(1100, 400));
 		JScrollPane sc = new JScrollPane(tbl);
 		sc.setViewportView(tbl);
 		pnTable.add(sc);
@@ -228,8 +229,8 @@ public class PanelQuanLyTacGia extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					stmt.executeUpdate("update tacgia set TenTacGia = \'" + txtName.getText() + "\', NienDai = \'" + txtYear.getText()
-							+ "\' where MaTacGia = \'" + txtID.getText() + "\'");
+					stmt.executeUpdate("update tacgia set TenTacGia = \'" + txtName.getText() + "\', NienDai = \'"
+							+ txtYear.getText() + "\' where MaTacGia = \'" + txtID.getText() + "\'");
 					JOptionPane.showMessageDialog(null, "Cập nhật thành công!!!");
 					tblTacGia.setRowCount(0);
 					rs = stmt.executeQuery("Select * from tacgia");
@@ -253,37 +254,42 @@ public class PanelQuanLyTacGia extends JPanel {
 				}
 			}
 		});
-		
+
 		btnRemove.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
-				try {
-					stmt.execute("delete from tacgia where MaTacGia = \'" + txtID.getText() + "\'");
-					JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
-					tblTacGia.setRowCount(0);
-					rs = stmt.executeQuery("Select * from tacgia");
+				int dialogResult = JOptionPane.showConfirmDialog(null,
+						"Thao tác này sẽ xóa dữ liệu của bảng sách với cùng tác giả!!!", "Cảnh báo",
+						JOptionPane.YES_NO_OPTION);
+				if (dialogResult == JOptionPane.YES_OPTION) {
+					try {
+						stmt.execute("delete from sach where MaTacGia = \'" + txtID.getText() + "\'");
+						stmt.execute("delete from tacgia where MaTacGia = \'" + txtID.getText() + "\'");
+						JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
+						tblTacGia.setRowCount(0);
+						rs = stmt.executeQuery("Select * from tacgia");
 
-					while (rs.next()) {
-						String maTacGia = rs.getString(1);
-						String tenTacGia = rs.getString(2);
-						String nienDai = rs.getString(3);
-						Vector<String> vec = new Vector<String>();
-						vec.add(maTacGia);
-						vec.add(tenTacGia);
-						vec.add(nienDai);
-						tblTacGia.addRow(vec);
+						while (rs.next()) {
+							String maTacGia = rs.getString(1);
+							String tenTacGia = rs.getString(2);
+							String nienDai = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(maTacGia);
+							vec.add(tenTacGia);
+							vec.add(nienDai);
+							tblTacGia.addRow(vec);
+						}
+						tbl.setModel(tblTacGia);
+						tblTacGia.fireTableDataChanged();
+
+					} catch (Exception ex) {
+						// TODO: handle exception
+						System.err.println(ex);
 					}
-					tbl.setModel(tblTacGia);
-					tblTacGia.fireTableDataChanged();
-
-				} catch (Exception ex) {
-					// TODO: handle exception
-					System.err.println(ex);
 				}
-				
+
 			}
 		});
 

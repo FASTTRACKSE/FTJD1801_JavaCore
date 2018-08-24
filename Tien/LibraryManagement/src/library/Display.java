@@ -207,6 +207,32 @@ public class Display extends JFrame {
 				main.validate();
 			}
 		});
+		
+		mnBaoCaoDS.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				main.removeAll();
+				main.repaint();
+				PanelBaoCaoBanHoc pnBaoCao = new PanelBaoCaoBanHoc();
+				main.add(pnBaoCao);
+				main.validate();
+			}
+		});
+		
+		mnBaoCaoTK.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				main.removeAll();
+				main.repaint();
+				PanelBaoCaoSach pnSach = new PanelBaoCaoSach();
+				main.add(pnSach);
+				main.validate();
+			}
+		});
 
 		Container conr = getContentPane();
 		conr.add(main);
