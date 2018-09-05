@@ -36,8 +36,8 @@ public class PnThongKeUI {
 	JTextField msKhachHang;
 	DefaultTableModel dm1;
 	JTable tbl;
-//	ArrayList<BienLaiEntity> blList;
-//	ArrayList<KhachHangEntity> khList;
+	// ArrayList<BienLaiEntity> blList;
+	// ArrayList<KhachHangEntity> khList;
 
 	public JPanel pnThongKe() {
 		ThongKeDAO thongKe = new ThongKeDAO();
@@ -223,24 +223,24 @@ public class PnThongKeUI {
 		btnSearch.setSize(30, 40);
 		JButton btnReset = new JButton("Reset");
 		btnReset.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			cbo.setSelectedIndex(0);
-			cbo3.setSelectedIndex(0);
-			dm1.setRowCount(0);
-			ArrayList<BienLaiEntity> blList = thongKe.taoListBL();
-			ArrayList<KhachHangEntity> khList = thongKe.taoListKH();
-			for (BienLaiEntity bl : blList) {
-				for (KhachHangEntity kh1 : khList) {
-					if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
-						showResult(bl, kh1);
+				cbo.setSelectedIndex(0);
+				cbo3.setSelectedIndex(0);
+				dm1.setRowCount(0);
+				ArrayList<BienLaiEntity> blList = thongKe.taoListBL();
+				ArrayList<KhachHangEntity> khList = thongKe.taoListKH();
+				for (BienLaiEntity bl : blList) {
+					for (KhachHangEntity kh1 : khList) {
+						if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+							showResult(bl, kh1);
+						}
 					}
 				}
-			}
-			tbl.setModel(dm1);
-			dm1.fireTableDataChanged();
+				tbl.setModel(dm1);
+				dm1.fireTableDataChanged();
 			}
 		});
 		pnBtn.add(btnSearch);
@@ -263,6 +263,9 @@ public class PnThongKeUI {
 		tbl.getColumnModel().getColumn(0).setPreferredWidth(100);
 		tbl.getColumnModel().getColumn(2).setPreferredWidth(150);
 		tbl.getColumnModel().getColumn(1).setMaxWidth(100);
+		tbl.getColumnModel().getColumn(3).setPreferredWidth(150);
+		tbl.getColumnModel().getColumn(4).setPreferredWidth(150);
+		tbl.getColumnModel().getColumn(5).setPreferredWidth(150);
 		tbl.getColumnModel().getColumn(9).setMaxWidth(100);
 		tbl.getColumnModel().getColumn(8).setMaxWidth(100);
 		tbl.getColumnModel().getColumn(7).setMaxWidth(100);
@@ -328,6 +331,11 @@ public class PnThongKeUI {
 					for (KhachHangEntity kh1 : khList) {
 						for (BienLaiEntity bl : blList) {
 							switch (i) {
+							case 0:
+								if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+									showResult(bl, kh1);
+								}
+								break;
 							case 1:
 								if (((int) (cboNam.getSelectedItem())) == getYear(bl.getNgayNhap())) {
 									if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
@@ -383,6 +391,11 @@ public class PnThongKeUI {
 							for (KhachHangEntity kh1 : khList) {
 								if ((kh1.getIdQuan() == quan) && (kh1.getIdPhuong() == phuong)) {
 									switch (i) {
+									case 0:
+										if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+											showResult(bl, kh1);
+										}
+										break;
 									case 1:
 										if (((int) (cboNam.getSelectedItem())) == getYear(bl.getNgayNhap())) {
 											if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
@@ -429,6 +442,11 @@ public class PnThongKeUI {
 						for (KhachHangEntity kh1 : khList) {
 							if (idKH.equals(kh1.getMaKhachHang())) {
 								switch (i) {
+								case 0:
+									if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
+										showResult(bl, kh1);
+									}
+									break;
 								case 1:
 									if (((int) (cboNam.getSelectedItem())) == getYear(bl.getNgayNhap())) {
 										if (kh1.getMaSoCongTo() == bl.getMaSoCongToDien()) {
@@ -591,8 +609,8 @@ public class PnThongKeUI {
 		String ngayNhap = day + "-" + month + "-" + year;
 		String chuKiNhap = thangCK + "-" + namCK;
 		dm1.addRow(new String[] { kh.getMaKhachHang(), String.valueOf(kh.getMaSoCongTo()), kh.getHoTen(),
-				kh.getDiaChi(), kh.getPhuong(), kh.getQuan(), ngayNhap, chuKiNhap,
-				String.valueOf(bl.getChiSoCongTo()), String.valueOf(bl.getTienDien()) });
+				kh.getDiaChi(), kh.getPhuong(), kh.getQuan(), ngayNhap, chuKiNhap, String.valueOf(bl.getChiSoCongTo()),
+				String.valueOf(bl.getTienDien()) });
 
 	}
 }

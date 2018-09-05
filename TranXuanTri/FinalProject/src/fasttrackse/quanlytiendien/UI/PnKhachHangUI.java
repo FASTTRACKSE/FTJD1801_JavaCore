@@ -14,7 +14,7 @@ import fasttrackse.quanlytiendien.entity.PhuongEntity;
 import fasttrackse.quanlytiendien.entity.QuanEntity;
 
 public class PnKhachHangUI {
-	ResultSet rs = null;
+	ResultSet rs;
 	Statement stmt;
 	Connection con;
 	JComboBox cboQuan = new JComboBox();
@@ -39,16 +39,6 @@ public class PnKhachHangUI {
 		titlebor2.setTitleColor(green);
 		pnTab1.setBorder(titlebor2);
 		pnTab1.setPreferredSize(new Dimension(1000, 800));
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/quanlytiendien?useUnicode=yes&characterEncoding=UTF-8", "root", "");
-			stmt = con.createStatement();
-			rs = stmt.executeQuery("Select * from khachhang");
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-
 		DefaultTableModel dm = new DefaultTableModel();
 		dm.addColumn("Mã khách hàng");
 		dm.addColumn("Họ tên");
@@ -80,6 +70,7 @@ public class PnKhachHangUI {
 		tbl.getColumnModel().getColumn(9).setPreferredWidth(100);
 		tbl.getColumnModel().getColumn(9).setMaxWidth(100);
 		tbl.setDefaultEditor(Object.class, null);
+		connect();
 		try {
 			while (rs.next()) {
 				dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
@@ -260,6 +251,7 @@ public class PnKhachHangUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ResultSet rs = connect();
 				int n = cboQuan.getSelectedIndex();
 				if (n == 0) {
 					JOptionPane.showMessageDialog(null, "Vui lòng chọn tiêu chí tìm kiếm");
@@ -294,6 +286,7 @@ public class PnKhachHangUI {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
+					ResultSet rs = connect();
 					dm.setRowCount(0);
 					String sql = "select * from khachhang";
 					rs = stmt.executeQuery(sql);
@@ -352,7 +345,7 @@ public class PnKhachHangUI {
 						kh.insert(maKhachHang, hoTen, diaChi, idPhuong, namePhuong, idQuan, nameQuan, dienThoai, email,
 								maCongToDien);
 						dm.setRowCount(0);
-						ResultSet rs = connect();
+						connect();
 						try {
 							while (rs.next()) {
 								dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3),
@@ -409,7 +402,7 @@ public class PnKhachHangUI {
 				kh.update(maKhachHang, hoTen, diaChi, idPhuong, namePhuong, idQuan, nameQuan, dienThoai, email,
 						maCongToDien);
 				dm.setRowCount(0);
-				ResultSet rs = connect();
+				connect();
 				try {
 					while (rs.next()) {
 						dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
@@ -450,7 +443,7 @@ public class PnKhachHangUI {
 				KhachHangDAO kh = new KhachHangDAO();
 				kh.delete(maKhachHang);
 				dm.setRowCount(0);
-				ResultSet rs = connect();
+				connect();
 				try {
 					while (rs.next()) {
 						dm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
@@ -550,7 +543,7 @@ public class PnKhachHangUI {
 			}
 			con.close();
 		} catch (Exception ex) {
-			System.out.println(ex);
+			
 		}
 	}
 
@@ -733,10 +726,9 @@ public class PnKhachHangUI {
 	private ResultSet connect() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from khachhang");
-			return rs;
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("select * from khachhang");
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}

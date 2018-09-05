@@ -5,6 +5,9 @@ import java.awt.event.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -16,6 +19,8 @@ import fasttrackse.quanlytiendien.entity.BienLaiEntity;
 import fasttrackse.quanlytiendien.entity.KhachHangEntity;
 
 public class PnBienLaiUI {
+	Connection con;
+	Statement stmt;
 	ResultSet rs;
 	JComboBox cboMaSoCongTo;
 	JTextField txtThang;
@@ -25,6 +30,7 @@ public class PnBienLaiUI {
 	JButton btnUpdate;
 	JButton btnDelete;
 	ArrayList<BienLaiEntity> bienLaiList;
+
 	public JPanel pnBienLai() {
 		BienLaiDAO bienLai = new BienLaiDAO();
 		bienLaiList = bienLai.taoBienLaiList();
@@ -77,6 +83,7 @@ public class PnBienLaiUI {
 		}
 		JScrollPane sc = new JScrollPane(tbl);
 		pnTienDien.add(sc, BorderLayout.CENTER);
+
 		tbl.addMouseListener(new MouseListener() {
 			public void mouseReleased(MouseEvent e) {
 			}
@@ -105,24 +112,24 @@ public class PnBienLaiUI {
 						}
 					}
 				}
-				if (chiSo1==max1) {
-				btnUpdate.setEnabled(true);
-				btnDelete.setEnabled(true);
-				cboMaSoCongTo.setEnabled(false);
-				String chiSo = (String) tbl.getValueAt(row, 5);
-				String date1 = (String) tbl.getValueAt(row, 4);
-				String maBienLai = (String) tbl.getValueAt(row, 0);
-				txtMaBienLai.setText(maBienLai);
-				for (String retval : date1.split("-")) {
-					if (retval.length() <= 2) {
-						txtThang.setText(retval);
-					} else if (retval.length() == 4) {
-						txtNam.setText(retval);
+				if (chiSo1 == max1) {
+					btnUpdate.setEnabled(true);
+					btnDelete.setEnabled(true);
+					cboMaSoCongTo.setEnabled(false);
+					String chiSo = (String) tbl.getValueAt(row, 5);
+					String date1 = (String) tbl.getValueAt(row, 4);
+					String maBienLai = (String) tbl.getValueAt(row, 0);
+					txtMaBienLai.setText(maBienLai);
+					for (String retval : date1.split("-")) {
+						if (retval.length() <= 2) {
+							txtThang.setText(retval);
+						} else if (retval.length() == 4) {
+							txtNam.setText(retval);
+						}
 					}
-				}
 
-				txtChiSo.setText(chiSo);
-				cboMaSoCongTo.setSelectedIndex(maCongTo);
+					txtChiSo.setText(chiSo);
+					cboMaSoCongTo.setSelectedIndex(maCongTo);
 				} else {
 					btnUpdate.setEnabled(false);
 					btnDelete.setEnabled(false);
@@ -154,24 +161,24 @@ public class PnBienLaiUI {
 						}
 					}
 				}
-				if (chiSo1==max1) {
-				btnUpdate.setEnabled(true);
-				btnDelete.setEnabled(true);
-				cboMaSoCongTo.setEnabled(false);
-				String chiSo = (String) tbl.getValueAt(row, 5);
-				String date1 = (String) tbl.getValueAt(row, 4);
-				String maBienLai = (String) tbl.getValueAt(row, 0);
-				txtMaBienLai.setText(maBienLai);
-				for (String retval : date1.split("-")) {
-					if (retval.length() <= 2) {
-						txtThang.setText(retval);
-					} else if (retval.length() == 4) {
-						txtNam.setText(retval);
+				if (chiSo1 == max1) {
+					btnUpdate.setEnabled(true);
+					btnDelete.setEnabled(true);
+					cboMaSoCongTo.setEnabled(false);
+					String chiSo = (String) tbl.getValueAt(row, 5);
+					String date1 = (String) tbl.getValueAt(row, 4);
+					String maBienLai = (String) tbl.getValueAt(row, 0);
+					txtMaBienLai.setText(maBienLai);
+					for (String retval : date1.split("-")) {
+						if (retval.length() <= 2) {
+							txtThang.setText(retval);
+						} else if (retval.length() == 4) {
+							txtNam.setText(retval);
+						}
 					}
-				}
 
-				txtChiSo.setText(chiSo);
-				cboMaSoCongTo.setSelectedIndex(maCongTo);
+					txtChiSo.setText(chiSo);
+					cboMaSoCongTo.setSelectedIndex(maCongTo);
 				} else {
 					btnUpdate.setEnabled(false);
 					btnDelete.setEnabled(false);
@@ -182,7 +189,7 @@ public class PnBienLaiUI {
 					txtChiSo.setText("");
 					cboMaSoCongTo.setSelectedIndex(0);
 				}
-			
+
 			}
 
 			public void keyPressed(KeyEvent e) {
@@ -198,9 +205,11 @@ public class PnBienLaiUI {
 		btnUpdate = new JButton("Sửa biên lai");
 		pnBtn.add(btnUpdate);
 		btnDelete = new JButton("Xóa biên lai");
+		JButton btnReset = new JButton("Reset");
 		btnUpdate.setEnabled(false);
 		btnDelete.setEnabled(false);
 		pnBtn.add(btnDelete);
+		pnBtn.add(btnReset);
 		JPanel pn1 = new JPanel();
 		pn.add(pn1, BorderLayout.CENTER);
 		JPanel pnText = new JPanel();
@@ -215,6 +224,7 @@ public class PnBienLaiUI {
 		JLabel maBienLai = new JLabel("  Mã biên lai:");
 		pnText.add(maBienLai);
 		txtMaBienLai = new JTextField(5);
+		txtMaBienLai.setEnabled(false);
 		pnText.add(txtMaBienLai);
 		pnText.add(maCongTo);
 		pnText.add(cboMaSoCongTo);
@@ -245,25 +255,49 @@ public class PnBienLaiUI {
 		btnAdd.setPreferredSize(new Dimension(200, 30));
 		btnDelete.setPreferredSize(new Dimension(200, 30));
 		btnUpdate.setPreferredSize(new Dimension(200, 30));
+		btnReset.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cboMaSoCongTo.removeAllItems();
+				cboMaSoCongTo.addItem("Mã số công tơ...");
+				cboMaCongTo();
+			}
+		});
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					QuanLyTienDienException.chckText(txtMaBienLai.getText());
+					ArrayList<BienLaiEntity> bienLaiList = tienDien.taoBienLaiList();
 					QuanLyTienDienException.chckText(txtChiSo.getText());
 					QuanLyTienDienException.chckText(txtNam.getText());
 					QuanLyTienDienException.chckText(txtThang.getText());
 					QuanLyTienDienException.chckComboBox(cboMaSoCongTo.getSelectedIndex());
-					QuanLyTienDienException.chckMaBL(Integer.parseInt(txtMaBienLai.getText()));
 					int maCongToDien = cboMaSoCongTo.getSelectedIndex();
 					int thangCK = Integer.parseInt(txtThang.getText());
 					int namCK = Integer.parseInt(txtNam.getText());
 					int chiSo = Integer.parseInt(txtChiSo.getText());
-					int maBienLai = Integer.parseInt(txtMaBienLai.getText());
+					int count;
+					if (bienLaiList.isEmpty() == true) {
+						count = 0;
+					} else {
+						Collections.sort(bienLaiList, new Comparator<BienLaiEntity>() {
+							public int compare(BienLaiEntity sv1, BienLaiEntity sv2) {
+								if (sv1.getMaBienLai() > sv2.getMaBienLai()) {
+									return -1;
+								} else if (sv1.getMaBienLai() > sv2.getMaBienLai()) {
+									return 0;
+								} else
+									return 1;
+							}
+						});
+						count = bienLaiList.get(0).getMaBienLai();
+					}
+					int maBienLai = ++count;
 
 					Calendar c = Calendar.getInstance();
 					String ngayNhap = BienLaiDAO.showCalendar(c);
-					double soTien = tienDien.getTienDien(maCongToDien, chiSo, tienDien.taoBienLaiList());
+					double soTien = tienDien.getTienDien(maCongToDien, chiSo, bienLaiList);
 
 					QuanLyTienDienException.chckTien(soTien);
 
@@ -310,7 +344,6 @@ public class PnBienLaiUI {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					QuanLyTienDienException.chckText(txtMaBienLai.getText());
 					QuanLyTienDienException.chckText(txtChiSo.getText());
 					QuanLyTienDienException.chckText(txtNam.getText());
 					QuanLyTienDienException.chckText(txtThang.getText());
@@ -319,6 +352,7 @@ public class PnBienLaiUI {
 					ArrayList<BienLaiEntity> bienLaiList = bienLai.taoBienLaiList();
 					btnUpdate.setEnabled(false);
 					btnDelete.setEnabled(false);
+
 					cboMaSoCongTo.setEnabled(true);
 
 					int maCongToDien = cboMaSoCongTo.getSelectedIndex();
@@ -415,6 +449,7 @@ public class PnBienLaiUI {
 				cboMaSoCongTo.setSelectedIndex(0);
 			}
 		});
+
 		return pnTienDien;
 	}
 
@@ -427,6 +462,25 @@ public class PnBienLaiUI {
 				cboMaSoCongTo.addItem(kh1.getMaSoCongTo());
 				tam = kh1.getMaSoCongTo();
 			}
+		}
+		// connect();
+		// try {
+		// while (rs.next()) {
+		// cboMaSoCongTo.addItem(rs.getInt(1));
+		// }
+		// } catch (Exception e) {
+		//
+		// }
+	}
+
+	private void connect() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlytiendien", "root", "");
+			Statement stmt = con.createStatement();
+			rs = stmt.executeQuery("select * from khachhang");
+		} catch (Exception ex) {
+			System.out.println(ex);
 		}
 	}
 
