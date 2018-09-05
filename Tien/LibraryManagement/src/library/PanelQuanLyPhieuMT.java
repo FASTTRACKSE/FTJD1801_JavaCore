@@ -218,9 +218,9 @@ public class PanelQuanLyPhieuMT extends JPanel {
 				mbd = (String) vecCbb.get(0).get(indexThree);
 			}
 		});
-		
+
 		cbbTinhTrang.addItemListener(new ItemListener() {
-			
+
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
 				// TODO Auto-generated method stub
@@ -299,9 +299,14 @@ public class PanelQuanLyPhieuMT extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					stmt.execute("Insert into phieumuontra values(\'" + txtID.getText() + "\',\'" + mbd + "\',\'"
-							+ txtNgayMuon.getText() + "\',\'" + txtSLMuon.getText() + "\',\'" + tinhTrang
-							+ "\')");
+					int soLuong = Integer.parseInt(txtSLMuon.getText());
+					if (soLuong > 3) {
+						JOptionPane.showMessageDialog(null, "Không được mượn quá 3 cuốn sách 1 lần!!!");
+					} else {
+						stmt.execute("Insert into phieumuontra values(\'" + txtID.getText() + "\',\'" + mbd + "\',\'"
+								+ txtNgayMuon.getText() + "\',\'" + txtSLMuon.getText() + "\',\'" + tinhTrang + "\')");
+						JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
+					}
 					JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
 					tblSach.setRowCount(0);
 					rs = stmt.executeQuery("select * from phieumuontra");
@@ -336,10 +341,9 @@ public class PanelQuanLyPhieuMT extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					stmt.execute(
-							"update phieumuontra set maBanDoc = \'" + mbd + "\', NgayMuon = \'" + txtNgayMuon.getText()
-									+ "\', SoLuongMuon = \'" + txtSLMuon.getText() + "\', TinhTrang = \'"
-									+ tinhTrang + "\' where MaGiaoDich = \'" + txtID.getText() + "\'");
+					stmt.execute("update phieumuontra set maBanDoc = \'" + mbd + "\', NgayMuon = \'"
+							+ txtNgayMuon.getText() + "\', SoLuongMuon = \'" + txtSLMuon.getText()
+							+ "\', TinhTrang = \'" + tinhTrang + "\' where MaGiaoDich = \'" + txtID.getText() + "\'");
 					JOptionPane.showMessageDialog(null, "Cập nhật thành công!!!");
 					tblSach.setRowCount(0);
 					rs = stmt.executeQuery("select * from phieumuontra");

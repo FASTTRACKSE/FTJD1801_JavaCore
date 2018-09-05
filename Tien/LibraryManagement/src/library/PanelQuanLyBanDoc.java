@@ -34,7 +34,8 @@ public class PanelQuanLyBanDoc extends JPanel {
 	ActionComboBox atnCbb = new ActionComboBox();
 
 	public PanelQuanLyBanDoc() {
-
+//		TriggerSoSachMuon tgr = new TriggerSoSachMuon();
+//		tgr.CapNhatSoSachMuon();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(
@@ -48,21 +49,21 @@ public class PanelQuanLyBanDoc extends JPanel {
 
 		try {
 			stmt = con.createStatement();
-			rsTinhThanh = stmt.executeQuery("select MaTinhThanh, TenTinhThanh from tinh_thanhpho");
+			rsTinhThanh = stmt.executeQuery("select MaTinhThanh, TenTinhThanh from tinh_thanhpho Order By TenTinhThanh");
 		} catch (SQLException e3) {
 			// TODO Auto-generated catch block
 			e3.printStackTrace();
 		}
 		try {
 			stmt = con.createStatement();
-			rsQuanHuyen = stmt.executeQuery("Select MaQuanHuyen, TenQuanHuyen from quan_huyen_thixa");
+			rsQuanHuyen = stmt.executeQuery("Select MaQuanHuyen, TenQuanHuyen from quan_huyen_thixa Order By TenQuanHuyen");
 		} catch (SQLException e3) {
 			// TODO Auto-generated catch block
 			e3.printStackTrace();
 		}
 		try {
 			stmt = con.createStatement();
-			rsXaPhuong = stmt.executeQuery("Select MaXaPhuong, TenXaPhuong from xa_phuong_thitran");
+			rsXaPhuong = stmt.executeQuery("Select MaXaPhuong, TenXaPhuong from xa_phuong_thitran Order By TenXaPhuong");
 		} catch (SQLException e3) {
 			// TODO Auto-generated catch block
 			e3.printStackTrace();
@@ -234,7 +235,7 @@ public class PanelQuanLyBanDoc extends JPanel {
 		tblBanDoc.addColumn("Số điện thoại");
 		tblBanDoc.addColumn("Email");
 		tblBanDoc.addColumn("Số sách mượn");
-
+		
 		final JTable tbl = new JTable(tblBanDoc);
 		try {
 			while (rs.next()) {

@@ -37,6 +37,7 @@ public class PanelQuanLyChiTietMT extends JPanel {
 	ResultSet rs = null;
 	ResultSet rsMaGiaoDich = null;
 	ResultSet rsMaSach = null;
+	ResultSet rsSoLuongCon = null;
 	Statement stmt;
 	Connection con;
 	int i = 0, j = 1, indexOne, indexTwo, indexThree;
@@ -47,6 +48,7 @@ public class PanelQuanLyChiTietMT extends JPanel {
 	String maSach;
 	String tinhTrang;
 	String ngayTra;
+	int soLuongCon;
 	ActionComboBox atnCbb = new ActionComboBox();
 
 	public PanelQuanLyChiTietMT() {
@@ -191,7 +193,7 @@ public class PanelQuanLyChiTietMT extends JPanel {
 				String maSach = rs.getString(2);
 				String tinhTrang = rs.getString(3);
 				String ngayTra = rs.getString(4);
-				if(ngayTra.equals("0000-00-00")) {
+				if (ngayTra.equals("0000-00-00")) {
 					ngayTra = "";
 				}
 				Vector<String> vec = new Vector<String>();
@@ -242,6 +244,16 @@ public class PanelQuanLyChiTietMT extends JPanel {
 				// TODO Auto-generated method stub
 				indexTwo = cbbMaSach.getSelectedIndex();
 				maSach = (String) vecCbb2.get(0).get(indexTwo);
+				try {
+					stmt = con.createStatement();
+					rsSoLuongCon = stmt.executeQuery("Select SoLuongCon from sach where MaSach = \'" + maSach + "\'");
+					while (rsSoLuongCon.next()) {
+						soLuongCon = Integer.parseInt(rsSoLuongCon.getString(1));
+					}
+				} catch (SQLException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
 
 			}
 		});
@@ -311,19 +323,23 @@ public class PanelQuanLyChiTietMT extends JPanel {
 				cbbMaSach.setSelectedIndex(0);
 			}
 		});
-		
+
 		btnSave.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(txtNgayTra.getText().equals("")) {
+				if (txtNgayTra.getText().equals("")) {
 					ngayTra = "0000-00-00";
 				}
 				try {
-					stmt.execute("Insert into chitietmuontra values(\'" + maGD + "\',\'" + maSach + "\',\'" + tinhTrang
-							+ "\',\'" + ngayTra + "\')");
-					JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
+					if (soLuongCon - 1 < 0) {
+						JOptionPane.showMessageDialog(null, "Số sách hiện còn không đủ!!!");
+					} else {
+						stmt.execute("Insert into chitietmuontra values(\'" + maGD + "\',\'" + maSach + "\',\'"
+								+ tinhTrang + "\',\'" + ngayTra + "\')");
+						JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
+					}
 					tblSach.setRowCount(0);
 					rs = stmt.executeQuery("Select * from chitietmuontra");
 
@@ -332,7 +348,7 @@ public class PanelQuanLyChiTietMT extends JPanel {
 						String maSach = rs.getString(2);
 						String tinhTrang = rs.getString(3);
 						String ngayTra = rs.getString(4);
-						if(ngayTra.equals("0000-00-00")) {
+						if (ngayTra.equals("0000-00-00")) {
 							ngayTra = "";
 						}
 						Vector<String> vec = new Vector<String>();
@@ -357,13 +373,12 @@ public class PanelQuanLyChiTietMT extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(txtNgayTra.getText().equals("")) {
+				if (txtNgayTra.getText().equals("")) {
 					ngayTra = "0000-00-00";
 				}
 				try {
-					stmt.execute("update chitietmuontra set TinhTrang = \'" + tinhTrang + "\', NgayTra = \'"
-							+ ngayTra + "\' where MaGiaoDich = \'" + maGD + "\' and  MaSach = \'" + maSach
-							+ "\'");
+					stmt.execute("update chitietmuontra set TinhTrang = \'" + tinhTrang + "\', NgayTra = \'" + ngayTra
+							+ "\' where MaGiaoDich = \'" + maGD + "\' and  MaSach = \'" + maSach + "\'");
 					JOptionPane.showMessageDialog(null, "Cập nhật thành công!!!");
 					tblSach.setRowCount(0);
 					rs = stmt.executeQuery("Select * from chitietmuontra");
@@ -373,7 +388,7 @@ public class PanelQuanLyChiTietMT extends JPanel {
 						String maSach = rs.getString(2);
 						String tinhTrang = rs.getString(3);
 						String ngayTra = rs.getString(4);
-						if(ngayTra.equals("0000-00-00")) {
+						if (ngayTra.equals("0000-00-00")) {
 							ngayTra = "";
 						}
 						Vector<String> vec = new Vector<String>();
@@ -448,7 +463,7 @@ public class PanelQuanLyChiTietMT extends JPanel {
 							String maSach = rs.getString(2);
 							String tinhTrang = rs.getString(3);
 							String ngayTra = rs.getString(4);
-							if(ngayTra.equals("0000-00-00")) {
+							if (ngayTra.equals("0000-00-00")) {
 								ngayTra = "";
 							}
 							Vector<String> vec = new Vector<String>();
@@ -493,7 +508,7 @@ public class PanelQuanLyChiTietMT extends JPanel {
 								String maSach = rs.getString(2);
 								String tinhTrang = rs.getString(3);
 								String ngayTra = rs.getString(4);
-								if(ngayTra.equals("0000-00-00")) {
+								if (ngayTra.equals("0000-00-00")) {
 									ngayTra = "";
 								}
 								Vector<String> vec = new Vector<String>();
