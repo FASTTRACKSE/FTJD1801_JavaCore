@@ -1,4 +1,4 @@
-package fasttrackse.quanlytiendien.UI;
+package fasttrackse.quanlytiendien.ui;
 
 import javax.swing.*;
 import java.awt.*;

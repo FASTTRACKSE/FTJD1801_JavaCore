@@ -1,4 +1,4 @@
-package fasttrackse.quanlytiendien.UI;
+package fasttrackse.quanlytiendien.ui;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -12,9 +12,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import fasttrackse.quanlytiendien.DAO.BienLaiDAO;
-import fasttrackse.quanlytiendien.DAO.QuanLyTienDienException;
-import fasttrackse.quanlytiendien.DAO.ThongKeDAO;
+
+import fasttrackse.quanlytiendien.dao.BienLaiDAO;
+import fasttrackse.quanlytiendien.dao.QuanLyTienDienException;
+import fasttrackse.quanlytiendien.dao.ThongKeDAO;
 import fasttrackse.quanlytiendien.entity.BienLaiEntity;
 import fasttrackse.quanlytiendien.entity.KhachHangEntity;
 

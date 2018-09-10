@@ -1,4 +1,4 @@
-package fasttrackse.quanlytiendien.UI;
+package fasttrackse.quanlytiendien.ui;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -7,8 +7,9 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import fasttrackse.quanlytiendien.DAO.KhachHangDAO;
-import fasttrackse.quanlytiendien.DAO.QuanLyTienDienException;
+
+import fasttrackse.quanlytiendien.dao.KhachHangDAO;
+import fasttrackse.quanlytiendien.dao.QuanLyTienDienException;
 import fasttrackse.quanlytiendien.entity.ComboItem;
 import fasttrackse.quanlytiendien.entity.PhuongEntity;
 import fasttrackse.quanlytiendien.entity.QuanEntity;
@@ -149,9 +150,6 @@ public class PnKhachHangUI {
 						cboPhuong1.setSelectedIndex(i);
 					}
 				}
-
-				// cboPhuong1.setSelectedIndex(idPhuong);
-				// cboPhuong1.setSelectedItem(new ComboItem(value, label));
 			}
 		});
 		tbl.addKeyListener(new KeyListener() {
@@ -224,7 +222,6 @@ public class PnKhachHangUI {
 
 		JPanel pnFilter = new JPanel();
 		pn.add(pnFilter, BorderLayout.SOUTH);
-		// pnFilter.setLayout(new GridLayout(1, 5));
 		cboQuan = new JComboBox<String>();
 		cboQuan.addItem(new ComboItem(0, "Quận..."));
 		cboQuan();

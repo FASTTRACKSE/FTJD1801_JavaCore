@@ -1,4 +1,4 @@
-package fasttrackse.quanlytiendien.DAO;
+package fasttrackse.quanlytiendien.dao;
 
 import java.sql.*;
 import java.util.ArrayList;

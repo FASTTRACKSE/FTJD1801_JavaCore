@@ -1,4 +1,4 @@
-package fasttrackse.quanlytiendien.UI;
+package fasttrackse.quanlytiendien.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,7 +12,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import fasttrackse.quanlytiendien.DAO.ThongKeDAO;
+
+import fasttrackse.quanlytiendien.dao.ThongKeDAO;
 import fasttrackse.quanlytiendien.entity.BienLaiEntity;
 import fasttrackse.quanlytiendien.entity.ComboItem;
 import fasttrackse.quanlytiendien.entity.KhachHangEntity;

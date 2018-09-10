@@ -1,6 +1,6 @@
 package fasttrackse.quanlytiendien.main;
 
-import fasttrackse.quanlytiendien.UI.LoginUI;
+import fasttrackse.quanlytiendien.ui.LoginUI;
 
 public class Main {
 
