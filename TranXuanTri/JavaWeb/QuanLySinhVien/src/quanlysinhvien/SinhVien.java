@@ -1,13 +1,26 @@
 package quanlysinhvien;
 
 public class SinhVien {
-	String hoTen;
-	String namSinh;
-
-	public SinhVien(String hoTen, String namSinh) {
+	private String hoTen;
+	private int namSinh;
+	private int id;
+	
+	public SinhVien () {
 		super();
+	}
+	public SinhVien(int id,String hoTen, int namSinh) {
+		super();
+		this.id = id;
 		this.hoTen = hoTen;
 		this.namSinh = namSinh;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getHoTen() {
@@ -18,11 +31,11 @@ public class SinhVien {
 		this.hoTen = hoTen;
 	}
 
-	public String getNamSinh() {
+	public int getNamSinh() {
 		return namSinh;
 	}
 
-	public void setNamSinh(String namSinh) {
+	public void setNamSinh(int namSinh) {
 		this.namSinh = namSinh;
 	}
 
