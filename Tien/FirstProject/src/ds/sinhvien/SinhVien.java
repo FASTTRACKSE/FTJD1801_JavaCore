@@ -1,6 +1,7 @@
 package ds.sinhvien;
 
 public class SinhVien {
+	String MaSV;
 	String hoTen;
 	String namSinh;
 	public String getHoTen() {
@@ -15,14 +16,21 @@ public class SinhVien {
 	public void setNamSinh(String namSinh) {
 		this.namSinh = namSinh;
 	}
+	
+	public String getMaSV() {
+		return MaSV;
+	}
+	public void setMaSV(String maSV) {
+		MaSV = maSV;
+	}
 	public SinhVien() {
 		super();
 	}
-	public SinhVien(String hoTen, String namSinh) {
+	public SinhVien(String maSV, String hoTen, String namSinh) {
 		super();
+		this.MaSV = maSV;
 		this.hoTen = hoTen;
 		this.namSinh = namSinh;
 	}
-	
 	
 }
