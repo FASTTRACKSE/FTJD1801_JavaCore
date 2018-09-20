@@ -34,7 +34,7 @@ public class Controller extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setAttribute("students_list", dsSinhVien);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/view_students.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("view_students.jsp");
 		
 		dispatcher.forward(request, response);
 	}
