@@ -1,6 +1,12 @@
-package quanlysinhvien;
+package quanlysinhvien.entity;
 
-public class SinhVien {
+import java.io.Serializable;
+
+public class SinhVien implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String hoTen;
 	private int namSinh;
 	private int id;
