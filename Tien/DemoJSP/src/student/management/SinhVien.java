@@ -1,9 +1,9 @@
-package ds.sinhvien;
+package student.management;
 
 import java.io.Serializable;
 
 public class SinhVien implements Serializable{
-	String MaSV;
+	String maSV;
 	String hoTen;
 	String namSinh;
 	public String getHoTen() {
@@ -19,18 +19,18 @@ public class SinhVien implements Serializable{
 		this.namSinh = namSinh;
 	}
 	
-	public String getMaSV() {
-		return MaSV;
+	public String getmaSV() {
+		return maSV;
 	}
-	public void setMaSV(String maSV) {
-		MaSV = maSV;
+	public void setmaSV(String maSV) {
+		this.maSV = maSV;
 	}
 	public SinhVien() {
 		super();
 	}
 	public SinhVien(String maSV, String hoTen, String namSinh) {
 		super();
-		this.MaSV = maSV;
+		this.maSV = maSV;
 		this.hoTen = hoTen;
 		this.namSinh = namSinh;
 	}
