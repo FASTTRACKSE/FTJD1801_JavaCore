@@ -14,13 +14,13 @@
 <body> 
 		<div style="width: 300px; margin: 10px;">
 			<h1>Xóa sinh viên</h1>
-			<form action="doRemove" method="post">
+			<form action="do_remove" method="post">
 				<label>Student ID</label> 
-				<input type="text" name="idRemove" class="form-control" value="${shareStudent.maSV}" readonly="readonly"><br> 
+				<input type="text" name="id" class="form-control" value="${shareStudent.maSV}" readonly="readonly"><br> 
 				<label>Full Name</label> 
-				<input type="text" name="nameRemove" class="form-control" value="${shareStudent.hoTen}" readonly="readonly"><br>
+				<input type="text" name="hoten" class="form-control" value="${shareStudent.hoTen}" readonly="readonly"><br>
 				<label>Year Of Birth</label> 
-				<input type="text" name="birthRemove" class="form-control" value="${shareStudent.namSinh}" readonly="readonly"><br> 
+				<input type="text" name="namsinh" class="form-control" value="${shareStudent.namSinh}" readonly="readonly"><br> 
 				<input type="submit" value="Xóa" class="btn btn-primary">
 			</form>
 		</div>

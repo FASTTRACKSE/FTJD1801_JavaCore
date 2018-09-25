@@ -9,20 +9,22 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
-<title>XÓA SẠCH HẾT</title>
+<title>SỬA TOÀN BỘ</title>
 </head>
-<body> 
+<body>
+	 
 		<div style="width: 300px; margin: 10px;">
-			<h1>Xóa sinh viên</h1>
-			<form action="doRemove" method="post">
+			<h1>Cập nhật thông tin</h1>
+			<form action="do_update" method="post">
 				<label>Student ID</label> 
-				<input type="text" name="idRemove" class="form-control" value="${shareStudent.maSV}" readonly="readonly"><br> 
+				<input type="text" name="id" class="form-control" placeholder="Student ID" value="${shareStudent.maSV}"><br> 
 				<label>Full Name</label> 
-				<input type="text" name="nameRemove" class="form-control" value="${shareStudent.hoTen}" readonly="readonly"><br>
+				<input type="text" name="hoten" class="form-control" placeholder="Full Name" value="${shareStudent.hoTen}"><br>
 				<label>Year Of Birth</label> 
-				<input type="text" name="birthRemove" class="form-control" value="${shareStudent.namSinh}" readonly="readonly"><br> 
-				<input type="submit" value="Xóa" class="btn btn-primary">
+				<input type="text" name="namsinh" class="form-control"	placeholder="Year Of Birth" value="${shareStudent.namSinh}"><br> 
+				<input type="submit" value="Cập nhật" class="btn btn-primary">
 			</form>
 		</div>
+	
 </body>
 </html>
