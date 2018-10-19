@@ -43,14 +43,15 @@ public class LopHoc extends JPanel {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlitruonghoc", "root", "");
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/quanlitruonghoc?useUnicode=yes&characterEncoding=UTF-8", "root", "");
 			stmt = (Statement) con.createStatement();
 			rs = stmt.executeQuery("SELECT * from lophoc");
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
 
-		Font fontOne = new Font(Font.SERIF, Font.PLAIN, 18);
+		Font fontOne = new Font(Font.SERIF, Font.ITALIC, 18);
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -86,7 +87,7 @@ public class LopHoc extends JPanel {
 		grTop.add(lblYear);
 		pnFour.add(txtYear);
 		grTop.add(pnFour);
-		
+
 		JPanel pnNull = new JPanel();
 		grTop.add(pnNull);
 
@@ -244,7 +245,7 @@ public class LopHoc extends JPanel {
 				// TODO Auto-generated method stub
 				try {
 					stmt.executeUpdate("update lophoc set tenLH = \'" + txtName.getText() + "\', namHoc = \'"
-							+ txtYear.getText() + "\' where maLH = \'" +txtID.getText() +"\'");
+							+ txtYear.getText() + "\' where maLH = \'" + txtID.getText() + "\'");
 					JOptionPane.showMessageDialog(null, "Cập nhật thành công!!!");
 					tblSinhVien.setRowCount(0);
 					rs = stmt.executeQuery("Select * from lophoc");
@@ -253,12 +254,12 @@ public class LopHoc extends JPanel {
 						String maLH = rs.getString(1);
 						String tenLH = rs.getString(2);
 						String namHoc = rs.getString(3);
-						
+
 						Vector<String> vec = new Vector<String>();
 						vec.add(maLH);
 						vec.add(tenLH);
 						vec.add(namHoc);
-						
+
 						tblSinhVien.addRow(vec);
 					}
 					tbl.setModel(tblSinhVien);
@@ -276,33 +277,36 @@ public class LopHoc extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
-				try {
-					stmt.execute("delete from lophoc where maLH = \'" + txtID.getText() + "\'");
-					JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
-					tblSinhVien.setRowCount(0);
-					rs = stmt.executeQuery("Select * from lophoc");
-
-					while (rs.next()) {
-						String maLH = rs.getString(1);
-						String tenLH = rs.getString(2);
-						String namHoc = rs.getString(3);
+				int dialogResult = JOptionPane.showConfirmDialog(null,
+						"Thao tác sẽ xóa lớp học của sinh viên thuộc lớp học này!", "Xem cho kỹ", JOptionPane.YES_NO_OPTION);
+				if (dialogResult == JOptionPane.YES_OPTION) {
+					try {
 						
-						Vector<String> vec = new Vector<String>();
-						vec.add(maLH);
-						vec.add(tenLH);
-						vec.add(namHoc);
-						
-						tblSinhVien.addRow(vec);
+						stmt.execute("delete from lophoc where maLH = \'" + txtID.getText() + "\'");
+						JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
+						tblSinhVien.setRowCount(0);
+						rs = stmt.executeQuery("Select * from lophoc");
+
+						while (rs.next()) {
+							String maLH = rs.getString(1);
+							String tenLH = rs.getString(2);
+							String namHoc = rs.getString(3);
+
+							Vector<String> vec = new Vector<String>();
+							vec.add(maLH);
+							vec.add(tenLH);
+							vec.add(namHoc);
+
+							tblSinhVien.addRow(vec);
+						}
+						tbl.setModel(tblSinhVien);
+						tblSinhVien.fireTableDataChanged();
+
+					} catch (Exception ex) {
+						// TODO: handle exception
+						System.err.println(ex);
 					}
-					tbl.setModel(tblSinhVien);
-					tblSinhVien.fireTableDataChanged();
-
-				} catch (Exception ex) {
-					// TODO: handle exception
-					System.err.println(ex);
 				}
-
 			}
 		});
 
@@ -321,12 +325,12 @@ public class LopHoc extends JPanel {
 							String maLH = rs.getString(1);
 							String tenLH = rs.getString(2);
 							String namHoc = rs.getString(3);
-							
+
 							Vector<String> vec = new Vector<String>();
 							vec.add(maLH);
 							vec.add(tenLH);
 							vec.add(namHoc);
-							
+
 							tblSinhVien.addRow(vec);
 						}
 						tbl.setModel(tblSinhVien);
@@ -334,18 +338,19 @@ public class LopHoc extends JPanel {
 					} else {
 						if (index == 0) {
 							tblSinhVien.setRowCount(0);
-							rs = stmt.executeQuery("Select * from lophoc where maLH = " + txtValue.getText() + "");
+							rs = stmt.executeQuery(
+									"Select * from lophoc where maLH like \'%" + txtValue.getText() + "%\'");
 
 							while (rs.next()) {
 								String maLH = rs.getString(1);
 								String tenLH = rs.getString(2);
 								String namHoc = rs.getString(3);
-								
+
 								Vector<String> vec = new Vector<String>();
 								vec.add(maLH);
 								vec.add(tenLH);
 								vec.add(namHoc);
-								
+
 								tblSinhVien.addRow(vec);
 							}
 							tbl.setModel(tblSinhVien);
@@ -354,18 +359,18 @@ public class LopHoc extends JPanel {
 						} else if (index == 1) {
 							tblSinhVien.setRowCount(0);
 							rs = stmt.executeQuery(
-									"Select * from lophoc where tenLH = \'" + txtValue.getText() + "\'");
+									"Select * from lophoc where tenLH like \'%" + txtValue.getText() + "%\'");
 
 							while (rs.next()) {
 								String maLH = rs.getString(1);
 								String tenLH = rs.getString(2);
 								String namHoc = rs.getString(3);
-								
+
 								Vector<String> vec = new Vector<String>();
 								vec.add(maLH);
 								vec.add(tenLH);
 								vec.add(namHoc);
-								
+
 								tblSinhVien.addRow(vec);
 							}
 							tbl.setModel(tblSinhVien);

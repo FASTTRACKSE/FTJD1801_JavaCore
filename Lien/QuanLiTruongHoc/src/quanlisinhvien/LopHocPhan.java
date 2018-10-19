@@ -55,7 +55,7 @@ public class LopHocPhan extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		JPanel grTop = new JPanel();
-		grTop.setLayout(new GridLayout(2, 4));
+		grTop.setLayout(new GridLayout(3, 4));
 
 		JPanel pnOne = new JPanel();
 		pnOne.setLayout(new FlowLayout());
@@ -96,6 +96,16 @@ public class LopHocPhan extends JPanel {
 		grTop.add(lblDiem);
 		pnFour.add(txtDiem);
 		grTop.add(pnFour);
+		
+		JPanel pnFive = new JPanel();
+		pnFour.setLayout(new FlowLayout());
+		JLabel lblNam = new JLabel("Năm học");
+		JTextField txtNam = new JTextField(15);
+		lblNam.setFont(fontOne);
+		txtNam.setFont(fontOne);
+		grTop.add(lblNam);
+		pnFive.add(txtNam);
+		grTop.add(pnFive);
 
 		JPanel pnCenter = new JPanel();
 		pnCenter.setLayout(new FlowLayout());
@@ -119,6 +129,7 @@ public class LopHocPhan extends JPanel {
 		cbbType.addItem("Mã lớp học phần");
 		cbbType.addItem("Mã sinh viên");
 		cbbType.addItem("Điểm");
+		cbbType.addItem("Năm học");
 		cbbType.setFont(fontOne);
 		cbbType.setPreferredSize(new Dimension(200, 30));
 		pnCenter.add(cbbType);
@@ -141,6 +152,7 @@ public class LopHocPhan extends JPanel {
 		tblLopHocPhan.addColumn("Mã sinh viên");
 		tblLopHocPhan.addColumn("Mã môn học");
 		tblLopHocPhan.addColumn("Điểm");
+		tblLopHocPhan.addColumn("Năm học");
 
 		final JTable tbl = new JTable(tblLopHocPhan);
 		try {
@@ -149,12 +161,14 @@ public class LopHocPhan extends JPanel {
 				String maSV = rs.getString(2);
 				String maMH = rs.getString(3);
 				String diem = rs.getString(4);
+				String nam = rs.getString(5);
 
 				Vector<String> vec = new Vector<String>();
 				vec.add(maLHP);
 				vec.add(maSV);
 				vec.add(maMH);
 				vec.add(diem);
+				vec.add(nam);
 
 				tblLopHocPhan.addRow(vec);
 			}
@@ -163,7 +177,7 @@ public class LopHocPhan extends JPanel {
 		}
 
 		Border border = BorderFactory.createLineBorder(Color.DARK_GRAY);
-		TitledBorder borderTitle = BorderFactory.createTitledBorder(border, "Quản lí môn học");
+		TitledBorder borderTitle = BorderFactory.createTitledBorder(border, "Quản lí lớp học phần");
 
 		tbl.setFont(fontOne);
 		tbl.setPreferredScrollableViewportSize(new Dimension(1100, 300));
@@ -189,6 +203,10 @@ public class LopHocPhan extends JPanel {
 				
 				String diem = (String) tbl.getValueAt(row, 3);
 				txtDiem.setText(diem);
+				
+				
+				String nam= (String) tbl.getValueAt(row, 4);
+				txtDiem.setText(nam);
 
 			}
 
@@ -224,27 +242,31 @@ public class LopHocPhan extends JPanel {
 				// TODO Auto-generated method stub
 				try {
 					stmt.execute("Insert into lophocphan values(\'" + txtID.getText() + "\',\'" + txtMaSV.getText()
-							+ "\',\'" + txtMaMH.getText() + "\',\'" + txtDiem.getText() + "\')");
+							+ "\',\'" + txtMaMH.getText() + "\',\'" + txtDiem.getText() + "\', \'" + txtNam.getText() + "\')");
 					JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
 					tblLopHocPhan.setRowCount(0);
 					rs = stmt.executeQuery("Select * from lophocphan");
+					 {
+							while (rs.next()) {
+								String maLHP = rs.getString(1);
+								String maSV = rs.getString(2);
+								String maMH = rs.getString(3);
+								String diem = rs.getString(4);
+								String nam = rs.getString(5);
 
-					while (rs.next()) {
-						String maLHP = rs.getString(1);
-						String maSV = rs.getString(2);
-						String maMH = rs.getString(3);
-						String diem = rs.getString(4);
+								Vector<String> vec = new Vector<String>();
+								vec.add(maLHP);
+								vec.add(maSV);
+								vec.add(maMH);
+								vec.add(diem);
+								vec.add(nam);
 
-						Vector<String> vec = new Vector<String>();
-						vec.add(maLHP);
-						vec.add(maSV);
-						vec.add(maMH);
-						vec.add(diem);
-
-						tblLopHocPhan.addRow(vec);
+								tblLopHocPhan.addRow(vec);
 					}
 					tbl.setModel(tblLopHocPhan);
 					tblLopHocPhan.fireTableDataChanged();
+					
+					 }
 
 				} catch (Exception ex) {
 					// TODO: handle exception
@@ -259,28 +281,33 @@ public class LopHocPhan extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					stmt.executeUpdate("update lophocphan set tenMH = \'" + txtMaSV.getText() + "\', tinChi = \'"
-							+ txtMaMH.getText() + "\', thoiGian = \'"+ txtDiem.getText() + "\' where maMH = \'"+ txtID.getText()+"\'");
+					stmt.executeUpdate("update lophocphan set maSV = \'" + txtMaSV.getText() + "\', maMH = \'"
+							+ txtMaMH.getText() + "\', diem = \'"+ txtDiem.getText() + "\' where maLHP = \'"+ txtID.getText()+"\'");
 					JOptionPane.showMessageDialog(null, "Cập nhật thành công!!!");
 					tblLopHocPhan.setRowCount(0);
 					rs = stmt.executeQuery("Select * from lophocphan");
 
-					while (rs.next()) {
-						String maLHP = rs.getString(1);
-						String maSV = rs.getString(2);
-						String maMH = rs.getString(3);
-						String diem = rs.getString(4);
+					 {
+							while (rs.next()) {
+								String maLHP = rs.getString(1);
+								String maSV = rs.getString(2);
+								String maMH = rs.getString(3);
+								String diem = rs.getString(4);
+								String nam = rs.getString(5);
 
-						Vector<String> vec = new Vector<String>();
-						vec.add(maLHP);
-						vec.add(maSV);
-						vec.add(maMH);
-						vec.add(diem);
-						
-						tblLopHocPhan.addRow(vec);
+								Vector<String> vec = new Vector<String>();
+								vec.add(maLHP);
+								vec.add(maSV);
+								vec.add(maMH);
+								vec.add(diem);
+								vec.add(nam);
+
+								tblLopHocPhan.addRow(vec);
 					}
 					tbl.setModel(tblLopHocPhan);
 					tblLopHocPhan.fireTableDataChanged();
+					
+					 }
 
 				} catch (Exception ex) {
 					// TODO: handle exception
@@ -296,7 +323,7 @@ public class LopHocPhan extends JPanel {
 				// TODO Auto-generated method stub
 
 				try {
-					stmt.execute("delete from lophocphan where maMH = \'" + txtID.getText() + "\'");
+					stmt.execute("delete from lophocphan where maLHP = \'" + txtID.getText() + "\'");
 					JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
 					tblLopHocPhan.setRowCount(0);
 					rs = stmt.executeQuery("Select * from lophocphan");
@@ -336,26 +363,31 @@ public class LopHocPhan extends JPanel {
 						tblLopHocPhan.setRowCount(0);
 						rs = stmt.executeQuery("Select * from lophocphan");
 
-						while (rs.next()) {
-							String maLHP = rs.getString(1);
-							String maSV = rs.getString(2);
-							String maMH = rs.getString(3);
-							String diem = rs.getString(4);
+						 {
+								while (rs.next()) {
+									String maLHP = rs.getString(1);
+									String maSV = rs.getString(2);
+									String maMH = rs.getString(3);
+									String diem = rs.getString(4);
+									String nam = rs.getString(5);
 
-							Vector<String> vec = new Vector<String>();
-							vec.add(maLHP);
-							vec.add(maSV);
-							vec.add(maMH);
-							vec.add(diem);
-							
-							tblLopHocPhan.addRow(vec);
+									Vector<String> vec = new Vector<String>();
+									vec.add(maLHP);
+									vec.add(maSV);
+									vec.add(maMH);
+									vec.add(diem);
+									vec.add(nam);
+
+									tblLopHocPhan.addRow(vec);
 						}
 						tbl.setModel(tblLopHocPhan);
 						tblLopHocPhan.fireTableDataChanged();
+						
+						 }
 					} else {
 						if (index == 0) {
 							tblLopHocPhan.setRowCount(0);
-							rs = stmt.executeQuery("Select * from lophocphan where maLHP = " + txtValue.getText() + "");
+							rs = stmt.executeQuery("Select * from lophocphan where maLHP like \'%" + txtValue.getText() + "%\'");
 
 							while (rs.next()) {
 								String maLHP = rs.getString(1);
@@ -378,48 +410,56 @@ public class LopHocPhan extends JPanel {
 						} else if (index == 1) {
 							tblLopHocPhan.setRowCount(0);
 							rs = stmt.executeQuery(
-									"Select * from lophocphan where maSV = \'" + txtValue.getText() + "\'");
+									"Select * from lophocphan where maSV like \'%" + txtValue.getText() + "%\'");
+							 {
+									while (rs.next()) {
+										String maLHP = rs.getString(1);
+										String maSV = rs.getString(2);
+										String maMH = rs.getString(3);
+										String diem = rs.getString(4);
+										String nam = rs.getString(5);
 
-							while (rs.next()) {
-								String maLHP = rs.getString(1);
-								String maSV = rs.getString(2);
-								String maMH = rs.getString(3);
-								String diem = rs.getString(4);
+										Vector<String> vec = new Vector<String>();
+										vec.add(maLHP);
+										vec.add(maSV);
+										vec.add(maMH);
+										vec.add(diem);
+										vec.add(nam);
 
-								Vector<String> vec = new Vector<String>();
-								vec.add(maLHP);
-								vec.add(maSV);
-								vec.add(maMH);
-								vec.add(diem);
-								
-								tblLopHocPhan.addRow(vec);
-							}
+										tblLopHocPhan.addRow(vec);
 							tbl.setModel(tblLopHocPhan);
 							tblLopHocPhan.fireTableDataChanged();
+							
+									}
+							 }
 							
 						} else if (index == 2) {
 							tblLopHocPhan.setRowCount(0);
 							rs = stmt.executeQuery(
-									"Select * from lophocphan where diem = \'" + txtValue.getText() + "\'");
+									"Select * from lophocphan where diem like \'%" + txtValue.getText() + "%\'");
 
-							while (rs.next()) {
-								String maLHP = rs.getString(1);
-								String maSV = rs.getString(2);
-								String maMH = rs.getString(3);
-								String diem = rs.getString(4);
+							 {
+									while (rs.next()) {
+										String maLHP = rs.getString(1);
+										String maSV = rs.getString(2);
+										String maMH = rs.getString(3);
+										String diem = rs.getString(4);
+										String nam = rs.getString(5);
 
-								Vector<String> vec = new Vector<String>();
-								vec.add(maLHP);
-								vec.add(maSV);
-								vec.add(maMH);
-								vec.add(diem);
-								
-								tblLopHocPhan.addRow(vec);
+										Vector<String> vec = new Vector<String>();
+										vec.add(maLHP);
+										vec.add(maSV);
+										vec.add(maMH);
+										vec.add(diem);
+										vec.add(nam);
+
+										tblLopHocPhan.addRow(vec);
 							}
 							tbl.setModel(tblLopHocPhan);
 							tblLopHocPhan.fireTableDataChanged();
 
 						}
+					}
 					}
 				} catch (Exception e2) {
 					System.err.println(e2);

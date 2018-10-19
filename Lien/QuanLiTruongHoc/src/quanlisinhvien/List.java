@@ -8,6 +8,17 @@ public class List {
 	String ma;
 	String ten;
 	int index = 0;
+	
+	public List() {
+		super();
+	}
+	
+	public List(String ma, String ten, int index) {
+		super();
+		this.ma = ma;
+		this.ten = ten;
+		this.index = index;
+	}
 
 	public Vector<Vector> AddList(ResultSet rs) {
 		Vector<String> vec = new Vector<String>();
@@ -28,4 +39,19 @@ public class List {
 		}
 		return vec3;
 	}
+	public Vector<String> AddList2(ResultSet rs) {
+		Vector<String> vec = new Vector<String>();
+		try {
+			while (rs.next()) {
+				ma = rs.getString(1);
+				vec.add(ma);
+				
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return vec;
+	}
+	
 }

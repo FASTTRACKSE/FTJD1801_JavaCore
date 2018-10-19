@@ -43,14 +43,15 @@ public class MonHoc extends JPanel {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlitruonghoc?useUnicode=yes&characterEncoding=UTF-8", "root", "");
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/quanlitruonghoc?useUnicode=yes&characterEncoding=UTF-8", "root", "");
 			stmt = (Statement) con.createStatement();
 			rs = stmt.executeQuery("SELECT * from monhoc");
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
 
-		Font fontOne = new Font(Font.SERIF, Font.PLAIN, 18);
+		Font fontOne = new Font(Font.SERIF, Font.ITALIC, 18);
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -86,7 +87,7 @@ public class MonHoc extends JPanel {
 		grTop.add(lblTinchi);
 		pnThree.add(txtTinchi);
 		grTop.add(pnThree);
-		
+
 		JPanel pnFour = new JPanel();
 		pnFour.setLayout(new FlowLayout());
 		JLabel lblThoigian = new JLabel("Thời gian");
@@ -185,7 +186,7 @@ public class MonHoc extends JPanel {
 
 				String tinChi = (String) tbl.getValueAt(row, 2);
 				txtTinchi.setText(tinChi);
-				
+
 				String thoiGian = (String) tbl.getValueAt(row, 3);
 				txtThoigian.setText(thoiGian);
 
@@ -259,7 +260,8 @@ public class MonHoc extends JPanel {
 				// TODO Auto-generated method stub
 				try {
 					stmt.executeUpdate("update monhoc set tenMH = \'" + txtName.getText() + "\', tinChi = \'"
-							+ txtTinchi.getText() + "\', thoiGian = \'"+ txtThoigian.getText() + "\' where maMH = \'"+ txtID.getText()+"\'");
+							+ txtTinchi.getText() + "\', thoiGian = \'" + txtThoigian.getText() + "\' where maMH = \'"
+							+ txtID.getText() + "\'");
 					JOptionPane.showMessageDialog(null, "Cập nhật thành công!!!");
 					tblMonHoc.setRowCount(0);
 					rs = stmt.executeQuery("Select * from monHoc");
@@ -275,7 +277,7 @@ public class MonHoc extends JPanel {
 						vec.add(tenMH);
 						vec.add(tinChi);
 						vec.add(thoiGian);
-						
+
 						tblMonHoc.addRow(vec);
 					}
 					tbl.setModel(tblMonHoc);
@@ -293,34 +295,36 @@ public class MonHoc extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				int dialogResult = JOptionPane.showConfirmDialog(null,
+						"Bạn muốn xóa dữ liệu môn học ở lớp học phần !", "Xem cho kỹ", JOptionPane.YES_NO_OPTION);
+				if (dialogResult == JOptionPane.YES_OPTION) {
+					try {
+						stmt.execute("delete from monhoc where maMH = \'" + txtID.getText() + "\'");
+						JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
+						tblMonHoc.setRowCount(0);
+						rs = stmt.executeQuery("Select * from monhoc");
 
-				try {
-					stmt.execute("delete from monhoc where maMH = \'" + txtID.getText() + "\'");
-					JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
-					tblMonHoc.setRowCount(0);
-					rs = stmt.executeQuery("Select * from monhoc");
+						while (rs.next()) {
+							String maMH = rs.getString(1);
+							String tenMH = rs.getString(2);
+							String tinChi = rs.getString(3);
+							String thoiGian = rs.getString(4);
 
-					while (rs.next()) {
-						String maMH = rs.getString(1);
-						String tenMH = rs.getString(2);
-						String tinChi = rs.getString(3);
-						String thoiGian = rs.getString(4);
+							Vector<String> vec = new Vector<String>();
+							vec.add(maMH);
+							vec.add(tenMH);
+							vec.add(tinChi);
+							vec.add(thoiGian);
+							tblMonHoc.addRow(vec);
+						}
+						tbl.setModel(tblMonHoc);
+						tblMonHoc.fireTableDataChanged();
 
-						Vector<String> vec = new Vector<String>();
-						vec.add(maMH);
-						vec.add(tenMH);
-						vec.add(tinChi);
-						vec.add(thoiGian);
-						tblMonHoc.addRow(vec);
+					} catch (Exception ex) {
+						// TODO: handle exception
+						System.err.println(ex);
 					}
-					tbl.setModel(tblMonHoc);
-					tblMonHoc.fireTableDataChanged();
-
-				} catch (Exception ex) {
-					// TODO: handle exception
-					System.err.println(ex);
 				}
-
 			}
 		});
 
@@ -346,7 +350,7 @@ public class MonHoc extends JPanel {
 							vec.add(tenMH);
 							vec.add(tinChi);
 							vec.add(thoiGian);
-							
+
 							tblMonHoc.addRow(vec);
 						}
 						tbl.setModel(tblMonHoc);
@@ -354,7 +358,8 @@ public class MonHoc extends JPanel {
 					} else {
 						if (index == 0) {
 							tblMonHoc.setRowCount(0);
-							rs = stmt.executeQuery("Select * from monhoc where maMH = " + txtValue.getText() + "");
+							rs = stmt.executeQuery(
+									"Select * from monhoc where maMH like \'%" + txtValue.getText() + "%\'");
 
 							while (rs.next()) {
 								String maMH = rs.getString(1);
@@ -367,8 +372,7 @@ public class MonHoc extends JPanel {
 								vec.add(tenMH);
 								vec.add(tinChi);
 								vec.add(thoiGian);
-								
-								
+
 								tblMonHoc.addRow(vec);
 							}
 							tbl.setModel(tblMonHoc);
@@ -377,7 +381,7 @@ public class MonHoc extends JPanel {
 						} else if (index == 1) {
 							tblMonHoc.setRowCount(0);
 							rs = stmt.executeQuery(
-									"Select * from monhoc where tenMH = \'" + txtValue.getText() + "\'");
+									"Select * from monhoc where tenMH like \'%" + txtValue.getText() + "%\'");
 
 							while (rs.next()) {
 								String maMH = rs.getString(1);
@@ -390,7 +394,7 @@ public class MonHoc extends JPanel {
 								vec.add(tenMH);
 								vec.add(tinChi);
 								vec.add(thoiGian);
-								
+
 								tblMonHoc.addRow(vec);
 							}
 							tbl.setModel(tblMonHoc);
@@ -410,4 +414,3 @@ public class MonHoc extends JPanel {
 	}
 
 }
-

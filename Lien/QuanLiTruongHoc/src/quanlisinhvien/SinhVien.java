@@ -44,15 +44,17 @@ public class SinhVien extends JPanel {
 	String maXaPhuong;
 	String maQuanHuyen;
 	String maTinhThanh;
+	String tt, qh, xp;
 
 	public SinhVien() {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlitruonghoc", "root", "");
+			con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/quanlitruonghoc?useUnicode=yes&characterEncoding=UTF-8", "root", "");
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(
-					"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh");
+					"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail, maLH FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh");
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
@@ -82,12 +84,12 @@ public class SinhVien extends JPanel {
 		vecCbb = new Vector<Vector>();
 		vecCbb = list.AddList(rsTinhThanh);
 
-		Font fontOne = new Font(Font.SERIF, Font.PLAIN, 18);
+		Font fontOne = new Font(Font.SERIF, Font.ITALIC, 20);
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		JPanel grTop = new JPanel();
-		grTop.setLayout(new GridLayout(4, 4));
+		grTop.setLayout(new GridLayout(5, 4));
 
 		JPanel pnOne = new JPanel();
 		pnOne.setLayout(new FlowLayout());
@@ -139,37 +141,47 @@ public class SinhVien extends JPanel {
 		pnFive.add(txtMail);
 		grTop.add(pnFive);
 
-		JPanel pnSeven = new JPanel();
-		pnSeven.setLayout(new FlowLayout());
+		JPanel pnSix = new JPanel();
+		pnSix.setLayout(new FlowLayout());
 		JLabel lblXaPhuong = new JLabel("Xã phường");
 		JComboBox cbbXaPhuong = new JComboBox();
 		cbbXaPhuong.setPreferredSize(new Dimension(200, 30));
 		lblXaPhuong.setFont(fontOne);
 		cbbXaPhuong.setFont(fontOne);
 		grTop.add(lblXaPhuong);
-		pnSeven.add(cbbXaPhuong);
-		grTop.add(pnSeven);
+		pnSix.add(cbbXaPhuong);
+		grTop.add(pnSix);
 
-		JPanel pnEight = new JPanel();
-		pnEight.setLayout(new FlowLayout());
+		JPanel pnSeven = new JPanel();
+		pnSeven.setLayout(new FlowLayout());
 		JLabel lblQuanHuyen = new JLabel("Quận huyện");
 		JComboBox cbbQuanHuyen = new JComboBox();
 		cbbQuanHuyen.setPreferredSize(new Dimension(200, 30));
 		lblQuanHuyen.setFont(fontOne);
 		cbbQuanHuyen.setFont(fontOne);
 		grTop.add(lblQuanHuyen);
-		pnEight.add(cbbQuanHuyen);
-		grTop.add(pnEight);
+		pnSeven.add(cbbQuanHuyen);
+		grTop.add(pnSeven);
 
-		JPanel pnNine = new JPanel();
-		pnNine.setLayout(new FlowLayout());
+		JPanel pnEight = new JPanel();
+		pnEight.setLayout(new FlowLayout());
 		JLabel lblTinhThanh = new JLabel("Tỉnh thành");
 		JComboBox cbbTinhThanh = new JComboBox();
 		cbbTinhThanh.setPreferredSize(new Dimension(200, 30));
 		lblTinhThanh.setFont(fontOne);
 		cbbTinhThanh.setFont(fontOne);
 		grTop.add(lblTinhThanh);
-		pnNine.add(cbbTinhThanh);
+		pnEight.add(cbbTinhThanh);
+		grTop.add(pnEight);
+
+		JPanel pnNine = new JPanel();
+		pnNine.setLayout(new FlowLayout());
+		JLabel lblIDlh = new JLabel("Mã lớp học");
+		JTextField txtIDlh = new JTextField(15);
+		lblIDlh.setFont(fontOne);
+		txtIDlh.setFont(fontOne);
+		grTop.add(lblIDlh);
+		pnNine.add(txtIDlh);
 		grTop.add(pnNine);
 
 		for (i = 0; i < vecCbb.get(0).size(); i++) {
@@ -205,6 +217,7 @@ public class SinhVien extends JPanel {
 		JComboBox cbbType = new JComboBox();
 		cbbType.addItem("Mã sinh viên");
 		cbbType.addItem("Họ và tên");
+		cbbType.addItem("Mã lớp học");
 		cbbType.setFont(fontOne);
 		cbbType.setPreferredSize(new Dimension(200, 30));
 		pnCenter.add(cbbType);
@@ -231,6 +244,7 @@ public class SinhVien extends JPanel {
 		tblSinhVien.addColumn("Tỉnh thành");
 		tblSinhVien.addColumn("Số điện thoại");
 		tblSinhVien.addColumn("Email");
+		tblSinhVien.addColumn("Mã lớp học");
 
 		final JTable tbl = new JTable(tblSinhVien);
 		try {
@@ -243,6 +257,7 @@ public class SinhVien extends JPanel {
 				String tinhThanh = rs.getString(6);
 				String sdt = rs.getString(7);
 				String email = rs.getString(8);
+				String maLH = rs.getString(9);
 				Vector<String> vec = new Vector<String>();
 				vec.add(maSV);
 				vec.add(hoTen);
@@ -252,6 +267,7 @@ public class SinhVien extends JPanel {
 				vec.add(tinhThanh);
 				vec.add(sdt);
 				vec.add(email);
+				vec.add(maLH);
 				tblSinhVien.addRow(vec);
 			}
 		} catch (Exception e) {
@@ -267,64 +283,7 @@ public class SinhVien extends JPanel {
 		sc.setViewportView(tbl);
 		pnTable.add(sc);
 		pnTable.setBorder(borderTitle);
-
-		tbl.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				int row = tbl.getSelectedRow();
-				String id = (String) tbl.getValueAt(row, 0);
-				txtID.setText(id);
-
-				String name = (String) tbl.getValueAt(row, 1);
-				txtName.setText(name);
-
-				String add = (String) tbl.getValueAt(row, 2);
-				txtAdd.setText(add);
-
-				String xaPhuong = (String) tbl.getValueAt(row, 3);
-				cbbXaPhuong.setToolTipText(xaPhuong);
-
-				String quanHuyen = (String) tbl.getValueAt(row, 4);
-				cbbQuanHuyen.setToolTipText(quanHuyen);
-
-				String tinhThanh = (String) tbl.getValueAt(row, 5);
-				cbbTinhThanh.setToolTipText(tinhThanh);
-
-				String phone = (String) tbl.getValueAt(row, 6);
-				txtPhone.setText(phone);
-
-				String mail = (String) tbl.getValueAt(row, 7);
-				txtMail.setText(mail);
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-
+		
 		cbbTinhThanh.addActionListener(new ActionListener() {
 
 			@Override
@@ -416,18 +375,145 @@ public class SinhVien extends JPanel {
 			}
 		});
 
+		tbl.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				int row = tbl.getSelectedRow();
+				String id = (String) tbl.getValueAt(row, 0);
+				txtID.setText(id);
+
+				String name = (String) tbl.getValueAt(row, 1);
+				txtName.setText(name);
+
+				String add = (String) tbl.getValueAt(row, 2);
+				txtAdd.setText(add);
+
+				String xaPhuong = (String) tbl.getValueAt(row, 3);
+				String quanHuyen = (String) tbl.getValueAt(row, 4);
+				String tinhThanh = (String) tbl.getValueAt(row, 5);
+				
+				for(int i = 0; i < vecCbb.get(0).size(); i++) {
+					if(tinhThanh.equals(vecCbb.get(1).get(i))) {
+						tt = (String) vecCbb.get(0).get(i);
+					}
+				}
+				cbbTinhThanh.setSelectedItem(tt + " | " + tinhThanh);
+				
+				for(int i = 0; i < vecCbb2.get(0).size(); i++) {
+					if(quanHuyen.equals(vecCbb2.get(1).get(i))) {
+						qh = (String) vecCbb2.get(0).get(i);
+					}
+				}
+				cbbTinhThanh.setSelectedItem(qh + " | " + quanHuyen);
+				
+				for(int i = 0; i < vecCbb3.get(0).size(); i++) {
+					if(xaPhuong.equals(vecCbb3.get(1).get(i))) {
+						xp = (String) vecCbb3.get(0).get(i);
+					}
+				}
+				cbbTinhThanh.setSelectedItem(xp + " | " + xaPhuong);
+
+				String phone = (String) tbl.getValueAt(row, 6);
+				txtPhone.setText(phone);
+
+				String mail = (String) tbl.getValueAt(row, 7);
+				txtMail.setText(mail);
+
+				String maLH = (String) tbl.getValueAt(row, 8);
+				txtIDlh.setText(maLH);
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
+		
+
 		btnSave.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					stmt.execute("Insert into sinhvien values(" + txtID.getText() + ",\'" + txtName.getText() + "\',\'"
-							+ txtAdd.getText() + "\',\'" + maXaPhuong + "\',\'" + maQuanHuyen + "\',\'" + maTinhThanh
-							+ "\',\'" + txtPhone.getText() + "\',\'" + txtMail.getText() + "\')");
+					stmt.execute("Insert into sinhvien values(\'" + txtID.getText() + "\',\'" + txtName.getText()
+							+ "\',\'" + txtAdd.getText() + "\',\'" + maXaPhuong + "\',\'" + maQuanHuyen + "\',\'"
+							+ maTinhThanh + "\',\'" + txtPhone.getText() + "\',\'" + txtMail.getText() + "\',\'"
+							+ txtIDlh.getText() + "\')");
 					JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
 					tblSinhVien.setRowCount(0);
-					rs = stmt.executeQuery("Select * from sinhvien");
+					rs = stmt.executeQuery(
+							"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail, maLH FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh");
+					while (rs.next()) {
+						String maSV = rs.getString(1);
+						String hoTen = rs.getString(2);
+						String diaChi = rs.getString(3);
+						String xaPhuong = rs.getString(4);
+						String quanHuyen = rs.getString(5);
+						String tinhThanh = rs.getString(6);
+						String sdt = rs.getString(7);
+						String email = rs.getString(8);
+						String maLH = rs.getString(9);
+						Vector<String> vec = new Vector<String>();
+						vec.add(maSV);
+						vec.add(hoTen);
+						vec.add(diaChi);
+						vec.add(xaPhuong);
+						vec.add(quanHuyen);
+						vec.add(tinhThanh);
+						vec.add(sdt);
+						vec.add(email);
+						vec.add(maLH);
+						tblSinhVien.addRow(vec);
+					}
+					tbl.setModel(tblSinhVien);
+					tblSinhVien.fireTableDataChanged();
+
+				} catch (Exception ex) {
+					// TODO: handle exception
+					System.err.println(ex);
+				}
+			}
+		});
+
+		btnUpdate.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					stmt.executeUpdate("update sinhvien set tenSV = \'" + txtName.getText() + "\', diaChi = \'"
+							+ txtAdd.getText() + "\', MaXaPhuong = \'" + maXaPhuong + "\', MaQuanHuyen = \'"
+							+ maQuanHuyen + "\', MaTinhThanh = \'" + maTinhThanh + "\',dienThoai = \'"
+							+ txtPhone.getText() + "\', eMail = \'" + txtMail.getText() + "\', maLH = \'"
+							+ txtIDlh.getText() + "\'  where maLH = \'" + txtID.getText() + "\'");
+					JOptionPane.showMessageDialog(null, "Cập nhật thành công!!!");
+					tblSinhVien.setRowCount(0);
+					rs = stmt.executeQuery(
+							"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail, maLH FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh");
 
 					while (rs.next()) {
 						String maSV = rs.getString(1);
@@ -438,6 +524,7 @@ public class SinhVien extends JPanel {
 						String tinhThanh = rs.getString(6);
 						String sdt = rs.getString(7);
 						String email = rs.getString(8);
+						String maLH = rs.getString(9);
 						Vector<String> vec = new Vector<String>();
 						vec.add(maSV);
 						vec.add(hoTen);
@@ -447,6 +534,7 @@ public class SinhVien extends JPanel {
 						vec.add(tinhThanh);
 						vec.add(sdt);
 						vec.add(email);
+						vec.add(maLH);
 						tblSinhVien.addRow(vec);
 					}
 					tbl.setModel(tblSinhVien);
@@ -455,6 +543,55 @@ public class SinhVien extends JPanel {
 				} catch (Exception ex) {
 					// TODO: handle exception
 					System.err.println(ex);
+				}
+			}
+		});
+
+		btnRemove.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int dialogResult = JOptionPane.showConfirmDialog(null,
+						"Bạn muốn xóa dữ liệu sinh viên ở lớp học phần !", "Xem cho kỹ",
+						JOptionPane.YES_NO_OPTION);
+				if (dialogResult == JOptionPane.YES_OPTION) {
+					try {
+						stmt.execute("delete from sinhvien where maSV = \'" + txtID.getText() + "\'");
+						JOptionPane.showMessageDialog(null, "Xóa thành công!!!");
+						tblSinhVien.setRowCount(0);
+						rs = stmt.executeQuery(
+								"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail, maLH FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh");
+
+						while (rs.next()) {
+							String maSV = rs.getString(1);
+							String hoTen = rs.getString(2);
+							String diaChi = rs.getString(3);
+							String xaPhuong = rs.getString(4);
+							String quanHuyen = rs.getString(5);
+							String tinhThanh = rs.getString(6);
+							String sdt = rs.getString(7);
+							String email = rs.getString(8);
+							String maLH = rs.getString(9);
+							Vector<String> vec = new Vector<String>();
+							vec.add(maSV);
+							vec.add(hoTen);
+							vec.add(diaChi);
+							vec.add(xaPhuong);
+							vec.add(quanHuyen);
+							vec.add(tinhThanh);
+							vec.add(sdt);
+							vec.add(email);
+							vec.add(maLH);
+							tblSinhVien.addRow(vec);
+						}
+						tbl.setModel(tblSinhVien);
+						tblSinhVien.fireTableDataChanged();
+
+					} catch (Exception ex) {
+						// TODO: handle exception
+						System.err.println(ex);
+					}
 				}
 			}
 		});
@@ -469,7 +606,7 @@ public class SinhVien extends JPanel {
 					if (txtValue.getText().equals("")) {
 						tblSinhVien.setRowCount(0);
 						rs = stmt.executeQuery(
-								"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh");
+								"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail, maLH FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh");
 
 						while (rs.next()) {
 							String maSV = rs.getString(1);
@@ -480,6 +617,7 @@ public class SinhVien extends JPanel {
 							String tinhThanh = rs.getString(6);
 							String sdt = rs.getString(7);
 							String email = rs.getString(8);
+							String maLH = rs.getString(9);
 							Vector<String> vec = new Vector<String>();
 							vec.add(maSV);
 							vec.add(hoTen);
@@ -489,7 +627,7 @@ public class SinhVien extends JPanel {
 							vec.add(tinhThanh);
 							vec.add(sdt);
 							vec.add(email);
-
+							vec.add(maLH);
 							tblSinhVien.addRow(vec);
 						}
 						tbl.setModel(tblSinhVien);
@@ -498,7 +636,7 @@ public class SinhVien extends JPanel {
 						if (index == 0) {
 							tblSinhVien.setRowCount(0);
 							rs = stmt.executeQuery(
-									"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh and maSV like \'%"
+									"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail,maLH FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh and maSV like \'%"
 											+ txtValue.getText() + "%\'");
 
 							while (rs.next()) {
@@ -510,6 +648,7 @@ public class SinhVien extends JPanel {
 								String tinhThanh = rs.getString(6);
 								String sdt = rs.getString(7);
 								String email = rs.getString(8);
+								String maLH = rs.getString(9);
 								Vector<String> vec = new Vector<String>();
 								vec.add(maSV);
 								vec.add(hoTen);
@@ -519,6 +658,7 @@ public class SinhVien extends JPanel {
 								vec.add(tinhThanh);
 								vec.add(sdt);
 								vec.add(email);
+								vec.add(maLH);
 								tblSinhVien.addRow(vec);
 							}
 							tbl.setModel(tblSinhVien);
@@ -527,7 +667,7 @@ public class SinhVien extends JPanel {
 						} else if (index == 1) {
 							tblSinhVien.setRowCount(0);
 							rs = stmt.executeQuery(
-									"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh and tenSV like \'%"
+									"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail, maLH FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh and tenSV like \'%"
 											+ txtValue.getText() + "%\'");
 
 							while (rs.next()) {
@@ -539,6 +679,7 @@ public class SinhVien extends JPanel {
 								String tinhThanh = rs.getString(6);
 								String sdt = rs.getString(7);
 								String email = rs.getString(8);
+								String maLH = rs.getString(9);
 								Vector<String> vec = new Vector<String>();
 								vec.add(maSV);
 								vec.add(hoTen);
@@ -548,51 +689,52 @@ public class SinhVien extends JPanel {
 								vec.add(tinhThanh);
 								vec.add(sdt);
 								vec.add(email);
+								vec.add(maLH);
+								tblSinhVien.addRow(vec);
+							}
+							tbl.setModel(tblSinhVien);
+							tblSinhVien.fireTableDataChanged();
+
+						} else if (index == 2) {
+							tblSinhVien.setRowCount(0);
+							rs = stmt.executeQuery(
+									"SELECT maSV, tenSV, diaChi, TenXaPhuong, TenQuanHuyen, TenTinhThanh, dienThoai, eMail, maLH FROM sinhvien as list, xa_phuong as xp, quan_huyen as qh, tinh_thanh as tt where xp.MaXaPhuong = list.MaXaPhuong and qh.MaQuanHuyen = list.MaQuanHuyen and tt.MaTinhThanh = list.MaTinhThanh and maLH like \'%"
+											+ txtValue.getText() + "%\'");
+
+							while (rs.next()) {
+								String maSV = rs.getString(1);
+								String hoTen = rs.getString(2);
+								String diaChi = rs.getString(3);
+								String xaPhuong = rs.getString(4);
+								String quanHuyen = rs.getString(5);
+								String tinhThanh = rs.getString(6);
+								String sdt = rs.getString(7);
+								String email = rs.getString(8);
+								String maLH = rs.getString(9);
+								Vector<String> vec = new Vector<String>();
+								vec.add(maSV);
+								vec.add(hoTen);
+								vec.add(diaChi);
+								vec.add(xaPhuong);
+								vec.add(quanHuyen);
+								vec.add(tinhThanh);
+								vec.add(sdt);
+								vec.add(email);
+								vec.add(maLH);
 								tblSinhVien.addRow(vec);
 							}
 							tbl.setModel(tblSinhVien);
 							tblSinhVien.fireTableDataChanged();
 
 						}
+
 					}
+
 				} catch (Exception e2) {
 					System.err.println(e2);
 				}
 			}
 		});
-
-		// cbbTinhThanh.addItemListener(new ItemListener() {
-		//
-		// @Override
-		// public void itemStateChanged(ItemEvent e) {
-		// // TODO Auto-generated method stub
-		// cbbQuanHuyen.removeAllItems();
-		// arrMa2.clear();
-		// arrTen2.clear();
-		//// for (int i = 0; i < arrMa2.size(); i++) {
-		//// arrMa2.remove(i);
-		//// arrTen2.remove(i);
-		//// }
-		// int index = cbbTinhThanh.getSelectedIndex();
-		// try {
-		// ResultSet rs3 = stmt.executeQuery("Select MaQuanHuyen, TenQuanHuyen from
-		// quan_huyen_thixa where MaThanhPho = \'"+ arrMa.get(index) +"\'");
-		// while(rs3.next()) {
-		// maTinhThanh = rs3.getString(1);
-		// tenTinhThanh = rs3.getString(2);
-		// arrMa2.add(maTinhThanh);
-		// arrTen2.add(tenTinhThanh);
-		// }
-		// } catch (SQLException e1) {
-		// // TODO Auto-generated catch block
-		// e1.printStackTrace();
-		// }
-		// for(int i = 0; i < arrMa2.size(); i++) {
-		// cbbQuanHuyen.addItem(arrMa2.get(i) + " | " + arrTen2.get(i));
-		// }
-		//
-		// }
-		// });
 
 		add(grTop);
 		add(pnCenter);
