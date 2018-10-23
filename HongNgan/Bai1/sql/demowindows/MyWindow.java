@@ -3,26 +3,44 @@ package demowindows;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+import java.util.Vector;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class MyWindow extends JFrame {
 	ResultSet rs = null;
+	Statement stmt;
 
 	public MyWindow() {
+
+		super("QUAN LY");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		JPanel main = new JPanel();
 		main.setLayout(new BorderLayout());
 
+		JPanel main1 = new JPanel();
+		main1.setLayout(new BorderLayout());
+		main.add(main1, BorderLayout.NORTH);
+
+		JPanel main2 = new JPanel();
+		main2.setLayout(new BorderLayout());
+		main.add(main2, BorderLayout.CENTER);
+
 		JPanel pnFlow = new JPanel();
 		pnFlow.setLayout(new GridLayout(4, 2));
-		main.add(pnFlow, BorderLayout.CENTER);
+		main1.add(pnFlow, BorderLayout.CENTER);
 
 		JLabel lblId = new JLabel("Student id:");
 		pnFlow.add(lblId);
@@ -42,15 +60,80 @@ public class MyWindow extends JFrame {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "");
-			Statement stmt = con.createStatement();
+			stmt = con.createStatement();
 
 			rs = stmt.executeQuery("select * from students");
 
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
+		
+		DefaultTableModel dm = new DefaultTableModel();
+		dm.addColumn("Id");
+		dm.addColumn("Name");
+		dm.addColumn("Group");
+		final JTable tbl = new JTable(dm);
+		try {
+			while (rs.next()) {
+				String id = rs.getString(1);
+				String name = rs.getString(2);
+				String group = rs.getString(3);
+				Vector<String> vec = new Vector<String>();
+				vec.add(id);
+				vec.add(name);
+				vec.add(group);
+				dm.addRow(vec);
+
+			}
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		tbl.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				int row = tbl.getSelectedRow();
+
+				String id = (String) tbl.getValueAt(row, 0);
+				txtId.setText(id);
+
+				String name = (String) tbl.getValueAt(row, 1);
+				txtName.setText(name);
+
+				String group = (String) tbl.getValueAt(row, 2);
+				txtGroup.setText(group);
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 
 		JPanel pnbutton = new JPanel();
+		pnbutton.setLayout(new FlowLayout());
+		main1.add(pnbutton, BorderLayout.SOUTH);
 
 		JButton btnNext = new JButton(" Next ");
 		btnNext.addActionListener(new ActionListener() {
@@ -98,16 +181,33 @@ public class MyWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					String id = txtId.getText();
-					String name = txtName.getText();
-					String group = txtGroup.getText();
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "");
-					Statement stmt = con.createStatement();
+					String id1 = txtId.getText();
+					String name1 = txtName.getText();
+					String group1 = txtGroup.getText();
+
 					stmt.executeUpdate(
-							"insert into students values (\"" + id + "\",\"" + name + "\",\"" + group + "\")");
-					
-					con.close();
+							"insert into students values (\"" + id1 + "\",\"" + name1 + "\",\"" + group1 + "\")");
+					JOptionPane.showMessageDialog(null, "Thêm thành công!!!");
+					dm.setRowCount(0);
+					ResultSet rs = stmt.executeQuery("select * from students");
+					try {
+						while (rs.next()) {
+							String id = rs.getString(1);
+							String name = rs.getString(2);
+							String group = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(id);
+							vec.add(name);
+							vec.add(group);
+							dm.addRow(vec);
+
+						}
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+					tbl.setModel(dm);
+					dm.fireTableDataChanged();
+
 				} catch (Exception ex) {
 					System.out.println(ex);
 				}
@@ -122,16 +222,32 @@ public class MyWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					String id = txtId.getText();
-					String name = txtName.getText();
-					String group = txtGroup.getText();
+					String id1 = txtId.getText();
+					String name1 = txtName.getText();
+					String group1 = txtGroup.getText();
 
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "");
-					Statement stmt = con.createStatement();
-					stmt.executeUpdate("update students set name =\"" + name + "\",group1=\"" + group
-							+ "\" where id = \"" + id + "\" ");
-					
+					stmt.executeUpdate("update students set name =\"" + name1 + "\",group1=\"" + group1
+							+ "\" where id = \"" + id1 + "\" ");
+					JOptionPane.showMessageDialog(null, "Sua thanh cong!!!");
+					dm.setRowCount(0);
+					ResultSet rs = stmt.executeQuery("select * from students");
+					try {
+						while (rs.next()) {
+							String id = rs.getString(1);
+							String name = rs.getString(2);
+							String group = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(id);
+							vec.add(name);
+							vec.add(group);
+							dm.addRow(vec);
+
+						}
+					} catch (Exception ex1) {
+						ex1.printStackTrace();
+					}
+					tbl.setModel(dm);
+					dm.fireTableDataChanged();
 
 				} catch (Exception ex) {
 					System.out.println(ex);
@@ -141,31 +257,6 @@ public class MyWindow extends JFrame {
 		});
 		pnbutton.add(btnUpdateid);
 
-		JButton btnUpdateName = new JButton(" Update Name  ");
-		btnUpdateName.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				try {
-					String id = txtId.getText();
-					String name = txtName.getText();
-					String group = txtGroup.getText();
-
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "");
-					Statement stmt = con.createStatement();
-					stmt.executeUpdate("update students set name =\"" + name + "\",group1=\"" + group
-							+ "\" where name = \"" + name + "\" ");
-					
-
-				} catch (Exception ex) {
-					System.out.println(ex);
-				}
-			}
-
-		});
-		pnbutton.add(btnUpdateName);
-
 		JButton btnXoa = new JButton(" Xoa Id  ");
 		btnXoa.addActionListener(new ActionListener() {
 			@Override
@@ -173,12 +264,35 @@ public class MyWindow extends JFrame {
 				// TODO Auto-generated method stub
 
 				try {
-					String id = txtId.getText();
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "");
-					Statement stmt = con.createStatement();
-					stmt.executeUpdate("delete from students WHERE id = \"" + id + "\" ");
-					
+					String id1 = txtId.getText();
+
+					stmt.executeUpdate("delete from students WHERE id = \"" + id1 + "\" ");
+					int ret = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Confirm",
+							JOptionPane.YES_NO_OPTION);
+					if (ret != JOptionPane.YES_OPTION) {
+						return;
+					}
+
+					dm.setRowCount(0);
+					ResultSet rs = stmt.executeQuery("select * from students");
+					try {
+						while (rs.next()) {
+							String id = rs.getString(1);
+							String name = rs.getString(2);
+							String group = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(id);
+							vec.add(name);
+							vec.add(group);
+							dm.addRow(vec);
+
+						}
+					} catch (Exception ex1) {
+						ex1.printStackTrace();
+					}
+					tbl.setModel(dm);
+					dm.fireTableDataChanged();
+
 				} catch (Exception ex) {
 					System.out.println(ex);
 				}
@@ -187,28 +301,121 @@ public class MyWindow extends JFrame {
 		});
 		pnbutton.add(btnXoa);
 
-		JButton btnXoaName = new JButton(" Xoa Name  ");
-		btnXoaName.addActionListener(new ActionListener() {
+		JScrollPane sc = new JScrollPane(tbl);
+		main2.add(sc, BorderLayout.CENTER);
+
+		JPanel pnSearch = new JPanel();
+		pnSearch.setLayout(new GridLayout(1, 2));
+
+		JComboBox cbo = new JComboBox();
+		cbo.addItem("ID");
+		cbo.addItem("Name");
+		cbo.addItem("Group");
+
+		JTextField txtFilter = new JTextField(20);
+		pnSearch.add(cbo);
+		pnSearch.add(txtFilter);
+		main2.add(pnSearch, BorderLayout.NORTH);
+
+		JButton btnSearch = new JButton("search");
+
+		pnSearch.add(btnSearch);
+		btnSearch.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String text = txtFilter.getText();
 				// TODO Auto-generated method stub
+				int n = cbo.getSelectedIndex();
+				if (n == 0) {
+					String sql;
+					if (text.equals(""))
+						sql = "select * from students";
+					else
+						sql = "select * from students where id =\'" + text + "\'";
 
-				try {
-					String name = txtName.getText();
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "");
-					Statement stmt = con.createStatement();
-					stmt.executeUpdate("delete from students WHERE name = \"" + name + "\" ");
-					
-				} catch (Exception ex) {
-					System.out.println(ex);
+					dm.setRowCount(0);
+					ResultSet rs;
+					try {
+						rs = stmt.executeQuery(sql);
+
+						while (rs.next()) {
+							String id = rs.getString(1);
+							String name = rs.getString(2);
+							String group = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(id);
+							vec.add(name);
+							vec.add(group);
+							dm.addRow(vec);
+
+						}
+					} catch (Exception ex1) {
+						ex1.printStackTrace();
+					}
+					tbl.setModel(dm);
+					dm.fireTableDataChanged();
+				} else if (n == 1) {
+					String sql;
+					if (text.equals(""))
+						sql = "select * from students";
+					else
+						sql = "select * from students where name =\'" + text + "\'";
+
+					dm.setRowCount(0);
+					ResultSet rs;
+					try {
+						rs = stmt.executeQuery(sql);
+
+						while (rs.next()) {
+							String id = rs.getString(1);
+							String name = rs.getString(2);
+							String group = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(id);
+							vec.add(name);
+							vec.add(group);
+							dm.addRow(vec);
+
+						}
+					} catch (Exception ex1) {
+						ex1.printStackTrace();
+					}
+					tbl.setModel(dm);
+					dm.fireTableDataChanged();
+				} else if (n == 2) {
+					String sql;
+					if (text.equals(""))
+						sql = "select * from students";
+					else
+						sql = "select * from students where group1 =\'" + text + "\'";
+
+					dm.setRowCount(0);
+					ResultSet rs;
+					try {
+						rs = stmt.executeQuery(sql);
+
+						while (rs.next()) {
+							String id = rs.getString(1);
+							String name = rs.getString(2);
+							String group = rs.getString(3);
+							Vector<String> vec = new Vector<String>();
+							vec.add(id);
+							vec.add(name);
+							vec.add(group);
+							dm.addRow(vec);
+
+						}
+					} catch (Exception ex1) {
+						ex1.printStackTrace();
+					}
+					tbl.setModel(dm);
+					dm.fireTableDataChanged();
 				}
+
 			}
-
 		});
-		pnbutton.add(btnXoaName);
 
-		main.add(pnbutton, BorderLayout.SOUTH);
 		Container con = getContentPane();
 		con.add(main);
 
@@ -217,7 +424,7 @@ public class MyWindow extends JFrame {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MyWindow ui = new MyWindow();
-		ui.setSize(650, 170);
+		ui.setSize(650, 270);
 		ui.setLocationRelativeTo(null);
 		ui.setVisible(true);
 	}
