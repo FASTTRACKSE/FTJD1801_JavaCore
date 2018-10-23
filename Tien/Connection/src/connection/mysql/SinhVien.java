@@ -12,8 +12,10 @@ public class SinhVien {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/QuanLySinhVien","root","");
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from SinhVien");
-			rs.next();
-			System.out.println(rs.getString(1));
+			while(rs.next()){
+				System.out.println(rs.getString(1)+"  |  "+rs.getString(2));
+			}
+			con.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println(e);

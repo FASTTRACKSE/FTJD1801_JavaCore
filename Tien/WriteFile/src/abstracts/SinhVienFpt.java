@@ -135,7 +135,7 @@ public abstract class SinhVienFpt implements Serializable{
 	@Override
 	public String toString() {
 		return "SinhVienFpt [maSV=" + maSV + ", hoTen=" + hoTen + ", nganh=" + nganh + ", diem=" + diem + ", tuoi="
-				+ tuoi + "]";
+				+ tuoi;
 	}
 
 	public void xuat() {

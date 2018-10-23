@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div style="width: 300px; margin: 10px;">
+		<p class="folders_save">Folder:
+                <select name="folders1" id="user">
+                        <% 
+                        user = (User)session.getAttribute("user");
+                        listOfFolders = user.listOfFolders(); 
+                        if(listOfFolders != null){
+                           for(File file : listOfFolders){
+                                out.print("<option value="+file.getName()+">"+file.getName()+"</option>");
+                            }
+                           }
+                        %> 
+                    </select>
+
+                     </p>
+                <input class="pole" type="file" name="file" />
+                <input class="wrzuc" type="submit" value="Wrzuc!">
+		</form>
+	</div>
+</body>
+</html>
